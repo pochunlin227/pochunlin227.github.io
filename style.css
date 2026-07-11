@@ -96,7 +96,7 @@ figure.journey figcaption{margin-top:18px;font-size:14px;font-weight:700;color:v
 
 /* ---------- education / tools / skills ---------- */
 .facts{margin-top:64px}
-.facts h4{font-size:14px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#C9822E;margin-bottom:10px}
+.facts h4,.sec-label{font-size:14px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#C9822E;margin-bottom:10px}
 .edu-row{display:flex;align-items:baseline;gap:12px;padding:22px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .edu-row:last-child{border-bottom:none}
 .edu-row b{font-size:20px;color:var(--black);font-weight:700}
