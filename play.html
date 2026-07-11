@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Play — Po Chun Lin</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="site">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><img src="assets/profile.jpg" alt="Po Chun Lin"><span>Po Chun Lin</span></a>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a class="active" href="play.html">Play</a>
+    </div>
+  </div>
+</nav>
+
+<section style="padding-top:100px">
+  <div class="wrap">
+    <div class="reveal"><span class="kicker">Play</span>
+    <h2>Experiments, side quests, and things made for fun.</h2>
+    <p class="lede" style="margin-top:14px">No stakeholders, no roadmap — just craft practice. Replace these tiles with your own explorations.</p></div>
+    <div class="play-grid">
+      <div class="tile t-sand reveal"><span class="emo">🎬</span><h3>[Motion experiments]</h3><p>Micro-interactions & prototypes in After Effects / Figma.</p></div>
+      <div class="tile t-lilac reveal"><span class="emo">🤖</span><h3>[AI playground]</h3><p>Small tools & prompts exploring AI-assisted design workflows.</p></div>
+      <div class="tile t-sky reveal"><span class="emo">✏️</span><h3>[Daily UI]</h3><p>Interface studies and visual explorations.</p></div>
+      <div class="tile dark reveal" style="background:linear-gradient(160deg,var(--green),var(--green2))"><span class="emo">📷</span><h3>[Photography]</h3><p>Frames collected while traveling.</p></div>
+      <div class="tile t-lav reveal"><span class="emo">🧩</span><h3>[Generative art]</h3><p>Creative coding sketches with p5.js.</p></div>
+      <div class="tile reveal" style="background:var(--white);border:1.5px dashed var(--line)"><span class="emo">➕</span><h3>[Your next experiment]</h3><p>Space reserved for whatever you're making now.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="foot-card">
+    <div class="foot-top">
+      <a class="foot-id" href="index.html"><img src="assets/profile.jpg" alt="Po Chun Lin"><b>Po Chun Lin</b></a>
+      <div class="foot-menu">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="play.html">Play</a>
+      </div>
+    </div>
+    <p class="foot-credit">Created by Po Chun Lin © 2026</p>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
