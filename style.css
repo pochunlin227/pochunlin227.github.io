@@ -42,7 +42,10 @@ h3{font-size:19px;font-weight:700;color:var(--black)}
 .btn.ghost{border:1.5px solid var(--green);color:var(--green)}
 
 /* ---------- hero (home) ---------- */
-.hero{padding:110px 0 70px}
+.hero{padding:90px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.hero-art img{width:100%;max-width:480px;display:block;margin:0 auto}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art img{max-width:320px;margin-top:10px}}
 .hero .hello{font-size:15px;font-weight:700;color:var(--green2);margin-bottom:18px;letter-spacing:.04em}
 .hero h1 em{font-style:normal;color:var(--green)}
 .hero p.sub{margin-top:24px;font-size:19px;color:var(--gray);max-width:600px}
