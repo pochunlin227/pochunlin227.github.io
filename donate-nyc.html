@@ -529,6 +529,9 @@
     });
   });
 
+  // trigger reveal + scroll-spy once on load
+  window.dispatchEvent(new Event('scroll'));
+
   // case-study accordion
   document.querySelectorAll('.ps-group .ps-head:not([disabled])').forEach(head => {
     head.addEventListener('click', () => {
