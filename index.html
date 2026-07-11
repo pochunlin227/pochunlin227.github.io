@@ -39,7 +39,7 @@
     <div class="reveal"><span class="kicker">Selected work</span>
     <h2>Case studies</h2></div>
     <div class="carousel reveal">
-      <button class="car-btn prev" type="button" aria-label="Previous">←</button>
+      <button class="car-btn prev" type="button" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
       <div class="carousel-track">
       <a class="pcard" href="booking-for-business.html">
         <div class="thumb t-green"><img src="assets/booking-hero.jpg" alt="Booking.com for Business app expense screen"></div>
@@ -87,7 +87,8 @@
         </div>
       </a>
       </div>
-      <button class="car-btn next" type="button" aria-label="Next">→</button>
+      <button class="car-btn next" type="button" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      <div class="car-dots" role="tablist" aria-label="Case study pages"></div>
     </div>
   </div>
 </section>
@@ -128,12 +129,17 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const track=document.querySelector('.carousel-track');
 if(track){
   const prev=document.querySelector('.car-btn.prev'), next=document.querySelector('.car-btn.next');
+  const dots=document.querySelector('.car-dots');
+  const cardCount=track.querySelectorAll('.pcard').length;
   const cardW=()=>{const c=track.querySelector('.pcard');return c?c.getBoundingClientRect().width+24:340;};
+  const visCount=()=>Math.max(1,Math.floor((track.clientWidth+24)/cardW()));
+  const stops=()=>Math.max(1,cardCount-visCount()+1);
+  const curIdx=()=>Math.min(stops()-1,Math.round(track.scrollLeft/cardW()));
   let animating=false;
-  function slide(dir){
+  function goTo(idx){
     if(animating)return;
-    const w=cardW(), max=track.scrollWidth-track.clientWidth;
-    const target=Math.max(0,Math.min(Math.round(track.scrollLeft/w+dir)*w,max));
+    const max=track.scrollWidth-track.clientWidth;
+    const target=Math.max(0,Math.min(idx*cardW(),max));
     const start=track.scrollLeft, dist=target-start;
     if(Math.abs(dist)<2)return;
     const dur=420, t0=performance.now();
@@ -148,12 +154,27 @@ if(track){
     })(t0);
     setTimeout(finish,dur+120);
   }
-  prev.addEventListener('click',()=>slide(-1));
-  next.addEventListener('click',()=>slide(1));
-  const upd=()=>{prev.disabled=track.scrollLeft<10;next.disabled=track.scrollLeft>track.scrollWidth-track.clientWidth-10;};
+  function buildDots(){
+    dots.innerHTML='';
+    for(let i=0;i<stops();i++){
+      const b=document.createElement('button');
+      b.type='button'; b.setAttribute('aria-label','Go to slide '+(i+1));
+      b.addEventListener('click',()=>goTo(i));
+      dots.appendChild(b);
+    }
+    upd();
+  }
+  function upd(){
+    prev.disabled=track.scrollLeft<10;
+    next.disabled=track.scrollLeft>track.scrollWidth-track.clientWidth-10;
+    const idx=curIdx();
+    [...dots.children].forEach((d,i)=>d.classList.toggle('on',i===idx));
+  }
+  prev.addEventListener('click',()=>goTo(curIdx()-1));
+  next.addEventListener('click',()=>goTo(curIdx()+1));
   track.addEventListener('scroll',()=>requestAnimationFrame(upd));
-  window.addEventListener('resize',upd);
-  upd();
+  window.addEventListener('resize',buildDots);
+  buildDots();
 }
 </script>
 </body>

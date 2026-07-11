@@ -72,17 +72,21 @@ h3{font-size:19px;font-weight:700;color:var(--black)}
 
 /* ---------- carousel (home) ---------- */
 .carousel{position:relative;margin-top:44px}
-.carousel-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 28px;scrollbar-width:none;-ms-overflow-style:none}
+.carousel-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 12px;scrollbar-width:none;-ms-overflow-style:none}
 .carousel-track::-webkit-scrollbar{display:none}
-.carousel-track .pcard{flex:0 0 calc((100% - 48px)/3);scroll-snap-align:start;margin-top:0}
-@media(max-width:1024px){.carousel-track .pcard{flex:0 0 calc((100% - 24px)/2)}}
-@media(max-width:640px){.carousel-track .pcard{flex:0 0 86%}}
-.car-btn{position:absolute;top:35%;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--green);font-size:19px;font-weight:700;cursor:pointer;z-index:5;box-shadow:0 8px 24px rgba(15,15,15,.14);transition:all .2s;display:flex;align-items:center;justify-content:center}
-.car-btn:hover:not(:disabled){background:var(--green);color:#fff;transform:scale(1.06)}
-.car-btn.prev{left:-22px}
-.car-btn.next{right:-22px}
-.car-btn:disabled{opacity:.3;cursor:default}
-@media(max-width:640px){.car-btn.prev{left:-8px}.car-btn.next{right:-8px}}
+.carousel-track .pcard{flex:0 0 calc((100% - 48px)/3 - 26px);scroll-snap-align:start;margin-top:0}
+@media(max-width:1024px){.carousel-track .pcard{flex:0 0 calc((100% - 24px)/2 - 30px)}}
+@media(max-width:640px){.carousel-track .pcard{flex:0 0 82%}}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:none;background:var(--green);color:#fff;cursor:pointer;z-index:5;box-shadow:0 12px 30px rgba(15,15,15,.28);transition:background .2s,transform .2s,opacity .2s;display:flex;align-items:center;justify-content:center}
+.car-btn svg{display:block}
+.car-btn:hover:not(:disabled){background:var(--green2);transform:translateY(-50%) scale(1.08)}
+.car-btn.prev{left:-26px}
+.car-btn.next{right:-26px}
+.car-btn:disabled{opacity:.25;cursor:default}
+@media(max-width:640px){.car-btn{width:44px;height:44px}.car-btn.prev{left:-10px}.car-btn.next{right:-10px}}
+.car-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.car-dots button{width:8px;height:8px;border-radius:99px;border:none;background:#D8D3C8;cursor:pointer;transition:all .25s;padding:0}
+.car-dots button.on{width:26px;background:var(--green)}
 
 /* ---------- section blocks ---------- */
 .soft{background:var(--mist)}
