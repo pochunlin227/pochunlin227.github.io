@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<title>donateNYC Web Application — Case Study · Po Chun Lin</title>
+<title>Promoted Users — Case Study · Po Chun Lin</title>
 <style>
   :root{
     --navy:#1F2E5C; --navy2:#17224A; --blue:#3A4B7C; --blue-lt:#EBEFF2;
@@ -23,7 +23,6 @@
   #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3A7D6B,var(--yellow));z-index:1200;transition:width .1s linear}
   aside.sidebar{position:fixed;top:72px;left:0;bottom:0;width:184px;z-index:1000;background:#1F5C4D;color:#fff;display:flex;flex-direction:column;padding:22px 12px 18px;overflow-y:auto}
   .ps-label{display:block;font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);padding:0 10px;margin-bottom:8px}
-  /* accordion case-study switcher */
   .ps-group{margin-bottom:2px}
   .ps-head{width:100%;text-align:left;background:none;border:1px solid transparent;cursor:pointer;padding:9px 10px;border-radius:10px;font:inherit;transition:all .2s}
   .ps-head b{display:block;font-size:12px;font-weight:700;color:#D6E5DD;line-height:1.35}
@@ -32,7 +31,6 @@
   .ps-group.open>.ps-head{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.16)}
   .ps-group.open>.ps-head b{color:#fff}
   .ps-group.open>.ps-head span{color:var(--yellow)}
-  .ps-group.soon>.ps-head{opacity:.55;cursor:default}
   .ps-panel{max-height:0;overflow:hidden;transition:max-height .4s ease;opacity:0}
   .ps-group.open>.ps-panel{max-height:560px;opacity:1;transition:max-height .4s ease,opacity .3s ease .1s}
   .ps-all{display:block;font-size:10.5px;font-weight:700;color:#A3BDB2;text-decoration:none;padding:6px 10px;margin-top:8px}
@@ -62,7 +60,6 @@
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
   .reveal.on{opacity:1;transform:none}
   .tag{display:inline-block;font-size:12px;font-weight:700;padding:5px 12px;border-radius:99px;background:rgba(255,255,255,.12);color:#E2E8F2;border:1px solid rgba(255,255,255,.25)}
-  .tag.ai{background:var(--yellow);color:var(--navy);border-color:var(--yellow)}
   .num{font-size:13px;font-weight:800;color:var(--yellow)}
 
   /* ---------- hero ---------- */
@@ -94,7 +91,7 @@
   .rolebar li{font-size:14.5px;color:#D6DEEC;padding-left:22px;position:relative}
   .rolebar li::before{content:"→";position:absolute;left:0;color:var(--yellow);font-weight:700}
 
-  /* ---------- content sections ---------- */
+  /* ---------- phases ---------- */
   .phase{border-radius:var(--radius);padding:26px;border:1.5px solid var(--line);background:#fff;position:relative}
   .phase .badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;padding:5px 12px;border-radius:99px;margin-bottom:14px}
   .phase.ok .badge{background:#e4f5ec;color:var(--green)}
@@ -111,18 +108,32 @@
   .insight h4{font-size:16px;color:var(--navy);font-weight:700;margin-bottom:6px}
   .insight p{font-size:14.5px;color:var(--gray)}
 
-  /* ---------- feature rows ---------- */
-  .feature{display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:center;margin-top:56px}
-  .feature.flip{grid-template-columns:1.2fr 1fr}
-  .feature.flip .f-copy{order:2}
-  .feature.flip .f-img{order:1}
-  @media(max-width:820px){.feature,.feature.flip{grid-template-columns:1fr}.feature.flip .f-copy{order:1}.feature.flip .f-img{order:2}}
-  .feature .f-img img{width:100%;border-radius:var(--radius);border:1px solid var(--line)}
-  .feature .f-no{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-  .feature h3{margin-top:8px}
-  .feature p{font-size:15px;color:var(--gray)}
+  /* ---------- hypothesis card ---------- */
+  .hypo{margin-top:44px;background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:36px 40px}
+  .hypo .hypo-label{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+  .hypo p.statement{font-size:19px;line-height:1.75;color:var(--ink);font-weight:500}
+  .hypo p.statement mark{background:var(--blue-lt);color:var(--navy);font-weight:700;padding:2px 8px;border-radius:6px}
+  .hypo p.guard{margin-top:16px;font-size:14.5px;color:var(--gray)}
+  .hypo p.guard mark{background:#FDF3E7;color:#9A6A2F;font-weight:700;padding:2px 8px;border-radius:6px}
 
-  /* ---------- image sections ---------- */
+  /* ---------- A/A mock form ---------- */
+  .mockform{margin-top:44px;background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:36px 40px;max-width:620px}
+  .mockform h5{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:12px}
+  .mockform h5 span{font-weight:400;color:var(--gray)}
+  .mockform .opt{display:flex;align-items:center;gap:10px;font-size:15.5px;color:var(--ink);margin:8px 0}
+  .mockform .radio{width:20px;height:20px;border-radius:50%;border:2px solid #B5B5B5;flex:none}
+  .mockform .radio.sel{border:6px solid #2A62D9}
+  .mockform .divide{height:22px}
+
+  /* ---------- stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .stats.four{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.stats,.stats.four{grid-template-columns:1fr 1fr}}
+  .stat{text-align:center;padding:28px}
+  .stat-num{font-size:clamp(32px,6vw,52px);font-weight:800;color:var(--blue);line-height:1}
+  .stat-label{font-size:13px;font-weight:700;color:var(--gray);margin-top:12px;letter-spacing:.05em}
+
+  /* ---------- images ---------- */
   .img-full{width:100%;border-radius:var(--radius);margin:44px 0;border:1px solid var(--line)}
   .img-duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:44px 0}
   @media(max-width:820px){.img-duo{grid-template-columns:1fr}}
@@ -178,17 +189,17 @@
     </div>
   </div>
 
-  <div class="ps-group" data-key="promoted">
+  <div class="ps-group open" data-key="promoted">
     <button class="ps-head" type="button"><b>Promoted Users · B2C→B4B</b><span>02 · 2023</span></button>
     <div class="ps-panel">
       <div class="nav-links">
-        <a href="promoted-users.html#overview"><i>00</i> Overview</a>
-        <a href="promoted-users.html#context"><i>01</i> Context</a>
-        <a href="promoted-users.html#clarify"><i>02</i> Clarify Problems</a>
-        <a href="promoted-users.html#concept"><i>03</i> Shape Concept</a>
-        <a href="promoted-users.html#test"><i>04</i> Test &amp; Ship</a>
-        <a href="promoted-users.html#impact"><i>05</i> Impact</a>
-        <a href="promoted-users.html#reflection"><i>06</i> Reflection</a>
+        <a href="#overview"><i>00</i> Overview</a>
+        <a href="#context"><i>01</i> Context</a>
+        <a href="#clarify"><i>02</i> Clarify Problems</a>
+        <a href="#concept"><i>03</i> Shape Concept</a>
+        <a href="#test"><i>04</i> Test &amp; Ship</a>
+        <a href="#impact"><i>05</i> Impact</a>
+        <a href="#reflection"><i>06</i> Reflection</a>
       </div>
     </div>
   </div>
@@ -208,17 +219,17 @@
     </div>
   </div>
 
-  <div class="ps-group open" data-key="donatenyc">
+  <div class="ps-group" data-key="donatenyc">
     <button class="ps-head" type="button"><b>donateNYC Web Application</b><span>04 · 2019</span></button>
     <div class="ps-panel">
       <div class="nav-links">
-        <a href="#overview"><i>00</i> Overview</a>
-        <a href="#context"><i>01</i> Context</a>
-        <a href="#clarify"><i>02</i> Clarify Problems</a>
-        <a href="#concept"><i>03</i> Shape Concept</a>
-        <a href="#build"><i>04</i> Design &amp; Build</a>
-        <a href="#features"><i>05</i> Key Features</a>
-        <a href="#impact"><i>06</i> Reflection</a>
+        <a href="donate-nyc.html#overview"><i>00</i> Overview</a>
+        <a href="donate-nyc.html#context"><i>01</i> Context</a>
+        <a href="donate-nyc.html#clarify"><i>02</i> Clarify Problems</a>
+        <a href="donate-nyc.html#concept"><i>03</i> Shape Concept</a>
+        <a href="donate-nyc.html#build"><i>04</i> Design &amp; Build</a>
+        <a href="donate-nyc.html#features"><i>05</i> Key Features</a>
+        <a href="donate-nyc.html#impact"><i>06</i> Reflection</a>
       </div>
     </div>
   </div>
@@ -230,249 +241,262 @@
 <header class="hero" id="overview">
   <div class="wrap">
     <div class="hero-eyebrow">
-      <span class="tag">Civic Tech</span>
-      <span class="tag">Enterprise Platform</span>
-      <span class="tag">Zero Waste</span>
+      <span class="tag">Growth Design</span>
+      <span class="tag">Experimentation</span>
+      <span class="tag">Cross-System</span>
     </div>
-    <h1>donateNYC <em>Web Application</em></h1>
-    <p class="sub">An enterprise-level web portal helping NYC community groups, businesses, and government agencies donate or find used goods and surplus food—one piece of the city's push to send zero waste to landfills by 2030.</p>
+    <h1>Promoted Users <em>— finding the business travelers hiding in plain sight</em></h1>
+    <p class="sub">Roughly 30% of Booking.com's bookings were business trips made on the leisure product. I led the design of the first cross-system journey that identifies these travelers and routes them to Booking.com for Business — without disturbing the B2C experience.</p>
 
     <div class="meta">
       <div>
         <dt>Duration</dt>
-        <dd>1 year</dd>
+        <dd>2023 Q1–Q4</dd>
       </div>
       <div>
         <dt>Team</dt>
-        <dd>3 Designers, 1 PM</dd>
+        <dd>4 internal teams + Serko (partner)</dd>
       </div>
       <div>
         <dt>Role</dt>
-        <dd>UX &amp; Visual Design</dd>
+        <dd>Design strategy &amp; research lead</dd>
       </div>
       <div>
         <dt>Status</dt>
-        <dd>Shipped on nyc.gov</dd>
+        <dd>Live experimentation</dd>
       </div>
       <div>
         <dt>Year</dt>
-        <dd>2018–2019</dd>
+        <dd>2023</dd>
       </div>
     </div>
   </div>
 </header>
 
-<!-- OVERVIEW SECTION -->
+<!-- OVERVIEW -->
 <section class="reveal">
   <div class="wrap">
     <p class="kicker">00 Overview</p>
     <h2>The Moment &amp; The Brief</h2>
-    <p class="lede">New York City runs on surplus—restaurants with extra food, offices with extra furniture, nonprofits that need both. donateNYC existed to connect them, but its account system was built for individuals, not organizations. The brief: make the platform work for enterprises with many locations and many staff.</p>
+    <p class="lede">Booking.com for Business existed — but the people who needed it were booking work trips on the leisure site, unaware and unserved. The brief: design the entry point that converts them. My reframe: before designing anything, prove where they are, establish a baseline, and only ship what an experiment can defend.</p>
 
     <div class="tldr">
       <div class="card" data-label="The Problem">
-        <h3>One account per business</h3>
-        <p>Entire organizations shared a single login. Staff across dozens of store locations couldn't post or respond to donations independently—and the sign-up form was so long we lost users before they finished it.</p>
+        <h3>High-value users, invisible by default</h3>
+        <p>~30% of bookings were business trips on the B2C flow, and 0.83% of all bookings were made on behalf of someone else. B4B offered higher ARPU and longer stays — but had no systematic path from the main site.</p>
       </div>
       <div class="card hl" data-label="The Outcome">
-        <h3>An enterprise donation platform</h3>
-        <p>Two-step registration, multi-user account management, and a food-matching workflow—shipped as part of NYC's 0X30 initiative, live on nyc.gov for donors, recipients, and city agencies.</p>
+        <h3>A validated entry point that converts</h3>
+        <p>The confirmation-page entry shipped to live experimentation: 50% CTR on the sign-up CTA after exposure, 114 new companies in the first two weeks, and the foundation for next year's 50K SME target.</p>
       </div>
       <div class="card" data-label="My Role">
-        <h3>Product Designer</h3>
-        <p>User research, interaction design, visual design, prototyping &amp; testing. I owned the enterprise registration experience end-to-end—from stakeholder interviews to developer handoff.</p>
+        <h3>Design strategy &amp; research lead</h3>
+        <p>Led design strategy and roadmap, ran the baseline and hypothesis work, executed user testing and data analysis, and aligned four internal teams plus our external partner, Serko, on one cross-system journey.</p>
       </div>
     </div>
 
     <div class="rolebar">
       <h3>Key Responsibilities</h3>
       <ul>
-        <li>Conducted user interviews and secondary research with 2 designers &amp; 1 PM</li>
-        <li>Owned UX + visual design for enterprise registration</li>
-        <li>Designed the information architecture and design style guide</li>
-        <li>Delivered hi-fi interactive prototypes for the development team</li>
+        <li>Led design strategy and roadmap for the B2C→B4B growth track</li>
+        <li>Designed the baseline (A/A) and hypothesis framework for the experiment</li>
+        <li>Ran user testing — 8 unmoderated sessions + 58 first-click tests</li>
+        <li>Aligned Post-booking, B4B Product, Identification teams and Serko</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- CONTEXT SECTION -->
+<!-- CONTEXT -->
 <section id="context" class="soft reveal">
   <div class="wrap">
     <p class="kicker">01 Context</p>
-    <h2>Why This Mattered</h2>
-    <p class="lede">donateNYC provides vital support for New York City's reuse community. By donating and reusing goods instead of discarding them, New Yorkers reduce waste, conserve resources, save money, and help provide jobs and human services for New Yorkers in need.</p>
+    <h2>Two Products, One Missing Bridge</h2>
+    <p class="lede">Booking.com's leisure product and Booking.com for Business ran as separate systems — separate teams, separate platforms, separate accounts. Business travelers landing on the B2C site simply stayed there, paying leisure prices for work trips and getting none of the B4B value.</p>
 
-    <div class="grid2" style="margin-top:44px">
+    <div class="grid3" style="margin-top:44px">
       <div class="phase ok">
-        <div class="badge">The Initiative</div>
-        <h4>NYC 0X30 — Zero Waste by 2030</h4>
-        <p>donateNYC is an essential part of NYC's 0X30 initiative: helping New Yorkers reach the goal of sending zero waste to landfills by 2030. Every donation kept out of a landfill counts toward a citywide target.</p>
+        <div class="badge">Signal</div>
+        <h4>The demand was already there</h4>
+        <p>~30% of bookings were business trips. 0.83% of all bookings were made for someone else — the fingerprint of "travel arrangers" booking on behalf of colleagues.</p>
       </div>
       <div class="phase ok">
-        <div class="badge">The Mission</div>
-        <h4>Connect Surplus to Need</h4>
-        <p>Create a donateNYC food and goods portal—a digital tool connecting businesses with excess edible food to organizations throughout NYC that can put it to use.</p>
+        <div class="badge">Value</div>
+        <h4>B4B was worth the effort</h4>
+        <p>Business accounts brought higher average booking value and longer stays — a blue-ocean growth channel sitting inside our own traffic.</p>
+      </div>
+      <div class="phase gap">
+        <div class="badge">Constraint</div>
+        <h4>Do no harm to B2C</h4>
+        <p>Any intervention lived on pages owned by other teams, serving hundreds of millions of leisure users. The B2C booking rate was untouchable.</p>
       </div>
     </div>
 
-    <img class="img-full" src="assets/donatenyc-hero.jpg" alt="donateNYC responsive web application on desktop, tablet and mobile" style="border:none;background:#fff;padding:24px">
-    <figcaption style="margin-top:-24px">The shipped donateNYC portal — responsive across desktop, tablet, and mobile.</figcaption>
+    <h3 style="margin-top:60px">The Mission</h3>
+    <p style="color:var(--gray);margin-top:12px;max-width:680px">Target the Booking.com users who would genuinely benefit from B4B, raise awareness of the product where they already are, and lift the registration rate — measured, guard-railed, and reversible at every step.</p>
   </div>
 </section>
 
-<!-- CLARIFY PROBLEMS -->
+<!-- CLARIFY -->
 <section id="clarify" class="reveal">
   <div class="wrap">
     <p class="kicker">02 Clarify Problems</p>
-    <h2>The Research Told a Different Story</h2>
-    <p class="lede">I partnered with two designers and a product manager to understand how food and goods organizations in NYC actually work. We ran user interviews and secondary research on the existing platform—and the registration flow kept coming up.</p>
+    <h2>Measure Before You Move</h2>
+    <p class="lede">Growth work fails when you can't tell your effect from the noise. Before designing a single screen, I established the baseline: who is naturally business-inclined, and how many would convert with no intervention at all?</p>
+
+    <div class="grid2" style="margin-top:44px;align-items:center">
+      <div>
+        <h3>A one-month A/A test</h3>
+        <p style="font-size:15px;color:var(--gray);margin-top:10px">The booking flow already asked two optional questions. For one month we simply measured the answers — no design changes — to quantify the natural base rate of self-identified business travelers and arrangers. This became the denominator every later experiment was judged against.</p>
+        <h3 style="margin-top:28px">Defining the target user</h3>
+        <p style="font-size:15px;color:var(--gray);margin-top:10px">Workshops with the B4B team sharpened the focus onto <strong>travel arrangers</strong> — the people booking for others — alongside individual work travelers. A market review of how comparable products bridge leisure and business accounts rounded out the picture.</p>
+      </div>
+      <div class="mockform" style="margin-top:0">
+        <h5>Who are you booking for? <span>(optional)</span></h5>
+        <div class="opt"><span class="radio sel"></span> I am the main guest</div>
+        <div class="opt"><span class="radio"></span> Booking is for someone else</div>
+        <div class="divide"></div>
+        <h5>Are you travelling for work? <span>(optional)</span></h5>
+        <div class="opt" style="display:inline-flex;margin-right:24px"><span class="radio"></span> Yes</div>
+        <div class="opt" style="display:inline-flex"><span class="radio"></span> No</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section id="concept" class="soft reveal">
+  <div class="wrap">
+    <p class="kicker">03 Shape Concept</p>
+    <h2>A Hypothesis, Not a Hunch</h2>
+    <p class="lede">Every experiment shipped against a written hypothesis: what we're changing, the direction and size of the effect we expect, the user psychology behind it — and the guardrail metrics that must not move.</p>
+
+    <div class="hypo">
+      <p class="hypo-label">📐 Hypothesis Template</p>
+      <p class="statement">We believe <mark>adding a business-dedicated entry card to the booking confirmation page</mark> will lift <mark>B4B business registrations</mark> by <mark>at least 1%</mark>, because <mark>business travelers carry high decision costs — a clear signal tells them they've been seen</mark>.</p>
+      <p class="guard">While monitoring two guardrails: <mark>B2C booking rate</mark> and <mark>page load speed</mark> — neither is allowed to regress.</p>
+    </div>
+
+    <h3 style="margin-top:60px">Three Candidate Channels, One Bet</h3>
+    <p style="color:var(--gray);margin-top:12px;max-width:680px">We ideated three routes — a cross-category promotion modal, email marketing, and the booking confirmation page — then prioritized as a team. The confirmation page won: <strong>every user passes through it after booking</strong>, it's the exact moment "travelling for work" is fresh, and it lets us identify arrangers and work travelers precisely. I negotiated placement within the post-booking team's established guidelines to get maximum visibility without breaking their page.</p>
+    <img class="img-full" src="assets/promoted-ideate.jpg" alt="Three candidate channels: cross-category promotion modal, email marketing, and confirmation page marketing with the B4B card highlighted" style="background:#fff;padding:24px">
+  </div>
+</section>
+
+<!-- TEST & SHIP -->
+<section id="test" class="reveal">
+  <div class="wrap">
+    <p class="kicker">04 Test &amp; Ship</p>
+    <h2>Four Systems, One Journey</h2>
+    <p class="lede">The "simple" entry card crossed four platforms — Booking.com post-booking, the identification system, the B4B product, and our partner Serko's stack. My first vision of one-click account migration died in feasibility review; I re-ideated the flow with B4B engineers until it was both user-friendly and technically real.</p>
+
+    <img class="img-full" src="assets/promoted-journey.jpg" alt="Cross-system user journey mapping function, team, page, and mockups across Booking.com post-booking, B4B product, identification team, and Serko" style="background:#fff;padding:24px">
+    <figcaption style="margin-top:-24px">One journey, four owners: every step mapped to the team and system responsible.</figcaption>
+
+    <h3 style="margin-top:60px">Validate, Then Refine</h3>
+    <p style="color:var(--gray);margin-top:12px;max-width:680px">With the flow settled, I ran 8 unmoderated usability sessions plus first-click tests with 58 US users who had booked business trips in the past 6 months. Three insights drove the final design:</p>
 
     <div class="insights">
       <div class="insight">
         <span class="no">01</span>
         <div>
-          <h4>User data was not clean</h4>
-          <p>Duplicated locations and company information everywhere. For the city government, the data was messy and hard to organize—which undermined the reporting the program depends on.</p>
+          <h4>The placement worked — keep it</h4>
+          <p>38% of users noticed the B4B promotion in its position — the most-focused element on the page. Decision: retain the position, push key content above the fold.</p>
         </div>
       </div>
       <div class="insight">
         <span class="no">02</span>
         <div>
-          <h4>One business had only one user account</h4>
-          <p>All staff members shared one login. For an enterprise-level business with many store locations, managers couldn't organize stores they weren't familiar with.</p>
+          <h4>"It didn't tell me what the benefit is"</h4>
+          <p>Users wanted concrete product benefits before committing. I paired with our UX writer on short and long variants that lead with value — savings, booking for anyone, all-in-one trips.</p>
         </div>
       </div>
       <div class="insight">
         <span class="no">03</span>
         <div>
-          <h4>The sign-up form was too long</h4>
-          <p>We were losing users mid-registration because the form demanded everything up front—organization details, exchange data, and food donation data all at once.</p>
+          <h4>Account options confused people</h4>
+          <p>"What's the advantage of joining with the same Booking.com account?" We rewrote the choice as two clear paths: create a business account, or continue with your existing personal one — quick and simple.</p>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:44px;padding:36px 32px;background:var(--blue-lt);border-radius:var(--radius)">
-      <p style="font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">The Challenge</p>
-      <h3 style="font-size:22px">How might we enhance the usability to allow multiple users to use new enterprise accounts to post and respond to donations?</h3>
-    </div>
-  </div>
-</section>
-
-<!-- SHAPE CONCEPT -->
-<section id="concept" class="soft reveal">
-  <div class="wrap">
-    <p class="kicker">03 Shape Concept</p>
-    <h2>Six Stakeholders, Three User Types</h2>
-    <p class="lede">NYC's rescue and donation ecosystem has six kinds of stakeholders—donors, food rescue organizations, facilitators, recipient agencies, associations, and government agencies. A platform that scales to billions of donations can't model six roles. We simplified to three.</p>
-
-    <img class="img-full" src="assets/donatenyc-usertypes.jpg" alt="Three user types: Government Agencies as administrator, Donor and Recipient as organization manager plus staffs" style="background:#fff;padding:24px">
-    <figcaption style="margin-top:-24px">Donor · Recipient · Government Agencies — each organization gets a manager plus staff accounts.</figcaption>
-
-    <h3 style="margin-top:60px">Design Decision #1 — Two-Step Sign Up</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">The original flow asked for everything in one giant form: organization info, user info, exchange data, food donation data. We split it: step one collects only what an admin needs to approve the account; step two—at first login—asks service-specific questions based on what the organization actually chose. Shorter form, more completions, cleaner data.</p>
-    <img class="img-full" src="assets/donatenyc-signup-compare.jpg" alt="Original one-step sign up form compared with the new two-step sign up process" style="background:#fff;padding:24px">
-
-    <h3 style="margin-top:60px">Design Decision #2 — Enterprise Account Management</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">Each business entity can now hold multiple branches, locations, and users. Managers assign staff to specific sites within the same business account—so donation notifications reach the right person at the right store, and the shared-login era ends.</p>
-    <img class="img-full" src="assets/donatenyc-enterprise.jpg" alt="Manage Organization screen with staff roles and store assignments">
-  </div>
-</section>
-
-<!-- DESIGN & BUILD -->
-<section id="build" class="reveal">
-  <div class="wrap">
-    <p class="kicker">04 Design &amp; Build</p>
-    <h2>Thinking in Products, Not Only in Features</h2>
-    <p class="lede">Across a year of development we followed a user-centered design process—requirement, research, wireframe, prototype, design review, user testing, dev, QA, beta, launch—to make sure we weren't just shipping features, but building the right product.</p>
-
     <div class="img-duo">
       <figure>
-        <img src="assets/donatenyc-brainstorm.jpg" alt="Whiteboard brainstorming and sticky-note iteration of the registration flow">
-        <figcaption>Brainstorming and iterating the enterprise registration flow.</figcaption>
+        <img src="assets/promoted-heatmap.jpg" alt="First-click test heatmap showing 38% of clicks on the B4B promotion banner">
+        <figcaption>First-click heatmap: the promotion drew the most attention on the page.</figcaption>
       </figure>
       <figure>
-        <img src="assets/donatenyc-twostep.jpg" alt="Two-step registration sign-up screens">
-        <figcaption>From lo-fi wireframes to the shipped two-step sign-up.</figcaption>
+        <img src="assets/promoted-refine-1.jpg" alt="Before and after of the promotion card copy, refined with the UX writer into short and long versions">
+        <figcaption>Copy refinement with the UX writer: benefits first, in a short and a long version.</figcaption>
       </figure>
     </div>
 
-    <h3 style="margin-top:40px">Setting Up the Information Architecture</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">The sitemap separates the public surface (Directory, Exchange, Food, Partnership, News) from the logged-in workspace (My Food, My Exchange, Notifications, Messages, Account)—so casual browsers and enterprise users each get a coherent home.</p>
-    <img class="img-full" src="assets/donatenyc-sitemap.jpg" alt="donateNYC sitemap showing public pages and logged-in user pages" style="background:#fff;padding:24px">
-
-    <h3 style="margin-top:40px">Defining Patterns — Design Style Guide</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">I documented the palette, type system, and component library—buttons, labels, cards, pickers, form fields—so three designers and a dev team could ship one consistent product.</p>
-    <img class="img-full" src="assets/donatenyc-styleguide.jpg" alt="donateNYC design style guide with color palette, typography and components" style="background:#fff;padding:24px">
+    <h3 style="margin-top:40px">The Shipped Entry Point</h3>
+    <p style="color:var(--gray);margin-top:12px;max-width:680px">The final design places "Join Booking.com for Business" directly on the confirmation page, with refined benefit-led copy and a clear two-path account choice behind it. In the live experiment, the winning variant moved the metric by <strong>+1.42% (±0.13)</strong> — clearing our ≥1% hypothesis with guardrails intact.</p>
+    <img class="img-full" src="assets/promoted-hero.jpg" alt="Final confirmation page design with the Join Booking.com for Business entry card">
   </div>
 </section>
 
-<!-- KEY FEATURES -->
-<section id="features" class="soft reveal">
+<!-- IMPACT -->
+<section id="impact" class="soft reveal">
   <div class="wrap">
-    <p class="kicker">05 Key Features</p>
-    <h2>Give Goods. Find Goods. Do Good.</h2>
-    <p class="lede">What shipped wasn't just a registration fix—it was a full donation workflow for the city, from discovery to hand-off.</p>
+    <p class="kicker">05 Impact</p>
+    <h2>Small Numbers, Big Foundation</h2>
+    <p class="lede">Two weeks into live experimentation, the signals were exactly what the hypothesis asked for — modest in absolute terms, decisive as evidence.</p>
 
-    <div class="feature">
-      <div class="f-copy">
-        <p class="f-no">Key Feature 1</p>
-        <h3>Directory Map</h3>
-        <p>An interactive map shows all vendor lists and locations in one place. Users filter by location, donation type, and categories to find the right vendor faster.</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">50%</div>
+        <div class="stat-label">CTR on sign-up CTA after exposure</div>
       </div>
-      <div class="f-img"><img src="assets/donatenyc-map.jpg" alt="Interactive directory map of donation vendors across NYC"></div>
-    </div>
-
-    <div class="feature flip">
-      <div class="f-copy">
-        <p class="f-no">Key Feature 2</p>
-        <h3>Food Donation Matching</h3>
-        <p>A matching process between donors and recipients increases food donation chances. A countdown timer ensures all 25 recipients on the list have enough time to respond and accept or decline the listing—so edible food moves before it expires.</p>
+      <div class="stat">
+        <div class="stat-num">114</div>
+        <div class="stat-label">New companies in 2 weeks</div>
       </div>
-      <div class="f-img"><img src="assets/donatenyc-foodmatch.jpg" alt="Food donation matching screen with countdown timer and accept/decline actions"></div>
-    </div>
-
-    <div class="feature">
-      <div class="f-copy">
-        <p class="f-no">Key Feature 3</p>
-        <h3>Integrated Messaging</h3>
-        <p>Donors and recipients correspond through the system itself. The messaging platform streamlines communications and keeps a record—ensuring service quality and accurate transaction and tonnage data for the city.</p>
-      </div>
-      <div class="f-img"><img src="assets/donatenyc-messaging.jpg" alt="Multi-platform integrated messaging system"></div>
-    </div>
-
-    <div class="feature flip">
-      <div class="f-copy">
-        <p class="f-no">Key Feature 4 &amp; 5</p>
-        <h3>Listing Cards &amp; Scheduling</h3>
-        <p>Exchange listing cards surface each listing's title, status, and deadline at a glance. A scheduling system opens windows of availability for pick-up and delivery, matching donations on both parties' preferences.</p>
-      </div>
-      <div class="f-img"><img src="assets/donatenyc-listing.jpg" alt="Exchange listing cards with status and deadlines"></div>
-    </div>
-  </div>
-</section>
-
-<!-- IMPACT / REFLECTION -->
-<section id="impact" class="reveal">
-  <div class="wrap">
-    <p class="kicker">06 Reflection</p>
-    <h2>Overall Impact</h2>
-    <p class="lede">I designed the business requirements from early conceptualization through final visual design—for desktop, tablet, and mobile. It was my deepest lesson in designing for organizations, not just users.</p>
-
-    <div class="grid2" style="margin-top:44px">
-      <div class="card">
-        <h3>What Made It Hard</h3>
-        <p style="font-size:15px;color:var(--gray)">The biggest challenge was understanding the business requirement itself: a government product with a completely different conceptual model from regular donation platforms. The complicated structure demanded I learn how to build a product, communicate with the development team, and be a good liaison between developers and the product team.</p>
-      </div>
-      <div class="card">
-        <h3>What I Took Away</h3>
-        <p style="font-size:15px;color:var(--gray)">I leveraged research and user journey mapping to understand the system and successfully revamped enterprise registration—even as the tasks grew more complicated. I believe a professional product designer shouldn't just try to solve problems, but should take the users' perspective into account at every step.</p>
+      <div class="stat">
+        <div class="stat-num">0.64%</div>
+        <div class="stat-label">Conversion rate at launch</div>
       </div>
     </div>
 
     <div style="margin-top:60px;padding:44px 32px;background:var(--navy);color:#fff;border-radius:var(--radius)">
-      <h3 style="color:var(--yellow);font-size:16px;letter-spacing:.08em">SHIPPED FOR THE CITY</h3>
-      <p style="font-size:16px;margin-top:12px">The donateNYC portal went live on nyc.gov—giving donors, recipients, and government agencies one platform to give goods, find goods, and do good, in service of a zero-waste New York by 2030.</p>
+      <h3 style="color:var(--yellow);font-size:16px;letter-spacing:.08em">THE FIRST CROSS-SYSTEM EXPERIMENT</h3>
+      <p style="font-size:16px;margin-top:12px">Beyond the numbers, this was Booking.com's first experiment spanning internal and partner systems — the working blueprint for the 2024 roadmap: email experiments, cross-sell collaborations, and the "I'm travelling for work" feature on the leisure site, all aimed at 50,000 SME users.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection" class="reveal">
+  <div class="wrap">
+    <p class="kicker">06 Reflection</p>
+    <h2>The Experiment Won. The Experience Wasn't Done.</h2>
+    <p class="lede">A year after full-on, we surveyed the users who had converted through this entry — 70K message recipients. The honest answer: we had built a great door, but not yet a great room behind it.</p>
+
+    <div class="stats" style="margin-top:44px">
+      <div class="stat">
+        <div class="stat-num">79.7%</div>
+        <div class="stat-label">Saw no added value over Booking.com yet</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">42%</div>
+        <div class="stat-label">Found the B2C→B4B transition very difficult</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">70K</div>
+        <div class="stat-label">Converted users surveyed post-launch</div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:44px">
+      <div class="card">
+        <h3>What Worked</h3>
+        <p style="font-size:15px;color:var(--gray)">The discipline. A/A baseline before touching anything, written hypotheses with guardrails, and placement decisions negotiated with data instead of opinions. When the variant won (+1.42%), everyone trusted it — because everyone had agreed on the rules beforehand.</p>
+      </div>
+      <div class="card">
+        <h3>What I'd Do Differently</h3>
+        <p style="font-size:15px;color:var(--gray)">Winning the entry-point experiment is not the same as designing a successful transition. The survey data made it plain: acquisition without immediate, felt value creates disappointed users. I'd pair every acquisition experiment with a first-week value experiment from day one.</p>
+      </div>
     </div>
   </div>
 </section>
