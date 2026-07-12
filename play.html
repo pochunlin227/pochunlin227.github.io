@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Play — Po Chun Lin</title>
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 <nav class="site">
@@ -79,19 +79,19 @@
 </svg><div class="bubble">First stop: teaching art to say hi back.</div></div>
         </div>
         <div class="video-cards">
-      <button class="vcard reveal" type="button" data-embed="https://player.vimeo.com/video/306969564?autoplay=1" aria-label="Play: The 21st Century Telephone Game">
+      <button class="vcard" type="button" data-embed="https://player.vimeo.com/video/306969564?autoplay=1" aria-label="Play: The 21st Century Telephone Game">
         <div class="vthumb"><img src="assets/video-telephone.jpg" alt="The 21st Century Telephone Game — interactive installation" loading="lazy"><div class="vplay"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span></div></div>
         <div class="vmeta"><span class="vtag">Installation</span></div>
         <h3>The 21st Century Telephone Game</h3>
         <p>An interactive installation exploring how messages morph as machines pass them along.</p>
       </button>
-      <button class="vcard reveal" type="button" data-embed="https://www.youtube.com/embed/ib9RETIf_y4?start=10&autoplay=1" aria-label="Play: Mask vs Virus">
+      <button class="vcard" type="button" data-embed="https://www.youtube.com/embed/ib9RETIf_y4?start=10&autoplay=1" aria-label="Play: Mask vs Virus">
         <div class="vthumb"><img src="assets/video-mask.jpg" alt="Mask vs Virus — interactive art piece" loading="lazy"><div class="vplay"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span></div></div>
         <div class="vmeta"><span class="vtag">Interactive</span></div>
         <h3>Mask vs Virus</h3>
         <p>A playful interactive piece made in response to the pandemic moment.</p>
       </button>
-      <button class="vcard reveal" type="button" data-embed="https://www.youtube.com/embed/llLTJ2Ye68k?autoplay=1" aria-label="Play: Secret Box">
+      <button class="vcard" type="button" data-embed="https://www.youtube.com/embed/llLTJ2Ye68k?autoplay=1" aria-label="Play: Secret Box">
         <div class="vthumb"><img src="assets/video-secretbox.jpg" alt="Secret Box — interactive art piece" loading="lazy"><div class="vplay"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span></div></div>
         <div class="vmeta"><span class="vtag">Physical Computing</span></div>
         <h3>Secret Box</h3>
@@ -123,7 +123,7 @@
 </svg><div class="bubble">Next: a menu, a poster, a very good toast.</div></div>
         </div>
         <div class="play-grid" style="margin-top:24px">
-      <button class="vcard reveal" type="button" id="nexdoor-card" aria-label="Open gallery: Nextdoor Breakfast">
+      <button class="vcard" type="button" id="nexdoor-card" aria-label="Open gallery: Nextdoor Breakfast">
         <div class="vthumb" style="background:#DCE7BD"><img src="assets/nexdoor/nd-00.jpg" alt="Nextdoor Breakfast brand cover with logo" loading="lazy"><span class="gcount">24 pages</span></div>
         <div class="vmeta"><span class="vtag">Brand · Menu · Poster</span></div>
         <h3>Nextdoor Breakfast</h3>
@@ -267,6 +267,29 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vmodal.classList.co
     if(e.key==='ArrowLeft')show(gi-1);
     if(e.key==='ArrowRight')show(gi+1);
   });
+})();
+</script>
+
+<script>
+(function(){
+  var journey=document.querySelector('.journey');
+  if(!journey)return;
+  var prog=document.createElement('div');
+  prog.className='journey-progress';
+  journey.appendChild(prog);
+  var stops=[].slice.call(journey.querySelectorAll('.stop'));
+  function upd(){
+    var r=journey.getBoundingClientRect();
+    var vh=window.innerHeight;
+    var passed=Math.min(r.height-40, Math.max(0, vh*0.55 - r.top));
+    prog.style.height=passed+'px';
+    stops.forEach(function(st){
+      st.classList.toggle('arrived', st.getBoundingClientRect().top < vh*0.62);
+    });
+  }
+  window.addEventListener('scroll',function(){requestAnimationFrame(upd);},{passive:true});
+  window.addEventListener('resize',upd);
+  upd();
 })();
 </script>
 </body>
