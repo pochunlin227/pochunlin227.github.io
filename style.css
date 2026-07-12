@@ -167,9 +167,9 @@ figure.journey figcaption{margin-top:18px;font-size:14px;font-weight:700;color:v
 .stop-laffy .laffy-img{height:122px;width:auto}
 .next-stop .laffy-img{height:112px;width:auto;animation:laffyBob 3.4s ease-in-out infinite}
 @keyframes laffyBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.bubble{position:relative;background:#fff;border:1.5px solid var(--ink);border-radius:14px;padding:9px 15px;font-size:13px;font-weight:600;line-height:1.5;max-width:225px;box-shadow:3px 3px 0 rgba(26,26,26,.12);opacity:0;transform:scale(.6);transform-origin:left center}
+.bubble{position:relative;background:var(--green);color:#fff;border:none;border-radius:14px;padding:10px 16px;font-size:13px;font-weight:600;line-height:1.55;max-width:235px;opacity:0;transform:scale(.6);transform-origin:left center}
 .reveal.on .bubble{opacity:1;transform:scale(1);transition:opacity .45s ease .75s,transform .55s cubic-bezier(.34,1.56,.64,1) .75s}
-.bubble::before{content:"";position:absolute;left:-7px;top:50%;transform:translateY(-50%) rotate(45deg);width:11px;height:11px;background:#fff;border-left:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+.bubble::before{content:"";position:absolute;left:-6px;top:50%;transform:translateY(-50%) rotate(45deg);width:12px;height:12px;background:var(--green)}
 .stop .vcard{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
 .stop.on .vcard{opacity:1;transform:none}
 .stop.on .vcard:nth-child(1){transition-delay:.15s}
