@@ -163,7 +163,9 @@ figure.journey figcaption{margin-top:18px;font-size:14px;font-weight:700;color:v
 .stop-head .sec-label{margin:0}
 .stop-laffy{display:flex;align-items:center;gap:4px;opacity:0;transform:translateX(36px)}
 .reveal.on .stop-laffy{opacity:1;transform:none;transition:opacity .7s ease .3s,transform .8s cubic-bezier(.34,1.56,.64,1) .3s}
-.stop-laffy svg{flex:none;display:block;animation:laffyBob 3.4s ease-in-out infinite}
+.stop-laffy svg,.stop-laffy .laffy-img{flex:none;display:block;animation:laffyBob 3.4s ease-in-out infinite}
+.stop-laffy .laffy-img{height:122px;width:auto}
+.next-stop .laffy-img{height:112px;width:auto;animation:laffyBob 3.4s ease-in-out infinite}
 @keyframes laffyBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .bubble{position:relative;background:#fff;border:1.5px solid var(--ink);border-radius:14px;padding:9px 15px;font-size:13px;font-weight:600;line-height:1.5;max-width:225px;box-shadow:3px 3px 0 rgba(26,26,26,.12);opacity:0;transform:scale(.6);transform-origin:left center}
 .reveal.on .bubble{opacity:1;transform:scale(1);transition:opacity .45s ease .75s,transform .55s cubic-bezier(.34,1.56,.64,1) .75s}
@@ -179,7 +181,7 @@ figure.journey figcaption{margin-top:18px;font-size:14px;font-weight:700;color:v
 .next-stop b{color:var(--ink)}
 .next-stop svg{animation:laffyBob 3.4s ease-in-out infinite}
 @media(max-width:760px){.journey{padding-left:0}.journey::before,.stop::before,.journey-progress{display:none}.stop{margin-top:64px}.intro-laffy{margin:0 auto}}
-@media(prefers-reduced-motion:reduce){.stop-laffy svg,.next-stop svg{animation:none}}
+@media(prefers-reduced-motion:reduce){.stop-laffy svg,.next-stop svg,.laffy-img{animation:none}}
 
 /* ---------- play video cards + lightbox ---------- */
 .video-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
