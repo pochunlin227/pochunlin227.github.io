@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<title>Promoted Users — Case Study · Po Chun Lin</title>
+<title>Arimo Design Challenge — Case Study · Po Chun Lin</title>
 <style>
   :root{
     --navy:#1F2E5C; --navy2:#17224A; --blue:#3A4B7C; --blue-lt:#EBEFF2;
@@ -125,8 +125,21 @@
   .mockform .radio.sel{border:6px solid #2A62D9}
   .mockform .divide{height:22px}
 
+  /* ---------- feature rows ---------- */
+  .feature{display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:center;margin-top:56px}
+  .feature.flip{grid-template-columns:1.2fr 1fr}
+  .feature.flip .f-copy{order:2}
+  .feature.flip .f-img{order:1}
+  @media(max-width:820px){.feature,.feature.flip{grid-template-columns:1fr}.feature.flip .f-copy{order:1}.feature.flip .f-img{order:2}}
+  .feature .f-img img{width:100%;border-radius:var(--radius);border:1px solid var(--line)}
+  .feature .f-no{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  .feature h3{margin-top:8px}
+  .feature p{font-size:15px;color:var(--gray)}
+
   /* ---------- stats ---------- */
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .stats.four{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.stats.four{grid-template-columns:1fr 1fr}}
   .stats.four{grid-template-columns:repeat(4,1fr)}
   @media(max-width:820px){.stats,.stats.four{grid-template-columns:1fr 1fr}}
   .stat{text-align:center;padding:28px}
@@ -189,17 +202,17 @@
     </div>
   </div>
 
-  <div class="ps-group open" data-key="promoted">
+  <div class="ps-group" data-key="promoted">
     <button class="ps-head" type="button"><b>Promoted Users · B2C→B4B</b><span>02 · 2023</span></button>
     <div class="ps-panel">
       <div class="nav-links">
-        <a href="#overview"><i>00</i> Overview</a>
-        <a href="#context"><i>01</i> Context</a>
-        <a href="#clarify"><i>02</i> Clarify Problems</a>
-        <a href="#concept"><i>03</i> Shape Concept</a>
-        <a href="#test"><i>04</i> Test &amp; Ship</a>
-        <a href="#impact"><i>05</i> Impact</a>
-        <a href="#reflection"><i>06</i> Reflection</a>
+        <a href="promoted-users.html#overview"><i>00</i> Overview</a>
+        <a href="promoted-users.html#context"><i>01</i> Context</a>
+        <a href="promoted-users.html#clarify"><i>02</i> Clarify Problems</a>
+        <a href="promoted-users.html#concept"><i>03</i> Shape Concept</a>
+        <a href="promoted-users.html#test"><i>04</i> Test &amp; Ship</a>
+        <a href="promoted-users.html#impact"><i>05</i> Impact</a>
+        <a href="promoted-users.html#reflection"><i>06</i> Reflection</a>
       </div>
     </div>
   </div>
@@ -249,17 +262,17 @@
     </div>
   </div>
 
-  <div class="ps-group" data-key="arimo">
+  <div class="ps-group open" data-key="arimo">
     <button class="ps-head" type="button"><b>Arimo Kiosk Challenge</b><span>06 · 2019</span></button>
     <div class="ps-panel">
       <div class="nav-links">
-        <a href="arimo-design-challenge.html#overview"><i>00</i> Overview</a>
-        <a href="arimo-design-challenge.html#context"><i>01</i> Context</a>
-        <a href="arimo-design-challenge.html#clarify"><i>02</i> Clarify Problems</a>
-        <a href="arimo-design-challenge.html#concept"><i>03</i> Shape Concept</a>
-        <a href="arimo-design-challenge.html#validate"><i>04</i> Design &amp; Validate</a>
-        <a href="arimo-design-challenge.html#outcome"><i>05</i> Outcome</a>
-        <a href="arimo-design-challenge.html#reflection"><i>06</i> Reflection</a>
+        <a href="#overview"><i>00</i> Overview</a>
+        <a href="#context"><i>01</i> Context</a>
+        <a href="#clarify"><i>02</i> Clarify Problems</a>
+        <a href="#concept"><i>03</i> Shape Concept</a>
+        <a href="#validate"><i>04</i> Design &amp; Validate</a>
+        <a href="#outcome"><i>05</i> Outcome</a>
+        <a href="#reflection"><i>06</i> Reflection</a>
       </div>
     </div>
   </div>
@@ -267,94 +280,39 @@
   <a class="ps-all" href="projects.html">← All projects</a>
 </aside>
 
-<!-- PASSCODE GATE -->
-<style>
-  #lock{position:fixed;top:72px;left:184px;right:0;bottom:0;z-index:950;display:flex;align-items:center;justify-content:center;padding:32px 24px;
-    background-color:#F4F1EC;background-image:radial-gradient(rgba(31,92,77,.10) 1.2px, transparent 1.2px);background-size:26px 26px;overflow:auto}
-  @media(max-width:1024px){#lock{left:0}}
-  #lock .lock-back{position:absolute;top:26px;left:32px;font-size:15px;font-weight:600;color:#6B6B6B;text-decoration:none}
-  #lock .lock-back:hover{color:#1F5C4D}
-  #lock .lock-card{background:#fff;border-radius:28px;padding:44px 48px 36px;max-width:540px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(15,15,15,.08);margin:auto}
-  #lock .lock-icon{display:block;margin:0 auto 4px}
-  #lock h2{font-size:clamp(36px,5vw,52px);line-height:1.1;color:#1F5C4D;font-weight:800;letter-spacing:-.01em;margin:18px 0 16px}
-  #lock .lock-sub{font-size:16.5px;color:#6B6B6B;max-width:400px;margin:0 auto}
-  #lock .lock-sub b{color:#1A1A1A}
-  #lock .lock-rule{width:56px;height:1px;background:#E5E1D8;border:none;margin:28px auto}
-  #lock input{width:100%;font:inherit;font-size:16px;padding:15px 18px;border:1.5px solid #B9CDC4;border-radius:14px;outline:none;color:#1A1A1A;transition:border-color .2s}
-  #lock input:focus{border-color:#1F5C4D}
-  #lock input.err{border-color:#c9364c}
-  #lock button{width:100%;margin-top:14px;font:inherit;font-size:16px;font-weight:700;color:#fff;background:#93AFA0;border:none;border-radius:14px;padding:15px 18px;cursor:pointer;transition:background .2s}
-  #lock button:hover{background:#1F5C4D}
-  #lock .lock-foot{margin-top:26px;font-size:14.5px;color:#9a9a9a}
-  #lock .lock-foot a{color:#1F5C4D;font-weight:700;text-decoration:none}
-</style>
-<div id="lock">
-  <a class="lock-back" href="projects.html">&larr; Back</a>
-  <div class="lock-card">
-    <img class="lock-icon" src="assets/lock-art.png" alt="Illustrated character holding a key beside a passcode keypad" style="width:300px;max-width:78%">
-    <h2>This one’s locked.</h2>
-    <p class="lock-sub">This one isn’t public. <b>Promoted Users · B2C→B4B</b> requires a passcode.</p>
-    <hr class="lock-rule">
-    <input type="password" placeholder="Enter passcode" autocomplete="off">
-    <button type="button">Unlock</button>
-    <p class="lock-foot">No passcode? <a href="mailto:pochun.lin@thepacinglabs.com">Reach out</a></p>
-  </div>
-</div>
-<script>
-(function(){
-  var KEY='pc_unlocked', PASS='portfolio0227';
-  var lock=document.getElementById('lock');
-  if(sessionStorage.getItem(KEY)==='1'){lock.remove();return;}
-  document.documentElement.style.overflow='hidden';
-  var input=lock.querySelector('input'), btn=lock.querySelector('button');
-  function tryUnlock(){
-    if(input.value===PASS){
-      sessionStorage.setItem(KEY,'1');
-      lock.remove();
-      document.documentElement.style.overflow='';
-      window.dispatchEvent(new Event('scroll'));
-    }else{
-      input.classList.add('err');input.value='';input.placeholder='Wrong passcode — try again';
-      setTimeout(function(){input.classList.remove('err');},1600);
-    }
-  }
-  btn.addEventListener('click',tryUnlock);
-  input.addEventListener('keydown',function(e){if(e.key==='Enter')tryUnlock();});
-  setTimeout(function(){input.focus();},300);
-})();
-</script>
+
 
 <!-- HERO -->
 <header class="hero" id="overview">
   <div class="wrap">
     <div class="hero-eyebrow">
-      <span class="tag">Growth Design</span>
-      <span class="tag">Experimentation</span>
-      <span class="tag">Cross-System</span>
+      <span class="tag">Design Challenge</span>
+      <span class="tag">Rapid Research</span>
+      <span class="tag">Kiosk UX</span>
     </div>
-    <h1>Promoted Users <em>— finding the business travelers hiding in plain sight</em></h1>
-    <p class="sub">Roughly 30% of Booking.com's bookings were business trips made on the leisure product. I led the design of the first cross-system journey that identifies these travelers and routes them to Booking.com for Business — without disturbing the B2C experience.</p>
+    <h1>Arimo Design Challenge <em>— a transit kiosk, ten hours, no shortcuts</em></h1>
+    <p class="sub">A timed design test: reimagine how commuters buy and refill transit cards on a 10-inch kiosk. I treated the clock as the brief — real riders at Grand Central, decisions scored on a matrix, and a tested hi-fi prototype, all inside ten hours.</p>
 
     <div class="meta">
       <div>
         <dt>Duration</dt>
-        <dd>2023 Q1–Q4</dd>
+        <dd>10 hours, time-boxed</dd>
       </div>
       <div>
         <dt>Team</dt>
-        <dd>4 internal teams + Serko (partner)</dd>
+        <dd>Solo, end-to-end</dd>
       </div>
       <div>
         <dt>Role</dt>
-        <dd>Design strategy &amp; research lead</dd>
+        <dd>Research → hi-fi prototype</dd>
       </div>
       <div>
-        <dt>Status</dt>
-        <dd>Live experimentation</dd>
+        <dt>Setting</dt>
+        <dd>NYC Subway kiosks</dd>
       </div>
       <div>
         <dt>Year</dt>
-        <dd>2023</dd>
+        <dd>2019</dd>
       </div>
     </div>
   </div>
@@ -365,30 +323,30 @@
   <div class="wrap">
     <p class="kicker">00 Overview</p>
     <h2>The Moment &amp; The Brief</h2>
-    <p class="lede">Booking.com for Business existed — but the people who needed it were booking work trips on the leisure site, unaware and unserved. The brief: design the entry point that converts them. My reframe: before designing anything, prove where they are, establish a baseline, and only ship what an experiment can defend.</p>
+    <p class="lede">The brief: design a transit-stop kiosk where regular commuters buy and refill their cards — show the flow, the reasoning, and at least one hi-fi mockup. Ten hours, start to finish. My reframe: with a hard time-box, the deliverable isn't just screens — it's showing exactly where evidence, decisions, and craft each earn their minutes.</p>
 
     <div class="tldr">
       <div class="card" data-label="The Problem">
-        <h3>High-value users, invisible by default</h3>
-        <p>~30% of bookings were business trips on the B2C flow, and 0.83% of all bookings were made on behalf of someone else. B4B offered higher ARPU and longer stays — but had no systematic path from the main site.</p>
+        <h3>Kiosks make people anxious</h3>
+        <p>Lines pile up behind whoever is decoding fare plans at the screen. Locals fly through; first-timers stall on plans and payment. Two HMWs: reduce that anxiety, and make buying a card intuitive.</p>
       </div>
       <div class="card hl" data-label="The Outcome">
-        <h3>A validated entry point that converts</h3>
-        <p>The confirmation-page entry shipped to live experimentation: 50% CTR on the sign-up CTA after exposure, 114 new companies in the first two weeks, and the foundation for next year's 50K SME target.</p>
+        <h3>Three concepts, tested, with trade-offs priced</h3>
+        <p>A fast default-value purchase, a one-click preset refill, and a card account — chosen from nine candidate flows on a user-value × engineering-effort matrix, then validated with click heatmaps and an 8-rider survey.</p>
       </div>
       <div class="card" data-label="My Role">
-        <h3>Design strategy &amp; research lead</h3>
-        <p>Led design strategy and roadmap, ran the baseline and hypothesis work, executed user testing and data analysis, and aligned four internal teams plus our external partner, Serko, on one cross-system journey.</p>
+        <h3>Solo, end-to-end, on the clock</h3>
+        <p>Field observation at Grand Central during the morning rush, six intercept interviews, affinity mapping, flows, sketches, hi-fi prototype, and usability testing — every step time-boxed.</p>
       </div>
     </div>
 
     <div class="rolebar">
-      <h3>Key Responsibilities</h3>
+      <h3>Where the ten hours went</h3>
       <ul>
-        <li>Led design strategy and roadmap for the B2C→B4B growth track</li>
-        <li>Designed the baseline (A/A) and hypothesis framework for the experiment</li>
-        <li>Ran user testing — 8 unmoderated sessions + 58 first-click tests</li>
-        <li>Aligned Post-booking, B4B Product, Identification teams and Serko</li>
+        <li>Watched 20+ riders at 4 Grand Central kiosks during the 8am rush</li>
+        <li>Ran 6 intercept interviews and synthesized them into an affinity map</li>
+        <li>Drew 3 candidate flows per scenario, scored on user value × build effort</li>
+        <li>Shipped hi-fi screens and tested them — click heatmaps + preference survey</li>
       </ul>
     </div>
   </div>
@@ -398,29 +356,23 @@
 <section id="context" class="soft reveal">
   <div class="wrap">
     <p class="kicker">01 Context</p>
-    <h2>Two Products, One Missing Bridge</h2>
-    <p class="lede">Booking.com's leisure product and Booking.com for Business ran as separate systems — separate teams, separate platforms, separate accounts. Business travelers landing on the B2C site simply stayed there, paying leisure prices for work trips and getting none of the B4B value.</p>
+    <h2>The Clock Is Part of the Brief</h2>
+    <p class="lede">Ten hours forces the question every real project asks eventually: where does evidence matter most, and what are you willing to decide without it? I planned the time like a budget — research where the risk was highest, craft where the evaluation would happen.</p>
 
-    <div class="grid3" style="margin-top:44px">
+    <img class="img-full" src="assets/arimo/timeline.jpg" alt="Five-stage process timeline: discovery, ideation, prototype, evaluation, design">
+
+    <div class="grid2" style="margin-top:12px">
       <div class="phase ok">
-        <div class="badge">Signal</div>
-        <h4>The demand was already there</h4>
-        <p>~30% of bookings were business trips. 0.83% of all bookings were made for someone else — the fingerprint of "travel arrangers" booking on behalf of colleagues.</p>
+        <div class="badge">HMW 1</div>
+        <h4>How might we make commuters less anxious when they buy or refill at a transit kiosk?</h4>
+        <p>The line behind you is the real pressure. Speed for the person at the screen is calm for everyone behind them.</p>
       </div>
       <div class="phase ok">
-        <div class="badge">Value</div>
-        <h4>B4B was worth the effort</h4>
-        <p>Business accounts brought higher average booking value and longer stays — a blue-ocean growth channel sitting inside our own traffic.</p>
-      </div>
-      <div class="phase gap">
-        <div class="badge">Constraint</div>
-        <h4>Do no harm to B2C</h4>
-        <p>Any intervention lived on pages owned by other teams, serving hundreds of millions of leisure users. The B2C booking rate was untouchable.</p>
+        <div class="badge">HMW 2</div>
+        <h4>How might we make buying a transit card intuitive?</h4>
+        <p>Fare plans are policy documents rendered as buttons. First-timers shouldn't need to understand the MTA to ride it.</p>
       </div>
     </div>
-
-    <h3 style="margin-top:60px">The Mission</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">Target the Booking.com users who would genuinely benefit from B4B, raise awareness of the product where they already are, and lift the registration rate — measured, guard-railed, and reversible at every step.</p>
   </div>
 </section>
 
@@ -428,25 +380,34 @@
 <section id="clarify" class="reveal">
   <div class="wrap">
     <p class="kicker">02 Clarify Problems</p>
-    <h2>Measure Before You Move</h2>
-    <p class="lede">Growth work fails when you can't tell your effect from the noise. Before designing a single screen, I established the baseline: who is naturally business-inclined, and how many would convert with no intervention at all?</p>
+    <h2>Two Hours at Grand Central Beat Ten Hours of Guessing</h2>
+    <p class="lede">Instead of designing from memory, I went to the machines. Thirty minutes of observation at four kiosks during the 8am rush, then six intercept interviews — enough signal to know exactly which problems deserved the remaining hours.</p>
 
-    <div class="grid2" style="margin-top:44px;align-items:center">
-      <div>
-        <h3>A one-month A/A test</h3>
-        <p style="font-size:15px;color:var(--gray);margin-top:10px">The booking flow already asked two optional questions. For one month we simply measured the answers — no design changes — to quantify the natural base rate of self-identified business travelers and arrangers. This became the denominator every later experiment was judged against.</p>
-        <h3 style="margin-top:28px">Defining the target user</h3>
-        <p style="font-size:15px;color:var(--gray);margin-top:10px">Workshops with the B4B team sharpened the focus onto <strong>travel arrangers</strong> — the people booking for others — alongside individual work travelers. A market review of how comparable products bridge leisure and business accounts rounded out the picture.</p>
+    <div class="feature" style="margin-top:44px">
+      <div class="f-copy">
+        <p class="f-no">Field Observation · Grand Central, 8am</p>
+        <h3>The Line Is the Interface</h3>
+        <p>20+ riders, 4 kiosks: each person took 1–5 minutes, and the queue never shrank. Locals tapped through on muscle memory. Travelers stalled on plan choices; cash payers panicked mid-flow and switched to card. The kiosk wasn't slow — <em>uncertainty</em> was.</p>
       </div>
-      <div class="mockform" style="margin-top:0">
-        <h5>Who are you booking for? <span>(optional)</span></h5>
-        <div class="opt"><span class="radio sel"></span> I am the main guest</div>
-        <div class="opt"><span class="radio"></span> Booking is for someone else</div>
-        <div class="divide"></div>
-        <h5>Are you travelling for work? <span>(optional)</span></h5>
-        <div class="opt" style="display:inline-flex;margin-right:24px"><span class="radio"></span> Yes</div>
-        <div class="opt" style="display:inline-flex"><span class="radio"></span> No</div>
+      <div class="f-img"><img src="assets/arimo/observation.jpg" alt="Commuters queuing at Grand Central subway kiosks during morning rush"></div>
+    </div>
+
+    <div class="feature flip">
+      <div class="f-copy">
+        <p class="f-no">6 Interviews · Affinity Mapping</p>
+        <h3>Three Pain Points Survived the Wall</h3>
+        <p>Interview notes clustered into payment methods, time, plans, refill, receipts, and language. Three findings carried the weight: nobody wants to wait in line just to refill; locals know the drill while first-timers drown in plans; and multiple payment methods are non-negotiable.</p>
       </div>
+      <div class="f-img"><img src="assets/arimo/affinity.jpg" alt="Affinity map of interview notes clustered by payment methods, time, plans, refill, receipt, and language"></div>
+    </div>
+
+    <div class="feature">
+      <div class="f-copy">
+        <p class="f-no">Persona · The Target Commuter</p>
+        <h3>"I hate spending time in line just to refill my card."</h3>
+        <p>Shandra, an insurance agent who rides daily and refills weekly, became the yardstick: independent, busy, mildly anxious about the queue behind her. Every flow decision was tested against her patience.</p>
+      </div>
+      <div class="f-img"><img src="assets/arimo/persona.jpg" alt="Persona card for Shandra, a daily commuter frustrated by kiosk lines"></div>
     </div>
   </div>
 </section>
@@ -455,100 +416,126 @@
 <section id="concept" class="soft reveal">
   <div class="wrap">
     <p class="kicker">03 Shape Concept</p>
-    <h2>A Hypothesis, Not a Hunch</h2>
-    <p class="lede">Every experiment shipped against a written hypothesis: what we're changing, the direction and size of the effect we expect, the user psychology behind it — and the guardrail metrics that must not move.</p>
+    <h2>Nine Flows In, Three Decisions Out</h2>
+    <p class="lede">For each scenario — buy a new card, refill an existing one — I drew three candidate flows, then scored them the way a product team would have to: user value against engineering effort. Opinions argue; matrices decide.</p>
 
-    <div class="hypo">
-      <p class="hypo-label">📐 Hypothesis Template</p>
-      <p class="statement">We believe <mark>adding a business-dedicated entry card to the booking confirmation page</mark> will lift <mark>B4B business registrations</mark> by <mark>at least 1%</mark>, because <mark>business travelers carry high decision costs — a clear signal tells them they've been seen</mark>.</p>
-      <p class="guard">While monitoring two guardrails: <mark>B2C booking rate</mark> and <mark>page load speed</mark> — neither is allowed to regress.</p>
+    <div class="img-duo">
+      <figure>
+        <img src="assets/arimo/flow-3.jpg" alt="User flow diagram: fast default pathway combined with full plan options" style="background:#fff;padding:14px">
+        <figcaption>Buy a new card — the winning flow: a fast default path for first-timers, full plans one tap deeper.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/arimo/matrix.jpg" alt="Hand-drawn evaluation matrix scoring options on user value versus effort by organization">
+        <figcaption>The decision tool: user value × effort by organization, sketched and scored per option.</figcaption>
+      </figure>
     </div>
-
-    <h3 style="margin-top:60px">Three Candidate Channels, One Bet</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">We ideated three routes — a cross-category promotion modal, email marketing, and the booking confirmation page — then prioritized as a team. The confirmation page won: <strong>every user passes through it after booking</strong>, it's the exact moment "travelling for work" is fresh, and it lets us identify arrangers and work travelers precisely. I negotiated placement within the post-booking team's established guidelines to get maximum visibility without breaking their page.</p>
-    <img class="img-full" src="assets/promoted-ideate.jpg" alt="Three candidate channels: cross-category promotion modal, email marketing, and confirmation page marketing with the B4B card highlighted" style="background:#fff;padding:24px">
-  </div>
-</section>
-
-<!-- TEST & SHIP -->
-<section id="test" class="reveal">
-  <div class="wrap">
-    <p class="kicker">04 Test &amp; Ship</p>
-    <h2>Four Systems, One Journey</h2>
-    <p class="lede">The "simple" entry card crossed four platforms — Booking.com post-booking, the identification system, the B4B product, and our partner Serko's stack. My first vision of one-click account migration died in feasibility review; I re-ideated the flow with B4B engineers until it was both user-friendly and technically real.</p>
-
-    <img class="img-full" src="assets/promoted-journey.jpg" alt="Cross-system user journey mapping function, team, page, and mockups across Booking.com post-booking, B4B product, identification team, and Serko" style="background:#fff;padding:24px">
-    <figcaption style="margin-top:-24px">One journey, four owners: every step mapped to the team and system responsible.</figcaption>
-
-    <h3 style="margin-top:60px">Validate, Then Refine</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">With the flow settled, I ran 8 unmoderated usability sessions plus first-click tests with 58 US users who had booked business trips in the past 6 months. Three insights drove the final design:</p>
 
     <div class="insights">
       <div class="insight">
         <span class="no">01</span>
         <div>
-          <h4>The placement worked — keep it</h4>
-          <p>38% of users noticed the B4B promotion in its position — the most-focused element on the page. Decision: retain the position, push key content above the fold.</p>
+          <h4>Buy a new card → fast default + flexible plans</h4>
+          <p>New riders get a one-tap default-value card; anyone who wants specific passes finds the full catalog one level deeper. High user value for both audiences, justifiable build cost.</p>
         </div>
       </div>
       <div class="insight">
         <span class="no">02</span>
         <div>
-          <h4>"It didn't tell me what the benefit is"</h4>
-          <p>Users wanted concrete product benefits before committing. I paired with our UX writer on short and long variants that lead with value — savings, booking for anyone, all-in-one trips.</p>
+          <h4>Refill → one-click preset, with a priced fallback</h4>
+          <p>The ideal flow lets riders save a preset (amount + payment) and refill in one tap. I recommended it — and explicitly priced the fallback: if engineering can't fund the account feature, option two still captures most of the value. Recommendations should come with their own plan B.</p>
         </div>
       </div>
       <div class="insight">
         <span class="no">03</span>
         <div>
-          <h4>Account options confused people</h4>
-          <p>"What's the advantage of joining with the same Booking.com account?" We rewrote the choice as two clear paths: create a business account, or continue with your existing personal one — quick and simple.</p>
+          <h4>Card account → the piece that makes refill scale</h4>
+          <p>Each card carries a number and a lightweight account holding the preset. It is the infrastructure bet behind the one-click promise.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN & VALIDATE -->
+<section id="validate" class="reveal">
+  <div class="wrap">
+    <p class="kicker">04 Design &amp; Validate</p>
+    <h2>Sketch Fast, Test What Matters</h2>
+    <p class="lede">Paper first — a full screen-by-screen pass in pencil — then hi-fi only where evaluation needed it. The prototype went straight back to users: click heatmaps on the critical payment step, and a preference survey on the plan question.</p>
+
+    <div class="img-duo">
+      <figure>
+        <img src="assets/arimo/sketch-1.jpg" alt="Paper sketches of the kiosk buying flow screens">
+        <figcaption>Paper pass: every screen sketched before any pixels were spent.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/arimo/sketch-2.jpg" alt="Paper sketches of payment and confirmation screens">
+        <figcaption>Payment and confirmation, resolved on paper where iteration is free.</figcaption>
+      </figure>
     </div>
 
     <div class="img-duo">
       <figure>
-        <img src="assets/promoted-heatmap.jpg" alt="First-click test heatmap showing 38% of clicks on the B4B promotion banner">
-        <figcaption>First-click heatmap: the promotion drew the most attention on the page.</figcaption>
+        <img src="assets/arimo/flow-buy.webp" alt="Animated prototype: buying a new transit card with the default value path">
+        <figcaption>Hi-fi prototype: buying a new card via the fast default path.</figcaption>
       </figure>
       <figure>
-        <img src="assets/promoted-refine-1.jpg" alt="Before and after of the promotion card copy, refined with the UX writer into short and long versions">
-        <figcaption>Copy refinement with the UX writer: benefits first, in a short and a long version.</figcaption>
+        <img src="assets/arimo/flow-refill.webp" alt="Animated prototype: one-click refill flow using the saved preset">
+        <figcaption>One-click refill: preset amount and payment, done before the line notices.</figcaption>
       </figure>
     </div>
 
-    <h3 style="margin-top:40px">The Shipped Entry Point</h3>
-    <p style="color:var(--gray);margin-top:12px;max-width:680px">The final design places "Join Booking.com for Business" directly on the confirmation page, with refined benefit-led copy and a clear two-path account choice behind it. In the live experiment, the winning variant moved the metric by <strong>+1.42% (±0.13)</strong> — clearing our ≥1% hypothesis with guardrails intact.</p>
-    <img class="img-full" src="assets/promoted-hero.jpg" alt="Final confirmation page design with the Join Booking.com for Business entry card">
+    <div class="feature flip" style="margin-top:20px">
+      <div class="f-copy">
+        <p class="f-no">Usability · Click Heatmaps + Survey</p>
+        <h3>Let Riders Vote With Their Fingers</h3>
+        <p>Heatmaps on the payment screen confirmed the three-method layout worked — card dominated, but cash and mobile earned their buttons. The 8-rider survey split exactly as the research predicted: in a <em>new</em> city people want a default value; in <em>their own</em> city they want their plans. "The simplest would be a default value for new clients," one tester wrote — the design already agreed.</p>
+      </div>
+      <div class="f-img"><img src="assets/arimo/heatmap.jpg" alt="Click heatmap over the refill payment screen showing concentration on the card option"></div>
+    </div>
+
+    <div class="img-duo">
+      <figure>
+        <img src="assets/arimo/survey-1.jpg" alt="Survey results: preference for buying a new card in a new city" style="background:#fff;padding:10px">
+        <figcaption>New city: riders lean toward a quick default value.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/arimo/survey-2.jpg" alt="Survey results: preference for buying a new card in your own city" style="background:#fff;padding:10px">
+        <figcaption>Home city: riders want their own plans — both needs, one flow.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<!-- IMPACT -->
-<section id="impact" class="soft reveal">
+<!-- OUTCOME -->
+<section id="outcome" class="soft reveal">
   <div class="wrap">
-    <p class="kicker">05 Impact</p>
-    <h2>Small Numbers, Big Foundation</h2>
-    <p class="lede">Two weeks into live experimentation, the signals were exactly what the hypothesis asked for — modest in absolute terms, decisive as evidence.</p>
+    <p class="kicker">05 Outcome</p>
+    <h2>What Ten Hours Bought</h2>
+    <p class="lede">Not just screens — a defensible argument. Every design decision in the final prototype traces back to something a real rider did or said that week.</p>
 
-    <div class="stats">
+    <div class="stats four">
       <div class="stat">
-        <div class="stat-num">50%</div>
-        <div class="stat-label">CTR on sign-up CTA after exposure</div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Riders observed at 4 kiosks, 8am rush</div>
       </div>
       <div class="stat">
-        <div class="stat-num">114</div>
-        <div class="stat-label">New companies in 2 weeks</div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">Intercept interviews → affinity map</div>
       </div>
       <div class="stat">
-        <div class="stat-num">0.64%</div>
-        <div class="stat-label">Conversion rate at launch</div>
+        <div class="stat-num">9→3</div>
+        <div class="stat-label">Flows scored on value × effort</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Testers: heatmaps + preference survey</div>
       </div>
     </div>
 
     <div style="margin-top:60px;padding:44px 32px;background:var(--navy);color:#fff;border-radius:var(--radius)">
-      <h3 style="color:var(--yellow);font-size:16px;letter-spacing:.08em">THE FIRST CROSS-SYSTEM EXPERIMENT</h3>
-      <p style="font-size:16px;margin-top:12px">Beyond the numbers, this was Booking.com's first experiment spanning internal and partner systems — the working blueprint for the 2024 roadmap: email experiments, cross-sell collaborations, and the "I'm travelling for work" feature on the leisure site, all aimed at 50,000 SME users.</p>
+      <h3 style="color:var(--yellow);font-size:16px;letter-spacing:.08em">DECISIONS, DELIVERED WITH THEIR TRADE-OFFS</h3>
+      <p style="font-size:16px;margin-top:12px">The submission didn't just show a favorite — it showed the runner-up and the conditions under which the team should choose it instead. Design recommendations that respect engineering capacity get built; ones that don't get shelved.</p>
     </div>
   </div>
 </section>
@@ -557,32 +544,17 @@
 <section id="reflection" class="reveal">
   <div class="wrap">
     <p class="kicker">06 Reflection</p>
-    <h2>The Experiment Won. The Experience Wasn't Done.</h2>
-    <p class="lede">A year after full-on, we surveyed the users who had converted through this entry — 70K message recipients. The honest answer: we had built a great door, but not yet a great room behind it.</p>
-
-    <div class="stats" style="margin-top:44px">
-      <div class="stat">
-        <div class="stat-num">79.7%</div>
-        <div class="stat-label">Saw no added value over Booking.com yet</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">42%</div>
-        <div class="stat-label">Found the B2C→B4B transition very difficult</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">70K</div>
-        <div class="stat-label">Converted users surveyed post-launch</div>
-      </div>
-    </div>
+    <h2>Where the Operating System Started</h2>
+    <p class="lede">Looking back from the Booking.com years, this little challenge is where the habits began: measure before designing, score options instead of debating them, and ship every recommendation with its trade-offs attached.</p>
 
     <div class="grid2" style="margin-top:44px">
       <div class="card">
-        <h3>What Worked</h3>
-        <p style="font-size:15px;color:var(--gray)">The discipline. A/A baseline before touching anything, written hypotheses with guardrails, and placement decisions negotiated with data instead of opinions. When the variant won (+1.42%), everyone trusted it — because everyone had agreed on the rules beforehand.</p>
+        <h3>What Still Holds Up</h3>
+        <p style="font-size:15px;color:var(--gray)">Spending the first fifth of a tight budget on real users felt expensive at hour two and cheap by hour ten. The value × effort matrix from this challenge became the same muscle behind the impact × confidence prioritization I later ran at Booking.com.</p>
       </div>
       <div class="card">
-        <h3>What I'd Do Differently</h3>
-        <p style="font-size:15px;color:var(--gray)">Winning the entry-point experiment is not the same as designing a successful transition. The survey data made it plain: acquisition without immediate, felt value creates disappointed users. I'd pair every acquisition experiment with a first-week value experiment from day one.</p>
+        <h3>What I'd Do Differently Now</h3>
+        <p style="font-size:15px;color:var(--gray)">Accessibility would be a first-class requirement, not an afterthought — reach ranges, language switching, and screen-reader flows for a public kiosk. And I'd recruit beyond convenience sampling: eight testers taught me directions, not confidence intervals.</p>
       </div>
     </div>
   </div>
