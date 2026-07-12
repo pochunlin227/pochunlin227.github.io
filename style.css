@@ -70,13 +70,13 @@ h3{font-size:19px;font-weight:700;color:var(--black)}
 .pcard .thumb{height:230px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .pcard .thumb img{width:78%;border-radius:14px;box-shadow:0 16px 40px rgba(0,0,0,.28)}
 .pcard .thumb .ph{font-size:56px}
-.pcard .body{padding:24px 26px 28px}
+.pcard .body{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
 .pcard .cat{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green2)}
 .pcard .badge-type{position:absolute;top:14px;left:14px;z-index:2;background:var(--green);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;box-shadow:0 6px 16px rgba(15,15,15,.22)}
 .pcard .meta-row{font-size:12.5px;font-weight:600;color:#9B958A}
 .pcard h3{margin-top:8px}
-.pcard p{font-size:14.5px;color:var(--gray);margin-top:8px}
-.pcard .impact{display:flex;gap:22px;margin-top:16px;padding-top:14px;border-top:1.5px dashed var(--line);flex-wrap:wrap}
+.pcard p{font-size:14.5px;color:var(--gray);margin-top:8px;margin-bottom:18px}
+.pcard .impact{display:flex;gap:22px;margin-top:auto;padding-top:16px;border-top:1.5px dashed var(--line);flex-wrap:wrap}
 .pcard .impact span{font-size:12px;color:var(--gray);line-height:1.45;min-width:0}
 .pcard .impact b{display:block;font-size:18px;font-weight:800;color:var(--green);letter-spacing:-.01em;margin-bottom:2px}
 .pcard .go{margin-top:16px;font-size:14px;font-weight:700;color:var(--green)}
