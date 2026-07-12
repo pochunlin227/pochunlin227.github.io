@@ -149,6 +149,8 @@ h3{font-size:19px;font-weight:700;color:var(--black)}
 .ctile.teal{background:#1E4046}
 .ctile.teal span{font-size:14px;font-weight:700;letter-spacing:.42em;color:#F5F2E8;text-indent:.42em}
 .ctile.sage{background:var(--sky)}
+.ctile.photo{padding:0;overflow:hidden}
+.ctile.photo img{width:100%;height:100%;object-fit:cover}
 .ctile.dark{background:linear-gradient(150deg,#17211F,#1F5C4D);color:#fff;cursor:pointer}
 .ctile.dark .playbtn{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s,color .2s}
 .ctile.dark:hover .playbtn{background:var(--sand);color:var(--black);transform:scale(1.1)}
