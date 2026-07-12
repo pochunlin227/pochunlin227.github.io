@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Play — Po Chun Lin</title>
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <nav class="site">
@@ -57,7 +57,12 @@
 
     <h4 class="sec-label reveal" style="margin-top:88px">Illustration &amp; Graphic Design</h4>
     <div class="play-grid" style="margin-top:24px">
-      <div class="tile t-sand reveal"><span class="emo">✏️</span><h3>[Illustration series]</h3><p>Placeholder — character &amp; editorial illustration work.</p></div>
+      <button class="vcard reveal" type="button" id="nexdoor-card" aria-label="Open gallery: Nextdoor Breakfast">
+        <div class="vthumb" style="background:#DCE7BD"><img src="assets/nexdoor/nd-00.jpg" alt="Nextdoor Breakfast brand cover with logo" loading="lazy"><span class="gcount">24 pages</span></div>
+        <div class="vmeta"><span class="vtag">Brand · Menu · Poster</span></div>
+        <h3>Nextdoor Breakfast</h3>
+        <p>Menu system and seasonal posters for a neighborhood breakfast shop — logo, layout, and food-photo art direction.</p>
+      </button>
       <div class="tile t-lilac reveal"><span class="emo">🎨</span><h3>[Brand &amp; graphic design]</h3><p>Placeholder — posters, identities, and print explorations.</p></div>
       <div class="tile t-sky reveal"><span class="emo">🖼️</span><h3>[Visual studies]</h3><p>Placeholder — type, color, and composition experiments.</p></div>
     </div>
@@ -128,5 +133,43 @@ vmodal.addEventListener('click',e=>{if(e.target===vmodal)closeVideo();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vmodal.classList.contains('open'))closeVideo();});
 </script>
 <script src="assets/chat.js" defer></script>
+
+<!-- IMAGE GALLERY LIGHTBOX -->
+<div class="gmodal" id="gmodal" aria-hidden="true">
+  <button class="gclose" type="button" aria-label="Close gallery">&times;</button>
+  <button class="gnav gprev" type="button" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <img alt="Nextdoor Breakfast design work">
+  <button class="gnav gnext" type="button" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <span class="glabel"></span>
+</div>
+
+<script>
+(function(){
+  var G=[]; for(var i=0;i<24;i++){G.push('assets/nexdoor/nd-'+String(i).padStart(2,'0')+'.jpg');}
+  var gm=document.getElementById('gmodal');
+  var gimg=gm.querySelector('img'), glabel=gm.querySelector('.glabel');
+  var gi=0;
+  function show(i){
+    gi=(i+G.length)%G.length;
+    gimg.src=G[gi];
+    glabel.textContent=(gi+1)+' / '+G.length;
+    (new Image()).src=G[(gi+1)%G.length];
+    (new Image()).src=G[(gi-1+G.length)%G.length];
+  }
+  function openG(){gm.classList.add('open');gm.setAttribute('aria-hidden','false');document.documentElement.style.overflow='hidden';show(0);}
+  function closeG(){gm.classList.remove('open');gm.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';}
+  document.getElementById('nexdoor-card').addEventListener('click',openG);
+  gm.querySelector('.gclose').addEventListener('click',closeG);
+  gm.querySelector('.gprev').addEventListener('click',function(){show(gi-1);});
+  gm.querySelector('.gnext').addEventListener('click',function(){show(gi+1);});
+  gm.addEventListener('click',function(e){if(e.target===gm)closeG();});
+  document.addEventListener('keydown',function(e){
+    if(!gm.classList.contains('open'))return;
+    if(e.key==='Escape')closeG();
+    if(e.key==='ArrowLeft')show(gi-1);
+    if(e.key==='ArrowRight')show(gi+1);
+  });
+})();
+</script>
 </body>
 </html>
