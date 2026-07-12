@@ -122,38 +122,39 @@
 <section class="soft">
   <div class="wrap">
     <div class="talks-card reveal">
-      <div class="talks-head">
-        <h2>I share what I learn.</h2>
-        <span class="kicker" style="margin:0">Talks &amp; Community</span>
+      <div style="text-align:center;margin-bottom:42px">
+        <span class="kicker" style="margin-bottom:12px">Designing Beyond Products</span>
+        <h2>Building community &amp; meaningful connection</h2>
       </div>
-      <div class="talks-grid">
-        <a class="talk feat" href="#" target="_blank" rel="noopener">
-          <div class="talk-img t-green"><span>🎤</span></div>
-          <p class="t-date">[2026 · Online talk]</p>
-          <h3>[Talk title #1]<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
-          <p class="t-desc">[One line about what you talked about — e.g. designing growth experiments across systems.]</p>
-          <div class="t-tags"><span>Growth Design</span><span>UX</span></div>
-        </a>
-        <div class="talks-side">
-          <a class="talk row" href="#" target="_blank" rel="noopener">
-            <div class="talk-img t-sky"><span>💬</span></div>
-            <div>
-              <p class="t-date">[2026 · Online talk]</p>
-              <h3>[Talk title #2]<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
-              <p class="t-desc">[One line about this talk.]</p>
-              <div class="t-tags"><span>AI</span><span>Product Design</span></div>
-            </div>
-          </a>
-          <a class="talk row" href="#" target="_blank" rel="noopener">
-            <div class="talk-img t-sand"><span>🌱</span></div>
-            <div>
-              <p class="t-date">2021 — now · Community</p>
-              <h3>Mentoring @ Coseeing<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
-              <p class="t-desc">[Standing Director &amp; Design Lead — mentoring designers and leading community design work.]</p>
-              <div class="t-tags"><span>Mentorship</span><span>Design Community</span></div>
-            </div>
-          </a>
+      <div class="comm-grid">
+
+        <div class="ccard">
+          <div class="ctile teal">
+            <svg width="70" height="26" viewBox="0 0 70 26" fill="none" aria-hidden="true"><path d="M4 21 Q18 3 32 21" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M38 21 Q52 3 66 21" stroke="#E9A23B" stroke-width="5" stroke-linecap="round"/></svg>
+            <span>COSEEING</span>
+          </div>
+          <h3>Coseeing — Brand &amp; Inclusive Design Lead</h3>
+          <p>Leading design strategy for tools supporting visually-impaired users — accessible product concepts and public-awareness initiatives.</p>
+          <a class="cbtn" href="https://coseeing.org" target="_blank" rel="noopener">Learn more</a>
         </div>
+
+        <div class="ccard">
+          <div class="ctile sage">🧭</div>
+          <h3>Mentorship</h3>
+          <p>Guiding designers in career clarity, UX fundamentals, and portfolio development — with emphasis on insight, self-awareness, and navigating the design world with honesty and intention.</p>
+          <a class="cbtn" href="mailto:pochun.lin@thepacinglabs.com">Contact me</a>
+        </div>
+
+        <div class="ccard">
+          <button class="ctile dark" type="button" data-embed="https://drive.google.com/file/d/1FH8Zfclwtkmh75ypLjerzZXFFnxgasYf/preview" aria-label="Play ADPList event video">
+            <span class="playbtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            <small>Event recap · 1 min</small>
+          </button>
+          <h3>ADPList — Creative Lead &amp; City Ambassador</h3>
+          <p>Hosting and designing community events for designers, PMs, and founders — conversations around product thinking, creative identity, and authentic growth.</p>
+          <button class="cbtn" type="button" data-embed="https://drive.google.com/file/d/1FH8Zfclwtkmh75ypLjerzZXFFnxgasYf/preview">See event video</button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -232,5 +233,34 @@ if(track){
 }
 </script>
 <script src="assets/chat.js" defer></script>
+
+<!-- VIDEO LIGHTBOX -->
+<div class="vmodal" id="vmodal" aria-hidden="true">
+  <div class="vwrap">
+    <button class="vclose" type="button" aria-label="Close video">&times;</button>
+    <div class="vbox"></div>
+  </div>
+</div>
+
+<script>
+const vmodal=document.getElementById('vmodal');
+const vbox=vmodal.querySelector('.vbox');
+function openVideo(src){
+  vbox.innerHTML='<iframe src="'+src+'" title="Video player" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+  vmodal.classList.add('open');
+  vmodal.setAttribute('aria-hidden','false');
+  document.documentElement.style.overflow='hidden';
+}
+function closeVideo(){
+  vmodal.classList.remove('open');
+  vmodal.setAttribute('aria-hidden','true');
+  document.documentElement.style.overflow='';
+  setTimeout(()=>{vbox.innerHTML='';},250);
+}
+document.querySelectorAll('[data-embed]').forEach(c=>c.addEventListener('click',()=>openVideo(c.dataset.embed)));
+vmodal.querySelector('.vclose').addEventListener('click',closeVideo);
+vmodal.addEventListener('click',e=>{if(e.target===vmodal)closeVideo();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vmodal.classList.contains('open'))closeVideo();});
+</script>
 </body>
 </html>
