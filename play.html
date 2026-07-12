@@ -127,7 +127,7 @@ function closeVideo(){
   document.documentElement.style.overflow='';
   setTimeout(()=>{vbox.innerHTML='';},250);
 }
-document.querySelectorAll('.vcard').forEach(c=>c.addEventListener('click',()=>openVideo(c.dataset.embed)));
+document.querySelectorAll('.vcard[data-embed]').forEach(c=>c.addEventListener('click',()=>openVideo(c.dataset.embed)));
 vmodal.querySelector('.vclose').addEventListener('click',closeVideo);
 vmodal.addEventListener('click',e=>{if(e.target===vmodal)closeVideo();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vmodal.classList.contains('open'))closeVideo();});
