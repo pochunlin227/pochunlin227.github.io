@@ -275,17 +275,22 @@ figure.journey figcaption{margin-top:18px;font-size:14px;font-weight:700;color:v
 .vclose:hover{color:var(--sand)}
 /* ---------- image gallery lightbox ---------- */
 .gcount{position:absolute;bottom:10px;right:10px;background:rgba(15,15,15,.62);color:#fff;font-size:12px;font-weight:700;border-radius:99px;padding:4px 12px}
-.gmodal{position:fixed;inset:0;z-index:2100;background:rgba(15,15,15,.86);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s}
+.gmodal{position:fixed;inset:0;z-index:2100;background:rgba(15,15,15,.86);display:flex;align-items:center;justify-content:center;padding:28px 20px;opacity:0;pointer-events:none;transition:opacity .25s}
 .gmodal.open{opacity:1;pointer-events:auto}
-.gmodal img{max-width:min(90vw,720px);max-height:86vh;border-radius:12px;display:block;box-shadow:0 30px 80px rgba(0,0,0,.4);background:#fff}
-.gmodal .gclose{position:absolute;top:14px;right:22px;background:none;border:none;color:#fff;font-size:36px;line-height:1;cursor:pointer;padding:6px;z-index:2}
+.gsheet{background:#fff;border-radius:22px;max-width:840px;width:100%;max-height:92vh;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 40px 100px rgba(0,0,0,.4)}
+.gsheet::-webkit-scrollbar{width:8px}
+.gsheet::-webkit-scrollbar-thumb{background:#D5CFC2;border-radius:99px}
+.gsheet .ghero{width:100%;display:block}
+.gintro{padding:32px 42px 6px}
+.gintro .vtag{font-size:12px}
+.gintro h3{font-size:25px;font-weight:800;color:var(--black);margin:14px 0 12px}
+.gintro p{font-size:15px;color:var(--gray);line-height:1.75;margin-bottom:12px;max-width:660px}
+.gscroll{display:block;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green2);margin:14px 0 6px}
+.gstack{padding:16px 42px 44px;display:flex;flex-direction:column;gap:20px}
+.gstack img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
+.gmodal .gclose{position:absolute;top:14px;right:22px;background:none;border:none;color:#fff;font-size:38px;line-height:1;cursor:pointer;padding:6px;z-index:2}
 .gmodal .gclose:hover{color:var(--sand)}
-.gmodal .gnav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2}
-.gmodal .gnav:hover{background:var(--green)}
-.gmodal .gprev{left:20px}
-.gmodal .gnext{right:20px}
-.gmodal .glabel{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:700;letter-spacing:.1em}
-@media(max-width:640px){.gmodal .gnav{width:42px;height:42px}.gmodal .gprev{left:8px}.gmodal .gnext{right:8px}}
+@media(max-width:640px){.gintro{padding:24px 22px 4px}.gstack{padding:12px 22px 30px}}.gmodal .gnext{right:8px}}
 .vclose:hover{color:var(--sand)}
 
 /* ---------- footer ---------- */
