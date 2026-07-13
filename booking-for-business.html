@@ -504,14 +504,15 @@
 </div>
 <script>
 (function(){
-  var KEY='pc_unlocked', PASS='portfolio0227';
+  var KEY='pc_unlocked_at', PASS='portfolio0227', TTL=24*60*60*1000;
   var lock=document.getElementById('lock');
-  if(sessionStorage.getItem(KEY)==='1'){lock.remove();return;}
+  var ts=parseInt(localStorage.getItem(KEY)||'0',10);
+  if(ts && Date.now()-ts<TTL){lock.remove();return;}
   document.documentElement.style.overflow='hidden';
   var input=lock.querySelector('input'), btn=lock.querySelector('button');
   function tryUnlock(){
     if(input.value===PASS){
-      sessionStorage.setItem(KEY,'1');
+      localStorage.setItem(KEY,String(Date.now()));
       lock.remove();
       document.documentElement.style.overflow='';
       window.dispatchEvent(new Event('scroll'));
