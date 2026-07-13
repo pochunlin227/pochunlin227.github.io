@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Play — Po Chun Lin</title>
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 <nav class="site">
@@ -73,6 +73,12 @@
         <div class="vmeta"><span class="vtag">Brand · Menu · Poster</span></div>
         <h3>Nextdoor Breakfast</h3>
         <p>Menu system and seasonal posters for a neighborhood breakfast shop — logo, layout, and food-photo art direction.</p>
+      </button>
+      <button class="vcard" type="button" id="familytee-card" aria-label="Open gallery: The Family Tee">
+        <div class="vthumb"><img src="assets/familytee/ft-2025.jpg" alt="Family T-shirt 2025 — Enjoy Your Journey design on a brown tee" loading="lazy"><span class="gcount">12-year tradition</span></div>
+        <div class="vmeta"><span class="vtag">Illustration · Apparel</span></div>
+        <h3>The Family Tee</h3>
+        <p>Every year, one animal, one concept, one T-shirt for the whole family — a tradition running since 2014.</p>
       </button>
     </div>
       </div>
@@ -231,6 +237,45 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vmodal.classList.co
   upd();
 })();
 </script>
-<script data-goatcounter="https://pochunlin227.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<!-- FAMILY TEE PROJECT SHEET -->
+<div class="gmodal" id="fmodal" aria-hidden="true">
+  <button class="gclose" type="button" aria-label="Close">&times;</button>
+  <div class="gsheet">
+    <img class="ghero" src="assets/familytee/ft-2025.jpg" alt="Family T-shirt worn at the beach">
+    <div class="gintro">
+      <span class="vtag">Illustration · Apparel · Since 2014</span>
+      <h3>The Family Tee 家族T</h3>
+      <p>Every year I design one T-shirt for my entire family — the same shirt for everyone, grandparents to cousins. Each edition gets its own <b>animal of the year</b> and a concept drawn from what that year meant to us.</p>
+      <p>Twelve years, twelve animals, twelve stories. I'm digging the older editions out of the family archive — here's the collection so far.</p>
+      <span class="gscroll">Scroll through the years ↓</span>
+    </div>
+    <div class="gstack">
+      <div class="fentry">
+        <div class="fentry-head"><span class="fyear">2025</span><h4>Enjoy Your Journey</h4></div>
+        <p>The rabbit sets sail — palm trees, hot-air balloons, and a camera in paw. A year for slowing down and traveling together again.</p>
+        <img src="assets/familytee/ft-2025.jpg" alt="2025 family tee — Enjoy Your Journey" loading="lazy">
+      </div>
+      <div class="fentry fentry-soon">
+        <div class="fentry-head"><span class="fyear">2014–2024</span><h4>Eleven more animals, coming out of the closet</h4></div>
+        <p>The earlier editions are being photographed — check back soon.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var gm=document.getElementById('fmodal');
+  var sheet=gm.querySelector('.gsheet');
+  function openG(){gm.classList.add('open');gm.setAttribute('aria-hidden','false');document.documentElement.style.overflow='hidden';sheet.scrollTop=0;}
+  function closeG(){gm.classList.remove('open');gm.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';}
+  document.getElementById('familytee-card').addEventListener('click',openG);
+  gm.querySelector('.gclose').addEventListener('click',closeG);
+  gm.addEventListener('click',function(e){if(e.target===gm)closeG();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&gm.classList.contains('open'))closeG();});
+})();
+</script>
+<script data-goatcounter=="https://pochunlin227.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

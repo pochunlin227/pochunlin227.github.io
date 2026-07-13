@@ -290,6 +290,13 @@ figure.journey figcaption{margin-top:18px;font-size:14px;font-weight:700;color:v
 .gstack img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
 .gmodal .gclose{position:absolute;top:14px;right:22px;background:none;border:none;color:#fff;font-size:38px;line-height:1;cursor:pointer;padding:6px;z-index:2}
 .gmodal .gclose:hover{color:var(--sand)}
+.fentry{padding-top:10px}
+.fentry-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.fyear{background:var(--green);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.06em;border-radius:99px;padding:4px 14px;flex:none}
+.fentry-head h4{font-size:18px;font-weight:800;color:var(--black)}
+.fentry>p{font-size:14.5px;color:var(--gray);line-height:1.7;margin-bottom:14px;max-width:620px}
+.fentry-soon{border:1.5px dashed #CFC9BB;border-radius:14px;padding:22px 26px;background:rgba(244,241,236,.5)}
+.fentry-soon p{margin-bottom:0}
 @media(max-width:640px){.gintro{padding:24px 22px 4px}.gstack{padding:12px 22px 30px}}.gmodal .gnext{right:8px}}
 .vclose:hover{color:var(--sand)}
 
