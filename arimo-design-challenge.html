@@ -153,6 +153,15 @@
   .img-duo img{width:100%;border-radius:var(--radius);border:1px solid var(--line)}
   figcaption{font-size:13px;color:var(--gray);text-align:center;margin-top:10px}
 
+  /* ---------- validate steps ---------- */
+  .vstep{display:flex;align-items:baseline;gap:16px;margin:64px 0 6px}
+  .vstep:first-of-type{margin-top:44px}
+  .vstep .vs-num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--yellow);color:var(--navy);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;align-self:center}
+  .vstep h3{margin:0;font-size:20px}
+  .vstep .vs-tag{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:2px}
+  .vstep-lede{color:var(--gray);font-size:15px;max-width:680px;margin:6px 0 18px 56px}
+  @media(max-width:640px){.vstep-lede{margin-left:0}}
+
   /* ---------- site top nav ---------- */
   nav.site{position:fixed;top:0;left:0;right:0;z-index:1100;background:rgba(244,241,236,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   nav.site .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
@@ -482,8 +491,13 @@
   <div class="wrap">
     <p class="kicker">04 Design &amp; Validate</p>
     <h2>Sketch Fast, Test What Matters</h2>
-    <p class="lede">Paper first — a full screen-by-screen pass in pencil — then hi-fi only where evaluation needed it. The prototype went straight back to users: click heatmaps on the critical payment step, and a preference survey on the plan question.</p>
+    <p class="lede">Ten hours don't allow a full design cycle — so the cycle was compressed, not skipped. Four moves, in order: sketch everything, build only what testing needs, put it in front of riders, and let the data pick the answer.</p>
 
+<div class="vstep reveal">
+      <span class="vs-num">01</span>
+      <div><span class="vs-tag">Sketch</span><h3>Every screen on paper first</h3></div>
+    </div>
+    <p class="vstep-lede reveal">A full screen-by-screen pass in pencil. At this fidelity iteration is free — layouts, payment states, and dead ends were all resolved before a single pixel was spent.</p>
     <div class="img-duo">
       <figure>
         <img src="assets/arimo/sketch-1.jpg" alt="Paper sketches of the kiosk buying flow screens">
@@ -495,6 +509,11 @@
       </figure>
     </div>
 
+<div class="vstep reveal">
+      <span class="vs-num">02</span>
+      <div><span class="vs-tag">Prototype</span><h3>Hi-fi only where testing needed it</h3></div>
+    </div>
+    <p class="vstep-lede reveal">No decoration passes. Only the two flows under evaluation were built at high fidelity — buying a new card, and the one-click refill.</p>
     <div class="img-duo">
       <figure>
         <img src="assets/arimo/flow-buy.webp" alt="Animated prototype: buying a new transit card with the default value path">
@@ -506,7 +525,12 @@
       </figure>
     </div>
 
-    <div class="feature flip" style="margin-top:20px">
+<div class="vstep reveal">
+      <span class="vs-num">03</span>
+      <div><span class="vs-tag">Test</span><h3>Put it in front of riders</h3></div>
+    </div>
+    <p class="vstep-lede reveal">The prototype went straight back to users: first-click heatmaps on the critical payment step, with eight riders voting with their fingers.</p>
+    <div class="feature flip" style="margin-top:0">
       <div class="f-copy">
         <p class="f-no">Usability · Click Heatmaps + Survey</p>
         <h3>Let Riders Vote With Their Fingers</h3>
@@ -515,6 +539,11 @@
       <div class="f-img"><img src="assets/arimo/heatmap.jpg" alt="Click heatmap over the refill payment screen showing concentration on the card option"></div>
     </div>
 
+<div class="vstep reveal">
+      <span class="vs-num">04</span>
+      <div><span class="vs-tag">Learn</span><h3>A survey that split exactly as predicted</h3></div>
+    </div>
+    <p class="vstep-lede reveal">The plan question went to a preference survey. New-city riders leaned to a quick default; home-city riders wanted their own plans — confirming one flow had to serve both.</p>
     <div class="img-duo">
       <figure>
         <img src="assets/arimo/survey-1.jpg" alt="Survey results: preference for buying a new card in a new city" style="background:#fff;padding:10px">
