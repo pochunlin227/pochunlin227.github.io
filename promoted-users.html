@@ -287,6 +287,11 @@
   #lock{position:fixed;top:72px;left:184px;right:0;bottom:0;z-index:950;display:flex;align-items:center;justify-content:center;padding:32px 24px;
     background-color:#F4F1EC;background-image:radial-gradient(rgba(31,92,77,.10) 1.2px, transparent 1.2px);background-size:26px 26px;overflow:auto}
   @media(max-width:1024px){#lock{left:0}}
+  @media(max-width:640px){#lock{padding:70px 14px 22px;align-items:flex-start}#lock .lock-back{top:18px;left:18px}}
+  #lock .lock-field{position:relative}
+  #lock .lock-field input{padding-right:52px}
+  #lock .lock-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#9a9a9a;padding:8px;display:flex;width:auto;margin:0}
+  #lock .lock-eye:hover{color:#1F5C4D;background:none}
   #lock .lock-back{position:absolute;top:26px;left:32px;font-size:15px;font-weight:600;color:#6B6B6B;text-decoration:none}
   #lock .lock-back:hover{color:#1F5C4D}
   #lock .lock-card{background:#fff;border-radius:28px;padding:44px 48px 36px;max-width:540px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(15,15,15,.08);margin:auto}
@@ -310,9 +315,8 @@
     <h2>This one’s locked.</h2>
     <p class="lock-sub">This one isn’t public. <b>Promoted Users · B2C→B4B</b> requires a passcode.</p>
     <hr class="lock-rule">
-    <input type="password" placeholder="Enter passcode" autocomplete="off">
+    <div class="lock-field"><input type="password" placeholder="Enter passcode" autocomplete="off"><button class="lock-eye" type="button" aria-label="Show passcode"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
     <button type="button">Unlock</button>
-    <p class="lock-foot">No passcode? <a href="mailto:pochun.lin@thepacinglabs.com">Reach out</a></p>
   </div>
 </div>
 <script>
@@ -336,6 +340,15 @@
   }
   btn.addEventListener('click',tryUnlock);
   input.addEventListener('keydown',function(e){if(e.key==='Enter')tryUnlock();});
+  var eye=lock.querySelector('.lock-eye');
+  var EYE=eye.innerHTML, EYEOFF="<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94\"/><path d=\"M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19\"/><path d=\"M14.12 14.12a3 3 0 1 1-4.24-4.24\"/><line x1=\"1\" y1=\"1\" x2=\"23\" y2=\"23\"/></svg>";
+  eye.addEventListener('click',function(){
+    var show=input.type==='password';
+    input.type=show?'text':'password';
+    eye.innerHTML=show?EYEOFF:EYE;
+    eye.setAttribute('aria-label', show?'Hide passcode':'Show passcode');
+    input.focus();
+  });
   setTimeout(function(){input.focus();},300);
 })();
 </script>
