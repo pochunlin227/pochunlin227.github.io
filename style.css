@@ -23,7 +23,7 @@ nav.site{position:sticky;top:0;z-index:1000;background:rgba(244,241,236,.9);back
 .menu a{font-size:14px;font-weight:600;color:var(--gray);text-decoration:none;padding:8px 16px;border-radius:99px;transition:all .2s}
 .menu a:hover{color:var(--green);background:rgba(31,92,77,.08)}
 .menu a.active{color:var(--white);background:var(--green)}
-@media(max-width:640px){.menu a{padding:8px 10px;font-size:13px}}
+@media(max-width:640px){.nav-inner{padding:12px 12px}.logo span{display:none}.menu{gap:0}.menu a{padding:8px 9px;font-size:13px}}
 
 /* ---------- generic ---------- */
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
