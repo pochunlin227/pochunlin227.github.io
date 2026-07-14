@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Projects — Po Chun Lin</title>
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 <nav class="site">
@@ -19,6 +19,7 @@
       <a href="about.html">About</a>
       <a href="play.html">Play</a>
     </div>
+    <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -152,5 +153,12 @@ if(fbar){
 </script>
 <script src="assets/chat.js" defer></script>
 <script data-goatcounter="https://pochunlin227.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function(){var b=document.querySelector('.nav-burger'),m=document.querySelector('nav.site .menu');
+if(!b||!m)return;
+b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded','false');});});
+})();
+</script>
 </body>
 </html>
