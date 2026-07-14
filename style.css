@@ -313,4 +313,4 @@ footer.site .foot-menu{display:flex;gap:44px;align-items:center}
 footer.site .foot-menu a{font-size:16px;color:var(--gray);text-decoration:none;transition:color .2s}
 footer.site .foot-menu a:hover{color:var(--green)}
 footer.site .foot-credit{text-align:center;margin-top:56px;font-size:15px;color:var(--ink)}
-@media(max-width:640px){footer.site .foot-card{padding:32px 24px}footer.site .foot-menu{gap:24px}}
+@media(max-width:640px){footer.site .foot-card{padding:32px 20px}footer.site .foot-top{flex-direction:column;align-items:flex-start;gap:20px}footer.site .foot-menu{gap:14px;flex-wrap:wrap;row-gap:10px}footer.site .foot-menu a{font-size:14px}}
