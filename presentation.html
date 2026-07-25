@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Interview Deck · Po Chun Lin</title>
+<style>
+  :root{
+    --green:#1F5C4D; --green2:#3A7D6B; --navy:#1F2E5C; --sand:#E9C29A;
+    --ink:#1A1A1A; --gray:#6B6B6B; --cream:#F4F1EC; --line:#E5E1D8; --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{font-family:'Poppins','Avenir Next','Segoe UI',system-ui,sans-serif;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased;overflow:hidden}
+
+  /* ---------- sidebar ---------- */
+  .pnav{position:fixed;top:0;left:0;bottom:0;width:250px;background:var(--green);color:#fff;display:flex;flex-direction:column;padding:26px 16px 18px;z-index:100}
+  .pnav .who{display:flex;align-items:center;gap:12px;padding:0 8px 20px;border-bottom:1px solid rgba(255,255,255,.15)}
+  .pnav .who img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+  .pnav .who b{font-size:14px;line-height:1.3;display:block}
+  .pnav .who span{font-size:10.5px;color:#A3BDB2;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .pnav .grp{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);padding:18px 8px 8px}
+  .pnav a{display:flex;align-items:baseline;gap:9px;font-size:12.5px;font-weight:600;color:#BFD3CB;text-decoration:none;padding:8px 10px;border-radius:9px;border-left:3px solid transparent;transition:all .18s;line-height:1.35}
+  .pnav a i{font-style:normal;font-size:9.5px;font-weight:800;color:#7FA093;min-width:18px}
+  .pnav a:hover{color:#fff;background:rgba(255,255,255,.07)}
+  .pnav a.active{color:#fff;background:rgba(255,255,255,.12);border-left-color:var(--sand)}
+  .pnav a.active i{color:var(--sand)}
+  .pnav .exit{margin-top:auto;font-size:11px;color:#A3BDB2;text-decoration:none;padding:10px 8px;font-weight:700}
+  .pnav .exit:hover{color:var(--sand)}
+  .pnav nav{overflow-y:auto;scrollbar-width:none}
+  .pnav nav::-webkit-scrollbar{display:none}
+
+  /* ---------- slides ---------- */
+  .slides{position:fixed;top:0;left:250px;right:0;bottom:0;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  .slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:56px 60px;position:relative}
+  .sframe{width:100%;max-width:1120px}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--green2);margin-bottom:18px}
+  .eyebrow b{color:var(--ink)}
+  .slide h1{font-size:clamp(30px,4.3vw,54px);line-height:1.12;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .slide h1 em{font-style:normal;color:var(--green)}
+  .slide .context{margin-top:18px;font-size:16.5px;color:var(--gray);max-width:560px;line-height:1.7}
+  .duo{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .shot{width:100%;border-radius:var(--radius);box-shadow:0 26px 60px rgba(15,15,15,.16)}
+  .statrow{display:flex;gap:40px;margin-top:34px;flex-wrap:wrap}
+  .statrow div{min-width:120px}
+  .statrow b{display:block;font-size:clamp(24px,2.6vw,36px);font-weight:800;color:var(--green);letter-spacing:-.01em;line-height:1.1}
+  .statrow span{font-size:12.5px;color:var(--gray);font-weight:600;line-height:1.45;display:block;margin-top:5px;max-width:170px}
+  .takeaway{margin-top:38px;background:#fff;border-left:4px solid var(--sand);border-radius:12px;padding:15px 20px;font-size:14px;color:var(--ink);max-width:620px;box-shadow:0 8px 24px rgba(15,15,15,.05)}
+  .takeaway b{color:var(--green2);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:3px}
+  .counter{position:fixed;right:22px;bottom:18px;font-size:12px;font-weight:700;color:var(--gray);background:rgba(255,255,255,.8);padding:6px 14px;border-radius:99px;z-index:90}
+  .hint{position:fixed;left:274px;bottom:18px;font-size:11px;color:#b5b0a6;z-index:90}
+
+  /* intro slide specifics */
+  .hello-name{font-size:clamp(40px,5.5vw,72px)}
+  .chips{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+  .chips span{font-size:13px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 18px;color:var(--green)}
+  .princ{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .princ .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px}
+  .princ .p i{font-style:normal;font-size:26px;font-weight:800;color:var(--sand)}
+  .princ .p h3{font-size:18px;margin:10px 0 8px;color:var(--ink)}
+  .princ .p p{font-size:13.5px;color:var(--gray);line-height:1.65}
+  .princ .p span{display:block;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green2)}
+  .tl{margin-top:40px;border-top:1px solid var(--line)}
+  .tl .row{display:grid;grid-template-columns:150px 1fr auto;gap:20px;padding:15px 4px;border-bottom:1px solid var(--line);font-size:15px;align-items:baseline}
+  .tl .row b{color:var(--ink)}
+  .tl .row span{color:var(--gray)}
+  .tl .row em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--green2)}
+  .bignums{display:flex;gap:44px;margin-top:38px;flex-wrap:wrap}
+  .bignums div b{font-size:clamp(26px,3vw,40px);font-weight:800;color:var(--green);display:block;line-height:1.1}
+  .bignums div span{font-size:12px;color:var(--gray);font-weight:600}
+
+  @media(max-width:960px){
+    .pnav{display:none}
+    .slides{left:0}
+    .slide{padding:48px 22px}
+    .duo{grid-template-columns:1fr;gap:26px}
+    .hint{display:none}
+    .princ{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<style>
+  #lock{position:fixed;inset:0;z-index:950;display:flex;align-items:center;justify-content:center;padding:32px 24px;
+    background-color:#F4F1EC;background-image:radial-gradient(rgba(31,92,77,.10) 1.2px, transparent 1.2px);background-size:26px 26px;overflow:auto}
+  #lock .lock-card{background:#fff;border-radius:28px;padding:44px 48px 36px;max-width:540px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(15,15,15,.08);margin:auto}
+  #lock .lock-icon{display:block;margin:0 auto 4px}
+  #lock h2{font-size:clamp(34px,5vw,48px);line-height:1.1;color:#1F5C4D;font-weight:800;margin:16px 0 14px}
+  #lock .lock-sub{font-size:16px;color:#6B6B6B;max-width:400px;margin:0 auto}
+  #lock .lock-sub b{color:#1A1A1A}
+  #lock .lock-rule{width:56px;height:1px;background:#E5E1D8;border:none;margin:26px auto}
+  #lock .lock-field{position:relative}
+  #lock input{width:100%;font:inherit;font-size:16px;padding:15px 52px 15px 18px;border:1.5px solid #B9CDC4;border-radius:14px;outline:none;color:#1A1A1A;transition:border-color .2s}
+  #lock input:focus{border-color:#1F5C4D}
+  #lock input.err{border-color:#c9364c}
+  #lock .lock-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#9a9a9a;padding:8px;display:flex}
+  #lock .lock-eye:hover{color:#1F5C4D}
+  #lock .unlockbtn{width:100%;margin-top:14px;font:inherit;font-size:16px;font-weight:700;color:#fff;background:#93AFA0;border:none;border-radius:14px;padding:15px 18px;cursor:pointer;transition:background .2s}
+  #lock .unlockbtn:hover{background:#1F5C4D}
+</style>
+<div id="lock">
+  <div class="lock-card">
+    <img class="lock-icon" src="assets/lock-art.png" alt="" style="width:250px;max-width:74%">
+    <h2>Interview deck.</h2>
+    <p class="lock-sub">This is a private presentation. <b>Enter the passcode to begin.</b></p>
+    <hr class="lock-rule">
+    <div class="lock-field">
+      <input type="password" placeholder="Enter passcode" autocomplete="off">
+      <button class="lock-eye" type="button" aria-label="Show passcode"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    </div>
+    <button class="unlockbtn" type="button">Unlock</button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='pc_unlocked', PASS='portfolio0227';
+  var lock=document.getElementById('lock');
+  if(sessionStorage.getItem(KEY)==='1'){lock.remove();return;}
+  var input=lock.querySelector('input'), btn=lock.querySelector('.unlockbtn'), eye=lock.querySelector('.lock-eye');
+  var EYE=eye.innerHTML, EYEOFF='<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+  function tryUnlock(){
+    if(input.value===PASS){sessionStorage.setItem(KEY,'1');lock.remove();}
+    else{input.classList.add('err');input.value='';input.placeholder='Wrong passcode — try again';setTimeout(function(){input.classList.remove('err');},1500);}
+  }
+  btn.addEventListener('click',tryUnlock);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')tryUnlock();});
+  eye.addEventListener('click',function(){var s=input.type==='password';input.type=s?'text':'password';eye.innerHTML=s?EYEOFF:EYE;input.focus();});
+  setTimeout(function(){input.focus();},300);
+})();
+</script>
+
+<!-- SIDEBAR -->
+<aside class="pnav">
+  <div class="who">
+    <img src="assets/profile.jpg" alt="Po Chun Lin">
+    <div><b>Po Chun Lin</b><span>Interview Deck</span></div>
+  </div>
+  <nav>
+    <div class="grp">Intro</div>
+    <a href="#s0" class="active"><i>·</i> Hello, I'm Po Chun</a>
+    <a href="#s1"><i>·</i> How I work</a>
+    <a href="#s2"><i>·</i> Career at a glance</a>
+    <div class="grp">Projects</div>
+    <a href="#p1"><i>01</i> Booking.com for Business App</a>
+    <a href="#p2"><i>02</i> Promoted Users · B2C→B4B</a>
+    <a href="#p3"><i>03</i> Marketing Transformation</a>
+    <a href="#p4"><i>04</i> Dyson Support Home</a>
+    <a href="#p5"><i>05</i> donateNYC</a>
+    <a href="#p6"><i>06</i> Arimo Kiosk Challenge</a>
+    <a href="#p7"><i>07</i> Beacon · Calendar × Maps</a>
+  </nav>
+  <a class="exit" href="index.html">← Exit to linpochun.com</a>
+</aside>
+
+<!-- SLIDES -->
+<main class="slides" id="slides">
+
+  <!-- S0 HELLO -->
+  <section class="slide" id="s0">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">Product Designer &amp; Strategist</p>
+        <h1 class="hello-name">Hi, I'm <em>Po Chun</em>.</h1>
+        <p class="context">8+ years designing products that balance business and human needs — previously at <b style="color:var(--ink)">Booking.com</b> and <b style="color:var(--ink)">Dyson</b>. I explore boldly, and build thoughtfully.</p>
+        <div class="chips">
+          <span>🇹🇼 Taipei</span><span>🗽 New York</span><span>🇸🇬 Singapore</span>
+        </div>
+      </div>
+      <div><img class="shot" src="assets/travel.webp" alt="Line-art character traveling with a suitcase" style="box-shadow:none;border:12px solid #fff;box-shadow:0 24px 60px rgba(15,15,15,.14)"></div>
+    </div>
+  </section>
+
+  <!-- S1 HOW I WORK -->
+  <section class="slide" id="s1">
+    <div class="sframe">
+      <p class="eyebrow">Intro · How I work</p>
+      <h1>Three principles run through <em>everything I ship</em>.</h1>
+      <div class="princ">
+        <div class="p"><i>1</i><h3>Measure before you move</h3><p>I ran a one-month A/A test before designing a single screen — so when the experiment won, everyone trusted it.</p><span>Promoted Users</span></div>
+        <div class="p"><i>2</i><h3>Reframe the brief</h3><p>"Design a page" became "where are we losing owners?" — the reframe turned one market's request into a six-market pattern.</p><span>Dyson Support Home</span></div>
+        <div class="p"><i>3</i><h3>Design for leverage</h3><p>Templates, guardrails, and codified patterns — I aim for work that multiplies: designed once, adopted by five markets.</p><span>Marketing Transformation</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S2 CAREER -->
+  <section class="slide" id="s2">
+    <div class="sframe">
+      <p class="eyebrow">Intro · Career at a glance</p>
+      <h1>From civic tech in New York to <em>growth at scale</em> in Singapore.</h1>
+      <div class="tl">
+        <div class="row"><b>2026 —</b><span>Product Design Consultant · COURTS Singapore</span><em>Consulting</em></div>
+        <div class="row"><b>2022 – 2026</b><span>Senior UX Designer, Growth · Booking.com</span><em>Growth · AI · 0→1</em></div>
+        <div class="row"><b>2019 – 2022</b><span>Digital Experience Designer, APAC CoE · Dyson</span><em>Systems · 6 markets</em></div>
+        <div class="row"><b>2017 – 2019</b><span>Product Designer · GCOME Software, New York</span><em>Civic tech · nyc.gov</em></div>
+      </div>
+      <div class="bignums">
+        <div><b>8+</b><span>years in product</span></div>
+        <div><b>3</b><span>cities, 2 continents</span></div>
+        <div><b>6</b><span>global markets shipped</span></div>
+        <div><b>33K</b><span>SMEs acquired in one year</span></div>
+        <div><b>20K</b><span>app users in 3 months</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P1 BOOKING APP -->
+  <section class="slide" id="p1">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">01 · <b>Booking.com</b> · 2025 · Senior Product Designer</p>
+        <h1>The missing layer of <em>business travel</em>.</h1>
+        <p class="context">The desktop product stopped where travelers needed it most. I framed the post-booking gap, shaped the MVP, and shipped a brand-new mobile touchpoint with AI expense automation.</p>
+        <div class="statrow">
+          <div><b>20K</b><span>users in the first 3 months</span></div>
+          <div><b>3 mo</b><span>from concept to launch</span></div>
+          <div><b>AI</b><span>expense automation shipped</span></div>
+        </div>
+        <div class="takeaway"><b>What this shows</b>0→1 product shaping — from problem framing to shipped MVP, with AI as leverage rather than decoration.</div>
+      </div>
+      <div><img class="shot" src="assets/booking-thumb.webp" alt="Booking.com for Business app"></div>
+    </div>
+  </section>
+
+  <!-- P2 PROMOTED USERS -->
+  <section class="slide" id="p2">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">02 · <b>Booking.com</b> · 2023 · Growth Design</p>
+        <h1>Growth that kept its <em>guardrails</em>.</h1>
+        <p class="context">~30% of bookings were business trips stuck on the leisure product. I built the baseline, wrote the hypothesis, and shipped Booking.com's first cross-system entry point — then reported the honest post-launch story.</p>
+        <div class="statrow">
+          <div><b>+1.42%</b><span>B4B registrations, guardrails intact</span></div>
+          <div><b>114</b><span>companies in the first 2 weeks</span></div>
+          <div><b>50%</b><span>CTR on sign-up CTA after exposure</span></div>
+        </div>
+        <div class="takeaway"><b>What this shows</b>Hypothesis-driven growth: measure first, ship behind experiments, and stay honest when the data cuts both ways.</div>
+      </div>
+      <div><img class="shot" src="assets/promoted-hero.jpg" alt="Confirmation page entry point"></div>
+    </div>
+  </section>
+
+  <!-- P3 MARKETING TRANSFORMATION -->
+  <section class="slide" id="p3">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">03 · <b>Booking.com × CWT</b> · 2023 · Design Lead</p>
+        <h1>Five bets, five orgs, <em>one system</em>.</h1>
+        <p class="context">The TMC partnership needed a full go-to-market in one year: sign-up journey, site revamp, savings calculator, email, social. I led design across all five — as facilitator, prioritizer, and quality bar.</p>
+        <div class="statrow">
+          <div><b>33,782</b><span>SMEs acquired — 112% of OKR</span></div>
+          <div><b>+44%</b><span>sign-ups year-over-year</span></div>
+          <div><b>5</b><span>initiatives across 5 organizations</span></div>
+        </div>
+        <div class="takeaway"><b>What this shows</b>Design leadership — multiplying through workshops, vendors and copy direction, with design committed to business OKRs.</div>
+      </div>
+      <div><img class="shot" src="assets/mkt-signup.jpg" alt="Embedded sign-up on marketing site"></div>
+    </div>
+  </section>
+
+  <!-- P4 DYSON -->
+  <section class="slide" id="p4">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">04 · <b>Dyson</b> · 2022 · Lead Product Designer, APAC</p>
+        <h1>A page brief, reframed into an <em>APAC pattern</em>.</h1>
+        <p class="context">"Design a Support Home for ANZ" was a page-shaped brief. I reframed it behaviour-shaped — where do owners enter self-serve and where do we lose them — and shipped it entirely from existing platform modules.</p>
+        <div class="statrow">
+          <div><b>−25.7%</b><span>mobile exit rate, two months post-launch</span></div>
+          <div><b>6</b><span>markets adopted the tested template</span></div>
+          <div><b>2 wks</b><span>sprint, zero new backend</span></div>
+        </div>
+        <div class="takeaway"><b>What this shows</b>Systems thinking under hard constraints — the win was connective tissue, not new pages.</div>
+      </div>
+      <div><img class="shot" src="assets/dyson-hero.jpg" alt="Dyson Support Home screens"></div>
+    </div>
+  </section>
+
+  <!-- P5 DONATENYC -->
+  <section class="slide" id="p5">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">05 · <b>NYC Government</b> · 2019 · Product Designer</p>
+        <h1>Enterprise UX at <em>civic scale</em>.</h1>
+        <p class="context">NYC's donation platform forced whole organizations to share one login, polluting the city's data. I redesigned registration into a clear two-step flow and built multi-user account management — shipped on nyc.gov.</p>
+        <div class="statrow">
+          <div><b>nyc.gov</b><span>shipped citywide</span></div>
+          <div><b>0×30</b><span>zero-waste initiative</span></div>
+          <div><b>2-step</b><span>registration replacing a data-polluting flow</span></div>
+        </div>
+        <div class="takeaway"><b>What this shows</b>Shipping through government complexity — stakeholders, legacy systems, and public accountability — without losing the user.</div>
+      </div>
+      <div><img class="shot" src="assets/donatenyc-hero.jpg" alt="donateNYC web application"></div>
+    </div>
+  </section>
+
+  <!-- P6 ARIMO -->
+  <section class="slide" id="p6">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">06 · <b>Arimo Design Challenge</b> · 2019</p>
+        <h1>Ten hours from zero to a <em>validated kiosk</em>.</h1>
+        <p class="context">A timed design challenge: transit kiosk, unfamiliar domain, hard deadline. I compressed the full process — research, flows, prioritization, hi-fi prototype — without skipping the thinking.</p>
+        <div class="statrow">
+          <div><b>10 hrs</b><span>research → hi-fi prototype</span></div>
+          <div><b>9 → 3</b><span>flows prioritized on value × effort</span></div>
+        </div>
+        <div class="takeaway"><b>What this shows</b>Structured speed — how I think when there's no time to think twice.</div>
+      </div>
+      <div><img class="shot" src="assets/arimo/flow-buy.webp" alt="Arimo kiosk purchase flow"></div>
+    </div>
+  </section>
+
+  <!-- P7 BEACON -->
+  <section class="slide" id="p7">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">07 · <b>Beacon</b> · 2017 · Concept, New York</p>
+        <h1>Drawing the day as a journey — <em>in 2017</em>.</h1>
+        <p class="context">Calendar × Maps: a day rendered as a route, with time-to-leave awareness — designed before depart-alerts went mainstream. The oldest project here, and the clearest early signal of how I think about products.</p>
+        <div class="statrow">
+          <div><b>Route View</b><span>a day drawn as a journey</span></div>
+          <div><b>2017</b><span>before depart-alerts went mainstream</span></div>
+        </div>
+        <div class="takeaway"><b>What this shows</b>Product intuition ahead of the market — and a decade of consistency in caring about journeys, not screens.</div>
+      </div>
+      <div><img class="shot" src="assets/beacon/map-pass.png" alt="Beacon route view concept"></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="counter" id="counter">1 / 10</div>
+<div class="hint">↑↓ scroll · ← → keys to navigate</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var links=[].slice.call(document.querySelectorAll('.pnav nav a'));
+  var box=document.getElementById('slides');
+  var counter=document.getElementById('counter');
+  var cur=0;
+
+  function setActive(i){
+    cur=i;
+    links.forEach(function(a,k){a.classList.toggle('active',k===i);});
+    counter.textContent=(i+1)+' / '+slides.length;
+    var act=links[i]; if(act) act.scrollIntoView({block:'nearest'});
+  }
+  function goTo(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    slides[i].scrollIntoView({behavior:'smooth'});
+  }
+  box.addEventListener('scroll',function(){
+    requestAnimationFrame(function(){
+      var mid=box.scrollTop+box.clientHeight/2;
+      for(var i=0;i<slides.length;i++){
+        var s=slides[i];
+        if(s.offsetTop<=mid && mid<s.offsetTop+s.offsetHeight){ if(i!==cur) setActive(i); break; }
+      }
+    });
+  },{passive:true});
+  links.forEach(function(a,i){
+    a.addEventListener('click',function(e){e.preventDefault();goTo(i);});
+  });
+  document.addEventListener('keydown',function(e){
+    if(document.getElementById('lock'))return;
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();goTo(cur+1);}
+    if(e.key==='ArrowUp'||e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();goTo(cur-1);}
+    if(e.key==='Home'){e.preventDefault();goTo(0);}
+    if(e.key==='End'){e.preventDefault();goTo(slides.length-1);}
+  });
+  setActive(0);
+})();
+</script>
+
+</body>
+</html>
