@@ -81,6 +81,50 @@
     .hint{display:none}
     .princ{grid-template-columns:1fr}
   }
+
+  /* ---- slide components v2 ---- */
+  .stages{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
+  .stages .st{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .stages .st .b{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.1em;border-radius:99px;padding:4px 12px;margin-bottom:12px}
+  .stages .st.ok .b{background:#E4F5EC;color:#0d8a4f}
+  .stages .st.no .b{background:#FDE8EC;color:#c9364c}
+  .stages .st h3{font-size:16.5px;margin-bottom:6px}
+  .stages .st p{font-size:13px;color:var(--gray);line-height:1.6}
+  .bigline{margin-top:34px;font-size:clamp(19px,2.2vw,26px);font-weight:800;color:var(--ink)}
+  .bigline em{font-style:normal;color:var(--green)}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+  .vs .v{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:26px}
+  .vs .v.win{border:2.5px solid var(--sand)}
+  .vs .v .lbl{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green2)}
+  .vs .v h3{font-size:17px;margin:8px 0 8px}
+  .vs .v p,.vs .v li{font-size:13px;color:var(--gray);line-height:1.6}
+  .vs .v ul{list-style:none;margin-top:6px;display:flex;flex-direction:column;gap:6px}
+  .vs .v li{padding-left:20px;position:relative}
+  .vs .v li.y::before{content:"✓";position:absolute;left:0;color:#0d8a4f;font-weight:800}
+  .vs .v li.n::before{content:"✕";position:absolute;left:0;color:#c9364c;font-weight:800}
+  .hyp{margin-top:36px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:30px 36px;font-size:clamp(15px,1.8vw,19px);font-weight:600;line-height:1.7}
+  .hyp mark{background:rgba(233,194,154,.25);color:var(--sand);padding:1px 8px;border-radius:6px;font-weight:700}
+  .hyp .guard{display:block;margin-top:12px;font-size:13px;color:#A9B4CF;font-weight:500}
+  .mtab{margin-top:34px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;font-size:13.5px}
+  .mtab .r{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:14px;padding:12px 22px;border-bottom:1px solid var(--line)}
+  .mtab .r:last-child{border-bottom:none}
+  .mtab .r.h{background:#EBEFF2;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+  .mtab .r b{color:var(--ink);font-weight:700}
+  .mtab .r span{color:var(--gray)}
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+  .trio img{width:100%;border-radius:14px;box-shadow:0 14px 34px rgba(15,15,15,.12)}
+  .trio figcaption{font-size:11.5px;color:var(--gray);text-align:center;margin-top:8px;font-weight:600}
+  .quotebig{margin-top:30px;font-size:clamp(17px,2vw,22px);font-weight:700;color:var(--ink);border-left:4px solid var(--sand);padding-left:20px;line-height:1.6;max-width:640px}
+  .quotebig span{display:block;font-size:12.5px;color:var(--gray);font-weight:600;margin-top:8px}
+  .sub-note{margin-top:10px;font-size:13px;color:var(--gray)}
+  @media(max-width:960px){.stages,.vs,.trio{grid-template-columns:1fr}}
+
+  /* sidebar groups */
+  .pnav .pg{margin-bottom:2px}
+  .pnav .pg > a.head{font-weight:700;color:#D6E5DD}
+  .pnav .pg .subs{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .pnav .pg.open .subs{max-height:300px}
+  .pnav .subs a{font-size:11.5px;padding:6px 10px 6px 28px;color:#9DB7AC}
 </style>
 </head>
 <body>
@@ -143,17 +187,53 @@
   </div>
   <nav>
     <div class="grp">Intro</div>
-    <a href="#s0" class="active"><i>·</i> Hello, I'm Po Chun</a>
-    <a href="#s1"><i>·</i> How I work</a>
-    <a href="#s2"><i>·</i> Career at a glance</a>
+    <a href="#s0" data-i="0" class="active">· Hello, I'm Po Chun</a>
+    <a href="#s1" data-i="1">· How I work</a>
+    <a href="#s2" data-i="2">· Career at a glance</a>
     <div class="grp">Projects</div>
-    <a href="#p1"><i>01</i> Booking.com for Business App</a>
-    <a href="#p2"><i>02</i> Promoted Users · B2C→B4B</a>
-    <a href="#p3"><i>03</i> Marketing Transformation</a>
-    <a href="#p4"><i>04</i> Dyson Support Home</a>
-    <a href="#p5"><i>05</i> donateNYC</a>
-    <a href="#p6"><i>06</i> Arimo Kiosk Challenge</a>
-    <a href="#p7"><i>07</i> Beacon · Calendar × Maps</a>
+
+    <div class="pg" data-pg="p1">
+      <a href="#p1" class="head"><i>01</i> Booking.com for Business App</a>
+      <div class="subs">
+        <a href="#p1b">The gap</a><a href="#p1c">The bet</a><a href="#p1d">Impact</a>
+      </div>
+    </div>
+    <div class="pg" data-pg="p2">
+      <a href="#p2" class="head"><i>02</i> Promoted Users · B2C→B4B</a>
+      <div class="subs">
+        <a href="#p2b">Measure first</a><a href="#p2c">Ship &amp; test</a><a href="#p2d">Honest results</a>
+      </div>
+    </div>
+    <div class="pg" data-pg="p3">
+      <a href="#p3" class="head"><i>03</i> Marketing Transformation</a>
+      <div class="subs">
+        <a href="#p3b">The portfolio</a><a href="#p3c">Leading the room</a><a href="#p3d">Results</a>
+      </div>
+    </div>
+    <div class="pg" data-pg="p4">
+      <a href="#p4" class="head"><i>04</i> Dyson Support Home</a>
+      <div class="subs">
+        <a href="#p4b">Reframe &amp; constraints</a><a href="#p4c">Three models</a><a href="#p4d">Impact &amp; scale</a>
+      </div>
+    </div>
+    <div class="pg" data-pg="p5">
+      <a href="#p5" class="head"><i>05</i> donateNYC</a>
+      <div class="subs">
+        <a href="#p5b">Research → decisions</a><a href="#p5c">Shipped for the city</a>
+      </div>
+    </div>
+    <div class="pg" data-pg="p6">
+      <a href="#p6" class="head"><i>06</i> Arimo Kiosk Challenge</a>
+      <div class="subs">
+        <a href="#p6b">Spending the clock</a><a href="#p6c">Riders vote</a>
+      </div>
+    </div>
+    <div class="pg" data-pg="p7">
+      <a href="#p7" class="head"><i>07</i> Beacon · Calendar × Maps</a>
+      <div class="subs">
+        <a href="#p7b">The map system</a><a href="#p7c">Aged well</a>
+      </div>
+    </div>
   </nav>
   <a class="exit" href="index.html">← Exit to linpochun.com</a>
 </aside>
@@ -228,6 +308,55 @@
     </div>
   </section>
 
+  <!-- P1b THE GAP -->
+  <section class="slide" id="p1b">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · The Gap</p>
+      <h1>One trip, three stages — <em>coverage ended at stage one</em>.</h1>
+      <div class="stages">
+        <div class="st ok"><span class="b">✓ COVERED</span><h3>Pre-trip — search, book</h3><p>Desktop booking worked well. This was the product's comfort zone.</p></div>
+        <div class="st no"><span class="b">✕ NOTHING</span><h3>During trip — navigate, track</h3><p>No product in the traveler's pocket. Trip details lived in email threads.</p></div>
+        <div class="st no"><span class="b">✕ NOTHING</span><h3>Post-trip — reconcile, report</h3><p>Receipts in camera rolls, spreadsheets and portals — every expense crossed five disconnected tools.</p></div>
+      </div>
+      <p class="bigline">The easy read was "we need an app." Research said: the real issue is a <em>broken post-booking workflow</em>.</p>
+      <div class="quotebig">"I lost my invoice, so I cannot get reimbursed."<span>— Business traveler, user interview</span></div>
+    </div>
+  </section>
+
+  <!-- P1c THE BET -->
+  <section class="slide" id="p1c">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · The Bet</p>
+      <h1>Choosing <em>what not to build</em>.</h1>
+      <div class="vs">
+        <div class="v"><span class="lbl">Rejected</span><h3>Desktop parity on mobile</h3>
+          <ul><li class="n">12-month build before any user value</li><li class="n">Recreates features nobody needs mid-trip</li><li class="n">High engineering &amp; partner risk</li></ul></div>
+        <div class="v win"><span class="lbl">Shipped</span><h3>A lightweight mobile layer</h3>
+          <ul><li class="y">One critical job: capture &amp; organize expenses in-trip</li><li class="y">Hybrid wrapper + native expense capture</li><li class="y">Ships in one quarter — validates in weeks, not quarters</li></ul></div>
+      </div>
+      <p class="bigline">Flow decision: <em>capture now, review later</em> — nobody reviews a receipt while standing at the counter.</p>
+      <div class="takeaway"><b>The decision logic</b>Hybrid bought speed; native expense capture bought credibility exactly where interaction quality mattered most.</div>
+    </div>
+  </section>
+
+  <!-- P1d IMPACT -->
+  <section class="slide" id="p1d">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">01 · Booking App · Impact</p>
+        <h1>A new behavior, shipped as a <em>beta to 20K users</em>.</h1>
+        <p class="context">Capture a receipt → AI extracts the fields → review when focused → export a claimable report. An entirely new in-trip behavior for the product line, live in three months.</p>
+        <div class="statrow">
+          <div><b>20K</b><span>beta users in 3 months</span></div>
+          <div><b>5 → 1</b><span>tools replaced by one flow</span></div>
+          <div><b>~3 mo</b><span>hybrid strategy vs 6–12 native</span></div>
+        </div>
+        <div class="takeaway"><b>What I learned</b>Scope is strategy — narrowing to one job made the MVP shippable, testable, and honest about what we still had to learn.</div>
+      </div>
+      <div><img class="shot" src="assets/booking-hero.jpg" alt="Expense flow screens"></div>
+    </div>
+  </section>
+
   <!-- P2 PROMOTED USERS -->
   <section class="slide" id="p2">
     <div class="sframe duo">
@@ -243,6 +372,55 @@
         <div class="takeaway"><b>What this shows</b>Hypothesis-driven growth: measure first, ship behind experiments, and stay honest when the data cuts both ways.</div>
       </div>
       <div><img class="shot" src="assets/promoted-hero.jpg" alt="Confirmation page entry point"></div>
+    </div>
+  </section>
+
+  <!-- P2b MEASURE FIRST -->
+  <section class="slide" id="p2b">
+    <div class="sframe">
+      <p class="eyebrow">02 · Promoted Users · Measure First</p>
+      <h1><em>Measure before you move.</em></h1>
+      <p class="context">Growth work fails when you can't tell your effect from the noise. Before designing a single screen, we ran a one-month A/A test on the booking flow's optional questions — quantifying how many users were naturally business-inclined with zero intervention.</p>
+      <div class="hyp">We believe <mark>a business entry card on the confirmation page</mark> will lift <mark>B4B registrations by ≥1%</mark>, because <mark>business travelers carry high decision costs — a clear signal tells them they've been seen</mark>.
+        <span class="guard">Guardrails that must not move: B2C booking rate · page load speed</span></div>
+      <div class="takeaway"><b>Why this matters</b>When the variant won, nobody argued — everyone had agreed on the rules before the game started.</div>
+    </div>
+  </section>
+
+  <!-- P2c SHIP & TEST -->
+  <section class="slide" id="p2c">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">02 · Promoted Users · Ship &amp; Test</p>
+        <h1>Ship where the <em>moment lives</em>.</h1>
+        <p class="context">Three candidate channels — modal, email, confirmation page. The confirmation page won: every user passes through it, right when "travelling for work" is freshest. Validated with 8 usability sessions + 58 first-click tests before launch.</p>
+        <div class="statrow">
+          <div><b>38%</b><span>noticed the promo — most-focused element on page</span></div>
+          <div><b>4</b><span>teams + partner Serko across one journey</span></div>
+          <div><b>2</b><span>copy versions refined with UX writer</span></div>
+        </div>
+        <div class="takeaway"><b>The cross-system reality</b>The "simple" card spanned 4 platforms. My one-click migration idea died in feasibility — so I re-ideated with engineers until it was real.</div>
+      </div>
+      <div><img class="shot" src="assets/promoted-heatmap.jpg" alt="First-click heatmap"></div>
+    </div>
+  </section>
+
+  <!-- P2d HONEST RESULTS -->
+  <section class="slide" id="p2d">
+    <div class="sframe">
+      <p class="eyebrow">02 · Promoted Users · The Honest Part</p>
+      <h1>The experiment won. <em>The experience wasn't done.</em></h1>
+      <div class="statrow">
+        <div><b>+1.42%</b><span>registrations (±0.13) — hypothesis cleared, guardrails intact</span></div>
+        <div><b>114</b><span>companies in the first 2 weeks</span></div>
+        <div><b>50%</b><span>CTR on sign-up CTA after exposure</span></div>
+      </div>
+      <p class="bigline" style="margin-top:44px">A year later we surveyed 70K converted users:</p>
+      <div class="statrow">
+        <div><b>79.7%</b><span>saw no added value over the leisure product yet</span></div>
+        <div><b>42%</b><span>found the B2C→B4B transition very difficult</span></div>
+      </div>
+      <div class="takeaway"><b>What I learned</b>Acquisition without immediate, felt value creates disappointed users. Now I pair every acquisition experiment with a first-week value experiment from day one.</div>
     </div>
   </section>
 
@@ -264,6 +442,56 @@
     </div>
   </section>
 
+  <!-- P3b PORTFOLIO -->
+  <section class="slide" id="p3b">
+    <div class="sframe">
+      <p class="eyebrow">03 · Marketing Transformation · The Portfolio</p>
+      <h1>Not one project — <em>a portfolio of five bets</em>.</h1>
+      <div class="mtab">
+        <div class="r h"><span>Initiative</span><span>Duration</span><span>My involvement</span></div>
+        <div class="r"><b>Sign-up journey enhancement</b><span>6 months</span><span>Led end-to-end + front-end code</span></div>
+        <div class="r"><b>Marketing site revamp (TMC)</b><span>6 months</span><span>12 pages · 8 languages · CMS build</span></div>
+        <div class="r"><b>Saving calculator</b><span>3 months</span><span>Concept &amp; formulas from scratch</span></div>
+        <div class="r"><b>TMC email campaigns</b><span>3 months</span><span>4 segments, with UX writer</span></div>
+        <div class="r"><b>Social media campaigns</b><span>1 year</span><span>Creative direction, LinkedIn</span></div>
+      </div>
+      <div class="takeaway"><b>The management challenge</b>Five organizations shipped this together — marketing, product, UX copy, partner Serko, CMS vendor Rocket Minds. Coherence across that many hands was the real job.</div>
+    </div>
+  </section>
+
+  <!-- P3c LEADING THE ROOM -->
+  <section class="slide" id="p3c">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">03 · Marketing Transformation · Leading the Room</p>
+        <h1>Lead the room <em>before you lead the design</em>.</h1>
+        <p class="context">Every team had a theory about why sign-up bled users. Instead of picking one, I facilitated two workshops — internal and with Serko — and made the group prioritize every idea on impact × confidence before anything got built.</p>
+        <div class="statrow">
+          <div><b>3</b><span>systems, 5 teams — one journey charted with Serko's designer</span></div>
+          <div><b>30s+</b><span>submission delay fixed twice: engineering + tested loading animations</span></div>
+          <div><b>800</b><span>calculator completions by August, 12% clicking to sign-up</span></div>
+        </div>
+        <div class="takeaway"><b>The multiplier</b>Two good workshops moved more metrics than any single screen I could have designed.</div>
+      </div>
+      <div><img class="shot" src="assets/mkt-workshop.jpg" alt="Workshop boards"></div>
+    </div>
+  </section>
+
+  <!-- P3d RESULTS -->
+  <section class="slide" id="p3d">
+    <div class="sframe">
+      <p class="eyebrow">03 · Marketing Transformation · Results</p>
+      <h1>The year <em>the numbers turned</em>.</h1>
+      <div class="statrow" style="margin-top:44px">
+        <div><b>33,782</b><span>SMEs acquired — 112% of the 30K OKR</span></div>
+        <div><b>87,992</b><span>sign-ups, +44% year-over-year</span></div>
+        <div><b>+50%</b><span>October sign-ups YoY — trend bent after June TMC launch</span></div>
+        <div><b>2.2M</b><span>ABRN annual target passed (+1.21%)</span></div>
+      </div>
+      <div class="takeaway" style="margin-top:44px"><b>What this shows</b>Design accountable to the business: every initiative carried a number, which made trade-offs faster and wins visible to leadership.</div>
+    </div>
+  </section>
+
   <!-- P4 DYSON -->
   <section class="slide" id="p4">
     <div class="sframe duo">
@@ -279,6 +507,54 @@
         <div class="takeaway"><b>What this shows</b>Systems thinking under hard constraints — the win was connective tissue, not new pages.</div>
       </div>
       <div><img class="shot" src="assets/dyson-hero.jpg" alt="Dyson Support Home screens"></div>
+    </div>
+  </section>
+
+  <!-- P4b REFRAME -->
+  <section class="slide" id="p4b">
+    <div class="sframe">
+      <p class="eyebrow">04 · Dyson · Reframe &amp; Constraints</p>
+      <h1>Reframing the brief, <em>not the product</em>.</h1>
+      <div class="vs">
+        <div class="v"><span class="lbl">What was briefed</span><h3>"Design a Support Home page for Australia and New Zealand"</h3><p>A page-shaped problem, scoped as a content layout exercise.</p></div>
+        <div class="v win"><span class="lbl">What I reframed it as</span><h3>"How do owners enter self-serve — and where are we losing them?"</h3><p>A behaviour-shaped problem, solvable inside platform constraints by re-organising existing modules and copy.</p></div>
+      </div>
+      <div class="vs">
+        <div class="v"><span class="lbl">Can't</span><h3>Build new functionality on M2</h3><p>No new backend, no new components.</p></div>
+        <div class="v"><span class="lbl">Can</span><h3>Reuse existing support pages</h3><p>The win was the connective tissue — not new pages.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P4c THREE MODELS -->
+  <section class="slide" id="p4c">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">04 · Dyson · Three Models</p>
+        <h1>Owners don't think in services. <em>They think in products.</em></h1>
+        <p class="context">Three IA models, each betting on a different mental model: Service-first, Product-first by range, Product-first by SKU. Testing was unambiguous — SKU-level scored highest (SUS 84.75, 9/10 task completion) but demanded a heavy platform build.</p>
+        <p class="bigline">The call: <em>the lightest model unlocked the heaviest one.</em></p>
+        <div class="takeaway"><b>The decision logic</b>Ship Service-first now — buildable within constraints. Make SKU-level the tested, evidence-backed north star for the platform's next generation.</div>
+      </div>
+      <div><img class="shot" src="assets/dyson-supporthome/dy-decision.png" alt="Impact vs effort decision quadrant" style="background:#fff"></div>
+    </div>
+  </section>
+
+  <!-- P4d IMPACT & SCALE -->
+  <section class="slide" id="p4d">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">04 · Dyson · Impact &amp; Scale</p>
+        <h1>Designed once, tested once, <em>adopted five times</em>.</h1>
+        <div class="statrow">
+          <div><b>−25.7%</b><span>mobile exit rate</span></div>
+          <div><b>−15%</b><span>mobile bounce rate</span></div>
+          <div><b>−12.3%</b><span>desktop bounce rate</span></div>
+        </div>
+        <p class="context" style="margin-top:26px">What shipped wasn't a market page — it was a tested template with three codified patterns: information hierarchy, component library, copy &amp; wayfinding rules. SG, KR, IN and TR adopted it.</p>
+        <div class="takeaway"><b>What this shows</b>Leverage under constraints — systems thinking that turns one market's sprint into an APAC standard.</div>
+      </div>
+      <div><img class="shot" src="assets/dyson-supporthome/dy-scale.jpg" alt="Template propagating to four markets"></div>
     </div>
   </section>
 
@@ -300,6 +576,38 @@
     </div>
   </section>
 
+  <!-- P5b RESEARCH -->
+  <section class="slide" id="p5b">
+    <div class="sframe">
+      <p class="eyebrow">05 · donateNYC · Research → Decisions</p>
+      <h1>The research kept pointing at <em>registration</em>.</h1>
+      <div class="stages">
+        <div class="st no"><span class="b">FINDING 1</span><h3>User data wasn't clean</h3><p>Duplicated locations and org info everywhere — undermining the city's reporting.</p></div>
+        <div class="st no"><span class="b">FINDING 2</span><h3>One business, one login</h3><p>Entire organizations shared a single account across dozens of store locations.</p></div>
+        <div class="st no"><span class="b">FINDING 3</span><h3>The form was too long</h3><p>Everything demanded up front — we lost users mid-registration.</p></div>
+      </div>
+      <div class="vs">
+        <div class="v win"><span class="lbl">Decision 1</span><h3>Two-step sign-up</h3><p>Step one: only what an admin needs to approve. Step two, at first login: service-specific questions. Shorter form, more completions, cleaner data.</p></div>
+        <div class="v win"><span class="lbl">Decision 2</span><h3>Enterprise accounts</h3><p>Six stakeholder types simplified to three roles; each business holds branches, locations, managers and staff — notifications reach the right person at the right store.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P5c SHIPPED -->
+  <section class="slide" id="p5c">
+    <div class="sframe">
+      <p class="eyebrow">05 · donateNYC · Shipped for the City</p>
+      <h1>Give goods. Find goods. <em>Do good.</em></h1>
+      <p class="context">Beyond the registration fix: a directory map with filters, a food-matching workflow with a countdown so 25 recipients can respond before food expires, integrated messaging for auditable transactions, and scheduling for pick-ups.</p>
+      <div class="statrow">
+        <div><b>nyc.gov</b><span>live citywide for donors, recipients, agencies</span></div>
+        <div><b>0×30</b><span>zero waste to landfills by 2030</span></div>
+        <div><b>1 yr</b><span>requirement → research → ship, with 3 designers + 1 PM</span></div>
+      </div>
+      <div class="takeaway"><b>What I learned</b>My deepest lesson in designing for organizations, not just users — and in being the liaison between government stakeholders and a dev team.</div>
+    </div>
+  </section>
+
   <!-- P6 ARIMO -->
   <section class="slide" id="p6">
     <div class="sframe duo">
@@ -314,6 +622,41 @@
         <div class="takeaway"><b>What this shows</b>Structured speed — how I think when there's no time to think twice.</div>
       </div>
       <div><img class="shot" src="assets/arimo/flow-buy.webp" alt="Arimo kiosk purchase flow"></div>
+    </div>
+  </section>
+
+  <!-- P6b SPENDING THE CLOCK -->
+  <section class="slide" id="p6b">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">06 · Arimo · Spending the Clock</p>
+        <h1>Spend the clock <em>where the risk lives</em>.</h1>
+        <p class="context">Ten hours, planned like a budget: research where the risk was highest, craft where evaluation would happen. Two hours at Grand Central beat ten hours of guessing — the kiosk wasn't slow, uncertainty was.</p>
+        <div class="statrow">
+          <div><b>20+</b><span>riders observed, 4 kiosks, 8am rush</span></div>
+          <div><b>6</b><span>intercept interviews → affinity map</span></div>
+          <div><b>9→3</b><span>flows scored on user value × build effort</span></div>
+        </div>
+        <div class="takeaway"><b>The habit that stuck</b>Recommendations shipped with their priced fallback — "if engineering can't fund the account feature, option two still captures most of the value."</div>
+      </div>
+      <div><img class="shot" src="assets/arimo/matrix.jpg" alt="Value by effort decision matrix"></div>
+    </div>
+  </section>
+
+  <!-- P6c RIDERS VOTE -->
+  <section class="slide" id="p6c">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">06 · Arimo · Validation</p>
+        <h1>Let riders <em>vote with their fingers</em>.</h1>
+        <p class="context">Hi-fi only where testing needed it. First-click heatmaps on the payment step confirmed the three-method layout; the 8-rider survey split exactly as the research predicted — new-city riders want a fast default, home-city riders want their plans. One flow had to serve both.</p>
+        <div class="statrow">
+          <div><b>8</b><span>testers: heatmaps + preference survey</span></div>
+          <div><b>1</b><span>flow serving two mental models</span></div>
+        </div>
+        <div class="takeaway"><b>Why I still show this</b>This is where the operating system started — the value × effort matrix here became the impact × confidence prioritization I later ran at Booking.com.</div>
+      </div>
+      <div><img class="shot" src="assets/arimo/heatmap.jpg" alt="First-click heatmap on payment screen"></div>
     </div>
   </section>
 
@@ -334,6 +677,37 @@
     </div>
   </section>
 
+  <!-- P7b MAP SYSTEM -->
+  <section class="slide" id="p7b">
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">07 · Beacon · The Map System</p>
+        <h1>Your day, <em>drawn as a journey</em>.</h1>
+        <p class="context">"Today's Schedule" renders as a route: events are pins, travel legs carry duration and mode, past events dim. Time Slots budget the prep chain — shower 15, breakfast 15, commute 40 — so "leave by 8:05" is arithmetic, not guesswork.</p>
+        <div class="statrow">
+          <div><b>6</b><span>modules, all upstream of one trustworthy depart alert</span></div>
+          <div><b>2</b><span>zoom levels with meaning: next hour vs the whole day</span></div>
+        </div>
+        <div class="takeaway"><b>The reframe</b>A schedule isn't a list of times — it's a route through a city. Calendars managed time; the minutes between events were nobody's job.</div>
+      </div>
+      <div><img class="shot" src="assets/beacon/map-zoomout.png" alt="Route view of the whole day"></div>
+    </div>
+  </section>
+
+  <!-- P7c AGED WELL -->
+  <section class="slide" id="p7c">
+    <div class="sframe">
+      <p class="eyebrow">07 · Beacon · Epilogue</p>
+      <h1>The instinct <em>aged well</em>.</h1>
+      <p class="context">Depart-time alerts, ETA sharing, voice event capture, calendar-map integrations — mainstream products shipped every core idea here in the years after 2017.</p>
+      <div class="vs">
+        <div class="v win"><span class="lbl">What held up</span><h3>Geography is the context that makes time useful</h3><p>The direction was right — and it became how I think about every Geo problem since.</p></div>
+        <div class="v"><span class="lbl">What I'd redo</span><h3>One hero moment, not six modules</h3><p>Users said routine setup was annoying; we built a setup-heavy builder anyway. Today: learned patterns over manual config, and ship the depart alert first.</p></div>
+      </div>
+      <div class="takeaway"><b>Why it closes the deck</b>Every project since — Booking's trip timelines, Dyson's support journeys — asks the same question at different scales: where is the user, where are they going, what do they need to get there?</div>
+    </div>
+  </section>
+
 </main>
 
 <div class="counter" id="counter">1 / 10</div>
@@ -343,15 +717,22 @@
 (function(){
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var links=[].slice.call(document.querySelectorAll('.pnav nav a'));
+  var groups=[].slice.call(document.querySelectorAll('.pnav .pg'));
   var box=document.getElementById('slides');
   var counter=document.getElementById('counter');
   var cur=0;
+  var byId={};
+  slides.forEach(function(sl,i){byId[sl.id]=i;});
 
   function setActive(i){
     cur=i;
-    links.forEach(function(a,k){a.classList.toggle('active',k===i);});
+    var id=slides[i].id;
+    links.forEach(function(a){a.classList.toggle('active', a.getAttribute('href')==='#'+id);});
+    var pgId=id.replace(/[a-z]$/,'');
+    groups.forEach(function(g){g.classList.toggle('open', g.getAttribute('data-pg')===pgId);});
     counter.textContent=(i+1)+' / '+slides.length;
-    var act=links[i]; if(act) act.scrollIntoView({block:'nearest'});
+    var act=document.querySelector('.pnav nav a.active');
+    if(act) act.scrollIntoView({block:'nearest'});
   }
   var animating=false;
   function goTo(i){
@@ -360,7 +741,7 @@
     var target=slides[i].offsetTop;
     var start=box.scrollTop, dist=target-start;
     if(Math.abs(dist)<2){setActive(i);return;}
-    var dur=450, t0=performance.now(), done=false;
+    var dur=420, t0=performance.now(), done=false;
     animating=true; box.style.scrollSnapType='none';
     function finish(){if(done)return;done=true;box.scrollTop=target;box.style.scrollSnapType='';animating=false;setActive(i);}
     (function step(now){
@@ -372,16 +753,21 @@
     setTimeout(finish,dur+120);
   }
   box.addEventListener('scroll',function(){
+    if(animating)return;
     requestAnimationFrame(function(){
       var mid=box.scrollTop+box.clientHeight/2;
       for(var i=0;i<slides.length;i++){
-        var s=slides[i];
-        if(s.offsetTop<=mid && mid<s.offsetTop+s.offsetHeight){ if(i!==cur) setActive(i); break; }
+        var sl=slides[i];
+        if(sl.offsetTop<=mid && mid<sl.offsetTop+sl.offsetHeight){ if(i!==cur) setActive(i); break; }
       }
     });
   },{passive:true});
-  links.forEach(function(a,i){
-    a.addEventListener('click',function(e){e.preventDefault();goTo(i);});
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=a.getAttribute('href').slice(1);
+      if(id in byId) goTo(byId[id]);
+    });
   });
   document.addEventListener('keydown',function(e){
     if(document.getElementById('lock'))return;
