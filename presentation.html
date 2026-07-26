@@ -963,7 +963,8 @@
     cur=i;
     var id=slides[i].id;
     links.forEach(function(a){a.classList.toggle('active', a.getAttribute('href')==='#'+id);});
-    var pgId=id.replace(/[a-z]$/,'');
+    var m=id.match(/^p\d+/);
+    var pgId=m?m[0]:null;
     groups.forEach(function(g){g.classList.toggle('open', g.getAttribute('data-pg')===pgId);});
     counter.textContent=(i+1)+' / '+slides.length;
     var act=document.querySelector('.pnav nav a.active');
