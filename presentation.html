@@ -123,8 +123,29 @@
   .pnav .pg{margin-bottom:2px}
   .pnav .pg > a.head{font-weight:700;color:#D6E5DD}
   .pnav .pg .subs{max-height:0;overflow:hidden;transition:max-height .35s ease}
-  .pnav .pg.open .subs{max-height:300px}
+  .pnav .pg.open .subs{max-height:420px}
   .pnav .subs a{font-size:11.5px;padding:6px 10px 6px 28px;color:#9DB7AC}
+
+  /* booking deep-dive components */
+  .chain{display:flex;align-items:center;gap:10px;margin-top:36px;flex-wrap:wrap}
+  .chain .c{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 18px;font-size:13.5px;font-weight:700;color:var(--ink)}
+  .chain .arr{color:var(--green2);font-weight:800}
+  .tabbar{display:flex;gap:8px;margin-top:36px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;max-width:640px}
+  .tabbar div{flex:1;text-align:center;font-size:12.5px;font-weight:700;color:var(--gray);padding:14px 6px;border-radius:10px}
+  .tabbar div.hot{background:var(--green);color:#fff;position:relative}
+  .tabbar div.hot::after{content:"NEW";position:absolute;top:-9px;right:8px;background:var(--sand);color:var(--ink);font-size:8.5px;font-weight:800;padding:2px 7px;border-radius:99px;letter-spacing:.06em}
+  .states4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+  .states4 .sc{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:20px 18px}
+  .states4 .sc .pill{display:inline-block;font-size:10.5px;font-weight:800;border-radius:99px;padding:4px 12px;margin-bottom:10px;letter-spacing:.04em}
+  .states4 .sc p{font-size:12px;color:var(--gray);line-height:1.6}
+  .states4 .s1 .pill{background:#FDF3E7;color:#9A6A2F}
+  .states4 .s2 .pill{background:#E4F5EC;color:#0d8a4f}
+  .states4 .s3 .pill{background:#EBEFF2;color:var(--navy)}
+  .states4 .s4 .pill{background:#F0F0F0;color:#8a8a8a}
+  .vids3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  .vids3 video{width:100%;border-radius:16px;box-shadow:0 16px 40px rgba(15,15,15,.14);display:block}
+  .vids3 figcaption{font-size:12px;color:var(--gray);text-align:center;margin-top:8px;font-weight:700}
+  @media(max-width:960px){.states4{grid-template-columns:1fr 1fr}.vids3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -195,7 +216,7 @@
     <div class="pg" data-pg="p1">
       <a href="#p1" class="head"><i>01</i> Booking.com for Business App</a>
       <div class="subs">
-        <a href="#p1b">The gap</a><a href="#p1c">The bet</a><a href="#p1d">Impact</a>
+        <a href="#p1b">The gap</a><a href="#p1e">The evidence</a><a href="#p1f">Drawing the line</a><a href="#p1c">The bet</a><a href="#p1g">IA</a><a href="#p1h">Build strategy</a><a href="#p1i">Expense card</a><a href="#p1j">Flow decision</a><a href="#p1k">Shipped flows</a><a href="#p1d">Impact</a>
       </div>
     </div>
     <div class="pg" data-pg="p2">
@@ -323,6 +344,39 @@
     </div>
   </section>
 
+  <!-- P1e EVIDENCE -->
+  <section class="slide" id="p1e">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · The Evidence</p>
+      <h1>Every expense crossed <em>five disconnected tools</em>.</h1>
+      <div class="chain">
+        <span class="c">01 Booking Portal</span><span class="arr">→</span>
+        <span class="c">02 Email Inbox</span><span class="arr">→</span>
+        <span class="c">03 Camera Roll</span><span class="arr">→</span>
+        <span class="c">04 Notes App</span><span class="arr">→</span>
+        <span class="c">05 Expense Tool</span>
+      </div>
+      <div class="quotebig">"I lost my invoice, so I cannot get reimbursed."<span>— Business traveler, user interview</span></div>
+      <div class="quotebig">"I always need to collect receipts, take photos, and email them to my admin."<span>— Business traveler, user interview</span></div>
+      <div class="takeaway"><b>The key signal</b>Expense behavior was already happening on mobile — in camera rolls and notes apps. The behavior existed; the product didn't.</div>
+    </div>
+  </section>
+
+  <!-- P1f DRAWING THE LINE -->
+  <section class="slide" id="p1f">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Scoping</p>
+      <h1>Drawing the line — <em>focus as a deliberate act</em>.</h1>
+      <p class="context">Three lenses defined what the MVP could be. Where they intersected became the scope.</p>
+      <div class="stages">
+        <div class="st no"><span class="b">TOO BIG</span><h3>Full mobile parity</h3><p>Rebuilding the entire desktop product would take 12+ months — mostly features travelers don't need mid-trip.</p></div>
+        <div class="st ok"><span class="b">HIGHEST PAIN</span><h3>Post-booking &amp; expense</h3><p>The highest-pain, highest-frequency moment. Where the product was absent and behavior already existed.</p></div>
+        <div class="st ok"><span class="b">SHIPPABLE</span><h3>Fast to validate</h3><p>A scope we could ship fast, validate with real users, and carry lower partner risk.</p></div>
+      </div>
+      <p class="bigline">The MVP narrowed to a single critical job: <em>capturing and organizing expenses during the trip</em> — not after it.</p>
+    </div>
+  </section>
+
   <!-- P1c THE BET -->
   <section class="slide" id="p1c">
     <div class="sframe">
@@ -334,8 +388,78 @@
         <div class="v win"><span class="lbl">Shipped</span><h3>A lightweight mobile layer</h3>
           <ul><li class="y">One critical job: capture &amp; organize expenses in-trip</li><li class="y">Hybrid wrapper + native expense capture</li><li class="y">Ships in one quarter — validates in weeks, not quarters</li></ul></div>
       </div>
-      <p class="bigline">Flow decision: <em>capture now, review later</em> — nobody reviews a receipt while standing at the counter.</p>
-      <div class="takeaway"><b>The decision logic</b>Hybrid bought speed; native expense capture bought credibility exactly where interaction quality mattered most.</div>
+      <div class="takeaway"><b>The decision logic</b>Rebuilding desktop on mobile meant 12 months before any user value. Narrowing to one job made the bet shippable, testable — and reversible.</div>
+    </div>
+  </section>
+
+  <!-- P1g IA -->
+  <section class="slide" id="p1g">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Information Architecture</p>
+      <h1>The new job, <em>one tap from home</em>.</h1>
+      <p class="context">Instead of inventing a new app shell, I reused the mature leisure-app architecture — and replaced the "Explore" tab with "Expenses". Users inherit a familiar structure; the new behavior gets prime real estate.</p>
+      <div class="tabbar">
+        <div>Home</div><div>Booking Trips</div><div class="hot">Expenses</div><div>My Trips</div><div>Account</div>
+      </div>
+      <div class="takeaway"><b>Why it worked</b>Zero learning curve for the shell, maximum visibility for the one job that mattered. IA designed to optimize speed to learning, not org-chart completeness.</div>
+    </div>
+  </section>
+
+  <!-- P1h BUILD STRATEGY -->
+  <section class="slide" id="p1h">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Build Strategy</p>
+      <h1>Native vs hybrid — <em>priced, not debated</em>.</h1>
+      <div class="mtab">
+        <div class="r h"><span></span><span>Fully native</span><span>Hybrid + native expense</span></div>
+        <div class="r"><b>Experience</b><span>Consistent end-to-end</span><span>Web wrapper for booking; native where quality matters most</span></div>
+        <div class="r"><b>Time to ship</b><span>6–12 months</span><span>~3 months</span></div>
+        <div class="r"><b>Risk &amp; learning</b><span>High upfront risk, slow feedback</span><span>Lower risk, fast iteration on the core hypothesis</span></div>
+      </div>
+      <p class="bigline">Decision: hybrid wrapper + native expense capture — validate the behavior in <em>weeks, not quarters</em>.</p>
+      <div class="takeaway"><b>The trade-off, owned</b>Hybrid bought speed; native expense capture bought credibility exactly where interaction quality counted.</div>
+    </div>
+  </section>
+
+  <!-- P1i EXPENSE CARD -->
+  <section class="slide" id="p1i">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Component Design</p>
+      <h1>One card, <em>four lifecycle states</em>.</h1>
+      <p class="context">The expense card had to communicate where each expense sits in its journey — from AI capture to claimed. Every state maps to a rule users can feel in the flow.</p>
+      <div class="states4">
+        <div class="sc s1"><span class="pill">To be reviewed</span><p>Default after AI capture. The entry exists but needs a human glance before it can travel further.</p></div>
+        <div class="sc s2"><span class="pill">Reviewed</span><p>Vendor, amount and category confirmed — the gate that makes an expense trustworthy enough to claim.</p></div>
+        <div class="sc s3"><span class="pill">Exportable</span><p>Reviewed expenses become selectable for a claimable report — the status maps to the export rule.</p></div>
+        <div class="sc s4"><span class="pill">Disabled</span><p>Exported or invalid entries are visually retired — preventing double-claims without deleting history.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P1j FLOW DECISION -->
+  <section class="slide" id="p1j">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Flow Decision</p>
+      <h1>Two flows prototyped, <em>one deliberate comparison</em>.</h1>
+      <div class="vs">
+        <div class="v"><span class="lbl">Flow 1 — Review first</span><h3>Capture → AI scan → review required → lists → export</h3><p><b>Trade-off:</b> guarantees clean data early, but interrupts users mid-capture — high friction at the worst moment: standing at a counter, receipt in hand.</p></div>
+        <div class="v win"><span class="lbl">Flow 2 — Review later · Shipped</span><h3>Capture → AI scan → lists → review optional before export</h3><p><b>Trade-off:</b> users capture and move on; review is deferred to export time, when they're focused and motivated. Lower friction, better error recovery.</p></div>
+      </div>
+      <div class="takeaway"><b>The judgment call</b>Compared on friction, cognitive load, and error recovery — nobody reviews a receipt while a queue forms behind them.</div>
+    </div>
+  </section>
+
+  <!-- P1k SHIPPED FLOWS -->
+  <section class="slide" id="p1k">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · The Shipped Product</p>
+      <h1>Capture. Review. <em>Export.</em></h1>
+      <div class="vids3">
+        <figure><video src="assets/B4BApp/flow-capture.mp4" poster="assets/B4BApp/flow-capture-poster.jpg" muted loop playsinline autoplay preload="metadata"></video><figcaption>01 · Capture — snap a receipt, AI extracts the fields</figcaption></figure>
+        <figure><video src="assets/B4BApp/flow-review.mp4" poster="assets/B4BApp/flow-review-poster.jpg" muted loop playsinline autoplay preload="metadata"></video><figcaption>02 · Review — confirm vendor, price, date, category</figcaption></figure>
+        <figure><video src="assets/B4BApp/flow-export.mp4" poster="assets/B4BApp/flow-export-poster.jpg" muted loop playsinline autoplay preload="metadata"></video><figcaption>03 · Export — share the claimable report, PDF or CSV</figcaption></figure>
+      </div>
+      <p class="sub-note" style="text-align:center;margin-top:14px">Recorded from the live build.</p>
     </div>
   </section>
 
