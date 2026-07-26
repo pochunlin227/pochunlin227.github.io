@@ -123,7 +123,7 @@
   .pnav .pg{margin-bottom:2px}
   .pnav .pg > a.head{font-weight:700;color:#D6E5DD}
   .pnav .pg .subs{max-height:0;overflow:hidden;transition:max-height .35s ease}
-  .pnav .pg.open .subs{max-height:420px}
+  .pnav .pg.open .subs{max-height:640px}
   .pnav .subs a{font-size:11.5px;padding:6px 10px 6px 28px;color:#9DB7AC}
 
   /* booking deep-dive components */
@@ -216,7 +216,7 @@
     <div class="pg" data-pg="p1">
       <a href="#p1" class="head"><i>01</i> Booking.com for Business App</a>
       <div class="subs">
-        <a href="#p1b">The gap</a><a href="#p1e">The evidence</a><a href="#p1f">Drawing the line</a><a href="#p1c">The bet</a><a href="#p1g">IA</a><a href="#p1h">Build strategy</a><a href="#p1i">Expense card</a><a href="#p1j">Flow decision</a><a href="#p1k">Shipped flows</a><a href="#p1d">Impact</a>
+        <a href="#p1a2">The moment</a><a href="#p1b">The gap</a><a href="#p1e">The evidence</a><a href="#p1e2">In their words</a><a href="#p1f">Drawing the line</a><a href="#p1f2">What I optimized for</a><a href="#p1c">The bet</a><a href="#p1g">IA</a><a href="#p1h">Build strategy</a><a href="#p1h2">The price we paid</a><a href="#p1i">Expense card</a><a href="#p1j">Flow decision</a><a href="#p1j2">Trade-off ledger</a><a href="#p1k">Shipped flows</a><a href="#p1k2">Timeline</a><a href="#p1d">Impact</a><a href="#p1d2">Open questions</a><a href="#p1d3">Reflection</a><a href="#p1d4">Closing</a>
       </div>
     </div>
     <div class="pg" data-pg="p2">
@@ -329,6 +329,15 @@
     </div>
   </section>
 
+  <!-- P1a2 THE MOMENT -->
+  <section class="slide" id="p1a2">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · The Moment</p>
+      <h1>Booking.com had an app.<br><em>Booking.com for Business didn't.</em></h1>
+      <p class="context" style="margin-top:26px">The leisure app was mature and loved. The business product lived on a desktop portal — for anyone mid-trip, it simply wasn't there.</p>
+    </div>
+  </section>
+
   <!-- P1b THE GAP -->
   <section class="slide" id="p1b">
     <div class="sframe">
@@ -346,19 +355,22 @@
 
   <!-- P1e EVIDENCE -->
   <section class="slide" id="p1e">
-    <div class="sframe">
-      <p class="eyebrow">01 · Booking App · The Evidence</p>
-      <h1>Every expense crossed <em>five disconnected tools</em>.</h1>
-      <div class="chain">
-        <span class="c">01 Booking Portal</span><span class="arr">→</span>
-        <span class="c">02 Email Inbox</span><span class="arr">→</span>
-        <span class="c">03 Camera Roll</span><span class="arr">→</span>
-        <span class="c">04 Notes App</span><span class="arr">→</span>
-        <span class="c">05 Expense Tool</span>
+    <div class="sframe duo">
+      <div>
+        <p class="eyebrow">01 · Booking App · The Evidence</p>
+        <h1>Every expense crossed <em>five disconnected tools</em>.</h1>
+        <p class="context">Portal → email → camera roll → notes → expense tool. The behavior already existed on mobile — the product didn't.</p>
       </div>
-      <div class="quotebig">"I lost my invoice, so I cannot get reimbursed."<span>— Business traveler, user interview</span></div>
-      <div class="quotebig">"I always need to collect receipts, take photos, and email them to my admin."<span>— Business traveler, user interview</span></div>
-      <div class="takeaway"><b>The key signal</b>Expense behavior was already happening on mobile — in camera rolls and notes apps. The behavior existed; the product didn't.</div>
+      <div><img class="shot" src="assets/B4BApp/Chain.png" alt="Typical tool chain: booking portal, email inbox, camera roll, notes app, expense tool" style="box-shadow:none;background:#fff;border-radius:24px;padding:26px"></div>
+    </div>
+  </section>
+
+  <!-- P1e2 QUOTES -->
+  <section class="slide" id="p1e2">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · In Their Words</p>
+      <div class="quotebig" style="font-size:clamp(22px,2.8vw,32px);margin-top:0">"I lost my invoice, so I cannot get reimbursed."<span>— Business traveler, user interview</span></div>
+      <div class="quotebig" style="font-size:clamp(22px,2.8vw,32px);margin-top:44px">"I always collect receipts, take photos, and email them to my admin."<span>— Business traveler, user interview</span></div>
     </div>
   </section>
 
@@ -374,6 +386,19 @@
         <div class="st ok"><span class="b">SHIPPABLE</span><h3>Fast to validate</h3><p>A scope we could ship fast, validate with real users, and carry lower partner risk.</p></div>
       </div>
       <p class="bigline">The MVP narrowed to a single critical job: <em>capturing and organizing expenses during the trip</em> — not after it.</p>
+    </div>
+  </section>
+
+  <!-- P1f2 WHAT I OPTIMIZED FOR -->
+  <section class="slide" id="p1f2">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · My Thinking</p>
+      <h1>What I <em>optimized for</em>.</h1>
+      <div class="princ">
+        <div class="p"><i>1</i><h3>Speed to learning</h3><p>The core hypothesis was behavioral. Every decision was scored by how fast it let real users prove or break it.</p></div>
+        <div class="p"><i>2</i><h3>Partner risk</h3><p>A new surface touches contracts and expense partners. Smaller scope, smaller blast radius.</p></div>
+        <div class="p"><i>3</i><h3>Reversibility</h3><p>A layer can be rebuilt; a 12-month platform can't. Prefer bets you can walk back.</p></div>
+      </div>
     </div>
   </section>
 
@@ -421,6 +446,25 @@
     </div>
   </section>
 
+  <!-- P1h2 THE PRICE WE PAID -->
+  <section class="slide" id="p1h2">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Trade-off, Owned</p>
+      <h1>Every decision has a bill. <em>Here's ours.</em></h1>
+      <div class="vs">
+        <div class="v"><span class="lbl">What hybrid cost us</span><h3>Consistency debt</h3><ul>
+          <li class="n">Web wrapper feel in booking sections</li>
+          <li class="n">Two codebases to keep visually aligned</li>
+        </ul></div>
+        <div class="v win"><span class="lbl">How we mitigated</span><h3>Native where fingers touch money</h3><ul>
+          <li class="y">Capture, review, export — fully native</li>
+          <li class="y">Wrapper limited to browse-only surfaces</li>
+        </ul></div>
+      </div>
+      <div class="takeaway"><b>The principle</b>Spend quality where trust is earned — the moment a user hands you a receipt.</div>
+    </div>
+  </section>
+
   <!-- P1i EXPENSE CARD -->
   <section class="slide" id="p1i">
     <div class="sframe">
@@ -449,6 +493,22 @@
     </div>
   </section>
 
+  <!-- P1j2 TRADE-OFF LEDGER -->
+  <section class="slide" id="p1j2">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · The Ledger</p>
+      <h1>Four decisions, <em>priced in the open</em>.</h1>
+      <div class="mtab">
+        <div class="r h"><span>Decision</span><span>What we gained</span><span>What we paid</span></div>
+        <div class="r"><b>Narrow scope to expenses</b><span>Shippable in one quarter</span><span>Parity requests deferred</span></div>
+        <div class="r"><b>Hybrid + native capture</b><span>Weeks to validate, not quarters</span><span>Consistency debt in wrapper</span></div>
+        <div class="r"><b>Reuse leisure app shell</b><span>Zero learning curve</span><span>Inherited legacy constraints</span></div>
+        <div class="r"><b>Review later, not first</b><span>Frictionless capture moment</span><span>Occasional messy data pre-export</span></div>
+      </div>
+      <div class="takeaway"><b>Why I present it this way</b>Recommendations that arrive with their price get built. Ones that don't get shelved.</div>
+    </div>
+  </section>
+
   <!-- P1k SHIPPED FLOWS -->
   <section class="slide" id="p1k">
     <div class="sframe">
@@ -460,6 +520,21 @@
         <figure><video src="assets/B4BApp/flow-export.mp4" poster="assets/B4BApp/flow-export-poster.jpg" muted loop playsinline autoplay preload="metadata"></video><figcaption>03 · Export — share the claimable report, PDF or CSV</figcaption></figure>
       </div>
       <p class="sub-note" style="text-align:center;margin-top:14px">Recorded from the live build.</p>
+    </div>
+  </section>
+
+  <!-- P1k2 TIMELINE -->
+  <section class="slide" id="p1k2">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · How It Shipped</p>
+      <h1>Framing to beta in <em>one quarter</em>.</h1>
+      <div class="chain" style="margin-top:44px">
+        <span class="c">Weeks 1–2 · Frame the gap</span><span class="arr">→</span>
+        <span class="c">Weeks 3–4 · Concept &amp; scope</span><span class="arr">→</span>
+        <span class="c">Weeks 5–10 · Design &amp; build</span><span class="arr">→</span>
+        <span class="c">Weeks 11–12 · Beta to 20K</span>
+      </div>
+      <p class="context" style="margin-top:36px">One focused scope kept product, engineering and partners aligned — no re-litigating, no scope creep.</p>
     </div>
   </section>
 
@@ -478,6 +553,42 @@
         <div class="takeaway"><b>What I learned</b>Scope is strategy — narrowing to one job made the MVP shippable, testable, and honest about what we still had to learn.</div>
       </div>
       <div><img class="shot" src="assets/booking-hero.jpg" alt="Expense flow screens"></div>
+    </div>
+  </section>
+
+  <!-- P1d2 WHAT I'D WATCH NEXT -->
+  <section class="slide" id="p1d2">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Open Questions</p>
+      <h1>What I'd <em>watch next</em>.</h1>
+      <div class="princ">
+        <div class="p"><i>?</i><h3>AI trust</h3><p>Extraction accuracy vs correction rate — the moment users stop double-checking is the real adoption signal.</p></div>
+        <div class="p"><i>?</i><h3>Habit formation</h3><p>Weekly active capture, not downloads. Does the receipt reflex actually form?</p></div>
+        <div class="p"><i>?</i><h3>Beta → GA path</h3><p>Which parity features earn their way in — pulled by users, not pushed by the roadmap.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P1d3 IF I DID IT AGAIN -->
+  <section class="slide" id="p1d3">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Honest Reflection</p>
+      <h1>If I did it again, <em>one thing changes</em>.</h1>
+      <p class="bigline" style="max-width:760px">I'd instrument the correction rate on AI-extracted fields from day one — we knew adoption, but learned trust too slowly.</p>
+      <div class="takeaway"><b>The lesson</b>For AI features, the metric that matters isn't usage — it's how often humans overrule the machine.</div>
+    </div>
+  </section>
+
+  <!-- P1d4 CLOSING -->
+  <section class="slide" id="p1d4">
+    <div class="sframe">
+      <p class="eyebrow">01 · Booking App · Why This Story</p>
+      <h1>What this project <em>says about me</em>.</h1>
+      <div class="princ">
+        <div class="p"><i>→</i><h3>I frame ambiguity</h3><p>"We need an app" became a workflow problem with a measurable gap.</p></div>
+        <div class="p"><i>→</i><h3>I price trade-offs</h3><p>Every recommendation shipped with its bill attached.</p></div>
+        <div class="p"><i>→</i><h3>I ship to learn</h3><p>20K-user beta in a quarter beats a perfect product in a year.</p></div>
+      </div>
     </div>
   </section>
 
