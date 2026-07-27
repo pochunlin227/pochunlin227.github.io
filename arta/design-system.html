@@ -6,70 +6,573 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Design System — Arta Card · Po Chun Lin</title>
 <style>
+  /* ══════════ docs shell ══════════ */
   :root {
-    --bg: #141414; --bg-panel: #101010; --bg-card: #1f1f1f;
-    --text: #f4f2ee; --text-dim: #9a9a94; --text-faint: #6b6b66;
+    --bg: #101010; --panel: #161616; --text: #f4f2ee; --dim: #9a9a94; --faint: #6b6b66;
     --line: rgba(255,255,255,.09); --sky: #a8d8f0;
     --aurora: linear-gradient(115deg, #f0a8c0 0%, #f5b880 22%, #c9b8f0 48%, #9fe8d0 74%, #a8d8f0 100%);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: "Avenir Next", Avenir, "Century Gothic", Futura, -apple-system, "Helvetica Neue", sans-serif;
-    background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden;
-    -webkit-font-smoothing: antialiased;
+    background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
   }
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: 58px;
+    background: rgba(16,16,16,.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 20px; padding: 0 24px;
+  }
+  .topbar a.back { color: var(--faint); text-decoration: none; font-size: 12px; }
+  .topbar .t { font-size: 15px; font-weight: 600; }
+  .topbar .t em { font-style: normal; background: var(--aurora); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .theme-switch { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .theme-switch .lbl { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+  .theme-switch .seg { display: flex; border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+  .theme-switch button {
+    font-family: inherit; font-size: 11.5px; letter-spacing: .06em;
+    background: none; border: none; color: var(--dim); padding: 7px 16px; cursor: pointer;
+  }
+  .theme-switch button.on { background: #f4f2ee; color: #111; font-weight: 600; }
+
+  .layout { display: flex; padding-top: 58px; }
   aside {
-    width: 260px; flex: 0 0 260px; background: var(--bg-panel);
-    border-right: 1px solid var(--line); padding: 26px 0; overflow-y: auto;
+    width: 250px; flex: 0 0 250px; position: sticky; top: 58px; height: calc(100vh - 58px);
+    overflow-y: auto; border-right: 1px solid var(--line); background: var(--panel); padding: 18px 10px 40px;
   }
-  .brand { padding: 0 24px 20px; border-bottom: 1px solid var(--line); }
-  .brand a { color: var(--text-dim); text-decoration: none; font-size: 12px; }
-  .brand .t { margin-top: 10px; font-size: 18px; font-weight: 600; }
-  .brand .t em { font-style: normal; background: var(--aurora); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-  .group { font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase; color: var(--text-faint); padding: 20px 24px 6px; }
-  .item { display: block; padding: 6px 24px; font-size: 13.5px; color: var(--text-dim); }
-  .item .soon { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-faint); border: 1px solid var(--line); border-radius: 99px; padding: 2px 7px; margin-left: 8px; }
-  main { flex: 1; overflow-y: auto; padding: 64px 72px; }
-  .kicker { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--sky); margin-bottom: 16px; }
-  h1 { font-size: 36px; font-weight: 500; }
-  .lede { margin-top: 14px; font-size: 15.5px; color: var(--text-dim); line-height: 1.6; max-width: 600px; }
-  .ph {
-    margin-top: 40px; border: 1.5px dashed rgba(255,255,255,.22); border-radius: 18px;
-    background: rgba(255,255,255,.025); min-height: 320px;
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    color: var(--text-faint); font-size: 13.5px; line-height: 1.7; padding: 24px;
+  .group { font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase; color: var(--faint); padding: 18px 14px 6px; }
+  aside a {
+    display: block; padding: 6px 14px; border-radius: 8px;
+    color: var(--dim); text-decoration: none; font-size: 13px; line-height: 1.4;
   }
-  .ph strong { color: var(--text-dim); font-weight: 500; display: block; margin-bottom: 6px; }
-  @media (max-width: 800px) { aside { display: none; } main { padding: 40px 24px; } }
+  aside a:hover { background: rgba(255,255,255,.05); color: var(--text); }
+  aside a.active { background: rgba(91,91,214,.18); color: var(--text); }
+
+  main { flex: 1; min-width: 0; padding: 46px 56px 120px; max-width: 1060px; }
+  section.doc { margin-bottom: 84px; scroll-margin-top: 78px; }
+  .doc-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  h2 { font-size: 26px; font-weight: 600; }
+  .badge {
+    font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+    border-radius: 99px; padding: 4px 10px;
+  }
+  .badge.today { color: #7fd6a4; border: 1px solid rgba(127,214,164,.4); }
+  .badge.proposed { color: #f0b8d0; border: 1px solid rgba(240,184,208,.4); }
+  .badge.fixed { color: var(--sky); border: 1px solid rgba(168,216,240,.4); }
+  .doc p.desc { margin-top: 10px; font-size: 14px; color: var(--dim); line-height: 1.6; max-width: 640px; }
+  .doc p.desc strong { color: var(--text); font-weight: 600; }
+
+  .canvas {
+    margin-top: 22px; border: 1px solid var(--line); border-radius: 16px;
+    background: var(--c-bg); padding: 36px; overflow-x: auto;
+  }
+  .canvas + .cap { margin-top: 10px; font-size: 12px; color: var(--faint); line-height: 1.5; }
+  .row { display: flex; gap: 22px; flex-wrap: wrap; align-items: flex-start; }
+  .col { display: flex; flex-direction: column; gap: 14px; min-width: 220px; }
+  .state-lbl { font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--c-dim); margin-bottom: -4px; }
+
+  /* ══════════ component tokens — the two themes ══════════ */
+  .canvas {
+    --c-bg: #191919; --c-surface: #232323; --c-glass: rgba(255,255,255,.06);
+    --c-text: #f4f2ee; --c-dim: #9a9a94; --c-faint: #74746e;
+    --c-line: rgba(255,255,255,.14);
+    --c-accent: #a8d8f0;
+    --c-cta-bg: #f4f2ee; --c-cta-text: #141414;
+    --c-error: #f08a7a; --c-positive: #7fd6a4; --c-ai: #9fe8d0;
+    --c-radius: 18px;
+    --c-brand-grad: linear-gradient(115deg, #f0a8c0 0%, #f5b880 22%, #c9b8f0 48%, #9fe8d0 74%, #a8d8f0 100%);
+    --c-entry-grad: linear-gradient(160deg, #3b3bb8 0%, #5b4bd6 45%, #7a4bc8 100%);
+    --c-font: "Avenir Next", Avenir, "Century Gothic", Futura, -apple-system, sans-serif;
+  }
+  body[data-theme="partner"] .canvas {
+    --c-bg: #0e1a2b; --c-surface: #16263c; --c-glass: rgba(255,255,255,.07);
+    --c-text: #f2f4f8; --c-dim: #8fa1b8; --c-faint: #64789a;
+    --c-line: rgba(255,255,255,.16);
+    --c-accent: #d9b36a;
+    --c-cta-bg: #d9b36a; --c-cta-text: #14213a;
+    --c-error: #f08a7a; /* platform-fixed */
+    --c-positive: #74c69d; --c-ai: #86c9c0;
+    --c-radius: 10px;
+    --c-brand-grad: linear-gradient(115deg, #d9b36a 0%, #e8cf9a 40%, #7ba7d9 100%);
+    --c-entry-grad: linear-gradient(160deg, #14213a 0%, #1d3a5f 60%, #2a5286 100%);
+  }
+  .canvas, .canvas * { font-family: var(--c-font); }
+
+  /* ══════════ component styles (token-driven only) ══════════ */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+  .swatch { border-radius: 12px; overflow: hidden; border: 1px solid var(--c-line); }
+  .swatch .chip { height: 62px; }
+  .swatch .meta { background: var(--c-surface); padding: 8px 11px; }
+  .swatch .meta .n { font-size: 11.5px; color: var(--c-text); font-weight: 600; }
+  .swatch .meta .v { font-size: 10px; color: var(--c-dim); margin-top: 2px; }
+  .swatch .meta .lock { float: right; font-size: 9px; color: var(--c-accent); }
+
+  .type-demo > div { padding: 12px 0; border-bottom: 1px dashed var(--c-line); }
+  .type-demo > div:last-child { border-bottom: none; }
+  .t-display { font-size: 34px; font-weight: 400; color: var(--c-text); letter-spacing: -.01em; }
+  .t-caps { font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; color: var(--c-dim); }
+  .t-num { font-size: 40px; font-weight: 300; color: var(--c-text); font-variant-numeric: tabular-nums; }
+  .t-num sup { font-size: 16px; color: var(--c-dim); }
+  .t-num .up { font-size: 14px; color: var(--c-positive); display: block; }
+  .t-body { font-size: 14.5px; color: var(--c-text); line-height: 1.6; max-width: 480px; }
+  .t-legal { font-size: 12.5px; color: var(--c-dim); line-height: 1.75; max-width: 480px; }
+  .t-legal .fn { font-size: 10.5px; color: var(--c-faint); }
+
+  .surf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .surf { border-radius: var(--c-radius); min-height: 150px; padding: 16px; position: relative; border: 1px solid var(--c-line); }
+  .surf .sn { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+  .surf.working { background: var(--c-bg); }
+  .surf.entry { background: var(--c-entry-grad); }
+  .surf.glassbg { background: var(--c-entry-grad); display: flex; align-items: flex-end; }
+  .glass-panel {
+    background: rgba(10,10,20,.35); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.18); border-radius: calc(var(--c-radius) - 4px);
+    padding: 14px; width: 100%; color: rgba(255,255,255,.9); font-size: 12px;
+  }
+
+  .btn {
+    font-family: var(--c-font); cursor: pointer; border: none;
+    border-radius: 99px; padding: 15px 30px;
+    font-size: 14px; font-weight: 600; letter-spacing: .02em;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn.primary { background: var(--c-cta-bg); color: var(--c-cta-text); }
+  .btn.secondary { background: none; color: var(--c-text); border: 1.5px solid var(--c-line); }
+  .btn.disabled { background: var(--c-glass); color: var(--c-faint); cursor: not-allowed; }
+  .btn.icon { width: 48px; height: 48px; padding: 0; background: var(--c-glass); color: var(--c-text); border: 1px solid var(--c-line); border-radius: 50%; font-size: 18px; }
+
+  .input-wrap { display: flex; flex-direction: column; gap: 6px; width: 250px; }
+  .input-lbl { font-size: 12px; color: var(--c-dim); }
+  .input {
+    font-family: var(--c-font); background: transparent; color: var(--c-text);
+    border: 1.5px solid var(--c-line); border-radius: calc(var(--c-radius) - 6px);
+    padding: 14px 15px; font-size: 15px; outline: none; width: 100%;
+  }
+  .input:focus { border-color: var(--c-text); }
+  .input.error { border-color: var(--c-error); }
+  .err-msg { font-size: 12px; color: var(--c-error); }
+
+  .seg-demo { display: inline-flex; border: 1.5px solid var(--c-line); border-radius: 99px; overflow: hidden; }
+  .seg-demo button {
+    font-family: var(--c-font); font-size: 13.5px; font-weight: 600;
+    background: none; border: none; color: var(--c-dim); padding: 12px 30px; cursor: pointer;
+  }
+  .seg-demo button.on { background: var(--c-cta-bg); color: var(--c-cta-text); }
+
+  .review-card {
+    background: var(--c-surface); border: 1px solid var(--c-line);
+    border-radius: var(--c-radius); padding: 18px 20px; width: 320px;
+  }
+  .review-card .rc-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .review-card .rc-title { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--c-dim); }
+  .review-card .rc-edit { font-size: 12.5px; color: var(--c-accent); text-decoration: none; }
+  .review-card .rc-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed var(--c-line); }
+  .review-card .rc-row:last-child { border-bottom: none; }
+  .review-card .rc-k { font-size: 12.5px; color: var(--c-dim); }
+  .review-card .rc-v { font-size: 13px; color: var(--c-text); font-weight: 500; text-align: right; }
+  .prefill-note { margin-top: 10px; font-size: 11px; color: var(--c-faint); }
+  .prefill-note b { color: var(--c-ai); font-weight: 500; }
+
+  .cur-wrap { width: 260px; }
+  .cur-input {
+    display: flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--c-line); border-radius: calc(var(--c-radius) - 6px);
+    padding: 14px 15px;
+  }
+  .cur-input .sym { font-size: 20px; color: var(--c-dim); font-weight: 300; }
+  .cur-input input {
+    font-family: var(--c-font); background: none; border: none; outline: none;
+    color: var(--c-text); font-size: 22px; font-weight: 300; width: 100%;
+    font-variant-numeric: tabular-nums;
+  }
+  .cur-hint { margin-top: 7px; font-size: 11.5px; color: var(--c-faint); }
+
+  .slider-wrap { width: 320px; }
+  .slider-val { font-size: 30px; font-weight: 300; color: var(--c-text); font-variant-numeric: tabular-nums; }
+  .slider-rec { font-size: 11.5px; color: var(--c-ai); margin: 4px 0 14px; }
+  input[type=range].limit {
+    -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px;
+    background: linear-gradient(to right, var(--c-accent) var(--fill,55%), var(--c-line) var(--fill,55%));
+    outline: none;
+  }
+  input[type=range].limit::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--c-cta-bg); border: none; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.4);
+  }
+  .slider-minmax { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--c-faint); margin-top: 8px; }
+
+  .keyterms {
+    background: var(--c-surface); border: 1px solid var(--c-line);
+    border-radius: var(--c-radius); width: 340px; overflow: hidden;
+  }
+  .keyterms .kt-head {
+    padding: 14px 18px; border-bottom: 1px solid var(--c-line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .keyterms .kt-title { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--c-dim); }
+  .keyterms .kt-lock { font-size: 9px; letter-spacing: .14em; color: var(--c-accent); text-transform: uppercase; }
+  .keyterms table { width: 100%; border-collapse: collapse; }
+  .keyterms td { padding: 10px 18px; font-size: 12.5px; border-bottom: 1px dashed var(--c-line); }
+  .keyterms tr:last-child td { border-bottom: none; }
+  .keyterms td.k { color: var(--c-dim); }
+  .keyterms td.v { color: var(--c-text); text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .keyterms .kt-foot { padding: 11px 18px; border-top: 1px solid var(--c-line); font-size: 12px; }
+  .keyterms .kt-foot a { color: var(--c-accent); text-decoration: none; }
+
+  .consent {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--c-surface); border: 1px solid var(--c-line);
+    border-radius: var(--c-radius); padding: 15px 17px; width: 360px; cursor: pointer;
+  }
+  .consent .box {
+    flex: 0 0 22px; height: 22px; border-radius: 6px;
+    border: 1.5px solid var(--c-dim); display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: var(--c-cta-text); margin-top: 1px;
+  }
+  .consent.checked .box { background: var(--c-cta-bg); border-color: var(--c-cta-bg); }
+  .consent .c-main { font-size: 13px; color: var(--c-text); line-height: 1.5; }
+  .consent .c-sub { font-size: 11.5px; color: var(--c-faint); margin-top: 4px; line-height: 1.5; }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; width: 320px; }
+  .tl-step { display: flex; gap: 14px; }
+  .tl-rail { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot {
+    width: 14px; height: 14px; border-radius: 50%; flex: 0 0 14px;
+    border: 2px solid var(--c-line); background: var(--c-bg); margin-top: 2px;
+  }
+  .tl-step.done .tl-dot { background: var(--c-positive); border-color: var(--c-positive); }
+  .tl-step.now .tl-dot { border-color: var(--c-accent); background: var(--c-accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--c-accent) 22%, transparent); }
+  .tl-line { width: 2px; flex: 1; background: var(--c-line); min-height: 30px; }
+  .tl-step:last-child .tl-line { display: none; }
+  .tl-body { padding-bottom: 22px; }
+  .tl-t { font-size: 13.5px; color: var(--c-text); font-weight: 600; }
+  .tl-d { font-size: 12px; color: var(--c-dim); margin-top: 3px; line-height: 1.5; }
+
+  .decisions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .dec {
+    width: 210px; border-radius: var(--c-radius); border: 1px solid var(--c-line);
+    background: var(--c-surface); padding: 18px; min-height: 170px;
+    display: flex; flex-direction: column;
+  }
+  .dec .d-k { font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
+  .dec.ok .d-k { color: var(--c-positive); }
+  .dec.rev .d-k { color: var(--c-accent); }
+  .dec.no .d-k { color: var(--c-dim); }
+  .dec .d-card {
+    height: 64px; border-radius: 10px; margin-bottom: 12px;
+    background: var(--c-brand-grad);
+  }
+  .dec.rev .d-card { background: var(--c-glass); border: 1px dashed var(--c-line); }
+  .dec.no .d-card { display: none; }
+  .dec .d-t { font-size: 14.5px; font-weight: 600; color: var(--c-text); line-height: 1.35; }
+  .dec .d-s { font-size: 11.5px; color: var(--c-dim); margin-top: 6px; line-height: 1.5; }
+
+  .wl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .wl-list { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--c-radius); padding: 20px 22px; }
+  .wl-list h4 { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
+  .wl-list.fixed h4 { color: var(--c-accent); }
+  .wl-list.config h4 { color: var(--c-positive); }
+  .wl-list li { list-style: none; font-size: 13px; color: var(--c-dim); padding: 5px 0; line-height: 1.5; }
+  .wl-list li b { color: var(--c-text); font-weight: 500; }
+
+  @media (max-width: 860px) {
+    aside { display: none; }
+    main { padding: 32px 20px 80px; }
+    .canvas { padding: 20px; }
+  }
 </style>
 </head>
-<body>
-  <aside>
-    <div class="brand">
-      <a href="index.html">← Back to hub</a>
-      <div class="t">arta <em>card</em> DS</div>
+<body data-theme="arta">
+
+<div class="topbar">
+  <a class="back" href="index.html">← Hub</a>
+  <div class="t">arta <em>card</em> · design system</div>
+  <div class="theme-switch">
+    <span class="lbl">White-label theme</span>
+    <div class="seg">
+      <button id="th-arta" class="on" onclick="setTheme('arta')">Arta</button>
+      <button id="th-partner" onclick="setTheme('partner')">Meridian ·  partner</button>
     </div>
+  </div>
+</div>
+
+<div class="layout">
+  <aside id="sidenav">
     <div class="group">Foundations</div>
-    <span class="item">Tokens & theming<span class="soon">Soon</span></span>
-    <span class="item">Legal type style<span class="soon">Soon</span></span>
-    <span class="item">Quiet form surface<span class="soon">Soon</span></span>
-    <div class="group">Components</div>
-    <span class="item">Input row & validation<span class="soon">Soon</span></span>
-    <span class="item">Review / confirm card<span class="soon">Soon</span></span>
-    <span class="item">Currency input<span class="soon">Soon</span></span>
-    <span class="item">Guided limit slider<span class="soon">Soon</span></span>
-    <span class="item">Key Terms module<span class="soon">Soon</span></span>
-    <span class="item">Consent row<span class="soon">Soon</span></span>
-    <span class="item">Status timeline<span class="soon">Soon</span></span>
-    <span class="item">Decision states<span class="soon">Soon</span></span>
+    <a href="#tokens" class="active">Tokens & theming</a>
+    <a href="#type">Typography & legal style</a>
+    <a href="#surfaces">Surfaces</a>
+    <div class="group">Components · in app today</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#inputs">Inputs & validation</a>
+    <a href="#segmented">Segmented toggle</a>
+    <div class="group">Components · new for lending</div>
+    <a href="#review">Review / confirm card</a>
+    <a href="#currency">Currency input</a>
+    <a href="#slider">Guided limit slider</a>
+    <a href="#keyterms">Key Terms module</a>
+    <a href="#consent">Consent row</a>
+    <a href="#timeline">Status timeline</a>
+    <a href="#decisions">Decision states</a>
     <div class="group">White-label</div>
-    <span class="item">Partner theme demo<span class="soon">Soon</span></span>
+    <a href="#whitelabel">Core vs configurable</a>
   </aside>
+
   <main>
-    <div class="kicker">Design-system contribution</div>
-    <h1>What lending needs that Arta doesn't have</h1>
-    <p class="lede">A Storybook-style reference for the tokens, components and patterns the Arta Card introduces — each documented with anatomy, states, and the white-label theming layer.</p>
-    <div class="ph"><div><strong>Work in progress</strong>Interactive component gallery coming here.<br>Sidebar lists the planned inventory — derived from the application flow's component gaps.</div></div>
+
+    <section class="doc" id="tokens">
+      <div class="doc-head"><h2>Tokens & theming</h2><span class="badge fixed">Theme-aware</span></div>
+      <p class="desc">Every component on this page reads <strong>tokens only</strong> — no hardcoded values. Flip the theme switch (top right) and the entire system reskins. Tokens marked <strong>🔒 fixed</strong> are platform-level and do not change across partners.</p>
+      <div class="canvas">
+        <div class="swatches">
+          <div class="swatch"><div class="chip" style="background:var(--c-bg)"></div><div class="meta"><div class="n">surface / bg</div><div class="v">--c-bg</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-surface)"></div><div class="meta"><div class="n">surface / raised</div><div class="v">--c-surface</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-cta-bg)"></div><div class="meta"><div class="n">action / primary</div><div class="v">--c-cta-bg</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-accent)"></div><div class="meta"><div class="n">accent / link</div><div class="v">--c-accent</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-brand-grad)"></div><div class="meta"><div class="n">brand / gradient</div><div class="v">--c-brand-grad</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-entry-grad)"></div><div class="meta"><div class="n">surface / entry</div><div class="v">--c-entry-grad</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-error)"></div><div class="meta"><div class="n">semantic / error <span class="lock">🔒 fixed</span></div><div class="v">--c-error</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-positive)"></div><div class="meta"><div class="n">semantic / positive <span class="lock">🔒 fixed</span></div><div class="v">--c-positive</div></div></div>
+          <div class="swatch"><div class="chip" style="background:var(--c-ai)"></div><div class="meta"><div class="n">AI / voice</div><div class="v">--c-ai</div></div></div>
+        </div>
+      </div>
+      <div class="cap">Radius is also a token: Arta 18px → Meridian 10px. Semantic colors (error, positive) are compliance-relevant and stay fixed across partners.</div>
+    </section>
+
+    <section class="doc" id="type">
+      <div class="doc-head"><h2>Typography & the legal style</h2><span class="badge proposed">Legal style — proposed</span></div>
+      <p class="desc">Arta's display/caps/numeral styles exist today. What lending adds: a <strong>legal type style</strong> — generous line-height, no letterspacing, footnote support — because disclosure text must be genuinely readable, not just present.</p>
+      <div class="canvas">
+        <div class="type-demo">
+          <div><div class="state-lbl">Display · light</div><div class="t-display">Your card is ready</div></div>
+          <div><div class="state-lbl">Caps micro-label</div><div class="t-caps">Requested credit limit</div></div>
+          <div><div class="state-lbl">Financial numerals</div><div class="t-num">$12,000<sup>00</sup><span class="up">+ $340.00 rewards this month</span></div></div>
+          <div><div class="state-lbl">Body</div><div class="t-body">We'll confirm a few details Arta already has, then ask about income and the terms you want.</div></div>
+          <div><div class="state-lbl">Legal · proposed</div><div class="t-legal">Variable APR of 21.24%–28.24% based on creditworthiness and the Prime Rate.¹ Annual fee $150. A late fee of up to $40 may apply. <span class="fn">¹ Rates as of July 2026. See the Cardmember Agreement for how we calculate variable rates.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="surfaces">
+      <div class="doc-head"><h2>Surfaces</h2><span class="badge today">In app today</span></div>
+      <p class="desc">The real app runs <strong>two worlds</strong>: a vivid gradient for acquisition/entry moments and near-black charcoal for working screens. The glass panel groups form fields on gradient. The application flow enters on gradient, then settles into charcoal — gradients are for moments, not for data entry.</p>
+      <div class="canvas">
+        <div class="surf-grid">
+          <div class="surf working"><span class="sn">Working · charcoal</span></div>
+          <div class="surf entry"><span class="sn">Entry · gradient</span></div>
+          <div class="surf glassbg"><div class="glass-panel"><span class="sn" style="display:block;margin-bottom:6px">Glass panel</span>Groups fields on gradient surfaces.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="buttons">
+      <div class="doc-head"><h2>Buttons</h2><span class="badge today">In app today</span></div>
+      <p class="desc">In-app primary is the <strong>white pill with dark text</strong> ("Next", "Agree & Continue") — the sky-blue fill is a marketing-site pattern. Disabled is translucent. Circular icon buttons carry forward/utility actions.</p>
+      <div class="canvas">
+        <div class="row">
+          <div class="col"><span class="state-lbl">Primary</span><button class="btn primary">Agree & Continue</button></div>
+          <div class="col"><span class="state-lbl">Secondary</span><button class="btn secondary">Not now</button></div>
+          <div class="col"><span class="state-lbl">Disabled</span><button class="btn disabled">Next</button></div>
+          <div class="col"><span class="state-lbl">Icon</span><button class="btn icon">→</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="inputs">
+      <div class="doc-head"><h2>Inputs & validation</h2><span class="badge today">In app today</span></div>
+      <p class="desc">Outline inputs: transparent fill, translucent stroke; focus brightens the stroke to full white; <strong>errors go coral</strong> with the message directly below the field. Coral is a semantic token — 🔒 fixed across partners.</p>
+      <div class="canvas">
+        <div class="row">
+          <div class="input-wrap"><span class="state-lbl">Rest</span><label class="input-lbl">Email</label><input class="input" placeholder="you@example.com"></div>
+          <div class="input-wrap"><span class="state-lbl">Focus</span><label class="input-lbl">Email</label><input class="input" style="border-color:var(--c-text)" value="po@linpochun.com"></div>
+          <div class="input-wrap"><span class="state-lbl">Error</span><label class="input-lbl">Email</label><input class="input error" value="po@linpochun"><span class="err-msg">Enter a valid email.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="segmented">
+      <div class="doc-head"><h2>Segmented toggle</h2><span class="badge today">In app today</span></div>
+      <p class="desc">Binary declarations (Yes/No) use the outlined pill with the selected segment filled. Used across KYC-style declarations — reused in the application for employment and residency questions. <strong>Try it.</strong></p>
+      <div class="canvas">
+        <div class="row" style="align-items:center; gap:26px">
+          <div class="col"><span class="state-lbl">Are you employed?</span><div class="seg-demo" id="seg1"><button class="on">Yes</button><button>No</button></div></div>
+          <div class="col"><span class="state-lbl">US tax resident?</span><div class="seg-demo" id="seg2"><button>Yes</button><button class="on">No</button></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="review">
+      <div class="doc-head"><h2>Review / confirm card</h2><span class="badge proposed">New for lending</span></div>
+      <p class="desc">The heart of <strong>confirm, don't collect</strong>: data Arta already holds is displayed for confirmation, not re-typed. Edit is an escape hatch, not the main path. The AI-mint note explains where the data came from.</p>
+      <div class="canvas">
+        <div class="review-card">
+          <div class="rc-top"><span class="rc-title">Identity</span><a class="rc-edit" href="#review" onclick="return false">Edit</a></div>
+          <div class="rc-row"><span class="rc-k">Legal name</span><span class="rc-v">Po Chun Lin</span></div>
+          <div class="rc-row"><span class="rc-k">Date of birth</span><span class="rc-v">·· / ·· / 1990</span></div>
+          <div class="rc-row"><span class="rc-k">Nationality</span><span class="rc-v">Taiwan</span></div>
+          <div class="rc-row"><span class="rc-k">Tax residence</span><span class="rc-v">United States</span></div>
+          <div class="prefill-note"><b>From your Arta profile</b> · verified at onboarding. Editing may require re-verification.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="currency">
+      <div class="doc-head"><h2>Currency input</h2><span class="badge proposed">New for lending</span></div>
+      <p class="desc">Income and amount entry with live thousands-formatting, large light numerals, no cents. Reassurance microcopy sits directly under the sensitive field. <strong>Type in it.</strong></p>
+      <div class="canvas">
+        <div class="cur-wrap">
+          <label class="input-lbl" style="display:block;margin-bottom:6px">Annual income</label>
+          <div class="cur-input"><span class="sym">$</span><input id="cur" inputmode="numeric" value="185,000"></div>
+          <div class="cur-hint">Used only for this application. Never shown in your profile.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="slider">
+      <div class="doc-head"><h2>Guided limit slider</h2><span class="badge proposed">New for lending</span></div>
+      <p class="desc">Requested credit limit defaults to a <strong>recommendation</strong>, not a blank. The member adjusts within an honest min–max; the "why this number" reasoning is one tap away. <strong>Drag it.</strong></p>
+      <div class="canvas">
+        <div class="slider-wrap">
+          <div class="slider-val" id="lim-val">$12,000</div>
+          <div class="slider-rec" id="lim-rec">✦ Recommended, based on what you shared</div>
+          <input type="range" class="limit" id="lim" min="2000" max="25000" step="500" value="12000">
+          <div class="slider-minmax"><span>$2,000</span><span>$25,000</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="keyterms">
+      <div class="doc-head"><h2>Key Terms module</h2><span class="badge proposed">New for lending</span><span class="badge fixed">🔒 structure platform-fixed</span></div>
+      <p class="desc">The disclosure moment, designed instead of buried: rates and fees in a clean tabular block that is <strong>always expanded</strong> on the review screen. Partners can theme it; they cannot remove, collapse, or reorder it.</p>
+      <div class="canvas">
+        <div class="keyterms">
+          <div class="kt-head"><span class="kt-title">Key terms</span><span class="kt-lock">🔒 Always visible</span></div>
+          <table>
+            <tr><td class="k">Purchase APR</td><td class="v">21.24%–28.24% variable</td></tr>
+            <tr><td class="k">Annual fee</td><td class="v">$150</td></tr>
+            <tr><td class="k">Late fee</td><td class="v">up to $40</td></tr>
+            <tr><td class="k">Foreign transaction</td><td class="v">0%</td></tr>
+            <tr><td class="k">Grace period</td><td class="v">≥ 25 days</td></tr>
+          </table>
+          <div class="kt-foot"><a href="#keyterms" onclick="return false">Read the full Schedule of Charges →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="consent">
+      <div class="doc-head"><h2>Consent row</h2><span class="badge proposed">New for lending</span></div>
+      <p class="desc">Each consent is separate, <strong>never pre-checked</strong>, and states its consequence in plain language. The hard-pull consent is the trust-critical one. <strong>Tap to toggle.</strong></p>
+      <div class="canvas">
+        <div class="row">
+          <div class="consent" onclick="this.classList.toggle('checked'); this.querySelector('.box').textContent = this.classList.contains('checked') ? '✓' : '';">
+            <div class="box"></div>
+            <div><div class="c-main">I authorize a credit bureau check</div><div class="c-sub">This is a hard inquiry — it may affect your credit score. It happens only when you submit.</div></div>
+          </div>
+          <div class="consent checked" onclick="this.classList.toggle('checked'); this.querySelector('.box').textContent = this.classList.contains('checked') ? '✓' : '';">
+            <div class="box">✓</div>
+            <div><div class="c-main">Everything I've shared is accurate</div><div class="c-sub">Knowingly providing false information is a federal offense.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="timeline">
+      <div class="doc-head"><h2>Status timeline</h2><span class="badge proposed">New for lending</span></div>
+      <p class="desc">Lending introduces waiting. The timeline names each stage, sets an honest expectation, and promises the notification — <strong>no dead ends</strong>.</p>
+      <div class="canvas">
+        <div class="timeline">
+          <div class="tl-step done"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-t">Application submitted</div><div class="tl-d">Today, 2:14 PM</div></div></div>
+          <div class="tl-step now"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="tl-t">Under review</div><div class="tl-d">A specialist is reviewing your income details. Typically 1–2 business days.</div></div></div>
+          <div class="tl-step"><div class="tl-rail"><div class="tl-dot"></div></div><div class="tl-body"><div class="tl-t">Decision</div><div class="tl-d">We'll notify you the moment it's ready. Nothing to do meanwhile.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="decisions">
+      <div class="doc-head"><h2>Decision states</h2><span class="badge proposed">New for lending</span></div>
+      <p class="desc">All outcomes are designed, not just approval. The decline keeps its dignity: private, specific as legally possible, zero cross-sell — <strong>a declined applicant is still a member tomorrow</strong>.</p>
+      <div class="canvas">
+        <div class="decisions">
+          <div class="dec ok"><div class="d-k">Approved</div><div class="d-card"></div><div class="d-t">Welcome to the Arta Card</div><div class="d-s">$12,000 limit · virtual card ready now · Add to Apple Pay</div></div>
+          <div class="dec rev"><div class="d-k">In review</div><div class="d-card"></div><div class="d-t">We're on it</div><div class="d-s">Typically 1–2 business days. We'll notify you — nothing to do.</div></div>
+          <div class="dec no"><div class="d-k">Declined</div><div class="d-t">We can't offer the card right now</div><div class="d-s">The full explanation arrives in writing within 7 days. Your Arta membership is unchanged.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc" id="whitelabel">
+      <div class="doc-head"><h2>Core vs configurable</h2><span class="badge fixed">The white-label line</span></div>
+      <p class="desc">The theme switch above is the demo: <strong>Meridian</strong> (a fictional online brokerage) changes tokens — color, radius, gradients, CTA treatment. It cannot touch the trust layer. That line is what makes this a platform rather than a reskin service.</p>
+      <div class="canvas">
+        <div class="wl-grid">
+          <div class="wl-list fixed"><h4>🔒 Platform-fixed</h4><ul>
+            <li><b>Disclosure content & placement</b> — Key Terms always visible</li>
+            <li><b>Consent mechanics</b> — separate, never pre-checked</li>
+            <li><b>Semantic colors</b> — error, positive</li>
+            <li><b>Flow skeleton</b> — confirm → income → terms → review → decision</li>
+            <li><b>Decisioning, security, accessibility floor</b></li>
+          </ul></div>
+          <div class="wl-list config"><h4>✦ Partner-configurable</h4><ul>
+            <li><b>Design tokens</b> — palette, radius, type</li>
+            <li><b>Brand moments</b> — gradients, card art, logo</li>
+            <li><b>CTA treatment</b> — within contrast rules</li>
+            <li><b>Copy tone</b> — within compliance guardrails</li>
+            <li><b>Entry points & reward currency</b></li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="cap">Arta's own brand is simply theme #1 in the same pipeline.</div>
+    </section>
+
   </main>
+</div>
+
+<script>
+  // theme switch
+  function setTheme(t) {
+    document.body.dataset.theme = t;
+    document.getElementById('th-arta').classList.toggle('on', t === 'arta');
+    document.getElementById('th-partner').classList.toggle('on', t === 'partner');
+  }
+
+  // sidebar scroll-spy
+  const navLinks = Array.from(document.querySelectorAll('#sidenav a'));
+  const sections = Array.from(document.querySelectorAll('section.doc'));
+  const spy = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => spy.observe(s));
+
+  // segmented toggles
+  document.querySelectorAll('.seg-demo').forEach(seg => {
+    seg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      seg.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+    }));
+  });
+
+  // currency formatting
+  const cur = document.getElementById('cur');
+  cur.addEventListener('input', () => {
+    const d = cur.value.replace(/[^\d]/g, '').slice(0, 9);
+    cur.value = d ? Number(d).toLocaleString('en-US') : '';
+  });
+
+  // limit slider
+  const lim = document.getElementById('lim'), limVal = document.getElementById('lim-val'), limRec = document.getElementById('lim-rec');
+  function updLim() {
+    const v = Number(lim.value);
+    limVal.textContent = '$' + v.toLocaleString('en-US');
+    lim.style.setProperty('--fill', ((v - 2000) / 23000 * 100) + '%');
+    limRec.textContent = v === 12000 ? '✦ Recommended, based on what you shared' : 'Recommended: $12,000 — why this number?';
+  }
+  lim.addEventListener('input', updLim); updLim();
+</script>
 </body>
 </html>
