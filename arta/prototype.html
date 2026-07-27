@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Prototype — Arta Card · Po Chun Lin</title>
+<style>
+  :root {
+    --bg: #141414; --text: #f4f2ee; --text-dim: #9a9a94; --text-faint: #6b6b66;
+    --line: rgba(255,255,255,.09); --sky: #a8d8f0;
+    --aurora: linear-gradient(115deg, #f0a8c0 0%, #f5b880 22%, #c9b8f0 48%, #9fe8d0 74%, #a8d8f0 100%);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Avenir Next", Avenir, "Century Gothic", Futura, -apple-system, "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 48px 24px; text-align: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  .back { position: fixed; top: 24px; left: 28px; font-size: 12.5px; }
+  .back a { color: var(--text-dim); text-decoration: none; }
+  .kicker { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--sky); margin-bottom: 16px; }
+  h1 { font-size: 34px; font-weight: 500; }
+  .lede { margin-top: 12px; font-size: 15px; color: var(--text-dim); line-height: 1.6; max-width: 520px; }
+  .phone {
+    margin-top: 44px; width: 300px; aspect-ratio: 9/18.5;
+    border: 1.5px dashed rgba(255,255,255,.22); border-radius: 40px;
+    background: rgba(255,255,255,.025);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-faint); font-size: 13px; line-height: 1.7; padding: 24px;
+    position: relative; overflow: hidden;
+  }
+  .phone::after {
+    content: ""; position: absolute; inset: -60%;
+    background: var(--aurora); opacity: .07; filter: blur(60px);
+    animation: hue 40s ease-in-out infinite alternate;
+  }
+  @keyframes hue { from { transform: rotate(0deg); } to { transform: rotate(40deg); } }
+  .phone strong { color: var(--text-dim); font-weight: 500; display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <div class="back"><a href="index.html">← Back to hub</a></div>
+  <div class="kicker">Vibe-coded prototype</div>
+  <h1>The application flow, live</h1>
+  <p class="lede">An interactive walkthrough of the Arta Card application — confirm-don't-collect, the Key Terms moment, and the decision states.</p>
+  <div class="phone"><div><strong>Work in progress</strong>Interactive prototype coming here.</div></div>
+</body>
+</html>

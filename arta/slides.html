@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Arta Card — Design Exercise Presentation</title>
+<style>
+  :root {
+    --bg: #141414;
+    --bg-raised: #1e1e1e;
+    --bg-card: #232323;
+    --text: #f4f2ee;
+    --text-dim: #9a9a94;
+    --text-faint: #6b6b66;
+    --line: rgba(255,255,255,.09);
+    --indigo: #5b5bd6;
+    --sky: #a8d8f0;
+    --green: #7fd6a4;
+    --aurora: linear-gradient(115deg, #f0a8c0 0%, #f5b880 22%, #c9b8f0 48%, #9fe8d0 74%, #a8d8f0 100%);
+    --sidebar-w: 280px;
+    --radius: 18px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Avenir Next", Avenir, "Century Gothic", Futura, -apple-system, "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- layout ---------- */
+  .app { display: flex; height: 100vh; overflow: hidden; }
+
+  /* ---------- sidebar ---------- */
+  aside {
+    width: var(--sidebar-w);
+    flex: 0 0 var(--sidebar-w);
+    border-right: 1px solid var(--line);
+    background: #101010;
+    display: flex; flex-direction: column;
+    padding: 28px 0 20px;
+    overflow-y: auto;
+  }
+  .brand { padding: 0 26px 22px; border-bottom: 1px solid var(--line); }
+  .brand .logo { font-size: 26px; font-weight: 600; letter-spacing: .5px; }
+  .brand .logo em {
+    font-style: normal;
+    background: var(--aurora);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .brand .sub {
+    margin-top: 6px;
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  nav { flex: 1; padding: 14px 12px; }
+  .nav-section {
+    font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 16px 14px 7px;
+  }
+  nav a {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 7px 14px;
+    border-radius: 10px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13.5px;
+    line-height: 1.35;
+    transition: background .15s, color .15s;
+  }
+  nav a .num {
+    font-size: 10px; color: var(--text-faint);
+    font-variant-numeric: tabular-nums;
+    min-width: 16px;
+  }
+  nav a:hover { background: rgba(255,255,255,.05); color: var(--text); }
+  nav a.active { background: rgba(91,91,214,.16); color: var(--text); }
+  nav a.active .num { color: var(--sky); }
+  .sidebar-foot {
+    padding: 16px 26px 0; border-top: 1px solid var(--line);
+    font-size: 11px; color: var(--text-faint); line-height: 1.6;
+  }
+  .sidebar-foot kbd {
+    font-family: inherit; font-size: 10px;
+    border: 1px solid var(--line); border-radius: 5px;
+    padding: 1px 5px; color: var(--text-dim);
+  }
+
+  /* ---------- slides area ---------- */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  section.slide {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 64px 72px;
+    position: relative;
+  }
+  .slide-kicker {
+    font-size: 11px; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 18px;
+  }
+  h1 { font-size: 56px; font-weight: 500; line-height: 1.08; letter-spacing: -.01em; }
+  h2 { font-size: 38px; font-weight: 500; line-height: 1.15; letter-spacing: -.01em; margin-bottom: 26px; }
+  .lede { font-size: 19px; color: var(--text-dim); line-height: 1.55; max-width: 640px; margin-top: 20px; }
+  .slide-num {
+    position: absolute; bottom: 26px; right: 40px; z-index: 1;
+    font-size: 11px; color: var(--text-faint);
+    font-variant-numeric: tabular-nums; letter-spacing: .1em;
+  }
+
+  /* ---------- placeholder helpers ---------- */
+  .ph {
+    border: 1.5px dashed rgba(255,255,255,.22);
+    border-radius: var(--radius);
+    background: rgba(255,255,255,.025);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: var(--text-faint);
+    font-size: 13px; line-height: 1.5;
+    padding: 18px;
+  }
+  .ph strong { color: var(--text-dim); font-weight: 500; display: block; margin-bottom: 4px; }
+  .ph-row { display: flex; gap: 20px; margin-top: 34px; }
+  .ph-phone { aspect-ratio: 9/17; width: 190px; flex: 0 0 auto; border-radius: 26px; }
+  .ph-wide { height: 300px; flex: 1; }
+  .ph-half { height: 260px; flex: 1; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 34px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 34px; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+  }
+  .card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; }
+  .card .tag {
+    display: inline-block; margin-bottom: 12px;
+    font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--sky);
+  }
+
+  ul.points { margin: 26px 0 0 2px; list-style: none; max-width: 720px; }
+  ul.points li {
+    position: relative; padding: 9px 0 9px 26px;
+    font-size: 16.5px; color: var(--text); line-height: 1.5;
+  }
+  ul.points li::before {
+    content: ""; position: absolute; left: 0; top: 17px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--aurora);
+  }
+  ul.points li span { color: var(--text-dim); }
+
+  .aurora-bar {
+    height: 4px; width: 84px; border-radius: 2px;
+    background: var(--aurora); margin-bottom: 30px;
+  }
+
+  /* ---------- animated aurora background ---------- */
+  .aurora-motion {
+    position: absolute; inset: 0; overflow: hidden;
+    z-index: 0; pointer-events: none;
+    animation: hue-cycle 44s ease-in-out infinite alternate;
+  }
+  .aurora-motion .blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(72px);
+    will-change: transform;
+    animation: blob-drift 28s ease-in-out infinite alternate;
+  }
+  .blob.b1 {
+    width: 500px; height: 500px; top: -140px; right: -120px;
+    background: linear-gradient(115deg, #f0a8c0, #f5b880, #c9b8f0);
+    opacity: .30;
+  }
+  .blob.b2 {
+    width: 440px; height: 440px; bottom: -160px; left: -100px;
+    background: linear-gradient(115deg, #9fe8d0, #a8d8f0, #c9b8f0);
+    opacity: .24;
+    animation-duration: 36s; animation-delay: -9s;
+  }
+  .blob.b-title {
+    width: 560px; height: 560px; top: 50%; right: -150px;
+    margin-top: -280px;
+    background: var(--aurora);
+    opacity: .42; filter: blur(46px);
+    animation-duration: 38s;
+  }
+  @keyframes blob-drift {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    50%  { transform: translate(-3vw, 4vh) scale(1.08) rotate(14deg); }
+    100% { transform: translate(2.5vw, -4vh) scale(.94) rotate(-12deg); }
+  }
+  @keyframes hue-cycle {
+    from { filter: hue-rotate(-35deg) saturate(1.5) brightness(1.12); }
+    to   { filter: hue-rotate(35deg) saturate(1.5) brightness(1.12); }
+  }
+  /* keep slide content above the blobs */
+  section.slide > :not(.aurora-motion):not(.slide-num) { position: relative; z-index: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-motion, .aurora-motion .blob { animation: none; }
+  }
+
+  /* title slide */
+  .slide.title { justify-content: center; }
+  .slide.title h1 em {
+    font-style: normal;
+    background: var(--aurora);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .byline { margin-top: 40px; font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    aside { display: none; }
+    section.slide { padding: 48px 28px; }
+    h1 { font-size: 38px; } h2 { font-size: 28px; }
+    .ph-row { flex-wrap: wrap; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside>
+    <div class="brand">
+      <a href="index.html" style="color:#6b6b66;text-decoration:none;font-size:11.5px;display:block;margin-bottom:10px">← Back to hub</a>
+      <div class="logo">arta <em>card</em></div>
+      <div class="sub">Design Exercise · July 2026</div>
+    </div>
+    <nav id="nav">
+      <div class="nav-section">Opening</div>
+      <a href="#s1"><span class="num">01</span>Title</a>
+      <a href="#s2"><span class="num">02</span>My read on the problem</a>
+      <a href="#s3"><span class="num">03</span>Assumptions</a>
+      <a href="#s4"><span class="num">04</span>What I did — and cut</a>
+      <div class="nav-section">Flow 1 · Application</div>
+      <a href="#s5"><span class="num">05</span>Thesis: confirm, don't collect</a>
+      <a href="#s6"><span class="num">06</span>Entry &amp; confirm chapters</a>
+      <a href="#s7"><span class="num">07</span>Income — the sensitive moment</a>
+      <a href="#s8"><span class="num">08</span>Terms &amp; disclosures</a>
+      <a href="#s9"><span class="num">09</span>The decision moment</a>
+      <div class="nav-section">Flow 2 · AI</div>
+      <a href="#s10"><span class="num">10</span>AI across the lifecycle</a>
+      <a href="#s11"><span class="num">11</span>Deep moment</a>
+      <div class="nav-section">Platform</div>
+      <a href="#s12"><span class="num">12</span>White-label model</a>
+      <a href="#s13"><span class="num">13</span>Same bones, partner skin</a>
+      <div class="nav-section">Closing</div>
+      <a href="#s14"><span class="num">14</span>What's limiting in the DS</a>
+      <a href="#s15"><span class="num">15</span>If I had more time</a>
+    </nav>
+    <div class="sidebar-foot">
+      Navigate: <kbd>↑</kbd> <kbd>↓</kbd> or scroll<br>
+      Click any item to jump
+    </div>
+  </aside>
+
+  <!-- ═══════════ SLIDES ═══════════ -->
+  <main id="deck" tabindex="-1">
+
+    <section class="slide title" id="s1">
+      <div class="aurora-motion" aria-hidden="true"><div class="blob b-title"></div></div>
+      <div class="slide-kicker">Senior Product Designer · Take-home</div>
+      <h1>The <em>Arta Card</em><br>Lending, designed like wealth.</h1>
+      <div class="byline">
+        Po Chun Lin · July 2026<br>
+        A credit card launch for Arta's own members — and the platform behind it.
+      </div>
+      <div class="slide-num">01 / 15</div>
+    </section>
+
+    <section class="slide" id="s2">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Opening</div>
+      <h2>My read on the problem</h2>
+      <ul class="points">
+        <li>Everything Arta does today asks <em>"what do you want to grow?"</em> — <span>a card application asks "tell us about yourself so we can judge you."</span></li>
+        <li>New product archetype: <span>lending brings forms, disclosures, decisioning, and the word "no" into a brand built on trust.</span></li>
+        <li>The real design problem: <span>keep the premium, trust-forward feel through a flow that is legally obligated to interrogate and disclose.</span></li>
+      </ul>
+      <div class="slide-num">02 / 15</div>
+    </section>
+
+    <section class="slide" id="s3">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Opening</div>
+      <h2>Assumptions I made</h2>
+      <div class="grid-2">
+        <div class="card"><span class="tag">Audience</span><h3>Existing, KYC'd Arta members</h3><p>Launch is on Arta's brand to its own members — not a cold-acquisition funnel.</p></div>
+        <div class="card"><span class="tag">Market</span><h3>US launch, modular disclosures</h3><p>HSBC SG form defines information scope, not jurisdiction. Disclosure block stays swappable.</p></div>
+        <div class="card"><span class="tag">Product</span><h3>Premium rewards card</h3><p>Rewards can sweep into investments. Underwriting may consider the Arta portfolio.</p></div>
+        <div class="card"><span class="tag">Platform</span><h3>Mobile-first, in-app</h3><p>Inside the existing iOS/Android app. Instant decisioning possible; manual review exists.</p></div>
+      </div>
+      <div class="slide-num">03 / 15</div>
+    </section>
+
+    <section class="slide" id="s4">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Opening</div>
+      <h2>Where the hours went — and what I cut</h2>
+      <div class="ph ph-wide" style="margin-top:30px"><div><strong>Placeholder — prioritization table</strong>P0: application flow + AI deep moment · P1: white-label model + DS critique<br>Cut: rewards catalog, statements UI, full management surface, web</div></div>
+      <p class="lede">Depth over breadth: I designed the hard screens, not all the screens.</p>
+      <div class="slide-num">04 / 15</div>
+    </section>
+
+    <section class="slide" id="s5">
+      <div class="aurora-motion" aria-hidden="true"><div class="blob b1"></div></div>
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Flow 1 · The application</div>
+      <h2>Thesis: confirm, don't collect</h2>
+      <ul class="points">
+        <li>Arta already KYC'd this member — <span>the flow confirms what Arta knows and asks only what it doesn't.</span></li>
+        <li>Four chapters, ~3 minutes: <span>Confirm · Income · Terms · Review. Auto-saved, resumable.</span></li>
+        <li>Honesty is the premium experience: <span>APR and fees appear before the funnel starts, not after.</span></li>
+      </ul>
+      <div class="ph ph-wide" style="margin-top:30px"><div><strong>Placeholder — flow map diagram</strong>Entry → Confirm → Income → Terms → Review → Decision (5 states)</div></div>
+      <div class="slide-num">05 / 15</div>
+    </section>
+
+    <section class="slide" id="s6">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Flow 1 · The application</div>
+      <h2>Entry &amp; confirming what Arta knows</h2>
+      <div class="ph-row">
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S0 · Pre-qualified entry card</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S1 · Before you start + trust block</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S2 · Review cards, not input fields</div></div>
+      </div>
+      <div class="slide-num">06 / 15</div>
+    </section>
+
+    <section class="slide" id="s7">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Flow 1 · The application</div>
+      <h2>Income — the sensitive moment</h2>
+      <div class="ph-row">
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S3 · One question per screen</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S3b · "Use my Arta portfolio" toggle</div></div>
+        <div style="flex:1" class="ph ph-half"><div><strong>Placeholder — annotation panel</strong>Reassurance microcopy · why-we-ask · no mid-form rejection</div></div>
+      </div>
+      <div class="slide-num">07 / 15</div>
+    </section>
+
+    <section class="slide" id="s8">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Flow 1 · The application</div>
+      <h2>Terms &amp; disclosures, unburied</h2>
+      <div class="ph-row">
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S4 · Limit + autopay defaults</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S5 · Key Terms module, always visible</div></div>
+        <div style="flex:1" class="ph ph-half"><div><strong>Placeholder — annotation panel</strong>Separate consents, no pre-checks · hard-pull consent in plain language</div></div>
+      </div>
+      <div class="slide-num">08 / 15</div>
+    </section>
+
+    <section class="slide" id="s9">
+      <div class="aurora-motion" aria-hidden="true"><div class="blob b2"></div></div>
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Flow 1 · The application</div>
+      <h2>The decision is a relationship moment</h2>
+      <div class="ph-row">
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S6a · Approved + instant virtual card</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S6b · In review — timeline</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>S6e · Declined, with dignity</div></div>
+      </div>
+      <p class="lede">Pending, counter-offer and decline are designed — a declined applicant is still a wealth member tomorrow.</p>
+      <div class="slide-num">09 / 15</div>
+    </section>
+
+    <section class="slide" id="s10">
+      <div class="aurora-motion" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Flow 2 · AI across the lifecycle</div>
+      <h2>One AI relationship, not scattered features</h2>
+      <div class="ph ph-wide" style="margin-top:30px"><div><strong>Placeholder — lifecycle map</strong>Apply → Onboard → Everyday use → Manage &amp; service → Grow<br>AI touchpoints mapped to existing Arta AI agents (Planner · Product Specialist · Research Analyst)</div></div>
+      <div class="slide-num">10 / 15</div>
+    </section>
+
+    <section class="slide" id="s11">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Flow 2 · AI across the lifecycle</div>
+      <h2>Deep moment: repayment intelligence</h2>
+      <div class="ph-row">
+        <div class="ph ph-phone"><div><strong>Mockup</strong>Insight card — statement meets portfolio</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>Action sheet — adjust autopay / pay now</div></div>
+        <div style="flex:1" class="ph ph-half"><div><strong>Placeholder — why this moment</strong>Only Arta sees the whole wealth picture: carrying 24% APR vs. portfolio math · explainable, actionable, not a chatbot</div></div>
+      </div>
+      <div class="slide-num">11 / 15</div>
+    </section>
+
+    <section class="slide" id="s12">
+      <div class="aurora-motion" aria-hidden="true"><div class="blob b2"></div></div>
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Platform · White-label</div>
+      <h2>Core stays fixed. Skin is the partner's.</h2>
+      <div class="grid-2">
+        <div class="card"><span class="tag">Platform-fixed</span><h3>The trust layer</h3><p>Compliance flows &amp; disclosure placement · decisioning · security · data model · flow skeleton · accessibility floor.</p></div>
+        <div class="card"><span class="tag">Partner-configurable</span><h3>The brand layer</h3><p>Design tokens (color, type, radius) · logo &amp; card art · entry points · copy tone within guardrails · reward currency.</p></div>
+      </div>
+      <div class="ph ph-half" style="margin-top:22px"><div><strong>Placeholder — token architecture diagram</strong>Components consume tokens only → Arta is simply theme #1</div></div>
+      <div class="slide-num">12 / 15</div>
+    </section>
+
+    <section class="slide" id="s13">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Platform · White-label</div>
+      <h2>Same bones, partner skin</h2>
+      <div class="ph-row">
+        <div class="ph ph-phone"><div><strong>Mockup</strong>Arta theme — Key Terms screen</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>Partner theme — same screen</div></div>
+        <div class="ph ph-phone"><div><strong>Mockup</strong>Partner theme — decision screen</div></div>
+      </div>
+      <p class="lede">Fictional partner reskin: structure, disclosures and decision logic identical — only the token layer changed.</p>
+      <div class="slide-num">13 / 15</div>
+    </section>
+
+    <section class="slide" id="s14">
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Closing</div>
+      <h2>What's limiting in Arta's design system</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Gradients ≠ forms</h3><p>Aurora surfaces fight data entry. Reserve them for moments — approval, card art — and add a quiet form surface.</p></div>
+        <div class="card"><h3>No legal type style</h3><p>Letterspaced caps micro-labels fail for disclosures. Lending needs a readable legal/tabular style.</p></div>
+        <div class="card"><h3>Missing primitives</h3><p>Dense inputs, chapter progress, currency input, consent rows, status timeline, document upload, decision states.</p></div>
+      </div>
+      <div class="slide-num">14 / 15</div>
+    </section>
+
+    <section class="slide" id="s15">
+      <div class="aurora-motion" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+      <div class="aurora-bar"></div>
+      <div class="slide-kicker">Closing</div>
+      <h2>If I had more time</h2>
+      <ul class="points">
+        <li>Usability pass on the income & consent steps <span>— comprehension testing on disclosure copy.</span></li>
+        <li>Card management & servicing surface <span>— statements, disputes, freeze; same DS additions carry over.</span></li>
+        <li>Partner theming console <span>— how a partner actually edits tokens with compliance-locked regions.</span></li>
+      </ul>
+      <div class="byline">Thank you · [contact]</div>
+      <div class="slide-num">15 / 15</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  document.getElementById('deck').focus();
+  const links = Array.from(document.querySelectorAll('#nav a'));
+  const slides = Array.from(document.querySelectorAll('section.slide'));
+  const deck = document.getElementById('deck');
+
+  // scrollspy
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { root: deck, threshold: 0.55 });
+  slides.forEach(s => spy.observe(s));
+
+  // keyboard navigation
+  function currentIndex() {
+    const top = deck.scrollTop;
+    let best = 0, bestDist = Infinity;
+    slides.forEach((s, i) => {
+      const d = Math.abs(s.offsetTop - top);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    return best;
+  }
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowDown','PageDown',' '].includes(e.key)) {
+      e.preventDefault();
+      const i = Math.min(currentIndex() + 1, slides.length - 1);
+      slides[i].scrollIntoView({ behavior: 'smooth' });
+    } else if (['ArrowUp','PageUp'].includes(e.key)) {
+      e.preventDefault();
+      const i = Math.max(currentIndex() - 1, 0);
+      slides[i].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'Home') {
+      slides[0].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'End') {
+      slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>
+</body>
+</html>

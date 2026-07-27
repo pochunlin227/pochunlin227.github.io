@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Arta Card — Design Exercise · Po Chun Lin</title>
+<style>
+  :root {
+    --bg: #141414;
+    --bg-card: #1f1f1f;
+    --text: #f4f2ee;
+    --text-dim: #9a9a94;
+    --text-faint: #6b6b66;
+    --line: rgba(255,255,255,.09);
+    --sky: #a8d8f0;
+    --aurora: linear-gradient(115deg, #f0a8c0 0%, #f5b880 22%, #c9b8f0 48%, #9fe8d0 74%, #a8d8f0 100%);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Avenir Next", Avenir, "Century Gothic", Futura, -apple-system, "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 60px 24px;
+    position: relative; overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* animated aurora background */
+  .aurora-motion {
+    position: fixed; inset: 0; overflow: hidden;
+    z-index: 0; pointer-events: none;
+    animation: hue-cycle 44s ease-in-out infinite alternate;
+  }
+  .aurora-motion .blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); will-change: transform;
+    animation: blob-drift 30s ease-in-out infinite alternate;
+  }
+  .blob.b1 {
+    width: 560px; height: 560px; top: -180px; right: -140px;
+    background: linear-gradient(115deg, #f0a8c0, #f5b880, #c9b8f0);
+    opacity: .26;
+  }
+  .blob.b2 {
+    width: 500px; height: 500px; bottom: -200px; left: -140px;
+    background: linear-gradient(115deg, #9fe8d0, #a8d8f0, #c9b8f0);
+    opacity: .2;
+    animation-duration: 38s; animation-delay: -10s;
+  }
+  @keyframes blob-drift {
+    0%   { transform: translate(0,0) scale(1) rotate(0deg); }
+    50%  { transform: translate(-3vw, 4vh) scale(1.08) rotate(14deg); }
+    100% { transform: translate(2.5vw, -4vh) scale(.94) rotate(-12deg); }
+  }
+  @keyframes hue-cycle {
+    from { filter: hue-rotate(-35deg) saturate(1.5) brightness(1.12); }
+    to   { filter: hue-rotate(35deg) saturate(1.5) brightness(1.12); }
+  }
+  @media (prefers-reduced-motion: reduce) { .aurora-motion, .aurora-motion .blob { animation: none; } }
+
+  main { position: relative; z-index: 1; width: 100%; max-width: 880px; }
+
+  .kicker {
+    font-size: 11px; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: 18px;
+  }
+  h1 { font-size: 44px; font-weight: 500; line-height: 1.1; letter-spacing: -.01em; }
+  h1 em {
+    font-style: normal;
+    background: var(--aurora);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .lede { margin-top: 16px; font-size: 16.5px; color: var(--text-dim); line-height: 1.6; max-width: 560px; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+  a.card {
+    display: block; text-decoration: none; color: var(--text);
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 26px 24px 24px;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+  a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.22); background: #242424; }
+  .card .num {
+    font-size: 10px; letter-spacing: .22em; color: var(--text-faint);
+    display: block; margin-bottom: 22px;
+  }
+  .card h2 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; min-height: 63px; }
+  .card .go {
+    margin-top: 20px; display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--sky);
+  }
+  .card .status {
+    display: inline-block; margin-left: 8px;
+    font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--text-faint);
+    border: 1px solid var(--line); border-radius: 99px;
+    padding: 3px 9px; vertical-align: 2px;
+  }
+  .foot {
+    margin-top: 56px; font-size: 12.5px; color: var(--text-faint); line-height: 1.7;
+  }
+  .foot a { color: var(--text-dim); }
+
+  @media (max-width: 760px) {
+    .cards { grid-template-columns: 1fr; }
+    h1 { font-size: 32px; }
+    .card p { min-height: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="aurora-motion" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+  </div>
+
+  <main>
+    <div class="kicker">Design Exercise · Senior Product Designer · July 2026</div>
+    <h1>The <em>Arta Card</em></h1>
+    <p class="lede">A credit card launch for Arta's own members — and the white-label platform behind it. Presentation, design-system contribution, and an interactive prototype.</p>
+
+    <div class="cards">
+      <a class="card" href="slides.html">
+        <span class="num">01</span>
+        <h2>Presentation</h2>
+        <p>My read on the problem, the two flows, the white-label model — and the trade-offs behind every cut.</p>
+        <span class="go">View slides →</span>
+      </a>
+      <a class="card" href="design-system.html">
+        <span class="num">02</span>
+        <h2>Design System</h2>
+        <p>The lending tokens, components and patterns Arta's system doesn't have today — documented Storybook-style.</p>
+        <span class="go">Browse components →<span class="status">In progress</span></span>
+      </a>
+      <a class="card" href="prototype.html">
+        <span class="num">03</span>
+        <h2>Prototype</h2>
+        <p>A vibe-coded walkthrough of the application flow — confirm, don't collect, all the way to the decision moment.</p>
+        <span class="go">Try it →<span class="status">In progress</span></span>
+      </a>
+    </div>
+
+    <div class="foot">
+      Po Chun Lin · <a href="mailto:pochun.lin@thepacinglabs.com">pochun.lin@thepacinglabs.com</a> · <a href="https://www.linpochun.com">linpochun.com</a><br>
+      Prepared for the Arta Finance design exercise. Not affiliated with Arta Finance.
+    </div>
+  </main>
+</body>
+</html>
