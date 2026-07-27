@@ -289,6 +289,7 @@
 <div class="topbar">
   <a class="back" href="index.html">← Hub</a>
   <div class="t">arta <em>card</em> · design system</div>
+  <a class="back" style="margin-left:16px" href="storybook/index.html">Live Storybook →</a>
   <div class="theme-switch">
     <span class="lbl">White-label theme</span>
     <div class="seg">
@@ -314,6 +315,7 @@
     <a href="#slider">Guided limit slider</a>
     <a href="#keyterms">Key Terms module</a>
     <a href="#consent">Consent row</a>
+    <a href="#bottomsheet">Bottom sheet · legal</a>
     <a href="#timeline">Status timeline</a>
     <a href="#decisions">Decision states</a>
     <div class="group">White-label</div>
@@ -325,6 +327,7 @@
     <section class="doc" id="tokens">
       <div class="doc-head"><h2>Tokens & theming</h2><span class="badge fixed">Theme-aware</span></div>
       <p class="desc">Every component on this page reads <strong>tokens only</strong> — no hardcoded values. Flip the theme switch (top right) and the entire system reskins. Tokens marked <strong>🔒 fixed</strong> are platform-level and do not change across partners.</p>
+      <p class="desc">Under the hood the system is a <strong>three-tier architecture</strong> — <code>[arta] · [ref | sys | cmp] · [role]</code>: a <strong>ref</strong> layer of raw ladders (10–90 color steps, 4px grid), a <strong>sys</strong> layer of semantic intent that only aliases ref, and a <strong>cmp</strong> layer of per-component contracts where <strong>hardcoded values fail the build</strong>. A partner theme like Meridian is a sys-override file — zero component code. One example chain: <code>#a8cdf0 → ref.color.sky.40 → sys.action.primary → cmp.btn.primary.bg</code>. The full token set runs live in the <a href="storybook/index.html" style="color:var(--sky)">Storybook</a>, and the same generated CSS powers the <a href="prototype.html" style="color:var(--sky)">interactive prototype</a> via a sync pipeline.</p>
       <div class="canvas">
         <div class="swatches">
           <div class="swatch"><div class="chip" style="background:var(--c-bg)"></div><div class="meta"><div class="n">surface / bg</div><div class="v">--c-bg</div></div></div>
@@ -343,10 +346,11 @@
 
     <section class="doc" id="type">
       <div class="doc-head"><h2>Typography & the legal style</h2><span class="badge proposed">Legal style — proposed</span></div>
-      <p class="desc">Arta's display/caps/numeral styles exist today. What lending adds: a <strong>legal type style</strong> — generous line-height, no letterspacing, footnote support — because disclosure text must be genuinely readable, not just present.</p>
+      <p class="desc">Two brand faces, verified from artafinance.com's CSS: <strong>Rotunda</strong> (self-hosted webfont, weights thin→black) is the UI, body and <em>product-display</em> face — the rounded geometric sans across app and site. <strong>Ofelia Display 500</strong> (Adobe Typekit) is the <em>marketing headline</em> face, set with positive tracking at 130% leading — reserved for brand moments, never product screens. Both are licensed; this page renders geometric fallbacks while the tokens carry the real stacks. What lending adds: a <strong>legal type style</strong> — generous line-height, no letterspacing, footnote support — because disclosure text must be genuinely readable, not just present.</p>
       <div class="canvas">
         <div class="type-demo">
-          <div><div class="state-lbl">Display · light</div><div class="t-display">Your card is ready</div></div>
+          <div><div class="state-lbl">Marketing display · Ofelia Display 500 · brand moments only</div><div class="t-display" style="letter-spacing:.045em;line-height:1.3">Wealth, worn lightly</div></div>
+          <div><div class="state-lbl">Product display · Rotunda light</div><div class="t-display">Your card is ready</div></div>
           <div><div class="state-lbl">Caps micro-label</div><div class="t-caps">Requested credit limit</div></div>
           <div><div class="state-lbl">Financial numerals</div><div class="t-num">$12,000<sup>00</sup><span class="up">+ $340.00 rewards this month</span></div></div>
           <div><div class="state-lbl">Body</div><div class="t-body">We'll confirm a few details Arta already has, then ask about income and the terms you want.</div></div>
@@ -476,6 +480,23 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="doc" id="bottomsheet">
+      <div class="doc-head"><h2>Bottom sheet · legal container</h2><span class="badge today">In app today</span><span class="badge fixed">🔒 pattern platform-fixed</span></div>
+      <p class="desc">Arta already has a container for long legal text — the dark bottom sheet used for the Accredited Investor Declaration: drag handle, light display title, inline links, a <strong>scroll-to-read ↓ FAB</strong> that disappears at the end, and a single white-pill confirm. The card's full Cardmember Agreement reuses it verbatim; in the prototype, "Agree &amp; Continue" also checks the matching consent row — reading and agreeing become one gesture.</p>
+      <div class="canvas">
+        <div style="max-width:420px;margin:0 auto;background:var(--c-entry-grad, var(--aurora));border-radius:18px;padding-top:44px;overflow:hidden">
+          <div style="background:#161616;border-radius:22px 22px 0 0;padding:12px 22px 20px;position:relative">
+            <div style="width:40px;height:4px;border-radius:999px;background:rgba(255,255,255,.28);margin:0 auto 14px"></div>
+            <div style="font-size:21px;font-weight:300;line-height:1.25;color:#f4f2ee">Cardmember Agreement and Schedule of Charges</div>
+            <p style="font-size:12.5px;line-height:1.6;color:rgba(244,242,238,.62);margin:10px 0 0">Your purchase APR is variable, between 21.99% and 27.99%, set at decision. Interest is charged only on balances carried past the 25-day interest-free period…</p>
+            <div style="display:flex;justify-content:center;margin:16px 0 12px"><div style="width:38px;height:38px;border-radius:50%;background:#fff;color:#141414;display:flex;align-items:center;justify-content:center;font-size:15px">↓</div></div>
+            <button class="btn primary" style="width:100%">Agree &amp; Continue</button>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Structure is compliance-locked for partners: themable colors and type, but the handle, scroll affordance, full-text access and confirm order can't be removed.</div>
     </section>
 
     <section class="doc" id="timeline">
