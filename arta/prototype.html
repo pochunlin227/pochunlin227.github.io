@@ -734,6 +734,46 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 .banner.info { background:color-mix(in srgb, var(--status-info) 14%, transparent); color:var(--text-legal); border:1px solid color-mix(in srgb, var(--status-info) 35%, transparent); }
 .banner.warn { background:color-mix(in srgb, var(--status-warn) 12%, transparent); color:var(--text-legal); border:1px solid color-mix(in srgb, var(--status-warn) 35%, transparent); }
 
+/* portfolio card grid — Design-at-Arta: the card is the atomic, collectible unit */
+.cardgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+.pcard { border-radius:14px; padding:14px; aspect-ratio:1.28; color:#fff; display:flex; flex-direction:column; justify-content:space-between; position:relative; cursor:pointer; transition:transform .15s ease; }
+.pcard:active { transform:scale(.97); }
+.pcard .nm { font-size:13.5px; font-weight:600; line-height:1.25; }
+.pcard .amt { display:block; font-size:12px; opacity:.9; }
+.pcard .up { display:block; font-size:10.5px; opacity:.65; margin-top:2px; }
+.pcard.g1 { background:var(--grad-card-c); }
+.pcard.g2 { background:var(--grad-card-b); }
+.pcard.g3 { background:var(--surface-raised); border:1px solid var(--border-subtle); }
+.pcard.offer { background:var(--grad-brand); color:var(--chip-brand-text); }
+.pcard.offer .amt b { font-weight:600; }
+.badge-new { position:absolute; top:10px; right:10px; font-size:9px; letter-spacing:.14em; text-transform:uppercase; background:rgba(0,0,0,.3); color:#fff; padding:4px 8px; border-radius:999px; }
+.stack-hint { font-size:11px; color:var(--text-tertiary); margin-top:10px; letter-spacing:.02em; }
+
+/* approval: the newest card joins the collection */
+.join-row { display:flex; gap:8px; justify-content:center; align-items:center; margin:14px 0 4px; }
+.mini-card { width:52px; aspect-ratio:1.586; border-radius:6px; opacity:.45; }
+.mini-card.m1 { background:var(--grad-card-c); } .mini-card.m2 { background:var(--grad-card-b); } .mini-card.m3 { background:var(--surface-form); }
+.mini-card.new { background:var(--grad-card-a); opacity:1; outline:2px solid var(--arta-sys-color-action-inverse); outline-offset:2px; animation:rise .7s cubic-bezier(.2,.9,.3,1.2); }
+.join-cap { text-align:center; }
+
+/* spend stacks (statement borrows the Stacks pattern) */
+.stacks-row { display:flex; gap:10px; margin-top:10px; }
+.stack-chip { flex:1; background:var(--surface-raised); border:1px solid var(--border-subtle); border-radius:12px; padding:12px; position:relative; margin-top:6px; }
+.stack-chip::before { content:""; position:absolute; left:6px; right:6px; top:-4px; height:8px; border-radius:8px 8px 0 0; background:var(--surface-form); z-index:-1; }
+.stack-chip b { font-size:13px; display:block; }
+.stack-chip span { font-size:11px; color:var(--text-tertiary); display:block; margin-top:3px; }
+.txn { cursor:pointer; user-select:none; -webkit-user-select:none; }
+
+/* mini card chip on card home */
+.cardchip { width:64px; aspect-ratio:1.586; border-radius:7px; background:var(--grad-card-a); flex:none; cursor:pointer; }
+
+/* small action sheet */
+.sheet.small { max-height:none; padding-bottom:26px; }
+.as-title { font-size:13px; color:var(--text-secondary); padding:2px 24px 10px; }
+.as-opt { display:block; width:calc(100% - 48px); margin:6px 24px 0; text-align:left; background:var(--surface-raised); border:1px solid var(--border-subtle); color:var(--text-primary); border-radius:var(--radius-ctl); padding:14px 16px; font-size:14.5px; font-family:var(--font-ui); cursor:pointer; }
+.as-opt small { color:var(--text-tertiary); display:block; font-size:11.5px; margin-top:2px; }
+.as-cancel { background:none; border:none; color:var(--text-tertiary); width:100%; padding:14px; font-size:12.5px; cursor:pointer; font-family:var(--font-ui); }
+
 /* demo controls */
 .demo { width:390px; background:#111214; border:1px solid #26272b; border-radius:16px; padding:16px 18px; }
 .demo h3 { font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:#6d6e73; margin-bottom:12px; }
@@ -767,18 +807,18 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
         <div class="amount">$2,345,681<sup>77</sup></div>
         <div class="change">+ $120,334.00 total change</div>
       </div>
-      <div class="tiles">
-        <div class="tile t1"><span class="nm">US Treasuries</span><span class="amt">$100K</span></div>
-        <div class="tile t2"><span class="nm">Private Equity</span><span class="amt">$80.9K</span></div>
+      <div class="cardgrid">
+        <div class="pcard g1"><span class="nm">US Treasuries</span><div><span class="amt">$100K</span><span class="up">+1.2% this month</span></div></div>
+        <div class="pcard g2"><span class="nm">Private Equity</span><div><span class="amt">$80.9K</span><span class="up">Vintage 2024</span></div></div>
+        <div class="pcard g3"><span class="nm">Quant Strategies</span><div><span class="amt">$64.2K</span><span class="up">+4.8% YTD</span></div></div>
+        <div class="pcard offer" onclick="go('s1')">
+          <span class="badge-new">New</span>
+          <span class="nm">Arta Card</span>
+          <div><span class="amt">Pre-qualified up to <b id="offerLimit">$25,000</b></span><span class="up">See your offer →</span></div>
+        </div>
       </div>
-      <div style="height:18px"></div>
-      <div class="hero-card" onclick="go('s1')">
-        <div class="micro" style="color:inherit;opacity:.75">New · Arta Card</div>
-        <h3>You're pre-qualified for up to $25,000</h3>
-        <p>Checking won't affect your credit score until you submit. Variable APR 21.99–27.99%. $150 annual fee. The full terms stay visible before anything is final.</p>
-        <span class="pill">See your offer →</span>
-      </div>
-      <p class="hint" style="margin-top:12px">Pre-qualification is based on information you've already shared with Arta. No new data was pulled.</p>
+      <p class="stack-hint">Long-press any card to add it to a Stack.</p>
+      <p class="hint" style="margin-top:10px">Pre-qualification uses only what Arta already knows — no credit pull until you submit. APR 21.99–27.99% variable · $150 annual fee, stated up front.</p>
     </div>
   </section>
 
@@ -814,9 +854,9 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
       <div class="stack" style="margin-top:16px">
         <div class="confirm-card">
           <div class="head"><span class="micro">Identity</span><button class="edit">Edit</button></div>
-          <div class="kv"><span class="k">Legal name</span><span class="v">Alexandra W. Chen</span></div>
-          <div class="kv"><span class="k">Date of birth</span><span class="v">14 Mar 1988</span></div>
-          <div class="kv"><span class="k">Citizenship</span><span class="v">United States</span></div>
+          <div class="kv"><span class="k">Legal name</span><span class="v" id="pName">Alexandra W. Chen</span></div>
+          <div class="kv"><span class="k">Date of birth</span><span class="v" id="pDob">14 Mar 1988</span></div>
+          <div class="kv"><span class="k">Citizenship</span><span class="v" id="pCit">United States</span></div>
         </div>
         <div class="confirm-card">
           <div class="head"><span class="micro">Home address</span><button class="edit">Edit</button></div>
@@ -840,13 +880,13 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
     <div class="scroll">
       <h2 class="display">How do you earn today?</h2>
       <div class="stack" style="margin-top:16px" id="empChoices">
-        <button class="choice" onclick="pickEmp(this,'Employed')"><span>Employed<small>Salaried or hourly</small></span><span class="dot"></span></button>
-        <button class="choice" onclick="pickEmp(this,'Self-employed')"><span>Self-employed<small>Founder, contractor, practice owner</small></span><span class="dot"></span></button>
-        <button class="choice" onclick="pickEmp(this,'Investing income')"><span>Primarily investment income<small>Common for Arta members — fully supported</small></span><span class="dot"></span></button>
+        <button class="choice" data-emp="Employed" onclick="pickEmp(this,'Employed')"><span>Employed<small>Salaried or hourly</small></span><span class="dot"></span></button>
+        <button class="choice" data-emp="Self-employed" onclick="pickEmp(this,'Self-employed')"><span>Self-employed<small>Founder, contractor, practice owner</small></span><span class="dot"></span></button>
+        <button class="choice" data-emp="Investing income" onclick="pickEmp(this,'Investing income')"><span>Primarily investment income<small>Common for Arta members — fully supported<br>We'll skip the employer questions.</small></span><span class="dot"></span></button>
         <button class="choice" onclick="pickEmp(this,'Retired')"><span>Retired / not employed</span><span class="dot"></span></button>
       </div>
     </div>
-    <div class="cta-dock"><button class="btn primary" id="empNext" disabled onclick="go('s3b')">Continue</button></div>
+    <div class="cta-dock"><button class="btn primary" id="empNext" disabled onclick="go(state.persona==='margaux'?'s3c':'s3b')">Continue</button></div>
   </section>
 
   <!-- ============ S3b EMPLOYER ============ -->
@@ -855,9 +895,9 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
     <div class="chapters"><span class="done">Confirm</span><span class="now">Income</span><span>Terms</span><span>Review</span></div>
     <div class="scroll">
       <h2 class="display">Where do you work?</h2>
-      <div class="field"><label>Employer</label><input class="input" value="Vertex Biotech Inc." /></div>
-      <div class="field"><label>Your role</label><input class="input" value="Director of Engineering" /></div>
-      <div class="field"><label>Years there</label><input class="input" value="4" style="max-width:120px" /></div>
+      <div class="field"><label id="empLbl">Employer</label><input class="input" id="empName" value="Vertex Biotech Inc." /></div>
+      <div class="field"><label>Your role</label><input class="input" id="empRole" value="Director of Engineering" /></div>
+      <div class="field"><label>Years there</label><input class="input" id="empYears" value="4" style="max-width:120px" /></div>
     </div>
     <div class="cta-dock"><button class="btn primary" onclick="go('s3c')">Continue</button></div>
   </section>
@@ -877,7 +917,7 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
         <label class="switch"><input type="checkbox" id="portfolioToggle" checked><span class="track"></span></label>
         <div>
           <b style="font-size:14px">Consider my Arta portfolio</b>
-          <p class="hint" style="margin-top:3px">You hold <b style="color:var(--text-secondary)">$2.35M</b> with Arta. Including it usually means a higher limit — we already custody it, so nothing new is shared.</p>
+          <p class="hint" style="margin-top:3px" id="toggleCopy">You hold <b style="color:var(--text-secondary)">$412K</b> with Arta. Including it usually means a higher limit — we already custody it, so nothing new is shared.</p>
         </div>
       </div>
     </div>
@@ -922,9 +962,9 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 
       <div class="confirm-card" style="margin-top:14px">
         <div class="head"><span class="micro">Your application</span><button class="edit" onclick="go('s2')">Change</button></div>
-        <div class="kv"><span class="k">Applicant</span><span class="v">Alexandra W. Chen</span></div>
-        <div class="kv"><span class="k">Income</span><span class="v">$285,000 / yr</span></div>
-        <div class="kv"><span class="k">Portfolio considered</span><span class="v">Yes — $2.35M</span></div>
+        <div class="kv"><span class="k">Applicant</span><span class="v" id="revName">Alexandra W. Chen</span></div>
+        <div class="kv"><span class="k">Income</span><span class="v" id="revIncome">$285,000 / yr</span></div>
+        <div class="kv"><span class="k">Portfolio considered</span><span class="v" id="revPort">Yes — $412K</span></div>
         <div class="kv"><span class="k">Requested limit</span><span class="v" id="reviewLimit">$25,000</span></div>
         <div class="kv"><span class="k">Autopay</span><span class="v" id="reviewPay">Full statement balance</span></div>
       </div>
@@ -969,6 +1009,8 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
         <h2 class="display">Welcome to <span class="bn-card">Arta Card</span>.</h2>
       </div>
       <div class="approved-card"><span class="wm" id="cardWm"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAuCAYAAAAFmhZ8AAADUklEQVR42u1cUbKrIAxNHdfVwS5M0IWJ043xPm6dx/UKBEhotTkzTj90CJxjSALYm3MOBL9gAEAH7g0AsJ59gJ1o/Af3yD11hQGK6F8IEV1EF4joAhFdIKILRHTBWdAjn9vq0zHyzBN+Fi5WoZUUWO4BfhaWkrhFVuTUy9BQ0NEJ2wEEDOSvkKkdSUPieR9LZMzWIziFGgdQr+tewP+UfAGcc/tLOecWRwNz0H7utWS0rzKfz7XHPXZq7tWRne7Aq2yhdx9BA4CDNsuXC3HfW4ODe3vk8d2ONM00IMss/HJisVMhjEJ8867snUt4c3LBW+CX8H72/kAkMftsETKTjZE4u9cXEcUgxmMD3AOSf70ll0fZ+154CwAzQiyDFCJ3T7pm6rZeKQlIu8vrd64Uci0UXxdwjw0RFgAeoSwymPkhLpPIKhfC7J2jali8fiqC6qOEv1L+FYIbxdnxqGFG0RVxiWjeIHzNlRJedYwxyr4hNnIcZ9KEC00tsHoLNId5FWf2/kwkdNSYGJeAtRfrzyJ80DG6NxnmEJzbGwc4zxm5KPdXEb3V9KtO5O3B8NozEDIiaseB2Mu/Hcr7TdbufQOBBTwCF3Ofs5/+qQKbLxB582AS7nuE0J/sxfbCQrNx3wcMWhBcTuyj7F3B/z3pWu/b9oW5X57nhQQ3UL+fjuLe9/SSN2xreA6UaaM4L1pwXch96GyiCunZe0YHpCE5AEk/pWsCB8uO6al93LnQiJRyaaRmQ/LVxj7RYI1BJXqiOIo5xq2ibY1J5KhrYBG9jqOJi/sOwh/h12be+oIi3Rsnd2yic8TdRZz4cyuBjqGWNnDuBO6ZSExbhS3FIXgqppcMsKTe/DSkqpSxkS1V8JKguO8gfupzzDC4wDXj+JEzuNcLrhhF18j2N+7RM3aXMcAjY77Bq9TkK5LA7bMhF7kwuY1N3KPnHnl6dX+EmQIcHzC2OlGawxWlLRLuOy8W24zpDYMJzrtbtzbs+5pRk2O5t7E2/el9JhxIi4OK3Hg0LrNsq753hW/c1QXfcGvo8Q8C/i0glm6Pvk+/FRrfEoqrCE4pRo7Hl3I/YWen1N+PKIifzUpttZpIHFsziACCdiiFyYnXa6WdEP/+Vusa0e8P/gEN8n4Y2hQF7AAAAABJRU5ErkJggg==" alt="arta" style="height:15px;display:block;margin-top:2px"></span><span class="num">•••• 4821</span></div>
+      <div class="join-row"><div class="mini-card m1"></div><div class="mini-card m2"></div><div class="mini-card m3"></div><div class="mini-card new"></div></div>
+      <div class="join-cap"><span class="micro">The newest card in your collection</span></div>
       <div class="card" style="margin-top:16px">
         <div class="fact-row"><span class="k">Credit limit</span><span class="v" id="apprLimit">$25,000</span></div>
         <div class="fact-row"><span class="k">Your APR</span><span class="v">21.99% variable</span></div>
@@ -1006,7 +1048,7 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
       <h2 class="display">We need proof of income.</h2>
       <p class="lede">Your stated income and our records don't quite line up. One document sorts it out — your application is saved either way.</p>
       <div class="stack" style="margin-top:16px">
-        <button class="choice" onclick="this.classList.toggle('selected')"><span>Recent payslip<small>Last 3 months</small></span><span class="dot"></span></button>
+        <button class="choice" onclick="this.classList.toggle('selected')"><span id="docOpt1">Recent payslip<small>Last 3 months</small></span><span class="dot"></span></button>
         <button class="choice" onclick="this.classList.toggle('selected')"><span>Last year's tax return<small>Form 1040, first two pages</small></span><span class="dot"></span></button>
       </div>
       <div class="banner info">Documents go straight to the lending team, are used only for this decision, and are deleted from review queues after it.</div>
@@ -1021,18 +1063,18 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
   <section class="screen" id="s6d">
     <div class="scroll" style="padding-top:26px">
       <div class="micro" style="color:var(--status-warn)">Approved — with a change</div>
-      <h2 class="display">We can start you at $10,000.</h2>
+      <h2 class="display">We can start you at <span id="coOffered2">$10,000</span>.</h2>
       <p class="lede">We couldn't approve $25,000 today. This is a real offer, not a consolation — and limits can be revisited after six months of history.</p>
       <div class="card" style="margin-top:16px">
-        <div class="fact-row"><span class="k">You asked for</span><span class="v" style="text-decoration:line-through;color:var(--text-tertiary)">$25,000</span></div>
-        <div class="fact-row"><span class="k">Offered limit</span><span class="v">$10,000</span></div>
+        <div class="fact-row"><span class="k">You asked for</span><span class="v" style="text-decoration:line-through;color:var(--text-tertiary)" id="coAsked">$25,000</span></div>
+        <div class="fact-row"><span class="k">Offered limit</span><span class="v" id="coOffered">$10,000</span></div>
         <div class="fact-row"><span class="k">Your APR</span><span class="v">23.99% variable</span></div>
         <div class="fact-row"><span class="k">Everything else</span><span class="v">Unchanged</span></div>
       </div>
       <p class="hint" style="margin-top:10px">Take your time — this offer stays open for 30 days. Declining it doesn't affect your membership or your score again.</p>
     </div>
     <div class="cta-dock">
-      <button class="btn primary" onclick="apprFromCounter()">Accept $10,000 limit</button>
+      <button class="btn primary" onclick="apprFromCounter()"><span id="coAcceptLbl">Accept $10,000 limit</span></button>
       <button class="btn ghost" onclick="go('s0')">No thanks</button>
     </div>
   </section>
@@ -1059,9 +1101,15 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
   <section class="screen" id="s7">
     <div class="appbar"><button class="back" onclick="go('s6a')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
     <div class="scroll">
-      <div class="micro">Current balance</div>
-      <div class="limit-value" style="font-size:36px">$8,420<sup>19</sup></div>
-      <p class="hint">Statement closed Jul 30 · Payment due Aug 8 · Limit $25,000</p>
+      <div class="row" style="align-items:flex-start;justify-content:space-between">
+        <div>
+          <div class="micro">Current balance</div>
+          <div class="limit-value" style="font-size:36px">$8,420<sup>19</sup></div>
+          <p class="hint">Statement closed Jul 30 · Payment due Aug 8 · Limit <span id="homeLimit">$25,000</span></p>
+        </div>
+        <div class="cardchip" id="cardChip" title="Long-press for card actions"></div>
+      </div>
+      <p class="stack-hint" style="margin-top:6px">Long-press the card for freeze &amp; details.</p>
 
       <div style="height:16px"></div>
       <div class="ai-card" id="aiCard">
@@ -1094,13 +1142,50 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 
       <div style="height:14px"></div>
       <div class="card">
+        <div class="micro" style="margin-bottom:10px">Spend stacks</div>
+        <div class="stacks-row">
+          <div class="stack-chip"><b>SF Eats</b><span>12 transactions · $842.60</span></div>
+          <div class="stack-chip"><b>Q3 Travel</b><span>3 transactions · $2,180.00</span></div>
+        </div>
+        <p class="stack-hint">Your stacks, your names — aggregates feed your spend insights.</p>
+      </div>
+      <div style="height:14px"></div>
+      <div class="card">
         <div class="micro" style="margin-bottom:10px">Recent activity</div>
-        <div class="fact-row"><span class="k">Flour + Water · SF</span><span class="v">$184.20</span></div>
-        <div class="fact-row"><span class="k">United Airlines</span><span class="v">$1,240.00</span></div>
-        <div class="fact-row"><span class="k">Blue Bottle</span><span class="v">$7.85</span></div>
+        <div class="fact-row txn" data-txn="Flour + Water · SF"><span class="k">Flour + Water · SF</span><span class="v">$184.20</span></div>
+        <div class="fact-row txn" data-txn="United Airlines"><span class="k">United Airlines</span><span class="v">$1,240.00</span></div>
+        <div class="fact-row txn" data-txn="Blue Bottle"><span class="k">Blue Bottle</span><span class="v">$7.85</span></div>
+        <p class="stack-hint">Long-press a transaction to add it to a Stack.</p>
+      </div>
+      <div style="height:14px"></div>
+      <div class="cardgrid">
+        <div class="pcard g1" style="aspect-ratio:1.9"><span class="nm">Rewards → Portfolio</span><div><span class="amt">$340 swept this month</span><span class="up">Rewards compound like everything else here</span></div></div>
+        <div class="pcard g3" style="aspect-ratio:1.9"><span class="nm">Statements</span><div><span class="amt">July closes in 3 days</span><span class="up">PDF + Stack view</span></div></div>
       </div>
     </div>
   </section>
+
+  <!-- ============ STACK / CARD ACTION SHEETS ============ -->
+  <div class="sheet-scrim" id="stackScrim" onclick="this.classList.remove('open')">
+    <div class="sheet small" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="as-title">Add "<span id="stackTxnName">—</span>" to a Stack</div>
+      <button class="as-opt" onclick="stackAdded('SF Eats')">SF Eats<small>12 transactions · $842.60</small></button>
+      <button class="as-opt" onclick="stackAdded('Q3 Travel')">Q3 Travel<small>3 transactions · $2,180.00</small></button>
+      <button class="as-opt" onclick="stackAdded('a new Stack')">+ New Stack<small>Name it anything — "Client dinners", "Guilt purchases"…</small></button>
+      <button class="as-cancel" onclick="document.getElementById('stackScrim').classList.remove('open')">Cancel</button>
+    </div>
+  </div>
+  <div class="sheet-scrim" id="cardScrim" onclick="this.classList.remove('open')">
+    <div class="sheet small" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="as-title">Arta Card ···· 4821</div>
+      <button class="as-opt" onclick="alert('Card frozen. Unfreeze anytime — takes effect instantly.')">Freeze card<small>Instant, reversible</small></button>
+      <button class="as-opt" onclick="alert('Full card number, expiry, CVV — after Face ID.')">View card details<small>Face ID required</small></button>
+      <button class="as-opt" onclick="alert('Autopay, statement date, limits — the terms you chose at application.')">Card settings</button>
+      <button class="as-cancel" onclick="document.getElementById('cardScrim').classList.remove('open')">Cancel</button>
+    </div>
+  </div>
 
   <!-- ============ FULL AGREEMENT BOTTOM SHEET ============ -->
   <div class="sheet-scrim" id="sheetScrim" onclick="closeSheet()">
@@ -1136,15 +1221,24 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 <div class="demo">
   <h3>Demo controls — for the walkthrough</h3>
   <div class="drow">
-    <label>Decision</label>
+    <label>Persona</label>
+    <select id="personaSel" onchange="applyPersona(this.value)">
+      <option value="alexandra">Alexandra — salaried optimizer</option>
+      <option value="dev">Dev — founder, lumpy income</option>
+      <option value="margaux">Margaux — portfolio-first</option>
+    </select>
+  </div>
+  <div class="drow">
+    <label>Outcome</label>
     <select id="outcomeSel">
+      <option value="auto">Auto — follows the persona</option>
       <option value="s6a">Approved (instant)</option>
       <option value="s6b">In review</option>
       <option value="s6c">More info needed</option>
       <option value="s6d">Counter-offer</option>
       <option value="s6e">Declined</option>
     </select>
-    <span style="font-size:11px;color:#6d6e73">applies on Submit</span>
+    <span style="font-size:11px;color:#6d6e73">Margaux: portfolio toggle decides</span>
   </div>
   <div class="drow">
     <label>Theme</label>
@@ -1170,7 +1264,39 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 </div>
 
 <script>
-const state = { consents:[false,false,false], limit:25000, pay:'Full statement balance' };
+const state = { consents:[false,false,false], limit:25000, pay:'Full statement balance', persona:'alexandra', recLimit:25000 };
+
+const PERSONAS = {
+  alexandra: {
+    name:'Alexandra W. Chen', dob:'14 Mar 1988', cit:'United States',
+    total:'$412,380', sup:'12', change:'+ $18,204.00 total change',
+    emp:'Employed', empLbl:'Employer', empName:'Vertex Biotech Inc.', empRole:'Director of Engineering', empYears:'4',
+    income:'285,000', portShort:'$412K',
+    toggleCopy:'You hold <b style="color:var(--text-secondary)">$412K</b> with Arta. Including it usually means a higher limit — we already custody it, so nothing new is shared.',
+    min:5000, max:40000, rec:25000, outcome:'s6a',
+    docOpt:'Recent payslip<small>Last 3 months</small>'
+  },
+  dev: {
+    name:'Dev Patel', dob:'02 Nov 1990', cit:'United States',
+    total:'$521,940', sup:'08', change:'+ $9,412.00 total change',
+    emp:'Self-employed', empLbl:'Business', empName:'Nimbus Labs, Inc.', empRole:'Founder & CEO', empYears:'3',
+    income:'180,000', portShort:'$520K',
+    toggleCopy:'You hold <b style="color:var(--text-secondary)">$520K</b> with Arta. Founder income moves around — your portfolio gives the decision something steady to stand on.',
+    min:5000, max:30000, rec:15000, outcome:'s6c',
+    docOpt:'Business bank statements<small>Last 6 months</small>'
+  },
+  margaux: {
+    name:'Margaux Laurent', dob:'27 Jun 1979', cit:'France · US permanent resident',
+    total:'$2,345,681', sup:'77', change:'+ $120,334.00 total change',
+    emp:'Investing income', empLbl:'Employer', empName:'—', empRole:'—', empYears:'—',
+    income:'95,000', portShort:'$2.35M',
+    toggleCopy:'You hold <b style="color:var(--text-secondary)">$2.35M</b> with Arta. For members whose income is mostly from investments, this is usually the difference between a starter limit and the right one.',
+    min:10000, max:60000, rec:40000, outcome:'dynamic',
+    docOpt:'Recent payslip<small>Last 3 months</small>'
+  }
+};
+
+function fmt$(n){ return '$' + Number(n).toLocaleString('en-US'); }
 
 function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -1206,12 +1332,13 @@ function fmtIncome(inp){
 }
 function limitChange(v){
   state.limit=Number(v);
-  const f='$'+Number(v).toLocaleString('en-US');
+  const f=fmt$(v);
   document.getElementById('limitValue').textContent=f;
   document.getElementById('reviewLimit').textContent=f;
   document.getElementById('apprLimit').textContent=f;
-  document.getElementById('recoChip').style.opacity=(v==25000)?'1':'0.35';
-  document.getElementById('recoChip').textContent=(v==25000)?'✓ Recommended, based on what you shared':'Recommended: $25,000 — tap to learn why';
+  const chip=document.getElementById('recoChip');
+  chip.style.opacity=(v==state.recLimit)?'1':'0.35';
+  chip.textContent=(v==state.recLimit)?'✓ Recommended, based on what you shared':'Recommended: '+fmt$(state.recLimit)+' — tap to learn why';
 }
 function toggleConsent(el,i){
   state.consents[i]=!state.consents[i];
@@ -1220,7 +1347,18 @@ function toggleConsent(el,i){
 }
 function submitApp(){
   go('s6');
-  const dest=document.getElementById('outcomeSel').value;
+  const override=document.getElementById('outcomeSel').value;
+  let dest;
+  if (override!=='auto') dest=override;
+  else if (state.persona==='margaux') dest=document.getElementById('portfolioToggle').checked?'s6a':'s6d';
+  else dest=PERSONAS[state.persona].outcome;
+  if (dest==='s6d'){
+    document.getElementById('coAsked').textContent=fmt$(state.limit);
+    document.getElementById('coOffered').textContent='$10,000';
+    document.getElementById('coOffered2').textContent='$10,000';
+    document.getElementById('coAcceptLbl').textContent='Accept $10,000 limit';
+  }
+  if (dest==='s6a') document.getElementById('apprLimit').textContent=fmt$(state.limit);
   setTimeout(()=>go(dest),1800);
 }
 function apprFromCounter(){
@@ -1231,6 +1369,7 @@ function aiAct(){
   document.getElementById('aiCard').style.display='none';
   document.getElementById('aiCardDone').style.display='';
 }
+
 /* full-agreement bottom sheet */
 function openSheet(){
   document.getElementById('sheetScrim').classList.add('open');
@@ -1245,7 +1384,7 @@ function sheetScroll(){
 }
 function updateFab(){
   const b=document.getElementById('sheetBody'), f=document.getElementById('sheetFab');
-  f.style.display = (b.scrollTop + b.clientHeight >= b.scrollHeight - 8) ? 'none' : '';
+  f.style.display=(b.scrollTop+b.clientHeight>=b.scrollHeight-8)?'none':'';
 }
 document.getElementById('sheetBody').addEventListener('scroll', updateFab);
 function agreeSheet(){
@@ -1253,6 +1392,67 @@ function agreeSheet(){
     toggleConsent(document.querySelectorAll('#s5 .consent')[2], 2);
   }
   closeSheet();
+}
+
+/* personas */
+function applyPersona(key){
+  state.persona=key;
+  const p=PERSONAS[key];
+  document.querySelector('#s0 .amount').innerHTML=p.total+'<sup>'+p.sup+'</sup>';
+  document.querySelector('#s0 .change').textContent=p.change;
+  document.getElementById('offerLimit').textContent=fmt$(p.rec);
+  document.getElementById('pName').textContent=p.name;
+  document.getElementById('pDob').textContent=p.dob;
+  document.getElementById('pCit').textContent=p.cit;
+  document.querySelectorAll('#empChoices .choice').forEach(c=>{
+    c.classList.toggle('selected', c.dataset.emp===p.emp);
+  });
+  document.getElementById('empNext').disabled=false;
+  document.getElementById('empLbl').textContent=p.empLbl;
+  document.getElementById('empName').value=p.empName;
+  document.getElementById('empRole').value=p.empRole;
+  document.getElementById('empYears').value=p.empYears;
+  document.getElementById('incomeInput').value=p.income;
+  document.getElementById('toggleCopy').innerHTML=p.toggleCopy;
+  document.getElementById('portfolioToggle').checked=true;
+  const r=document.getElementById('limitRange');
+  r.min=p.min; r.max=p.max; r.value=p.rec;
+  state.recLimit=p.rec;
+  document.querySelector('.range-labels span:first-child').textContent=fmt$(p.min);
+  document.querySelector('.range-labels span:last-child').textContent=fmt$(p.max);
+  limitChange(p.rec);
+  document.getElementById('revName').textContent=p.name;
+  document.getElementById('revIncome').textContent=fmt$(p.income.replace(/,/g,''))+' / yr';
+  syncRevPort();
+  document.getElementById('docOpt1').innerHTML=p.docOpt;
+  restart();
+}
+function syncRevPort(){
+  const p=PERSONAS[state.persona];
+  const on=document.getElementById('portfolioToggle').checked;
+  document.getElementById('revPort').textContent=on?('Yes — '+p.portShort):'No';
+}
+document.getElementById('portfolioToggle').addEventListener('change', syncRevPort);
+
+/* long-press (Stacks vocabulary) */
+function longpress(el, fn){
+  let t=null;
+  const down=e=>{ t=setTimeout(()=>{ t=null; fn(e); },450); };
+  const up=()=>{ if(t) clearTimeout(t); };
+  el.addEventListener('pointerdown',down);
+  el.addEventListener('pointerup',up);
+  el.addEventListener('pointerleave',up);
+}
+document.querySelectorAll('.txn').forEach(el=>longpress(el,()=>{
+  document.getElementById('stackTxnName').textContent=el.dataset.txn;
+  document.getElementById('stackScrim').classList.add('open');
+}));
+longpress(document.getElementById('cardChip'),()=>{
+  document.getElementById('cardScrim').classList.add('open');
+});
+function stackAdded(name){
+  document.getElementById('stackScrim').classList.remove('open');
+  alert('Added to '+name+'. Stack aggregates update instantly.');
 }
 
 function setTheme(t){
@@ -1266,6 +1466,8 @@ function setTheme(t){
   document.querySelectorAll('.bn-cash').forEach(e=>e.textContent=bn.cash);
   document.querySelectorAll('.bn-ai').forEach(e=>e.textContent=bn.ai);
 }
+
+applyPersona('alexandra');
 </script>
 </body>
 </html>
