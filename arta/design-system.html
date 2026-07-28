@@ -352,9 +352,9 @@
           <div><div class="state-lbl">Marketing display · Ofelia Display 500 · brand moments only</div><div class="t-display" style="letter-spacing:.045em;line-height:1.3">Wealth, worn lightly</div></div>
           <div><div class="state-lbl">Product display · Rotunda light</div><div class="t-display">Your card is ready</div></div>
           <div><div class="state-lbl">Caps micro-label</div><div class="t-caps">Requested credit limit</div></div>
-          <div><div class="state-lbl">Financial numerals</div><div class="t-num">$12,000<sup>00</sup><span class="up">+ $340.00 rewards this month</span></div></div>
+          <div><div class="state-lbl">Financial numerals</div><div class="t-num">S$12,000<sup>00</sup><span class="up">+ S$340.00 rewards this month</span></div></div>
           <div><div class="state-lbl">Body</div><div class="t-body">We'll confirm a few details Arta already has, then ask about income and the terms you want.</div></div>
-          <div><div class="state-lbl">Legal · proposed</div><div class="t-legal">Variable APR of 21.24%–28.24% based on creditworthiness and the Prime Rate.¹ Annual fee $150. A late fee of up to $40 may apply. <span class="fn">¹ Rates as of July 2026. See the Cardmember Agreement for how we calculate variable rates.</span></div></div>
+          <div><div class="state-lbl">Legal · proposed</div><div class="t-legal">Variable APR of 21.24%–28.24% based on creditworthiness and the Prime Rate.¹ Annual fee S$150. A late fee of up to S$40 may apply. <span class="fn">¹ Rates as of July 2026. See the Cardmember Agreement for how we calculate variable rates.</span></div></div>
         </div>
       </div>
     </section>
@@ -439,10 +439,10 @@
       <p class="desc">Requested credit limit defaults to a <strong>recommendation</strong>, not a blank. The member adjusts within an honest min–max; the "why this number" reasoning is one tap away. <strong>Drag it.</strong></p>
       <div class="canvas">
         <div class="slider-wrap">
-          <div class="slider-val" id="lim-val">$12,000</div>
+          <div class="slider-val" id="lim-val">S$12,000</div>
           <div class="slider-rec" id="lim-rec">✦ Recommended, based on what you shared</div>
           <input type="range" class="limit" id="lim" min="2000" max="25000" step="500" value="12000">
-          <div class="slider-minmax"><span>$2,000</span><span>$25,000</span></div>
+          <div class="slider-minmax"><span>S$2,000</span><span>S$25,000</span></div>
         </div>
       </div>
     </section>
@@ -455,8 +455,8 @@
           <div class="kt-head"><span class="kt-title">Key terms</span><span class="kt-lock">🔒 Always visible</span></div>
           <table>
             <tr><td class="k">Purchase APR</td><td class="v">21.24%–28.24% variable</td></tr>
-            <tr><td class="k">Annual fee</td><td class="v">$150</td></tr>
-            <tr><td class="k">Late fee</td><td class="v">up to $40</td></tr>
+            <tr><td class="k">Annual fee</td><td class="v">S$150</td></tr>
+            <tr><td class="k">Late fee</td><td class="v">up to S$40</td></tr>
             <tr><td class="k">Foreign transaction</td><td class="v">0%</td></tr>
             <tr><td class="k">Grace period</td><td class="v">≥ 25 days</td></tr>
           </table>
@@ -476,7 +476,7 @@
           </div>
           <div class="consent checked" onclick="this.classList.toggle('checked'); this.querySelector('.box').textContent = this.classList.contains('checked') ? '✓' : '';">
             <div class="box">✓</div>
-            <div><div class="c-main">Everything I've shared is accurate</div><div class="c-sub">Knowingly providing false information is a federal offense.</div></div>
+            <div><div class="c-main">Everything I've shared is accurate</div><div class="c-sub">Knowingly providing false information is an offence under Singapore law.</div></div>
           </div>
         </div>
       </div>
@@ -516,7 +516,7 @@
       <p class="desc">All outcomes are designed, not just approval. The decline keeps its dignity: private, specific as legally possible, zero cross-sell — <strong>a declined applicant is still a member tomorrow</strong>.</p>
       <div class="canvas">
         <div class="decisions">
-          <div class="dec ok"><div class="d-k">Approved</div><div class="d-card"></div><div class="d-t">Welcome to the Arta Card</div><div class="d-s">$12,000 limit · virtual card ready now · Add to Apple Pay</div></div>
+          <div class="dec ok"><div class="d-k">Approved</div><div class="d-card"></div><div class="d-t">Welcome to the Arta Card</div><div class="d-s">S$12,000 limit · virtual card ready now · Add to Apple Pay</div></div>
           <div class="dec rev"><div class="d-k">In review</div><div class="d-card"></div><div class="d-t">We're on it</div><div class="d-s">Typically 1–2 business days. We'll notify you — nothing to do.</div></div>
           <div class="dec no"><div class="d-k">Declined</div><div class="d-t">We can't offer the card right now</div><div class="d-s">The full explanation arrives in writing within 7 days. Your Arta membership is unchanged.</div></div>
         </div>
@@ -591,7 +591,7 @@
     const v = Number(lim.value);
     limVal.textContent = '$' + v.toLocaleString('en-US');
     lim.style.setProperty('--fill', ((v - 2000) / 23000 * 100) + '%');
-    limRec.textContent = v === 12000 ? '✦ Recommended, based on what you shared' : 'Recommended: $12,000 — why this number?';
+    limRec.textContent = v === 12000 ? '✦ Recommended, based on what you shared' : 'Recommended: S$12,000 — why this number?';
   }
   lim.addEventListener('input', updLim); updLim();
 </script>

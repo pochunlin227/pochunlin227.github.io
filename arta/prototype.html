@@ -895,21 +895,21 @@ body.embed .phone { box-shadow:none; }
     <div class="scroll">
       <div class="port-head">
         <div class="micro">Your portfolio</div>
-        <div class="amount">$2,345,681<sup>77</sup></div>
-        <div class="change">+ $120,334.00 total change</div>
+        <div class="amount">S$2,345,681<sup>77</sup></div>
+        <div class="change">+ S$120,334.00 total change</div>
       </div>
       <div class="cardgrid">
-        <div class="pcard g1"><span class="nm">US Treasuries</span><div><span class="amt">$100K</span><span class="up">+1.2% this month</span></div></div>
-        <div class="pcard g2"><span class="nm">Private Equity</span><div><span class="amt">$80.9K</span><span class="up">Vintage 2024</span></div></div>
-        <div class="pcard g3"><span class="nm">Quant Strategies</span><div><span class="amt">$64.2K</span><span class="up">+4.8% YTD</span></div></div>
+        <div class="pcard g1"><span class="nm">US Treasuries</span><div><span class="amt">S$100K</span><span class="up">+1.2% this month</span></div></div>
+        <div class="pcard g2"><span class="nm">Private Equity</span><div><span class="amt">S$80.9K</span><span class="up">Vintage 2024</span></div></div>
+        <div class="pcard g3"><span class="nm">Quant Strategies</span><div><span class="amt">S$64.2K</span><span class="up">+4.8% YTD</span></div></div>
         <div class="pcard offer" onclick="go('s1')">
           <span class="badge-new">New</span>
           <span class="nm">Arta Card</span>
-          <div><span class="amt">Pre-qualified up to <b id="offerLimit">$25,000</b></span><span class="up">See your offer →</span></div>
+          <div><span class="amt">Pre-qualified up to <b id="offerLimit">S$25,000</b></span><span class="up">See your offer →</span></div>
         </div>
       </div>
       <p class="stack-hint">Long-press any card to add it to a Stack.</p>
-      <p class="hint" style="margin-top:10px">Pre-qualification uses only what Arta already knows — no credit pull until you submit. APR 21.99–27.99% variable · $150 annual fee, stated up front.</p>
+      <p class="hint" style="margin-top:10px">Pre-qualification uses only what Arta already knows — no credit pull until you submit. APR 21.99–27.99% variable · S$150 annual fee, stated up front.</p>
     </div>
   </section>
 
@@ -951,12 +951,12 @@ body.embed .phone { box-shadow:none; }
         </div>
         <div class="confirm-card">
           <div class="head"><span class="micro">Home address</span><button class="edit">Edit</button></div>
-          <div class="kv"><span class="k">Residential</span><span class="v">2847 Steiner St<br>San Francisco, CA 94123</span></div>
+          <div class="kv"><span class="k">Residential</span><span class="v">18 Duxton Hill, #03-01<br>Singapore 089601</span></div>
         </div>
         <div class="confirm-card">
           <div class="head"><span class="micro">Tax residence</span><button class="edit">Edit</button></div>
-          <div class="kv"><span class="k">Country</span><span class="v">United States</span></div>
-          <div class="kv"><span class="k">TIN</span><span class="v">••• •• 4821</span></div>
+          <div class="kv"><span class="k">Country</span><span class="v">Singapore</span></div>
+          <div class="kv"><span class="k">NRIC</span><span class="v">S••••321A</span></div>
         </div>
       </div>
       <p class="hint" style="margin-top:12px">Editing an address or tax residence may require a quick re-verification. It won't stop this application.</p>
@@ -1008,7 +1008,7 @@ body.embed .phone { box-shadow:none; }
         <label class="switch"><input type="checkbox" id="portfolioToggle" checked><span class="track"></span></label>
         <div>
           <b style="font-size:14px">Consider my Arta portfolio</b>
-          <p class="hint" style="margin-top:3px" id="toggleCopy">You hold <b style="color:var(--text-secondary)">$412K</b> with Arta. Including it usually means a higher limit — we already custody it, so nothing new is shared.</p>
+          <p class="hint" style="margin-top:3px" id="toggleCopy">You hold <b style="color:var(--text-secondary)">S$412K</b> with Arta. Including it usually means a higher limit — we already custody it, so nothing new is shared.</p>
         </div>
       </div>
     </div>
@@ -1022,9 +1022,9 @@ body.embed .phone { box-shadow:none; }
     <div class="scroll">
       <h2 class="display">Your card, your terms</h2>
       <div class="micro" style="margin-top:14px">Requested credit limit</div>
-      <div class="limit-value" id="limitValue">$25,000</div>
+      <div class="limit-value" id="limitValue">S$25,000</div>
       <input type="range" min="5000" max="40000" step="1000" value="25000" id="limitRange" oninput="limitChange(this.value)">
-      <div class="range-labels"><span>$5,000</span><span>$40,000</span></div>
+      <div class="range-labels"><span>S$5,000</span><span>S$40,000</span></div>
       <div class="reco-chip" id="recoChip">✓ Recommended, based on what you shared</div>
 
       <div class="micro" style="margin:26px 0 8px">Autopay</div>
@@ -1054,9 +1054,9 @@ body.embed .phone { box-shadow:none; }
       <div class="confirm-card" style="margin-top:14px">
         <div class="head"><span class="micro">Your application</span><button class="edit" onclick="go('s2')">Change</button></div>
         <div class="kv"><span class="k">Applicant</span><span class="v" id="revName">Alexandra W. Chen</span></div>
-        <div class="kv"><span class="k">Income</span><span class="v" id="revIncome">$285,000 / yr</span></div>
-        <div class="kv"><span class="k">Portfolio considered</span><span class="v" id="revPort">Yes — $412K</span></div>
-        <div class="kv"><span class="k">Requested limit</span><span class="v" id="reviewLimit">$25,000</span></div>
+        <div class="kv"><span class="k">Income</span><span class="v" id="revIncome">S$285,000 / yr</span></div>
+        <div class="kv"><span class="k">Portfolio considered</span><span class="v" id="revPort">Yes — S$412K</span></div>
+        <div class="kv"><span class="k">Requested limit</span><span class="v" id="reviewLimit">S$25,000</span></div>
         <div class="kv"><span class="k">Autopay</span><span class="v" id="reviewPay">Full statement balance</span></div>
       </div>
 
@@ -1066,9 +1066,9 @@ body.embed .phone { box-shadow:none; }
         <div class="trow"><span class="tk">Purchase APR</span><span class="tv">21.99–27.99%<small>variable, set at decision</small></span></div>
         <div class="trow"><span class="tk">Cash advance APR</span><span class="tv">29.99%<small>variable</small></span></div>
         <div class="trow"><span class="tk">Penalty APR</span><span class="tv">None</span></div>
-        <div class="trow"><span class="tk">Annual fee</span><span class="tv">$150</span></div>
-        <div class="trow"><span class="tk">Foreign transaction fee</span><span class="tv">$0</span></div>
-        <div class="trow"><span class="tk">Late payment fee</span><span class="tv">Up to $40</span></div>
+        <div class="trow"><span class="tk">Annual fee</span><span class="tv">S$150</span></div>
+        <div class="trow"><span class="tk">Foreign transaction fee</span><span class="tv">S$0</span></div>
+        <div class="trow"><span class="tk">Late payment fee</span><span class="tv">Up to S$40</span></div>
         <div class="trow"><span class="tk">Interest-free period</span><span class="tv">25 days<small>on purchases, if paid in full</small></span></div>
       </div>
       <button class="btn quiet" style="text-align:left;padding-left:2px" onclick="openSheet()">Read the full Cardmember Agreement →</button>
@@ -1076,7 +1076,7 @@ body.embed .phone { box-shadow:none; }
       <div style="height:8px"></div>
       <div class="card">
         <div class="consent" onclick="toggleConsent(this,0)"><span class="checkbox">✓</span><p>Everything in this application is true and complete.</p></div>
-        <div class="consent" onclick="toggleConsent(this,1)"><span class="checkbox">✓</span><p>Arta may run a <b>hard credit check</b> now. This can lower your credit score by a few points for a short time.</p></div>
+        <div class="consent" onclick="toggleConsent(this,1)"><span class="checkbox">✓</span><p>Arta may run a <b>Credit Bureau Singapore check</b> now. This can lower your credit score by a few points for a short time.</p></div>
         <div class="consent" onclick="toggleConsent(this,2)"><span class="checkbox">✓</span><p>I've read the key terms above and agree to the <b>Cardmember Agreement</b>.</p></div>
       </div>
     </div>
@@ -1103,7 +1103,7 @@ body.embed .phone { box-shadow:none; }
       <div class="join-row"><div class="mini-card m1"></div><div class="mini-card m2"></div><div class="mini-card m3"></div><div class="mini-card new"></div></div>
       <div class="join-cap"><span class="micro">The newest card in your collection</span></div>
       <div class="card" style="margin-top:16px">
-        <div class="fact-row"><span class="k">Credit limit</span><span class="v" id="apprLimit">$25,000</span></div>
+        <div class="fact-row"><span class="k">Credit limit</span><span class="v" id="apprLimit">S$25,000</span></div>
         <div class="fact-row"><span class="k">Your APR</span><span class="v">21.99% variable</span></div>
         <div class="fact-row"><span class="k">Autopay</span><span class="v">Full balance · <span class="bn-cash">Arta Cash</span></span></div>
         <div class="fact-row"><span class="k">Physical card</span><span class="v">Arrives in 5–7 days</span></div>
@@ -1127,7 +1127,7 @@ body.embed .phone { box-shadow:none; }
         <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Under review</b><span>Typically 1–2 business days</span></div></div>
         <div class="tl-step"><div class="tl-rail"><div class="tl-dot"></div></div><div class="tl-body"><b>Decision</b><span>We'll notify you the moment it's made</span></div></div>
       </div>
-      <div class="banner info">Your credit report was accessed once for this application. Waiting doesn't affect your score further.</div>
+      <div class="banner info">Your Credit Bureau Singapore report was accessed once for this application. Waiting doesn't affect your score further.</div>
     </div>
     <div class="cta-dock"><button class="btn ghost" onclick="go('s0')">Back to Arta</button></div>
   </section>
@@ -1140,7 +1140,7 @@ body.embed .phone { box-shadow:none; }
       <p class="lede">Your stated income and our records don't quite line up. One document sorts it out — your application is saved either way.</p>
       <div class="stack" style="margin-top:16px">
         <button class="choice" onclick="this.classList.toggle('selected')"><span id="docOpt1">Recent payslip<small>Last 3 months</small></span><span class="dot"></span></button>
-        <button class="choice" onclick="this.classList.toggle('selected')"><span>Last year's tax return<small>Form 1040, first two pages</small></span><span class="dot"></span></button>
+        <button class="choice" onclick="this.classList.toggle('selected')"><span>Notice of Assessment<small>Latest, from IRAS — a myTax Portal PDF is fine</small></span><span class="dot"></span></button>
       </div>
       <div class="banner info">Documents go straight to the lending team, are used only for this decision, and are deleted from review queues after it.</div>
     </div>
@@ -1154,18 +1154,18 @@ body.embed .phone { box-shadow:none; }
   <section class="screen" id="s6d">
     <div class="scroll" style="padding-top:26px">
       <div class="micro" style="color:var(--status-warn)">Approved — with a change</div>
-      <h2 class="display">We can start you at <span id="coOffered2">$10,000</span>.</h2>
-      <p class="lede">We couldn't approve $25,000 today. This is a real offer, not a consolation — and limits can be revisited after six months of history.</p>
+      <h2 class="display">We can start you at <span id="coOffered2">S$10,000</span>.</h2>
+      <p class="lede">We couldn't approve S$25,000 today. This is a real offer, not a consolation — and limits can be revisited after six months of history.</p>
       <div class="card" style="margin-top:16px">
-        <div class="fact-row"><span class="k">You asked for</span><span class="v" style="text-decoration:line-through;color:var(--text-tertiary)" id="coAsked">$25,000</span></div>
-        <div class="fact-row"><span class="k">Offered limit</span><span class="v" id="coOffered">$10,000</span></div>
+        <div class="fact-row"><span class="k">You asked for</span><span class="v" style="text-decoration:line-through;color:var(--text-tertiary)" id="coAsked">S$25,000</span></div>
+        <div class="fact-row"><span class="k">Offered limit</span><span class="v" id="coOffered">S$10,000</span></div>
         <div class="fact-row"><span class="k">Your APR</span><span class="v">23.99% variable</span></div>
         <div class="fact-row"><span class="k">Everything else</span><span class="v">Unchanged</span></div>
       </div>
       <p class="hint" style="margin-top:10px">Take your time — this offer stays open for 30 days. Declining it doesn't affect your membership or your score again.</p>
     </div>
     <div class="cta-dock">
-      <button class="btn primary" onclick="apprFromCounter()"><span id="coAcceptLbl">Accept $10,000 limit</span></button>
+      <button class="btn primary" onclick="apprFromCounter()"><span id="coAcceptLbl">Accept S$10,000 limit</span></button>
       <button class="btn ghost" onclick="go('s0')">No thanks</button>
     </div>
   </section>
@@ -1178,7 +1178,7 @@ body.embed .phone { box-shadow:none; }
       <p class="lede">This came down to <b style="color:var(--text-primary)">recent credit utilization</b> — not your standing as an Arta member, which is unchanged.</p>
       <div class="card" style="margin-top:16px">
         <b style="font-size:14.5px">What happens next</b>
-        <p class="hint" style="margin-top:6px;line-height:1.6">A letter explaining the specific reasons arrives within 7–10 days — you're entitled to it by law. You can apply again anytime after 90 days, and if your utilization changes sooner, we'll let you know.</p>
+        <p class="hint" style="margin-top:6px;line-height:1.6">A written explanation of the specific reasons arrives within 7 days — and after a decline, your Credit Bureau Singapore report is free to request. You can apply again anytime after 90 days, and if your utilization changes sooner, we'll let you know.</p>
       </div>
       <div class="banner info">No one at Arta outside the lending team can see this decision. Your investments, cash, and member access are exactly as they were.</div>
     </div>
@@ -1195,8 +1195,8 @@ body.embed .phone { box-shadow:none; }
       <div class="row" style="align-items:flex-start;justify-content:space-between">
         <div>
           <div class="micro">Current balance</div>
-          <div class="limit-value" style="font-size:36px">$8,420<sup>19</sup></div>
-          <p class="hint">Statement closed Jul 30 · Payment due Aug 8 · Limit <span id="homeLimit">$25,000</span></p>
+          <div class="limit-value" style="font-size:36px">S$8,420<sup>19</sup></div>
+          <p class="hint">Statement closed Jul 30 · Payment due Aug 8 · Limit <span id="homeLimit">S$25,000</span></p>
         </div>
         <div class="cardchip" id="cardChip" title="Long-press for card actions"></div>
       </div>
@@ -1237,12 +1237,12 @@ body.embed .phone { box-shadow:none; }
         <div class="ai-head"><div class="ai-glyph"></div><span class="micro"><span class="bn-ai">Arta AI</span> · Repayment</span></div>
         <div class="ai-stream">Read your statement · cash yield · fund calendar — 3 signals</div>
         <div class="ai-body">
-          <h4>Paying this statement in full saves you about $154 this cycle.</h4>
+          <h4>Paying this statement in full saves you about S$154 this cycle.</h4>
           <p class="hint" style="margin-top:8px">Your autopay is set to <b style="color:var(--text-secondary)">minimum due</b> — it was changed in April and never switched back.</p>
           <div class="math">
-            <div class="m-row"><span>Interest if you carry $8,420 at 21.99%</span><span class="neg">−$154</span></div>
-            <div class="m-row"><span>Yield that cash earns in Arta Cash (4.1%)</span><span class="pos">+$29</span></div>
-            <div class="m-net"><span>Net cost of not paying in full</span><span class="neg">−$125</span></div>
+            <div class="m-row"><span>Interest if you carry S$8,420 at 21.99%</span><span class="neg">−S$154</span></div>
+            <div class="m-row"><span>Yield that cash earns in Arta Cash (4.1%)</span><span class="pos">+S$29</span></div>
+            <div class="m-net"><span>Net cost of not paying in full</span><span class="neg">−S$125</span></div>
           </div>
           <div class="capcall">◈&nbsp;<span><b>Fund calendar:</b> your PE fund calls capital Aug 15. Paying from Arta Cash keeps your invested positions untouched.</span></div>
           <div class="ai-actions">
@@ -1259,7 +1259,7 @@ body.embed .phone { box-shadow:none; }
       <div class="ai-card" id="aiCardDone" style="display:none">
         <div class="ai-head"><div class="ai-glyph"></div><span class="micro"><span class="bn-ai">Arta AI</span> · Repayment</span></div>
         <div class="ai-body">
-          <h4 style="color:var(--status-positive)" id="doneMsg">Done — $8,420.19 will move from Arta Cash on Aug 8.</h4>
+          <h4 style="color:var(--status-positive)" id="doneMsg">Done — S$8,420.19 will move from Arta Cash on Aug 8.</h4>
           <p class="hint" style="margin-top:8px">You'll get a receipt the moment it clears. Change your mind anytime before Aug 7, 11:59 PM.</p>
         </div>
       </div>
@@ -1269,22 +1269,22 @@ body.embed .phone { box-shadow:none; }
       <div class="card">
         <div class="micro" style="margin-bottom:10px">Spend stacks</div>
         <div class="stacks-row">
-          <div class="stack-chip"><b>SF Eats</b><span>12 transactions · $842.60</span></div>
-          <div class="stack-chip"><b>Q3 Travel</b><span>3 transactions · $2,180.00</span></div>
+          <div class="stack-chip"><b>Dempsey Eats</b><span>12 transactions · S$842.60</span></div>
+          <div class="stack-chip"><b>Q3 Travel</b><span>3 transactions · S$2,180.00</span></div>
         </div>
         <p class="stack-hint">Your stacks, your names — aggregates feed your spend insights.</p>
       </div>
       <div style="height:14px"></div>
       <div class="card">
         <div class="micro" style="margin-bottom:10px">Recent activity</div>
-        <div class="fact-row txn" data-txn="Flour + Water · SF"><span class="k">Flour + Water · SF</span><span class="v">$184.20</span></div>
-        <div class="fact-row txn" data-txn="United Airlines"><span class="k">United Airlines</span><span class="v">$1,240.00</span></div>
-        <div class="fact-row txn" data-txn="Blue Bottle"><span class="k">Blue Bottle</span><span class="v">$7.85</span></div>
+        <div class="fact-row txn" data-txn="Burnt Ends · Dempsey"><span class="k">Burnt Ends · Dempsey</span><span class="v">S$184.20</span></div>
+        <div class="fact-row txn" data-txn="Singapore Airlines"><span class="k">Singapore Airlines</span><span class="v">S$1,240.00</span></div>
+        <div class="fact-row txn" data-txn="Ya Kun · Raffles Place"><span class="k">Ya Kun · Raffles Place</span><span class="v">S$7.85</span></div>
         <p class="stack-hint">Long-press a transaction to add it to a Stack.</p>
       </div>
       <div style="height:14px"></div>
       <div class="cardgrid">
-        <div class="pcard g1" style="aspect-ratio:1.9"><span class="nm">Rewards → Portfolio</span><div><span class="amt">$340 swept this month</span><span class="up">Rewards compound like everything else here</span></div></div>
+        <div class="pcard g1" style="aspect-ratio:1.9"><span class="nm">Rewards → Portfolio</span><div><span class="amt">S$340 swept this month</span><span class="up">Rewards compound like everything else here</span></div></div>
         <div class="pcard g3" style="aspect-ratio:1.9"><span class="nm">Statements</span><div><span class="amt">July closes in 3 days</span><span class="up">PDF + Stack view</span></div></div>
       </div>
     </div>
@@ -1313,18 +1313,18 @@ body.embed .phone { box-shadow:none; }
       <div class="sheet-handle"></div>
       <div class="as-title">Pay a different amount — see the cost, live</div>
       <div style="padding:0 24px 6px">
-        <div class="recalc-num" id="rcAmt">$4,200</div>
+        <div class="recalc-num" id="rcAmt">S$4,200</div>
         <input type="range" id="rcRange" min="250" max="8420" step="50" value="4200" oninput="rcUpdate(this.value)">
-        <div class="range-labels"><span>$250 minimum</span><span>$8,420 full</span></div>
+        <div class="range-labels"><span>S$250 minimum</span><span>S$8,420 full</span></div>
         <div class="math" style="margin-top:14px">
-          <div class="m-row"><span>You'd carry</span><span id="rcCarry">$4,220</span></div>
-          <div class="m-row"><span>Interest next cycle (21.99%)</span><span class="neg" id="rcInt">−$77</span></div>
-          <div class="m-row"><span>Yield the unused cash keeps earning (4.1%)</span><span class="pos" id="rcYield">+$14</span></div>
-          <div class="m-net"><span>Net cost vs. paying in full</span><span class="neg" id="rcNet">−$63</span></div>
+          <div class="m-row"><span>You'd carry</span><span id="rcCarry">S$4,220</span></div>
+          <div class="m-row"><span>Interest next cycle (21.99%)</span><span class="neg" id="rcInt">−S$77</span></div>
+          <div class="m-row"><span>Yield the unused cash keeps earning (4.1%)</span><span class="pos" id="rcYield">+S$14</span></div>
+          <div class="m-net"><span>Net cost vs. paying in full</span><span class="neg" id="rcNet">−S$63</span></div>
         </div>
         <p class="hint" style="margin-top:8px">One-cycle estimate on your own numbers. Nothing moves until you confirm.</p>
       </div>
-      <button class="btn primary" style="width:calc(100% - 48px);margin:10px 24px 0" onclick="rcConfirm()"><span id="rcBtnLbl">Schedule $4,200 for Aug 8</span></button>
+      <button class="btn primary" style="width:calc(100% - 48px);margin:10px 24px 0" onclick="rcConfirm()"><span id="rcBtnLbl">Schedule S$4,200 for Aug 8</span></button>
       <button class="as-cancel" onclick="document.getElementById('recalcScrim').classList.remove('open')">Cancel</button>
     </div>
   </div>
@@ -1347,8 +1347,8 @@ body.embed .phone { box-shadow:none; }
     <div class="sheet small" onclick="event.stopPropagation()">
       <div class="sheet-handle"></div>
       <div class="as-title">Add "<span id="stackTxnName">—</span>" to a Stack</div>
-      <button class="as-opt" onclick="stackAdded('SF Eats')">SF Eats<small>12 transactions · $842.60</small></button>
-      <button class="as-opt" onclick="stackAdded('Q3 Travel')">Q3 Travel<small>3 transactions · $2,180.00</small></button>
+      <button class="as-opt" onclick="stackAdded('Dempsey Eats')">Dempsey Eats<small>12 transactions · S$842.60</small></button>
+      <button class="as-opt" onclick="stackAdded('Q3 Travel')">Q3 Travel<small>3 transactions · S$2,180.00</small></button>
       <button class="as-opt" onclick="stackAdded('a new Stack')">+ New Stack<small>Name it anything — "Client dinners", "Guilt purchases"…</small></button>
       <button class="as-cancel" onclick="document.getElementById('stackScrim').classList.remove('open')">Cancel</button>
     </div>
@@ -1375,15 +1375,15 @@ body.embed .phone { box-shadow:none; }
         <p>Your purchase APR is variable, between 21.99% and 27.99%, set at decision based on your creditworthiness and the Prime Rate. Interest is charged only on balances carried past the interest-free period of 25 days on purchases, when the statement balance is paid in full.</p>
         <h5>Fees</h5>
         <ul>
-          <li>Annual fee: $150, billed on your first statement and each anniversary.</li>
+          <li>Annual fee: S$150, billed on your first statement and each anniversary.</li>
           <li>Foreign transaction fee: none.</li>
-          <li>Late payment fee: up to $40. We notify you before it is ever applied.</li>
+          <li>Late payment fee: up to S$40. We notify you before it is ever applied.</li>
           <li>Cash advance APR: 29.99% variable, from the day of the advance.</li>
         </ul>
         <h5>Credit reporting</h5>
-        <p>Submitting this application authorizes one hard credit inquiry. Your account activity — balances and payment history — is reported to consumer credit bureaus monthly.</p>
+        <p>Submitting this application authorizes one hard credit inquiry. Your account activity — balances and payment history — is reported to Credit Bureau Singapore monthly.</p>
         <h5>Your right to information</h5>
-        <p>If your application is declined or approved on different terms, you are entitled to a written statement of the specific reasons within 7–10 business days.</p>
+        <p>If your application is declined or approved on different terms, you are entitled to a written statement of the specific reasons within 7 business days.</p>
         <h5>Autopay and payments</h5>
         <p>Autopay can be changed or cancelled any time before 11:59 PM the day before the scheduled payment. Payments draw from your Arta Cash account; insufficient funds never trigger an overdraft — the payment simply falls back to minimum due, and we tell you.</p>
         <p style="margin-top:14px">Questions about any clause? Ask Arta AI from any screen — explanations, not advice.</p>
@@ -1446,35 +1446,35 @@ const state = { consents:[false,false,false], limit:25000, pay:'Full statement b
 
 const PERSONAS = {
   alexandra: {
-    name:'Alexandra W. Chen', dob:'14 Mar 1988', cit:'United States',
-    total:'$412,380', sup:'12', change:'+ $18,204.00 total change',
+    name:'Alexandra W. Chen', dob:'14 Mar 1988', cit:'Singapore',
+    total:'S$412,380', sup:'12', change:'+ S$18,204.00 total change',
     emp:'Employed', empLbl:'Employer', empName:'Vertex Biotech Inc.', empRole:'Director of Engineering', empYears:'4',
-    income:'285,000', portShort:'$412K',
-    toggleCopy:'You hold <b style="color:var(--text-secondary)">$412K</b> with Arta. Including it usually means a higher limit — we already custody it, so nothing new is shared.',
+    income:'285,000', portShort:'S$412K',
+    toggleCopy:'You hold <b style="color:var(--text-secondary)">S$412K</b> with Arta. Including it usually means a higher limit — we already custody it, so nothing new is shared.',
     min:5000, max:40000, rec:25000, outcome:'s6a',
     docOpt:'Recent payslip<small>Last 3 months</small>'
   },
   dev: {
-    name:'Dev Patel', dob:'02 Nov 1990', cit:'United States',
-    total:'$521,940', sup:'08', change:'+ $9,412.00 total change',
+    name:'Dev Patel', dob:'02 Nov 1990', cit:'Singapore',
+    total:'S$521,940', sup:'08', change:'+ S$9,412.00 total change',
     emp:'Self-employed', empLbl:'Business', empName:'Nimbus Labs, Inc.', empRole:'Founder & CEO', empYears:'3',
-    income:'180,000', portShort:'$520K',
-    toggleCopy:'You hold <b style="color:var(--text-secondary)">$520K</b> with Arta. Founder income moves around — your portfolio gives the decision something steady to stand on.',
+    income:'180,000', portShort:'S$520K',
+    toggleCopy:'You hold <b style="color:var(--text-secondary)">S$520K</b> with Arta. Founder income moves around — your portfolio gives the decision something steady to stand on.',
     min:5000, max:30000, rec:15000, outcome:'s6c',
     docOpt:'Business bank statements<small>Last 6 months</small>'
   },
   margaux: {
-    name:'Margaux Laurent', dob:'27 Jun 1979', cit:'France · US permanent resident',
-    total:'$2,345,681', sup:'77', change:'+ $120,334.00 total change',
+    name:'Margaux Laurent', dob:'27 Jun 1979', cit:'France · Singapore PR',
+    total:'S$2,345,681', sup:'77', change:'+ S$120,334.00 total change',
     emp:'Investing income', empLbl:'Employer', empName:'—', empRole:'—', empYears:'—',
-    income:'95,000', portShort:'$2.35M',
-    toggleCopy:'You hold <b style="color:var(--text-secondary)">$2.35M</b> with Arta. For members whose income is mostly from investments, this is usually the difference between a starter limit and the right one.',
+    income:'95,000', portShort:'S$2.35M',
+    toggleCopy:'You hold <b style="color:var(--text-secondary)">S$2.35M</b> with Arta. For members whose income is mostly from investments, this is usually the difference between a starter limit and the right one.',
     min:10000, max:60000, rec:40000, outcome:'dynamic',
     docOpt:'Recent payslip<small>Last 3 months</small>'
   }
 };
 
-function fmt$(n){ return '$' + Number(n).toLocaleString('en-US'); }
+function fmt$(n){ return 'S$' + Number(n).toLocaleString('en-US'); }
 
 function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -1531,15 +1531,15 @@ function submitApp(){
   else dest=PERSONAS[state.persona].outcome;
   if (dest==='s6d'){
     document.getElementById('coAsked').textContent=fmt$(state.limit);
-    document.getElementById('coOffered').textContent='$10,000';
-    document.getElementById('coOffered2').textContent='$10,000';
-    document.getElementById('coAcceptLbl').textContent='Accept $10,000 limit';
+    document.getElementById('coOffered').textContent='S$10,000';
+    document.getElementById('coOffered2').textContent='S$10,000';
+    document.getElementById('coAcceptLbl').textContent='Accept S$10,000 limit';
   }
   if (dest==='s6a') document.getElementById('apprLimit').textContent=fmt$(state.limit);
   setTimeout(()=>go(dest),1800);
 }
 function apprFromCounter(){
-  document.getElementById('apprLimit').textContent='$10,000';
+  document.getElementById('apprLimit').textContent='S$10,000';
   go('s6a');
 }
 const AI_STATE = { alexandra:'aiQuiet', dev:'aiNudge', margaux:'aiCard' };
@@ -1552,7 +1552,7 @@ function aiDone(msg){
   document.getElementById('doneMsg').textContent=msg;
   document.getElementById('aiCardDone').style.display='';
 }
-function aiAct(){ aiDone('Done — $8,420.19 will move from Arta Cash on Aug 8. Autopay is back to full balance.'); }
+function aiAct(){ aiDone('Done — S$8,420.19 will move from Arta Cash on Aug 8. Autopay is back to full balance.'); }
 function nudgeAct(){ aiDone('Done — your statement closes on the 18th from next cycle. The due date follows automatically.'); }
 function openWhy(){ document.getElementById('whyScrim').classList.add('open'); }
 function openRecalc(){
@@ -1567,9 +1567,9 @@ function rcUpdate(v){
   const kept=carry*0.041/12;
   document.getElementById('rcAmt').textContent=fmt$(v);
   document.getElementById('rcCarry').textContent=fmt$(Math.round(carry));
-  document.getElementById('rcInt').textContent='−$'+Math.round(interest);
-  document.getElementById('rcYield').textContent='+$'+Math.round(kept);
-  document.getElementById('rcNet').textContent='−$'+Math.round(interest-kept);
+  document.getElementById('rcInt').textContent='−S$'+Math.round(interest);
+  document.getElementById('rcYield').textContent='+S$'+Math.round(kept);
+  document.getElementById('rcNet').textContent='−S$'+Math.round(interest-kept);
   document.getElementById('rcBtnLbl').textContent='Schedule '+fmt$(v)+' for Aug 8';
 }
 function rcConfirm(){

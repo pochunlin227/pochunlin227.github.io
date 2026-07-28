@@ -136,9 +136,31 @@
 
   /* live prototype embeds — real screens, not screenshots */
   .proto-col { flex: 0 0 auto; }
-  .proto { width: 190px; height: 400px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); background: #000; }
-  .proto iframe { width: 390px; height: 822px; border: 0; transform: scale(0.487); transform-origin: top left; }
-  .proto-cap { font-size: 11px; color: var(--text-dim); margin-top: 8px; max-width: 190px; line-height: 1.45; }
+  .proto { --s: 0.62; width: calc(390px * var(--s)); height: calc(822px * var(--s)); border-radius: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); background: #000; }
+  .proto iframe { width: 390px; height: 822px; border: 0; transform: scale(var(--s)); transform-origin: top left; }
+  .proto-cap { font-size: 12px; color: var(--text-dim); margin-top: 10px; max-width: calc(390px * var(--s)); line-height: 1.5; }
+  @media (min-height: 940px) { .proto { --s: 0.74; } }
+  @media (min-height: 1120px) { .proto { --s: 0.85; } }
+
+  /* member-study persona cards (native rebuild of the PNG design — crisp at any size) */
+  .ms-row { display: flex; gap: 22px; margin-top: 26px; }
+  .ms { flex: 1; background: #0b0b0c; border: 1px solid rgba(255,255,255,.09); border-radius: 18px; padding: 26px 26px 24px; position: relative; overflow: hidden; min-width: 0; }
+  .ms::before { content: ""; position: absolute; width: 360px; height: 360px; border-radius: 50%; top: -160px; right: -90px; filter: blur(48px); opacity: .5; pointer-events: none; }
+  .ms.m1::before { background: radial-gradient(circle, #7fe0c3 0%, #b48ad6 45%, transparent 72%); }
+  .ms.m2::before { background: radial-gradient(circle, #f0b184 0%, #e8a0b4 42%, #7fe0c3 66%, transparent 80%); }
+  .ms.m3::before { background: radial-gradient(circle, #9fd8e8 0%, #7fe0c3 42%, transparent 72%); }
+  .ms-head { display: flex; justify-content: space-between; font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 84px; position: relative; }
+  .ms-kicker { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; position: relative; }
+  .ms.m1 .ms-kicker { color: #b9b9f0; } .ms.m2 .ms-kicker { color: #efae87; } .ms.m3 .ms-kicker { color: #96e0ca; }
+  .ms h3 { font-size: 25px; font-weight: 500; line-height: 1.16; letter-spacing: -.01em; position: relative; }
+  .ms-sub { font-size: 13px; color: var(--text-dim); margin-top: 8px; position: relative; }
+  .ms-stats { margin-top: 18px; border-top: 1px solid rgba(255,255,255,.1); position: relative; }
+  .ms-stat { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .ms-stat .k { font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-faint); flex: none; }
+  .ms-stat .v { font-size: 13.5px; text-align: right; }
+  .ms-quote { font-family: Georgia, serif; font-style: italic; font-size: 14.5px; line-height: 1.5; color: var(--text-dim); margin-top: 16px; position: relative; }
+  .ms-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; position: relative; }
+  .ms-chips span { border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 6px 12px; font-size: 11px; color: var(--text); }
   .livechip { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; border: 1px solid rgba(168,205,240,.45); color: var(--sky); border-radius: 999px; padding: 7px 14px; font-size: 11.5px; letter-spacing: .06em; text-decoration: none; }
   .livechip:hover { background: rgba(168,205,240,.1); }
   .fmap { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
@@ -319,7 +341,7 @@
       <h2>Assumptions I made</h2>
       <div class="grid-2">
         <div class="card"><span class="tag">Audience</span><h3>Existing, KYC'd Arta members</h3><p>Launch is on Arta's brand to its own members — not a cold-acquisition funnel.</p></div>
-        <div class="card"><span class="tag">Market</span><h3>US launch, modular disclosures</h3><p>HSBC SG form defines information scope, not jurisdiction. Disclosure block stays swappable.</p></div>
+        <div class="card"><span class="tag">Market</span><h3>Singapore-first launch</h3><p>Arta's MAS-regulated home entity; amounts in S$, Credit Bureau Singapore, IRAS documents — the HSBC SG reference form is jurisdictionally aligned. Disclosure module stays swappable for later markets.</p></div>
         <div class="card"><span class="tag">Product</span><h3>Premium rewards card</h3><p>Rewards can sweep into investments. Underwriting may consider the Arta portfolio.</p></div>
         <div class="card"><span class="tag">Platform</span><h3>Mobile-first, in-app</h3><p>Inside the existing iOS/Android app. Instant decisioning possible; manual review exists.</p></div>
       </div>
@@ -330,25 +352,49 @@
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Opening</div>
       <h2>Three members, one flow</h2>
-      <p class="lede" style="margin-top:6px">Grounded in Arta's real audience — tech professionals and accredited investors with a DIY spirit, many living partly on investment income. Every screen in this deck renders through one of these three; <b>switch personas in the live prototype and the prefill, the questions asked, the decision, and the AI's judgment all change with them.</b></p>
-      <div class="grid-3" style="margin-top:22px">
-        <div class="card">
-          <span class="tag">Persona 1 · The clean path</span>
-          <h3>Alexandra Chen — salaried optimizer</h3>
-          <p>Director of Engineering · $285K W2 · $412K with Arta.<br><br>
-          Everything verifiable → <b>instant approval</b>. She proves the three-minute promise — and that the right AI for her is a quiet one.</p>
+      <p class="lede" style="margin-top:6px">Grounded in Arta's real member base — millennial millionaires, HENRYs, and post-exit founders — <b>Singapore-first, on Arta's MAS-regulated home turf.</b> The live prototype distills these studies into three switchable members (Alexandra the operator, Dev the founder, Margaux the portfolio-first unlock) — and the prefill, the questions, the decision, and the AI's judgment all change with them.</p>
+      <div class="ms-row">
+        <div class="ms m1">
+          <div class="ms-head"><span>Arta Card · Member study</span><span>01 / 03</span></div>
+          <div class="ms-kicker">Primary · Millennial millionaire</div>
+          <h3>The Equity-Rich Operator</h3>
+          <div class="ms-sub">Staff engineer at a scaled tech firm · 34 · demoed as <b style="color:var(--text)">Alexandra</b></div>
+          <div class="ms-stats">
+            <div class="ms-stat"><span class="k">Income</span><span class="v">S$350K comp, mostly equity</span></div>
+            <div class="ms-stat"><span class="k">Net worth</span><span class="v">S$1.5–3M</span></div>
+            <div class="ms-stat"><span class="k">Credit need</span><span class="v">None — pays in full, always</span></div>
+            <div class="ms-stat"><span class="k">Reads the fee table</span><span class="v">Line by line</span></div>
+          </div>
+          <div class="ms-quote">"Give me a premium card with zero admin — and don't you dare bury a fee."</div>
+          <div class="ms-chips"><span>Effortless rewards</span><span>Honest key terms</span><span>No drag on strategy</span></div>
         </div>
-        <div class="card">
-          <span class="tag">Persona 2 · The friction test</span>
-          <h3>Dev Patel — founder, lumpy income</h3>
-          <p>Nimbus Labs · $180K drawn irregularly · $520K with Arta.<br><br>
-          Stated income and records don't line up → <b>docs-needed, with dignity</b>. His AI reads cash-flow structure: statement date moved to meet his invoices.</p>
+        <div class="ms m2">
+          <div class="ms-head"><span>Arta Card · Member study</span><span>02 / 03</span></div>
+          <div class="ms-kicker">Secondary · High earner, not rich yet</div>
+          <h3>The HENRY on the Way Up</h3>
+          <div class="ms-sub">Senior analyst, aggressive saver · 29 · shapes the <b style="color:var(--text)">pre-qualification entry</b></div>
+          <div class="ms-stats">
+            <div class="ms-stat"><span class="k">Income</span><span class="v">S$300K — accredited by income</span></div>
+            <div class="ms-stat"><span class="k">Net worth</span><span class="v">S$400K and compounding</span></div>
+            <div class="ms-stat"><span class="k">Status</span><span class="v">Quietly matters — wallet included</span></div>
+            <div class="ms-stat"><span class="k">Credit file</span><span class="v">Guarded like an asset (CBS)</span></div>
+          </div>
+          <div class="ms-quote">"Pre-qualify me without a hard pull — and give me a limit that respects where I'm headed."</div>
+          <div class="ms-chips"><span>Soft-pull prequal</span><span>Trajectory-aware limit</span><span>Protective autopay</span></div>
         </div>
-        <div class="card">
-          <span class="tag">Persona 3 · The differentiator</span>
-          <h3>Margaux Laurent — portfolio-first</h3>
-          <p>Investment income $95K · $2.35M with Arta.<br><br>
-          Skips the employer questions; the <b>portfolio toggle decides her limit</b> ($40K vs. a $10K counter-offer) — and she gets the AI's richest intervention.</p>
+        <div class="ms m3">
+          <div class="ms-head"><span>Arta Card · Member study</span><span>03 / 03</span></div>
+          <div class="ms-kicker">Edge · Post-exit, complex income</div>
+          <h3>The De-Risking Founder</h3>
+          <div class="ms-sub">Sold the company · 45 · demoed as <b style="color:var(--text)">Dev</b> &amp; <b style="color:var(--text)">Margaux</b></div>
+          <div class="ms-stats">
+            <div class="ms-stat"><span class="k">With Arta</span><span class="v">S$8M+ under management</span></div>
+            <div class="ms-stat"><span class="k">Income</span><span class="v">Lumpy — between liquidity events</span></div>
+            <div class="ms-stat"><span class="k">Payslip</span><span class="v">Doesn't have one</span></div>
+            <div class="ms-stat"><span class="k">Underwriting unlock</span><span class="v">The portfolio, not the paycheck</span></div>
+          </div>
+          <div class="ms-quote">"My Notice of Assessment says I'm poor. My balance sheet says otherwise — underwrite the truth."</div>
+          <div class="ms-chips"><span>Portfolio-aware limits</span><span>High-limit headroom</span><span>Cash-flow bridging</span></div>
         </div>
       </div>
       <a class="livechip" href="prototype.html" target="_blank">SWITCH PERSONAS IN THE LIVE PROTOTYPE ↗</a>
