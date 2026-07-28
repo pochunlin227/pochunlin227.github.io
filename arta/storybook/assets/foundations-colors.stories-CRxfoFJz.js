@@ -1,4 +1,4 @@
-import{t as n}from"./tokens.flat-3f512O5f.js";const f={title:"Foundations/Color"},g=a=>`
+import{t as n}from"./tokens.flat-CkyFSkcK.js";const f={title:"Foundations/Color"},g=a=>`
   <div class="sb-swatch">
     <div class="sb-swatch__chip" style="background: var(${a.cssVar})"></div>
     <div class="sb-swatch__meta">${a.path.split(".").slice(-2).join(" ")}<code>${a.cssVar}</code></div>

@@ -1,4 +1,4 @@
-import{t as c}from"./tokens.flat-3f512O5f.js";const v={title:"Foundations/Layout"},e={render:()=>'<div class="sb-h">arta · ref · space (4px grid)</div>'+c.ref.filter(r=>r.path.startsWith("arta.ref.space.")).map(r=>`
+import{t as c}from"./tokens.flat-CkyFSkcK.js";const v={title:"Foundations/Layout"},e={render:()=>'<div class="sb-h">arta · ref · space (4px grid)</div>'+c.ref.filter(r=>r.path.startsWith("arta.ref.space.")).map(r=>`
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px">
         <code style="width:160px;font-size:11px;color:var(--arta-sys-color-text-secondary)">${r.cssVar}</code>
         <div style="height:16px;width:var(${r.cssVar});background:var(--arta-sys-color-action-primary);border-radius:2px"></div>

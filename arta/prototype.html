@@ -208,6 +208,19 @@
   --arta-sys-color-status-danger-surface: var(--arta-ref-color-red-90);
   --arta-sys-color-status-info: var(--arta-ref-color-violet-40);
   --arta-sys-color-status-info-surface: var(--arta-ref-color-violet-90);
+  --arta-sys-color-credit-balance-current: var(--arta-ref-color-neutral-10);
+  --arta-sys-color-credit-balance-statement: var(--arta-ref-color-neutral-30);
+  --arta-sys-color-credit-limit-available: var(--arta-ref-color-green-40);
+  --arta-sys-color-credit-payment-minimum: var(--arta-ref-color-amber-40);
+  --arta-sys-color-credit-payment-full: var(--arta-ref-color-green-40);
+  --arta-sys-color-credit-interest-warning: var(--arta-ref-color-amber-40);
+  --arta-sys-color-decision-approved: var(--arta-ref-color-green-40);
+  --arta-sys-color-decision-pending: var(--arta-ref-color-violet-40);
+  --arta-sys-color-decision-action-required: var(--arta-ref-color-amber-40);
+  --arta-sys-color-decision-declined: var(--arta-ref-color-red-40);
+  --arta-sys-color-disclosure-required: var(--arta-ref-color-neutral-20);
+  --arta-sys-color-ai-source: var(--arta-ref-color-sky-40);
+  --arta-sys-color-ai-generated: var(--arta-ref-color-mint-50);
   --arta-sys-gradient-brand: var(--arta-ref-gradient-aurora);
   --arta-sys-gradient-acquisition: var(--arta-ref-gradient-acquisition);
   --arta-sys-gradient-text-accent: var(--arta-ref-gradient-text-accent);
@@ -347,8 +360,60 @@
   --arta-sys-radius-media: var(--arta-ref-radius-sm);
 }
 
+/* ============ NORTHSTAR (white-label partner theme): ref + sys overrides ============ */
+.theme-northstar {
+  --northstar-ref-color-midnight-10: #eef3f9;
+  --northstar-ref-color-midnight-20: #d3dfec;
+  --northstar-ref-color-midnight-30: #9cb1c9;
+  --northstar-ref-color-midnight-40: #5f7996;
+  --northstar-ref-color-midnight-50: #3a5471;
+  --northstar-ref-color-midnight-60: #243a54;
+  --northstar-ref-color-midnight-70: #182a40;
+  --northstar-ref-color-midnight-80: #101e30;
+  --northstar-ref-color-midnight-90: #0a1422;
+  --northstar-ref-color-polar-10: #e6fbff;
+  --northstar-ref-color-polar-20: #c2f2fc;
+  --northstar-ref-color-polar-30: #8fe4f7;
+  --northstar-ref-color-polar-40: #5cd2ef;
+  --northstar-ref-color-polar-50: #2fb5da;
+  --northstar-ref-color-polar-60: #1f8dad;
+  --northstar-ref-color-polar-70: #176a83;
+  --northstar-ref-gradient-brand: radial-gradient(130% 150% at 20% 15%, var(--northstar-ref-color-polar-40) 0%, var(--northstar-ref-color-polar-60) 34%, var(--northstar-ref-color-midnight-60) 68%, var(--northstar-ref-color-midnight-80) 100%);
+  --northstar-ref-gradient-card-1: linear-gradient(135deg, var(--northstar-ref-color-midnight-80) 0%, var(--northstar-ref-color-midnight-60) 55%, var(--northstar-ref-color-polar-50) 130%);
+  --northstar-ref-gradient-card-2: linear-gradient(135deg, var(--northstar-ref-color-midnight-90) 0%, var(--northstar-ref-color-midnight-70) 100%);
+  --northstar-ref-gradient-card-3: linear-gradient(135deg, var(--northstar-ref-color-polar-70) 0%, var(--northstar-ref-color-polar-50) 60%, var(--northstar-ref-color-polar-30) 100%);
+
+  --arta-sys-color-surface-app: var(--northstar-ref-color-midnight-90);
+  --arta-sys-color-surface-raised: var(--northstar-ref-color-midnight-80);
+  --arta-sys-color-surface-form: var(--northstar-ref-color-midnight-70);
+  --arta-sys-color-surface-sunken: var(--northstar-ref-color-midnight-90);
+  --arta-sys-color-surface-inverse: var(--northstar-ref-color-midnight-10);
+  --arta-sys-color-surface-sheet: var(--northstar-ref-color-midnight-80);
+  --arta-sys-color-text-primary: var(--northstar-ref-color-midnight-10);
+  --arta-sys-color-text-secondary: var(--northstar-ref-color-midnight-30);
+  --arta-sys-color-text-tertiary: var(--northstar-ref-color-midnight-40);
+  --arta-sys-color-text-link: var(--northstar-ref-color-polar-40);
+  --arta-sys-color-text-on-action: var(--northstar-ref-color-midnight-90);
+  --arta-sys-color-action-primary: var(--northstar-ref-color-polar-40);
+  --arta-sys-color-action-primary-hover: var(--northstar-ref-color-polar-30);
+  --arta-sys-color-action-primary-press: var(--northstar-ref-color-polar-50);
+  --arta-sys-color-action-secondary-stroke: var(--northstar-ref-color-midnight-30);
+  --arta-sys-color-action-focus-ring: var(--northstar-ref-color-polar-40);
+  --arta-sys-color-stroke-subtle: var(--northstar-ref-color-midnight-60);
+  --arta-sys-color-stroke-strong: var(--northstar-ref-color-midnight-40);
+  --arta-sys-color-stroke-form: var(--northstar-ref-color-midnight-40);
+  --arta-sys-gradient-brand: var(--northstar-ref-gradient-brand);
+  --arta-sys-gradient-acquisition: var(--northstar-ref-gradient-brand);
+  --arta-sys-gradient-card-art-1: var(--northstar-ref-gradient-card-1);
+  --arta-sys-gradient-card-art-2: var(--northstar-ref-gradient-card-2);
+  --arta-sys-gradient-card-art-3: var(--northstar-ref-gradient-card-3);
+  --arta-sys-radius-surface: var(--arta-ref-radius-sm);
+  --arta-sys-radius-control: var(--arta-ref-radius-sm);
+  --arta-sys-radius-media: var(--arta-ref-radius-lg);
+}
+
 /* ============ CMP layer — re-declared per theme scope so aliases re-resolve ============ */
-:root, .theme-arta, .theme-meridian {
+:root, .theme-arta, .theme-meridian, .theme-northstar {
   --arta-cmp-btn-primary-bg: var(--arta-sys-color-action-primary);
   --arta-cmp-btn-primary-bg-hover: var(--arta-sys-color-action-primary-hover);
   --arta-cmp-btn-primary-bg-press: var(--arta-sys-color-action-primary-press);
@@ -743,7 +808,7 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 .pcard .up { display:block; font-size:10.5px; opacity:.65; margin-top:2px; }
 .pcard.g1 { background:var(--grad-card-c); }
 .pcard.g2 { background:var(--grad-card-b); }
-.pcard.g3 { background:var(--surface-raised); border:1px solid var(--border-subtle); }
+.pcard.g3 { background:var(--surface-raised); border:1px solid var(--border-subtle); color:var(--text-primary); }
 .pcard.offer { background:var(--grad-brand); color:var(--chip-brand-text); }
 .pcard.offer .amt b { font-weight:600; }
 .badge-new { position:absolute; top:10px; right:10px; font-size:9px; letter-spacing:.14em; text-transform:uppercase; background:rgba(0,0,0,.3); color:#fff; padding:4px 8px; border-radius:999px; }
@@ -773,6 +838,27 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 .as-opt { display:block; width:calc(100% - 48px); margin:6px 24px 0; text-align:left; background:var(--surface-raised); border:1px solid var(--border-subtle); color:var(--text-primary); border-radius:var(--radius-ctl); padding:14px 16px; font-size:14.5px; font-family:var(--font-ui); cursor:pointer; }
 .as-opt small { color:var(--text-tertiary); display:block; font-size:11.5px; margin-top:2px; }
 .as-cancel { background:none; border:none; color:var(--text-tertiary); width:100%; padding:14px; font-size:12.5px; cursor:pointer; font-family:var(--font-ui); }
+
+/* Flow 2 — AI states */
+.ai-stream { font-size:11px; color:var(--arta-sys-color-text-ai); padding:10px 16px 0; letter-spacing:.02em; }
+.ai-quiet { display:flex; align-items:flex-start; gap:10px; border:1px solid var(--border-subtle); border-radius:var(--radius-card); background:var(--surface-raised); padding:14px 16px; }
+.ai-quiet .ai-glyph { width:18px; height:18px; margin-top:2px; }
+.ai-quiet p { font-size:12.5px; color:var(--text-secondary); line-height:1.55; }
+.capcall { display:flex; gap:8px; align-items:flex-start; background:color-mix(in srgb, var(--status-info) 12%, transparent); border:1px solid color-mix(in srgb, var(--status-info) 30%, transparent); border-radius:10px; padding:10px 12px; margin:12px 0 2px; font-size:12px; color:var(--text-legal); line-height:1.5; }
+
+/* AI lifecycle map */
+.lc-grad { background:var(--arta-sys-gradient-text-accent); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.lc-step { display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--border-subtle); }
+.lc-step:last-child { border-bottom:none; }
+.lc-num { width:26px; height:26px; border-radius:50%; border:1px solid var(--border-strong); display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--text-tertiary); flex:none; margin-top:2px; }
+.lc-step.here .lc-num { background:var(--arta-sys-color-action-inverse); color:var(--arta-sys-color-action-inverse-fg); border-color:transparent; }
+.lc-body b { font-size:14.5px; display:block; }
+.lc-body .role { font-size:12.5px; color:var(--text-secondary); margin-top:3px; line-height:1.5; }
+.lc-body .felt { font-size:11.5px; color:var(--arta-sys-color-text-ai); margin-top:4px; }
+.here-chip { font-size:8.5px; letter-spacing:.12em; text-transform:uppercase; background:var(--arta-sys-color-action-inverse); color:var(--arta-sys-color-action-inverse-fg); padding:3px 8px; border-radius:999px; margin-left:8px; vertical-align:2px; display:inline-block; }
+
+/* recalc sheet */
+.recalc-num { font-family:var(--font-display); font-size:34px; font-weight:500; margin:6px 0 2px; }
 
 /* demo controls */
 .demo { width:390px; background:#111214; border:1px solid #26272b; border-radius:16px; padding:16px 18px; }
@@ -1112,8 +1198,39 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
       <p class="stack-hint" style="margin-top:6px">Long-press the card for freeze &amp; details.</p>
 
       <div style="height:16px"></div>
+      <!-- AI state 1: QUIET (Alexandra — nothing needs her) -->
+      <div class="ai-quiet" id="aiQuiet" style="display:none">
+        <div class="ai-glyph"></div>
+        <p><b style="color:var(--text-primary)">Nothing needs you.</b> Autopay covers the full balance from <span class="bn-cash">Arta Cash</span> on Aug 8 — no interest this cycle. <span class="bn-ai">Arta AI</span> speaks up only when the math changes.</p>
+      </div>
+
+      <!-- AI state 2: NUDGE (Dev — cash-flow structure) -->
+      <div class="ai-card" id="aiNudge" style="display:none">
+        <div class="ai-head"><div class="ai-glyph"></div><span class="micro"><span class="bn-ai">Arta AI</span> · Cash flow</span></div>
+        <div class="ai-stream">Read your statement · 6 months of deposits — 2 signals</div>
+        <div class="ai-body">
+          <h4>Your invoices land mid-month. Your statement closes against them.</h4>
+          <p class="hint" style="margin-top:8px">In 4 of the last 6 cycles the bill arrived before your clients paid — you covered it from savings twice.</p>
+          <div class="math">
+            <div class="m-row"><span>Statement closes</span><span>the 30th</span></div>
+            <div class="m-row"><span>Your typical client payments</span><span>12th–16th</span></div>
+            <div class="m-net"><span>Suggested statement date</span><span class="pos">the 18th</span></div>
+          </div>
+          <div class="ai-actions">
+            <button class="ai-btn main" onclick="nudgeAct()">Move my statement date to the 18th</button>
+            <button class="ai-btn alt" onclick="alert('What changes: statement + due date shift together. Grace period, APR, limit — unchanged.')">What changes if I do?</button>
+          </div>
+        </div>
+        <div class="ai-foot">
+          <button onclick="openWhy()">Why am I seeing this?</button>
+          <button onclick="alert('Snoozed for 30 days. AI that respects boundaries is part of premium.')">Quiet this</button>
+        </div>
+      </div>
+
+      <!-- AI state 3: INTERVENE (Margaux — the math, shown) -->
       <div class="ai-card" id="aiCard">
         <div class="ai-head"><div class="ai-glyph"></div><span class="micro"><span class="bn-ai">Arta AI</span> · Repayment</span></div>
+        <div class="ai-stream">Read your statement · cash yield · fund calendar — 3 signals</div>
         <div class="ai-body">
           <h4>Paying this statement in full saves you about $154 this cycle.</h4>
           <p class="hint" style="margin-top:8px">Your autopay is set to <b style="color:var(--text-secondary)">minimum due</b> — it was changed in April and never switched back.</p>
@@ -1122,23 +1239,26 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
             <div class="m-row"><span>Yield that cash earns in Arta Cash (4.1%)</span><span class="pos">+$29</span></div>
             <div class="m-net"><span>Net cost of not paying in full</span><span class="neg">−$125</span></div>
           </div>
+          <div class="capcall">◈&nbsp;<span><b>Fund calendar:</b> your PE fund calls capital Aug 15. Paying from Arta Cash keeps your invested positions untouched.</span></div>
           <div class="ai-actions">
             <button class="ai-btn main" onclick="aiAct()">Pay in full from <span class="bn-cash">Arta Cash</span> on Aug 8</button>
-            <button class="ai-btn alt" onclick="alert('Live recalculation: pick any amount, see interest cost instantly.')">Pay a different amount</button>
+            <button class="ai-btn alt" onclick="openRecalc()">Pay a different amount</button>
           </div>
         </div>
         <div class="ai-foot">
-          <button onclick="alert('Explainability: data used — statement balance, autopay setting, Arta Cash balance & rate. Assumptions shown. This is math, not financial advice.')">Why am I seeing this?</button>
-          <button onclick="alert('Snooze / turn off repayment nudges. AI that respects boundaries is part of premium.')">Quiet this</button>
+          <button onclick="openWhy()">Why am I seeing this?</button>
+          <button onclick="alert('Snoozed for 30 days. AI that respects boundaries is part of premium.')">Quiet this</button>
         </div>
       </div>
+
       <div class="ai-card" id="aiCardDone" style="display:none">
         <div class="ai-head"><div class="ai-glyph"></div><span class="micro"><span class="bn-ai">Arta AI</span> · Repayment</span></div>
         <div class="ai-body">
-          <h4 style="color:var(--status-positive)">Done — $8,420.19 will move from Arta Cash on Aug 8.</h4>
-          <p class="hint" style="margin-top:8px">Autopay is back to full statement balance. You'll get a receipt the moment it clears. Change your mind anytime before Aug 7, 11:59 PM.</p>
+          <h4 style="color:var(--status-positive)" id="doneMsg">Done — $8,420.19 will move from Arta Cash on Aug 8.</h4>
+          <p class="hint" style="margin-top:8px">You'll get a receipt the moment it clears. Change your mind anytime before Aug 7, 11:59 PM.</p>
         </div>
       </div>
+      <button class="btn quiet" style="text-align:left;padding-left:2px" onclick="go('s9')">See the whole AI relationship →</button>
 
       <div style="height:14px"></div>
       <div class="card">
@@ -1164,6 +1284,58 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
       </div>
     </div>
   </section>
+
+  <!-- ============ S9 AI LIFECYCLE MAP ============ -->
+  <section class="screen" id="s9">
+    <div class="appbar"><button class="back" onclick="go('s7')">‹</button><span class="spacer"></span><span class="bar-label">Arta AI × <span class="bn-card">Arta Card</span></span></div>
+    <div class="scroll">
+      <h2 class="display"><span class="lc-grad">One relationship,<br>five moments.</span></h2>
+      <p class="lede">The card gives <span class="bn-ai">Arta AI</span> the one signal it never had — your cash flow. Every moment shares one anatomy: a conclusion, the math, one tap, an exit.</p>
+      <div style="margin-top:8px">
+        <div class="lc-step"><div class="lc-num">1</div><div class="lc-body"><b>Apply</b><div class="role">Pre-qualification from what Arta already holds; any term explained inline, on demand.</div><div class="felt">Confidence before committing</div></div></div>
+        <div class="lc-step"><div class="lc-num">2</div><div class="lc-body"><b>Onboard</b><div class="role">Autopay and statement date recommended from your actual cash-flow pattern — not defaults by inertia.</div><div class="felt">Set up right on day one</div></div></div>
+        <div class="lc-step"><div class="lc-num">3</div><div class="lc-body"><b>Everyday</b><div class="role">Spend insights in wealth context — your Stacks, your burn rate, your growth. Never a budgeting app scold.</div><div class="felt">"I understand my money"</div></div></div>
+        <div class="lc-step here"><div class="lc-num">4</div><div class="lc-body"><b>Manage<span class="here-chip">You are here</span></b><div class="role">Repayment intelligence: interest vs. yield, computed on your numbers, one tap to fix. Quiet when nothing needs you.</div><div class="felt">Never pay interest by accident</div></div></div>
+        <div class="lc-step"><div class="lc-num">5</div><div class="lc-body"><b>Grow</b><div class="role">Rewards sweep into your portfolio as the newest card in the grid; an annual card + wealth review.</div><div class="felt">The card compounds too</div></div></div>
+      </div>
+      <p class="hint" style="margin-top:12px">Three member realities, one anatomy — switch personas in the demo panel and watch moment 4 change its judgment.</p>
+    </div>
+  </section>
+
+  <!-- ============ AI RECALC + WHY SHEETS ============ -->
+  <div class="sheet-scrim" id="recalcScrim" onclick="this.classList.remove('open')">
+    <div class="sheet small" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="as-title">Pay a different amount — see the cost, live</div>
+      <div style="padding:0 24px 6px">
+        <div class="recalc-num" id="rcAmt">$4,200</div>
+        <input type="range" id="rcRange" min="250" max="8420" step="50" value="4200" oninput="rcUpdate(this.value)">
+        <div class="range-labels"><span>$250 minimum</span><span>$8,420 full</span></div>
+        <div class="math" style="margin-top:14px">
+          <div class="m-row"><span>You'd carry</span><span id="rcCarry">$4,220</span></div>
+          <div class="m-row"><span>Interest next cycle (21.99%)</span><span class="neg" id="rcInt">−$77</span></div>
+          <div class="m-row"><span>Yield the unused cash keeps earning (4.1%)</span><span class="pos" id="rcYield">+$14</span></div>
+          <div class="m-net"><span>Net cost vs. paying in full</span><span class="neg" id="rcNet">−$63</span></div>
+        </div>
+        <p class="hint" style="margin-top:8px">One-cycle estimate on your own numbers. Nothing moves until you confirm.</p>
+      </div>
+      <button class="btn primary" style="width:calc(100% - 48px);margin:10px 24px 0" onclick="rcConfirm()"><span id="rcBtnLbl">Schedule $4,200 for Aug 8</span></button>
+      <button class="as-cancel" onclick="document.getElementById('recalcScrim').classList.remove('open')">Cancel</button>
+    </div>
+  </div>
+  <div class="sheet-scrim" id="whyScrim" onclick="this.classList.remove('open')">
+    <div class="sheet small" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="as-title">Why you're seeing this</div>
+      <div style="padding:0 24px 6px">
+        <p class="hint" style="line-height:1.6">This used: your statement balance and due date · your autopay setting · your Arta Cash balance and current yield · your fund capital-call calendar. Nothing outside your Arta accounts, and it never leaves them.</p>
+        <p class="hint" style="line-height:1.6;margin-top:8px">It is arithmetic on your own numbers — <b style="color:var(--text-legal)">not financial advice</b>. Assumptions are shown inline, and nothing executes without your confirmation.</p>
+      </div>
+      <button class="as-opt" onclick="alert('Snoozed for 30 days.')">Snooze repayment nudges<small>30 days</small></button>
+      <button class="as-opt" onclick="alert('Repayment intelligence off. Re-enable anytime in Card settings.')">Turn off repayment intelligence<small>You stay in full control</small></button>
+      <button class="as-cancel" onclick="document.getElementById('whyScrim').classList.remove('open')">Close</button>
+    </div>
+  </div>
 
   <!-- ============ STACK / CARD ACTION SHEETS ============ -->
   <div class="sheet-scrim" id="stackScrim" onclick="this.classList.remove('open')">
@@ -1258,6 +1430,7 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
       <option value="s4">Ch.3 Terms</option>
       <option value="s5">Ch.4 Review</option>
       <option value="s7">Card home + AI moment</option>
+      <option value="s9">AI lifecycle map</option>
     </select>
     <button class="d" onclick="restart()">Restart</button>
   </div>
@@ -1307,8 +1480,7 @@ function restart(){
   state.consents=[false,false,false];
   document.querySelectorAll('#s5 .consent').forEach(c=>c.classList.remove('checked'));
   document.getElementById('submitBtn').disabled=true;
-  document.getElementById('aiCard').style.display='';
-  document.getElementById('aiCardDone').style.display='none';
+  showAiState();
   go('s0');
 }
 function pickEmp(el){
@@ -1365,9 +1537,40 @@ function apprFromCounter(){
   document.getElementById('apprLimit').textContent='$10,000';
   go('s6a');
 }
-function aiAct(){
-  document.getElementById('aiCard').style.display='none';
+const AI_STATE = { alexandra:'aiQuiet', dev:'aiNudge', margaux:'aiCard' };
+function showAiState(){
+  ['aiQuiet','aiNudge','aiCard','aiCardDone'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById(AI_STATE[state.persona]).style.display='';
+}
+function aiDone(msg){
+  ['aiQuiet','aiNudge','aiCard'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('doneMsg').textContent=msg;
   document.getElementById('aiCardDone').style.display='';
+}
+function aiAct(){ aiDone('Done — $8,420.19 will move from Arta Cash on Aug 8. Autopay is back to full balance.'); }
+function nudgeAct(){ aiDone('Done — your statement closes on the 18th from next cycle. The due date follows automatically.'); }
+function openWhy(){ document.getElementById('whyScrim').classList.add('open'); }
+function openRecalc(){
+  document.getElementById('recalcScrim').classList.add('open');
+  rcUpdate(document.getElementById('rcRange').value);
+}
+function rcUpdate(v){
+  v=Number(v);
+  const bal=8420.19;
+  const carry=Math.max(0,bal-v);
+  const interest=carry*0.2199/12;
+  const kept=carry*0.041/12;
+  document.getElementById('rcAmt').textContent=fmt$(v);
+  document.getElementById('rcCarry').textContent=fmt$(Math.round(carry));
+  document.getElementById('rcInt').textContent='−$'+Math.round(interest);
+  document.getElementById('rcYield').textContent='+$'+Math.round(kept);
+  document.getElementById('rcNet').textContent='−$'+Math.round(interest-kept);
+  document.getElementById('rcBtnLbl').textContent='Schedule '+fmt$(v)+' for Aug 8';
+}
+function rcConfirm(){
+  const v=Number(document.getElementById('rcRange').value);
+  document.getElementById('recalcScrim').classList.remove('open');
+  aiDone('Done — '+fmt$(v)+' moves from Arta Cash on Aug 8. The cost of what remains stays on screen, not in footnotes.');
 }
 
 /* full-agreement bottom sheet */
