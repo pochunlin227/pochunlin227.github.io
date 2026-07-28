@@ -134,6 +134,22 @@
   .ph-wide { height: 300px; flex: 1; }
   .ph-half { height: 260px; flex: 1; }
 
+  /* live prototype embeds — real screens, not screenshots */
+  .proto-col { flex: 0 0 auto; }
+  .proto { width: 190px; height: 400px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); background: #000; }
+  .proto iframe { width: 390px; height: 822px; border: 0; transform: scale(0.487); transform-origin: top left; }
+  .proto-cap { font-size: 11px; color: var(--text-dim); margin-top: 8px; max-width: 190px; line-height: 1.45; }
+  .livechip { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; border: 1px solid rgba(168,205,240,.45); color: var(--sky); border-radius: 999px; padding: 7px 14px; font-size: 11.5px; letter-spacing: .06em; text-decoration: none; }
+  .livechip:hover { background: rgba(168,205,240,.1); }
+  .fmap { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
+  .fmap .fstep { border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 8px 15px; font-size: 12.5px; }
+  .fmap .fstep.hot { border-color: rgba(168,205,240,.5); color: var(--sky); }
+  .fmap .farr { color: #56565a; }
+  .ptable { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13.5px; }
+  .ptable th, .ptable td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.09); vertical-align: top; }
+  .ptable th { color: #6b6b66; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+  .ptable .cut td { color: #6b6b66; }
+
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 34px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 34px; }
 
@@ -313,7 +329,14 @@
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Opening</div>
       <h2>Where the hours went — and what I cut</h2>
-      <div class="ph ph-wide" style="margin-top:30px"><div><strong>Placeholder — prioritization table</strong>P0: application flow + AI deep moment · P1: white-label model + DS critique<br>Cut: rewards catalog, statements UI, full management surface, web</div></div>
+      <table class="ptable">
+        <tr><th>Priority</th><th>Work</th><th>Why</th></tr>
+        <tr><td>P0</td><td>Application flow — the hard screens incl. all five decision states</td><td>The craft + trust/compliance evaluation</td></tr>
+        <tr><td>P0</td><td>AI lifecycle map + ONE deep moment, three member realities</td><td>Judgment over volume; extends Arta AI, no chatbot</td></tr>
+        <tr><td>P1</td><td>White-label: three-layer governance model + working multi-theme pipeline</td><td>Systems sense — the line is enforced by the build, not by review</td></tr>
+        <tr><td>P1</td><td>Design-system contribution: 3-tier tokens, lending components, Storybook</td><td>The critique, made constructive</td></tr>
+        <tr class="cut"><td>Cut</td><td>Rewards catalog · statements UI · disputes · web/desktop</td><td>Real, but they prove nothing the above doesn't</td></tr>
+      </table>
       <p class="lede">Depth over breadth: I designed the hard screens, not all the screens.</p>
       <div class="slide-num">04 / 15</div>
     </section>
@@ -328,7 +351,16 @@
         <li>Four chapters, ~3 minutes: <span>Confirm · Income · Terms · Review. Auto-saved, resumable.</span></li>
         <li>Honesty is the premium experience: <span>APR and fees appear before the funnel starts, not after.</span></li>
       </ul>
-      <div class="ph ph-wide" style="margin-top:30px"><div><strong>Placeholder — flow map diagram</strong>Entry → Confirm → Income → Terms → Review → Decision (5 states)</div></div>
+      <div class="fmap">
+        <span class="fstep">Entry — pre-qualified card in the grid</span><span class="farr">→</span>
+        <span class="fstep">Confirm</span><span class="farr">→</span>
+        <span class="fstep hot">Income</span><span class="farr">→</span>
+        <span class="fstep">Terms</span><span class="farr">→</span>
+        <span class="fstep hot">Review + Key Terms</span><span class="farr">→</span>
+        <span class="fstep">Decision · 5 designed states</span>
+      </div>
+      <p class="lede" style="margin-top:18px">Every screen on the following slides is the <b>live prototype embedded</b> — three member personas drive the prefill, the questions asked, and the decision itself.</p>
+      <a class="livechip" href="prototype.html" target="_blank">OPEN THE LIVE PROTOTYPE ↗</a>
       <div class="slide-num">05 / 15</div>
     </section>
 
@@ -337,9 +369,9 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>Entry &amp; confirming what Arta knows</h2>
       <div class="ph-row">
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S0 · Pre-qualified entry card</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S1 · Before you start + trust block</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S2 · Review cards, not input fields</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s0" title="S0 · The offer is born a card in the portfolio grid — pre-qualified, terms stated up front"></iframe></div><div class="proto-cap">S0 · The offer is born a card in the portfolio grid — pre-qualified, terms stated up front</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s1" title="S1 · Acquisition world: gradient surface, glass cards, the trust block"></iframe></div><div class="proto-cap">S1 · Acquisition world: gradient surface, glass cards, the trust block</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s2" title="S2 · Confirm, don’t collect — review cards, not input fields"></iframe></div><div class="proto-cap">S2 · Confirm, don’t collect — review cards, not input fields</div></div>
       </div>
       <div class="slide-num">06 / 15</div>
     </section>
@@ -349,9 +381,16 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>Income — the sensitive moment</h2>
       <div class="ph-row">
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S3 · One question per screen</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S3b · "Use my Arta portfolio" toggle</div></div>
-        <div style="flex:1" class="ph ph-half"><div><strong>Placeholder — annotation panel</strong>Reassurance microcopy · why-we-ask · no mid-form rejection</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s3c" title="Alexandra · salaried — income asked once, reassurance attached"></iframe></div><div class="proto-cap">Alexandra · salaried — income asked once, reassurance attached</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=margaux&jump=s3c" title="Margaux · investment income — the portfolio toggle is the difference between a starter limit and the right one"></iframe></div><div class="proto-cap">Margaux · investment income — the portfolio toggle is the difference between a starter limit and the right one</div></div>
+        <div style="flex:1">
+          <ul class="points" style="margin-top:6px">
+            <li>One question per screen — <span>"Used only for this application. Never shown in your profile."</span></li>
+            <li>The differentiator: <span>"Consider my Arta portfolio" — nothing new is shared; Arta already custodies it.</span></li>
+            <li>No mid-form rejection: <span>low income warns softly now, counter-offers later.</span></li>
+            <li>Persona logic: <span>members living on investment income skip the employer questions entirely.</span></li>
+          </ul>
+        </div>
       </div>
       <div class="slide-num">07 / 15</div>
     </section>
@@ -361,9 +400,15 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>Terms &amp; disclosures, unburied</h2>
       <div class="ph-row">
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S4 · Limit + autopay defaults</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S5 · Key Terms module, always visible</div></div>
-        <div style="flex:1" class="ph ph-half"><div><strong>Placeholder — annotation panel</strong>Separate consents, no pre-checks · hard-pull consent in plain language</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s4" title="S4 · Recommended limit preselected; full-balance autopay framed as the wealth-smart default"></iframe></div><div class="proto-cap">S4 · Recommended limit preselected; full-balance autopay framed as the wealth-smart default</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s5" title="S5 · Key Terms never fold; consents separate and unchecked; full agreement opens as Arta’s own bottom-sheet legal pattern"></iframe></div><div class="proto-cap">S5 · Key Terms never fold; consents separate and unchecked; full agreement opens as Arta’s own bottom-sheet legal pattern</div></div>
+        <div style="flex:1">
+          <ul class="points" style="margin-top:6px">
+            <li>Key Terms module — <span>always expanded; structure is compliance-locked for partners.</span></li>
+            <li>Hard-pull consent in plain language: <span>"This can lower your credit score by a few points for a short time."</span></li>
+            <li>The full Cardmember Agreement <span>reuses Arta's existing legal container: sheet, drag handle, scroll-to-read ↓, Agree &amp; Continue.</span></li>
+          </ul>
+        </div>
       </div>
       <div class="slide-num">08 / 15</div>
     </section>
@@ -374,9 +419,9 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>The decision is a relationship moment</h2>
       <div class="ph-row">
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S6a · Approved + instant virtual card</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S6b · In review — timeline</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>S6e · Declined, with dignity</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s6a" title="Approved — the newest card in your collection; virtual card usable now"></iframe></div><div class="proto-cap">Approved — the newest card in your collection; virtual card usable now</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s6b" title="In review — named stages, honest expectations, nothing to do"></iframe></div><div class="proto-cap">In review — named stages, honest expectations, nothing to do</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s6e" title="Declined — private, specific as legally possible, zero cross-sell"></iframe></div><div class="proto-cap">Declined — private, specific as legally possible, zero cross-sell</div></div>
       </div>
       <p class="lede">Pending, counter-offer and decline are designed — a declined applicant is still a wealth member tomorrow.</p>
       <div class="slide-num">09 / 15</div>
@@ -387,19 +432,29 @@
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Flow 2 · AI across the lifecycle</div>
       <h2>One AI relationship, not scattered features</h2>
-      <div class="ph ph-wide" style="margin-top:30px"><div><strong>Placeholder — lifecycle map</strong>Apply → Onboard → Everyday use → Manage &amp; service → Grow<br>AI touchpoints mapped to existing Arta AI agents (Planner · Product Specialist · Research Analyst)</div></div>
+      <div class="ph-row" style="margin-top:26px">
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=margaux&jump=s9" title="The in-product map: five moments, one anatomy — "you are here" at Manage"></iframe></div><div class="proto-cap">The in-product map: five moments, one anatomy — "you are here" at Manage</div></div>
+        <div style="flex:1">
+          <ul class="points" style="margin-top:6px">
+            <li>The card gives Arta AI <span>the one signal it never had: cash flow. Arta saw what you own; now it sees how money moves.</span></li>
+            <li>Not a new mascot: <span>Product Specialist extends to lending terms; Investment Planner gains cash-flow awareness.</span></li>
+            <li>One anatomy everywhere: <span>a conclusion · the math · one tap · an exit. Chat exists behind "Ask about this" — never the default.</span></li>
+          </ul>
+        </div>
+      </div>
       <div class="slide-num">10 / 15</div>
     </section>
 
     <section class="slide" id="s11">
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Flow 2 · AI across the lifecycle</div>
-      <h2>Deep moment: repayment intelligence</h2>
+      <h2>Deep moment: repayment intelligence — three realities, one anatomy</h2>
       <div class="ph-row">
-        <div class="ph ph-phone"><div><strong>Mockup</strong>Insight card — statement meets portfolio</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>Action sheet — adjust autopay / pay now</div></div>
-        <div style="flex:1" class="ph ph-half"><div><strong>Placeholder — why this moment</strong>Only Arta sees the whole wealth picture: carrying 24% APR vs. portfolio math · explainable, actionable, not a chatbot</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s7" title="Alexandra — the quiet state: "Nothing needs you." The hardest decision was letting the AI stay silent"></iframe></div><div class="proto-cap">Alexandra — the quiet state: "Nothing needs you." The hardest decision was letting the AI stay silent</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=dev&jump=s7" title="Dev — cash-flow structure: statement date moved to meet his invoices"></iframe></div><div class="proto-cap">Dev — cash-flow structure: statement date moved to meet his invoices</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=margaux&jump=s7" title="Margaux — the math shown: interest vs. yield, plus the capital-call line no bank can write"></iframe></div><div class="proto-cap">Margaux — the math shown: interest vs. yield, plus the capital-call line no bank can write</div></div>
       </div>
+      <p class="lede">Every alternative is honestly priced — a live slider reprices any payment amount; "Why am I seeing this?" lists sources, calls itself arithmetic, and hands over the off switch.</p>
       <div class="slide-num">11 / 15</div>
     </section>
 
@@ -408,11 +463,13 @@
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Platform · White-label</div>
       <h2>Core stays fixed. Skin is the partner's.</h2>
-      <div class="grid-2">
-        <div class="card"><span class="tag">Platform-fixed</span><h3>The trust layer</h3><p>Compliance flows &amp; disclosure placement · decisioning · security · data model · flow skeleton · accessibility floor.</p></div>
-        <div class="card"><span class="tag">Partner-configurable</span><h3>The brand layer</h3><p>Design tokens (color, type, radius) · logo &amp; card art · entry points · copy tone within guardrails · reward currency.</p></div>
+      <div class="grid-3">
+        <div class="card"><span class="tag">Layer 1 · Locked</span><h3>Platform core</h3><p>Compliance flows &amp; disclosure structure · decisioning · lending semantics (status / credit / decision / disclosure / AI colors) · legal type minimums · focus visibility.</p></div>
+        <div class="card"><span class="tag">Layer 2 · Contract</span><h3>Product configuration</h3><p>APR range, limits, rewards rule, SLAs — data consumed by screens, governed by contract, never themable.</p></div>
+        <div class="card"><span class="tag">Layer 3 · Partner</span><h3>Brand expression</h3><p>Palette, gradients &amp; card art, radius, type family, link color — one theme file, zero component code.</p></div>
       </div>
-      <div class="ph ph-half" style="margin-top:22px"><div><strong>Placeholder — token architecture diagram</strong>Components consume tokens only → Arta is simply theme #1</div></div>
+      <p class="lede" style="margin-top:20px">The line is enforced by the token pipeline, not by review: a partner theme that re-points a decision color to its brand pink <b>fails the build</b>. One chain: <code style="color:var(--sky)">#a8cdf0 → ref.color.sky.40 → sys.action.primary → cmp.btn.primary.bg</code> — Arta is simply theme #1.</p>
+      <a class="livechip" href="storybook/index.html" target="_blank">LIVE STORYBOOK — 3 THEMES, GOVERNANCE STORIES ↗</a>
       <div class="slide-num">12 / 15</div>
     </section>
 
@@ -421,11 +478,12 @@
       <div class="slide-kicker">Platform · White-label</div>
       <h2>Same bones, partner skin</h2>
       <div class="ph-row">
-        <div class="ph ph-phone"><div><strong>Mockup</strong>Arta theme — Key Terms screen</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>Partner theme — same screen</div></div>
-        <div class="ph ph-phone"><div><strong>Mockup</strong>Partner theme — decision screen</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s5&theme=arta" title="Arta — Key Terms &amp; consents"></iframe></div><div class="proto-cap">Arta — Key Terms &amp; consents</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s5&theme=meridian" title="Meridian Securities — identical DOM, sys-token overrides only"></iframe></div><div class="proto-cap">Meridian Securities — identical DOM, sys-token overrides only</div></div>
+        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=alexandra&jump=s6a&theme=meridian" title="Meridian — approval moment within motion &amp; compliance guardrails"></iframe></div><div class="proto-cap">Meridian — approval moment within motion &amp; compliance guardrails</div></div>
       </div>
-      <p class="lede">Fictional partner reskin: structure, disclosures and decision logic identical — only the token layer changed.</p>
+      <p class="lede">Two fictional partners (Meridian, Northstar) prove the pipeline: structure, disclosures and decision logic identical — only the token layer changed.</p>
+      <a class="livechip" href="whitelabel.html" target="_blank">SIDE-BY-SIDE GOVERNANCE PROTOTYPE ↗</a>
       <div class="slide-num">13 / 15</div>
     </section>
 
@@ -438,6 +496,8 @@
         <div class="card"><h3>No legal type style</h3><p>Letterspaced caps micro-labels fail for disclosures. Lending needs a readable legal/tabular style.</p></div>
         <div class="card"><h3>Missing primitives</h3><p>Dense inputs, chapter progress, currency input, consent rows, status timeline, document upload, decision states.</p></div>
       </div>
+      <p class="lede" style="margin-top:20px">And because a critique should be constructive: the missing layer now exists — <b>151 ref / 117 sys / 123 cmp tokens</b>, the lending components, and three themes, running in a validated pipeline.</p>
+      <a class="livechip" href="design-system.html" target="_blank">DESIGN-SYSTEM CONTRIBUTION ↗</a>
       <div class="slide-num">14 / 15</div>
     </section>
 
@@ -451,7 +511,14 @@
         <li>Card management & servicing surface <span>— statements, disputes, freeze; same DS additions carry over.</span></li>
         <li>Partner theming console <span>— how a partner actually edits tokens with compliance-locked regions.</span></li>
       </ul>
-      <div class="byline">Thank you · [contact]</div>
+      <div class="byline" style="margin-bottom:14px">Everything in this deck is live:</div>
+      <div>
+        <a class="livechip" href="prototype.html" target="_blank">PROTOTYPE — FLOWS 1 &amp; 2 ↗</a>
+        <a class="livechip" href="whitelabel.html" target="_blank" style="margin-left:8px">WHITE-LABEL ↗</a>
+        <a class="livechip" href="storybook/index.html" target="_blank" style="margin-left:8px">STORYBOOK ↗</a>
+        <a class="livechip" href="design-system.html" target="_blank" style="margin-left:8px">DESIGN SYSTEM ↗</a>
+      </div>
+      <div class="byline" style="margin-top:22px">Thank you · Po Chun Lin · pochun.lin@thepacinglabs.com · linpochun.com</div>
       <div class="slide-num">15 / 15</div>
     </section>
 

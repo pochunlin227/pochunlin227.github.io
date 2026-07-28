@@ -799,6 +799,11 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 .banner.info { background:color-mix(in srgb, var(--status-info) 14%, transparent); color:var(--text-legal); border:1px solid color-mix(in srgb, var(--status-info) 35%, transparent); }
 .banner.warn { background:color-mix(in srgb, var(--status-warn) 12%, transparent); color:var(--text-legal); border:1px solid color-mix(in srgb, var(--status-warn) 35%, transparent); }
 
+/* embed mode — clean phone for iframe embedding (slides deep-link with ?embed=1&persona=&jump=&theme=) */
+body.embed { padding:0; gap:0; background:transparent; }
+body.embed .stage-title, body.embed .demo, body.embed .backlink { display:none; }
+body.embed .phone { box-shadow:none; }
+
 /* portfolio card grid — Design-at-Arta: the card is the atomic, collectible unit */
 .cardgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
 .pcard { border-radius:14px; padding:14px; aspect-ratio:1.28; color:#fff; display:flex; flex-direction:column; justify-content:space-between; position:relative; cursor:pointer; transition:transform .15s ease; }
@@ -1671,6 +1676,15 @@ function setTheme(t){
 }
 
 applyPersona('alexandra');
+
+/* deep-link support: ?persona=margaux&jump=s7&theme=meridian&embed=1 */
+(function(){
+  const q = new URLSearchParams(location.search);
+  if (q.get('embed')) document.body.classList.add('embed');
+  const p = q.get('persona'); if (p && PERSONAS[p]) applyPersona(p);
+  const t = q.get('theme'); if (t) setTheme(t);
+  const j = q.get('jump'); if (j && document.getElementById(j)) go(j);
+})();
 </script>
 </body>
 </html>
