@@ -165,28 +165,28 @@
   .livechip:hover { background: rgba(168,205,240,.1); }
   .lcmap-img { width: 100%; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; margin-top: 10px; display: block; }
 
-  /* ── per-slide voice-over player ── */
-  .vo {
-    position: absolute; bottom: 22px; left: 40px; z-index: 5;
-    display: flex; align-items: center; gap: 12px;
-    background: rgba(18,18,20,.88); backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,.14); border-radius: 999px;
-    padding: 8px 16px 8px 8px; min-width: 230px;
-    opacity: .55; transition: opacity .2s;
+  /* ── voice-over mini dock (single, fixed, unobtrusive) ── */
+  #voDock {
+    position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 60;
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(14,14,16,.82); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 999px;
+    padding: 5px 14px 5px 5px;
+    opacity: .45; transition: opacity .2s;
   }
-  .vo.active { opacity: 1; }
-  .vo-btn {
-    width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer;
-    background: #f4f2ee; color: #141414; font-size: 12px; flex: none;
-    display: flex; align-items: center; justify-content: center;
+  #voDock:hover, #voDock.fresh { opacity: 1; }
+  #voBtn {
+    width: 28px; height: 28px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(255,255,255,.92); color: #141414; font-size: 10px;
+    display: flex; align-items: center; justify-content: center; flex: none;
   }
-  .vo.missing .vo-btn { background: rgba(255,255,255,.14); color: var(--text-faint); cursor: default; }
-  .vo-meta { flex: 1; min-width: 0; }
-  .vo-lbl { display: block; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 5px; white-space: nowrap; }
-  .vo.missing .vo-lbl { color: var(--text-faint); }
-  .vo-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,.14); overflow: hidden; }
-  .vo-fill { height: 100%; width: 0%; background: var(--sky); border-radius: 2px; }
-  .vo-time { font-size: 10.5px; color: var(--text-faint); font-variant-numeric: tabular-nums; flex: none; }
+  #voDock.missing #voBtn { background: rgba(255,255,255,.12); color: #6b6b66; cursor: default; }
+  #voInfo { display: flex; flex-direction: column; gap: 4px; }
+  #voLbl { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+  #voTrack { width: 110px; height: 2px; border-radius: 1px; background: rgba(255,255,255,.14); overflow: hidden; }
+  #voFill { height: 100%; width: 0; background: var(--sky); }
+  #voTime { font-size: 10px; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+
   .vo-master { margin-top: 10px; }
   .vo-master button {
     font-family: inherit; font-size: 10.5px; letter-spacing: .08em;
@@ -686,9 +686,9 @@
   });
 </script>
 <script>
-/* ── voice-over: one player per slide, auto-plays on arrival, pausable ──
-   Audio files: assets/audio/slide-01.mp3 … slide-17.mp3 (display order).
-   Missing files degrade gracefully to "No narration yet". */
+/* ── voice-over: single mini dock; active slide = the one under the viewport center.
+   Scrolling to a new slide ALWAYS pauses the previous narration.
+   Files: assets/audio/slide-01.mp3 … slide-17.mp3; missing files degrade gracefully. */
 (function () {
   const deck = document.getElementById('deck');
   const slides = [...deck.querySelectorAll('section.slide')];
@@ -696,94 +696,89 @@
   audio.preload = 'metadata';
   let current = -1, unlocked = false, playing = false;
   let mode = localStorage.getItem('vo-mode') || 'auto';
+  const missing = new Set();
 
+  const dock = document.createElement('div');
+  dock.id = 'voDock';
+  dock.className = 'fresh';
+  dock.innerHTML = '<button id="voBtn" aria-label="Play narration">▶</button>' +
+    '<div id="voInfo"><span id="voLbl">Narration</span><div id="voTrack"><div id="voFill"></div></div></div>' +
+    '<span id="voTime">–:––</span>';
+  document.body.appendChild(dock);
+  const $ = id => document.getElementById(id);
   const fmt = s => isFinite(s) && s > 0 ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '–:––';
   const srcFor = i => 'assets/audio/slide-' + String(i + 1).padStart(2, '0') + '.mp3';
 
-  const chips = slides.map((sec, i) => {
-    const c = document.createElement('div');
-    c.className = 'vo';
-    c.innerHTML = '<button class="vo-btn" aria-label="Play narration">▶</button>' +
-      '<div class="vo-meta"><span class="vo-lbl">Voice-over · slide ' + (i + 1) + '</span>' +
-      '<div class="vo-track"><div class="vo-fill"></div></div></div><span class="vo-time">–:––</span>';
-    sec.appendChild(c);
-    c.querySelector('.vo-btn').addEventListener('click', e => { e.stopPropagation(); toggle(i); });
-    return c;
-  });
-  const missing = new Set();
-
-  function ui(i) {
-    const c = chips[i]; if (!c) return;
-    c.querySelector('.vo-btn').textContent = (i === current && playing) ? '❚❚' : '▶';
-    if (missing.has(i)) {
-      c.classList.add('missing');
-      c.querySelector('.vo-lbl').textContent = 'No narration yet · slide ' + (i + 1);
+  function render() {
+    $('voBtn').textContent = playing ? '❚❚' : '▶';
+    if (current < 0) return;
+    if (missing.has(current)) {
+      dock.classList.add('missing');
+      $('voLbl').textContent = 'No narration · slide ' + (current + 1);
+    } else {
+      dock.classList.remove('missing');
+      $('voLbl').textContent = unlocked ? 'Slide ' + (current + 1) + ' of ' + slides.length : 'Click to start narration';
     }
   }
-  function setLabel(i, txt) { chips[i] && (chips[i].querySelector('.vo-lbl').textContent = txt); }
-
   function setActive(i) {
-    if (i === current) return;
-    if (current >= 0) { audio.pause(); playing = false; ui(current); chips[current].classList.remove('active'); }
+    if (i === current || i < 0) return;
+    audio.pause(); playing = false;            /* ← leaving a slide always stops its narration */
     current = i;
-    chips[i].classList.add('active');
+    $('voFill').style.width = '0%'; $('voTime').textContent = '–:––';
     if (!missing.has(i)) {
       audio.src = srcFor(i);
-      if (!unlocked) setLabel(i, 'Click anywhere to start narration');
-      else if (mode === 'auto') play();
+      if (unlocked && mode === 'auto') play();
     }
-    ui(i);
+    render();
   }
   function play() {
     if (current < 0 || missing.has(current)) return;
-    audio.play().then(() => { playing = true; unlocked = true; setLabel(current, 'Voice-over · slide ' + (current + 1)); ui(current); }).catch(() => {});
+    audio.play().then(() => { playing = true; unlocked = true; dock.classList.remove('fresh'); render(); }).catch(() => {});
   }
-  function toggle(i) {
-    if (missing.has(i)) return;
-    if (i !== current) { setActive(i); slides[i].scrollIntoView(); }
-    if (playing && i === current) { audio.pause(); playing = false; }
+  $('voBtn').addEventListener('click', e => {
+    e.stopPropagation();
+    if (missing.has(current)) return;
+    if (playing) { audio.pause(); playing = false; }
     else { unlocked = true; play(); }
-    ui(i);
-  }
+    render();
+  });
 
-  audio.addEventListener('error', () => { if (current >= 0) { missing.add(current); playing = false; ui(current); } });
-  audio.addEventListener('ended', () => { playing = false; ui(current); });
+  audio.addEventListener('error', () => { if (current >= 0) { missing.add(current); playing = false; render(); } });
+  audio.addEventListener('ended', () => { playing = false; render(); });
   audio.addEventListener('timeupdate', () => {
-    const c = chips[current]; if (!c || !audio.duration) return;
-    c.querySelector('.vo-fill').style.width = (audio.currentTime / audio.duration * 100) + '%';
-    c.querySelector('.vo-time').textContent = fmt(audio.duration - audio.currentTime);
+    if (!audio.duration) return;
+    $('voFill').style.width = (audio.currentTime / audio.duration * 100) + '%';
+    $('voTime').textContent = fmt(audio.duration - audio.currentTime);
   });
-  audio.addEventListener('loadedmetadata', () => {
-    const c = chips[current]; if (c) c.querySelector('.vo-time').textContent = fmt(audio.duration);
-  });
+  audio.addEventListener('loadedmetadata', () => { $('voTime').textContent = fmt(audio.duration); });
 
-  const io = new IntersectionObserver(es => {
-    es.forEach(e => { if (e.isIntersecting) setActive(slides.indexOf(e.target)); });
-  }, { root: deck, threshold: 0.6 });
-  slides.forEach(s => io.observe(s));
+  /* active slide = the one containing the vertical center of the deck viewport */
+  let raf = 0;
+  function detect() {
+    raf = 0;
+    const mid = deck.scrollTop + deck.clientHeight / 2;
+    let i = slides.findIndex(s => mid >= s.offsetTop && mid < s.offsetTop + s.offsetHeight);
+    if (i < 0) i = slides.length - 1;
+    setActive(i);
+  }
+  deck.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(detect); });
+  window.addEventListener('resize', detect);
 
-  const unlock = () => {
-    if (unlocked) return;
-    unlocked = true;
-    if (mode === 'auto' && current >= 0 && !playing) play();
-  };
+  const unlock = () => { if (unlocked) return; unlocked = true; dock.classList.remove('fresh'); if (mode === 'auto' && !playing) play(); render(); };
   window.addEventListener('pointerdown', unlock);
   window.addEventListener('keydown', unlock);
 
-  const master = document.getElementById('voMaster');
-  function masterUi() {
-    master.textContent = 'Voice-over: ' + (mode === 'auto' ? 'Auto' : 'Off');
-    master.classList.toggle('on', mode === 'auto');
-  }
+  const master = $('voMaster');
+  function mUi() { master.textContent = 'Voice-over: ' + (mode === 'auto' ? 'Auto' : 'Off'); master.classList.toggle('on', mode === 'auto'); }
   master.addEventListener('click', e => {
     e.stopPropagation();
     mode = mode === 'auto' ? 'off' : 'auto';
     localStorage.setItem('vo-mode', mode);
-    if (mode === 'off' && playing) { audio.pause(); playing = false; ui(current); }
+    if (mode === 'off' && playing) { audio.pause(); playing = false; }
     if (mode === 'auto' && unlocked) play();
-    masterUi();
+    mUi(); render();
   });
-  masterUi();
+  mUi(); detect();
 })();
 </script>
 </body>
