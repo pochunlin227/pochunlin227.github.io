@@ -164,6 +164,36 @@
   .livechip { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; border: 1px solid rgba(168,205,240,.45); color: var(--sky); border-radius: 999px; padding: 7px 14px; font-size: 11.5px; letter-spacing: .06em; text-decoration: none; }
   .livechip:hover { background: rgba(168,205,240,.1); }
   .lcmap-img { width: 100%; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; margin-top: 10px; display: block; }
+
+  /* ── per-slide voice-over player ── */
+  .vo {
+    position: absolute; bottom: 22px; left: 40px; z-index: 5;
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(18,18,20,.88); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.14); border-radius: 999px;
+    padding: 8px 16px 8px 8px; min-width: 230px;
+    opacity: .55; transition: opacity .2s;
+  }
+  .vo.active { opacity: 1; }
+  .vo-btn {
+    width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer;
+    background: #f4f2ee; color: #141414; font-size: 12px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .vo.missing .vo-btn { background: rgba(255,255,255,.14); color: var(--text-faint); cursor: default; }
+  .vo-meta { flex: 1; min-width: 0; }
+  .vo-lbl { display: block; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 5px; white-space: nowrap; }
+  .vo.missing .vo-lbl { color: var(--text-faint); }
+  .vo-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,.14); overflow: hidden; }
+  .vo-fill { height: 100%; width: 0%; background: var(--sky); border-radius: 2px; }
+  .vo-time { font-size: 10.5px; color: var(--text-faint); font-variant-numeric: tabular-nums; flex: none; }
+  .vo-master { margin-top: 10px; }
+  .vo-master button {
+    font-family: inherit; font-size: 10.5px; letter-spacing: .08em;
+    background: none; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--text-dim); padding: 5px 12px; cursor: pointer;
+  }
+  .vo-master button.on { border-color: rgba(168,205,240,.5); color: var(--sky); }
   .fmap { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
   .fmap .fstep { border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 8px 15px; font-size: 12.5px; }
   .fmap .fstep.hot { border-color: rgba(168,205,240,.5); color: var(--sky); }
@@ -308,6 +338,7 @@
     <div class="sidebar-foot">
       Navigate: <kbd>↑</kbd> <kbd>↓</kbd> or scroll<br>
       Click any item to jump
+      <div class="vo-master"><button id="voMaster" class="on">Voice-over: Auto</button></div>
     </div>
   </aside>
 
@@ -653,6 +684,107 @@
       slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
     }
   });
+</script>
+<script>
+/* ── voice-over: one player per slide, auto-plays on arrival, pausable ──
+   Audio files: assets/audio/slide-01.mp3 … slide-17.mp3 (display order).
+   Missing files degrade gracefully to "No narration yet". */
+(function () {
+  const deck = document.getElementById('deck');
+  const slides = [...deck.querySelectorAll('section.slide')];
+  const audio = new Audio();
+  audio.preload = 'metadata';
+  let current = -1, unlocked = false, playing = false;
+  let mode = localStorage.getItem('vo-mode') || 'auto';
+
+  const fmt = s => isFinite(s) && s > 0 ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '–:––';
+  const srcFor = i => 'assets/audio/slide-' + String(i + 1).padStart(2, '0') + '.mp3';
+
+  const chips = slides.map((sec, i) => {
+    const c = document.createElement('div');
+    c.className = 'vo';
+    c.innerHTML = '<button class="vo-btn" aria-label="Play narration">▶</button>' +
+      '<div class="vo-meta"><span class="vo-lbl">Voice-over · slide ' + (i + 1) + '</span>' +
+      '<div class="vo-track"><div class="vo-fill"></div></div></div><span class="vo-time">–:––</span>';
+    sec.appendChild(c);
+    c.querySelector('.vo-btn').addEventListener('click', e => { e.stopPropagation(); toggle(i); });
+    return c;
+  });
+  const missing = new Set();
+
+  function ui(i) {
+    const c = chips[i]; if (!c) return;
+    c.querySelector('.vo-btn').textContent = (i === current && playing) ? '❚❚' : '▶';
+    if (missing.has(i)) {
+      c.classList.add('missing');
+      c.querySelector('.vo-lbl').textContent = 'No narration yet · slide ' + (i + 1);
+    }
+  }
+  function setLabel(i, txt) { chips[i] && (chips[i].querySelector('.vo-lbl').textContent = txt); }
+
+  function setActive(i) {
+    if (i === current) return;
+    if (current >= 0) { audio.pause(); playing = false; ui(current); chips[current].classList.remove('active'); }
+    current = i;
+    chips[i].classList.add('active');
+    if (!missing.has(i)) {
+      audio.src = srcFor(i);
+      if (!unlocked) setLabel(i, 'Click anywhere to start narration');
+      else if (mode === 'auto') play();
+    }
+    ui(i);
+  }
+  function play() {
+    if (current < 0 || missing.has(current)) return;
+    audio.play().then(() => { playing = true; unlocked = true; setLabel(current, 'Voice-over · slide ' + (current + 1)); ui(current); }).catch(() => {});
+  }
+  function toggle(i) {
+    if (missing.has(i)) return;
+    if (i !== current) { setActive(i); slides[i].scrollIntoView(); }
+    if (playing && i === current) { audio.pause(); playing = false; }
+    else { unlocked = true; play(); }
+    ui(i);
+  }
+
+  audio.addEventListener('error', () => { if (current >= 0) { missing.add(current); playing = false; ui(current); } });
+  audio.addEventListener('ended', () => { playing = false; ui(current); });
+  audio.addEventListener('timeupdate', () => {
+    const c = chips[current]; if (!c || !audio.duration) return;
+    c.querySelector('.vo-fill').style.width = (audio.currentTime / audio.duration * 100) + '%';
+    c.querySelector('.vo-time').textContent = fmt(audio.duration - audio.currentTime);
+  });
+  audio.addEventListener('loadedmetadata', () => {
+    const c = chips[current]; if (c) c.querySelector('.vo-time').textContent = fmt(audio.duration);
+  });
+
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) setActive(slides.indexOf(e.target)); });
+  }, { root: deck, threshold: 0.6 });
+  slides.forEach(s => io.observe(s));
+
+  const unlock = () => {
+    if (unlocked) return;
+    unlocked = true;
+    if (mode === 'auto' && current >= 0 && !playing) play();
+  };
+  window.addEventListener('pointerdown', unlock);
+  window.addEventListener('keydown', unlock);
+
+  const master = document.getElementById('voMaster');
+  function masterUi() {
+    master.textContent = 'Voice-over: ' + (mode === 'auto' ? 'Auto' : 'Off');
+    master.classList.toggle('on', mode === 'auto');
+  }
+  master.addEventListener('click', e => {
+    e.stopPropagation();
+    mode = mode === 'auto' ? 'off' : 'auto';
+    localStorage.setItem('vo-mode', mode);
+    if (mode === 'off' && playing) { audio.pause(); playing = false; ui(current); }
+    if (mode === 'auto' && unlocked) play();
+    masterUi();
+  });
+  masterUi();
+})();
 </script>
 </body>
 </html>
