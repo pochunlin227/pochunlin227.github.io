@@ -633,13 +633,12 @@ p.lede { font-size:12.5px; line-height:1.5; color:var(--arta-sys-color-text-seco
 <div class="stage-title">
   <h1>White-Label — Governed Configuration</h1>
   <p>"Northstar Invest Card, powered by Arta" — a fictional online brokerage issuing on Arta's rails.
-  Same DOM, same components, same compliance surface. What differs is a partner theme file (Layer 3)
-  and a product configuration contract (Layer 2). Platform core (Layer 1) is locked by the token pipeline.</p>
+  Per Arta’s clarification, the product — a portfolio-secured charge card — sits inside the partner’s own product shell: the Arta core modules (pledge consent, Key Terms, decisioning) are embedded and non-removable; the shell, entry points and brand are the partner’s. What differs is a partner theme file (Layer 3) and a product configuration contract (Layer 2). Platform core (Layer 1) is locked by the token pipeline.</p>
 </div>
 
 <div class="layers">
   <div class="layer l1"><div class="ln">Layer 1 · Locked</div><b>Arta platform core</b><span>Security, KYC/AML model, decisioning, status model, disclosure hierarchy, consent logging, accessibility, AI guardrails, error/pending/declined patterns.</span></div>
-  <div class="layer l2"><div class="ln">Layer 2 · Governed</div><b>Product configuration</b><span>Eligibility, rates &amp; fees, limit ranges, rewards rules, settlement, servicing SLA, market disclosures — contract-controlled data, not design.</span></div>
+  <div class="layer l2"><div class="ln">Layer 2 · Governed</div><b>Product configuration</b><span>Eligibility, fees, advance rates by asset class, rewards rules, settlement, servicing SLA, market disclosures — contract-controlled data, not design.</span></div>
   <div class="layer l3"><div class="ln">Layer 3 · Partner</div><b>Partner expression</b><span>Brand name &amp; logo, card art, palette within contrast limits, entry point, marketing copy, support channel, illustration, some typography.</span></div>
 </div>
 
@@ -697,7 +696,7 @@ const BRANDS = {
     rewards:'Rewards sweep straight into your portfolio.',
     support:'Arta lending team — in-app, 24/7',
     entryNote:'Entry point: Arta home, pre-qualified hero.',
-    product:{ apr:'21.99–27.99%', fee:'S$150', cashApr:'29.99%', limit:'S$25,000', freePeriod:'25 days' }
+    product:{ payment:'Full balance, monthly', fee:'S$150', security:'Pledge over selected assets', limit:'S$213,260', adjust:'7 days’ notice if values fall' }
   },
   northstar: {
     label:'Northstar', wm:'NORTHSTAR ✦', card:'Northstar Invest Card', powered:'Powered by Arta · custody BNY | Pershing',
@@ -705,7 +704,7 @@ const BRANDS = {
     rewards:'2% back, deposited to your Northstar brokerage account.',
     support:'Northstar support · serviced by Arta',
     entryNote:'Entry point: Northstar app → Invest tab → Cards.',
-    product:{ apr:'19.99–25.99%', fee:'S$0 first year, then S$99', cashApr:'27.99%', limit:'S$15,000', freePeriod:'25 days' }
+    product:{ payment:'Full balance, monthly', fee:'S$0 first year, then S$99', security:'Pledge over selected assets', limit:'S$180,000', adjust:'7 days’ notice if values fall' }
   }
 };
 
@@ -714,8 +713,8 @@ const SCREENS = {
     <div class="micro" style="margin-top:8px">${b.card}</div>
     <div class="hero">
       <div class="micro" style="color:inherit;opacity:.75">${b.entryKicker}</div>
-      <h3>You're pre-qualified for up to ${b.product.limit}</h3>
-      <p>${b.entryCopy} Variable APR ${b.product.apr}. ${b.rewards}</p>
+      <h3>Backed by your portfolio — up to ${b.product.limit}</h3>
+      <p>${b.entryCopy} Charge card — paid in full monthly. ${b.rewards}</p>
       <span class="pill">See your offer →</span>
     </div>
     <p class="hint" style="margin-top:10px">${b.entryNote}</p>
@@ -727,18 +726,18 @@ const SCREENS = {
     <div class="card">
       <div class="kv"><span class="k">Applicant</span><span class="v">Alexandra W. Chen</span></div>
       <div class="kv"><span class="k">Income</span><span class="v">S$285,000 / yr</span></div>
-      <div class="kv"><span class="k">Requested limit</span><span class="v">${b.product.limit}</span></div>
+      <div class="kv"><span class="k">Spending limit</span><span class="v">${b.product.limit}</span></div>
     </div>
     <div class="terms">
       <div class="t-head"><span class="micro">Key terms — always visible</span></div>
-      <div class="trow"><span class="tk">Purchase APR</span><span class="tv">${b.product.apr}</span></div>
-      <div class="trow"><span class="tk">Cash advance APR</span><span class="tv">${b.product.cashApr}</span></div>
+      <div class="trow"><span class="tk">Card type</span><span class="tv">Charge card — paid in full monthly</span></div>
+      <div class="trow"><span class="tk">Security</span><span class="tv">${b.product.security}</span></div>
       <div class="trow"><span class="tk">Annual fee</span><span class="tv">${b.product.fee}</span></div>
-      <div class="trow"><span class="tk">Interest-free period</span><span class="tv">${b.product.freePeriod}</span></div>
+      <div class="trow"><span class="tk">If markets fall</span><span class="tv">${b.product.adjust}</span></div>
     </div>
     <div class="card">
       <div class="consent"><span class="checkbox"></span><p>Everything in this application is true and complete.</p></div>
-      <div class="consent"><span class="checkbox"></span><p>A <b>hard credit check</b> runs when I submit. It may affect my credit score.</p></div>
+      <div class="consent"><span class="checkbox"></span><p>A <b>Credit Bureau Singapore check</b> runs when I submit. It may affect my credit score.</p></div>
     </div>
     ${b.powered ? `<div class="powered">${b.powered}</div>` : ''}`,
 
@@ -747,8 +746,8 @@ const SCREENS = {
       <h2 class="display">Welcome to ${b.card}.</h2></div>
     <div class="cardart"><span class="wm">${b.wm}</span><span class="num">•••• 4821</span></div>
     <div class="card">
-      <div class="kv"><span class="k">Credit limit</span><span class="v">${b.product.limit}</span></div>
-      <div class="kv"><span class="k">Your APR</span><span class="v">${b.product.apr.split('–')[0]} variable</span></div>
+      <div class="kv"><span class="k">Spending limit</span><span class="v">${b.product.limit}</span></div>
+      <div class="kv"><span class="k">Payment</span><span class="v">${b.product.payment}</span></div>
       <div class="kv"><span class="k">Support</span><span class="v" style="max-width:160px">${b.support}</span></div>
     </div>
     <button class="btn">Add to Apple Wallet</button>
