@@ -155,6 +155,9 @@
   --arta-ref-size-icon-md: 20px;
   --arta-ref-size-icon-lg: 24px;
   --arta-ref-size-checkbox: 22px;
+  --arta-ref-size-avatar: 40px;
+  --arta-ref-size-donut: 176px;
+  --arta-ref-size-donut-hole: 124px;
   --arta-ref-border-hairline: 1px;
   --arta-ref-border-regular: 1.5px;
   --arta-ref-border-focus: 2px;
@@ -481,6 +484,139 @@
   --arta-cmp-chip-radius: var(--arta-sys-radius-action);
   --arta-cmp-chip-height: var(--arta-ref-size-control-sm);
   --arta-cmp-chip-px: var(--arta-sys-space-stack-md);
+  --arta-cmp-stat-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-stat-radius: var(--arta-sys-radius-media);
+  --arta-cmp-stat-pad: var(--arta-sys-space-stack-xl);
+  --arta-cmp-stat-value-color: var(--arta-sys-color-action-primary);
+  --arta-cmp-stat-value-size: var(--arta-ref-font-size-1000);
+  --arta-cmp-stat-value-weight: var(--arta-ref-font-weight-light);
+  --arta-cmp-stat-caption-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-catalog-radius: var(--arta-sys-radius-media);
+  --arta-cmp-catalog-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-catalog-title-size: var(--arta-ref-font-size-700);
+  --arta-cmp-catalog-title-weight: var(--arta-ref-font-weight-semibold);
+  --arta-cmp-catalog-tagline-color: var(--arta-sys-color-text-on-gradient-secondary);
+  --arta-cmp-catalog-badge-bg: var(--arta-ref-color-alpha-white-28);
+  --arta-cmp-catalog-badge-fg: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-catalog-dim-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-catalog-dim-fg: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-fact-icon-size: var(--arta-ref-space-10);
+  --arta-cmp-fact-icon-bg: var(--arta-sys-color-status-info-surface);
+  --arta-cmp-fact-icon-fg: var(--arta-sys-color-status-info);
+  --arta-cmp-fact-text-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-fact-gap: var(--arta-sys-space-inline-md);
+  --arta-cmp-ticker-chip-bg: var(--arta-ref-color-alpha-white-16);
+  --arta-cmp-ticker-chip-radius: var(--arta-ref-radius-xs);
+  --arta-cmp-ticker-chip-fg: var(--arta-sys-color-text-primary);
+  --arta-cmp-ticker-pos-bg: var(--arta-sys-color-status-positive);
+  --arta-cmp-ticker-pos-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-ticker-neg-bg: var(--arta-sys-color-status-danger);
+  --arta-cmp-ticker-neg-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-ticker-row-divider: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-radiorow-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-radiorow-fg: var(--arta-sys-color-text-secondary);
+  --arta-cmp-radiorow-selected-bg: var(--arta-sys-color-status-info);
+  --arta-cmp-radiorow-selected-fg: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-radiorow-radius: var(--arta-sys-radius-control);
+  --arta-cmp-radiorow-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-donut-size: var(--arta-ref-size-donut);
+  --arta-cmp-donut-hole: var(--arta-ref-size-donut-hole);
+  --arta-cmp-donut-track: var(--arta-sys-color-surface-form);
+  --arta-cmp-donut-center-value-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-donut-center-label-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-contact-avatar-size: var(--arta-ref-size-avatar);
+  --arta-cmp-contact-avatar-bg: var(--arta-sys-color-surface-form);
+  --arta-cmp-contact-name-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-contact-badge-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-contact-divider: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-prompt-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-prompt-stroke: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-prompt-stroke-hover: var(--arta-sys-color-stroke-strong);
+  --arta-cmp-prompt-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-prompt-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-prompt-fg: var(--arta-sys-color-text-secondary);
+  --arta-cmp-prompt-icon-fg: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-takeaway-icon-size: var(--arta-ref-space-10);
+  --arta-cmp-takeaway-icon-bg: var(--arta-sys-color-status-positive);
+  --arta-cmp-takeaway-icon-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-takeaway-text-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-table-header-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-table-cell-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-table-value-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-table-divider: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-table-row-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-benefit-radius: var(--arta-sys-radius-media);
+  --arta-cmp-benefit-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-benefit-num-color: var(--arta-sys-color-text-on-gradient-secondary);
+  --arta-cmp-benefit-title-color: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-benefit-body-color: var(--arta-sys-color-text-on-gradient-secondary);
+  --arta-cmp-benefit-dim-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-benefit-dim-fg: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-fund-radius: var(--arta-sys-radius-media);
+  --arta-cmp-fund-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-fund-name-size: var(--arta-ref-font-size-700);
+  --arta-cmp-fund-min-size: var(--arta-ref-font-size-600);
+  --arta-cmp-fund-min-weight: var(--arta-ref-font-weight-semibold);
+  --arta-cmp-fund-badge-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-fund-badge-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-service-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-service-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-service-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-service-tile-size: var(--arta-ref-space-12);
+  --arta-cmp-service-tile-radius: var(--arta-ref-radius-sm);
+  --arta-cmp-service-tile-fg: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-service-title-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-service-desc-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-seg-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-seg-radius: var(--arta-sys-radius-action);
+  --arta-cmp-seg-fg: var(--arta-sys-color-text-secondary);
+  --arta-cmp-seg-selected-bg: var(--arta-sys-color-action-primary);
+  --arta-cmp-seg-selected-fg: var(--arta-sys-color-text-on-action);
+  --arta-cmp-seg-px: var(--arta-sys-space-stack-lg);
+  --arta-cmp-seg-height: var(--arta-sys-size-control-compact);
+  --arta-cmp-bars-base: var(--arta-sys-color-text-primary);
+  --arta-cmp-bars-delta: var(--arta-ref-color-violet-40);
+  --arta-cmp-bars-axis-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-bars-gridline: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-decay-dot-bg: var(--arta-sys-color-surface-inverse);
+  --arta-cmp-decay-dot-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-decay-bar: var(--arta-ref-color-violet-40);
+  --arta-cmp-decay-track: var(--arta-sys-color-surface-form);
+  --arta-cmp-decay-value-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-sector-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-sector-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-sector-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-sector-icon-bg: var(--arta-sys-color-surface-form);
+  --arta-cmp-sector-control-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-sector-control-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-chartline-primary: var(--arta-sys-color-action-primary);
+  --arta-cmp-chartline-secondary: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-chartline-accent: var(--arta-ref-color-mint-50);
+  --arta-cmp-chartline-grid: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-chartline-label-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-theme-card-bg: var(--arta-ref-color-alpha-white-8);
+  --arta-cmp-theme-card-stroke: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-theme-card-radius: var(--arta-sys-radius-media);
+  --arta-cmp-theme-card-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-theme-card-title-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-theme-card-desc-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-treemap-tile-bg: var(--arta-sys-color-surface-form);
+  --arta-cmp-treemap-tile-bg-hover: var(--arta-sys-color-surface-raised);
+  --arta-cmp-treemap-tile-fg: var(--arta-sys-color-text-primary);
+  --arta-cmp-treemap-gap: var(--arta-ref-space-1);
+  --arta-cmp-treemap-chip-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-treemap-chip-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-wizard-done-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-wizard-done-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-wizard-current-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-wizard-todo-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-wizard-ring: var(--arta-sys-color-stroke-strong);
+  --arta-cmp-answer-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-answer-stroke-hover: var(--arta-sys-color-stroke-strong);
+  --arta-cmp-answer-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-answer-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-answer-label-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-answer-desc-color: var(--arta-sys-color-text-secondary);
   --arta-cmp-input-bg: var(--arta-sys-color-surface-form);
   --arta-cmp-input-fg: var(--arta-sys-color-text-primary);
   --arta-cmp-input-placeholder: var(--arta-sys-color-text-tertiary);
@@ -543,12 +679,13 @@
 html,body { background:#0a0a0b; }
 body { font-family:var(--arta-sys-type-body-family); color:#ddd; padding:36px 20px 80px; display:flex; flex-direction:column; align-items:center; gap:22px; }
 
-.stage-title { text-align:center; max-width:860px; }
+.stage-title { text-align:center; max-width:880px; }
 .stage-title h1 { font-size:15px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#e8e6e2; }
 .stage-title p { font-size:12.5px; color:#8a8a8a; margin-top:6px; line-height:1.6; }
+.stage-title .thesis { color:#c9c7c2; font-size:13px; margin-top:10px; }
 
 /* three-layer strip */
-.layers { display:flex; gap:12px; max-width:980px; width:100%; }
+.layers { display:flex; gap:12px; max-width:1010px; width:100%; }
 .layer { flex:1; background:#141416; border:1px solid #26272b; border-radius:14px; padding:14px 16px; }
 .layer .ln { font-size:10px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:6px; }
 .layer.l1 .ln { color:var(--arta-sys-color-status-danger); }
@@ -567,60 +704,83 @@ body { font-family:var(--arta-sys-type-body-family); color:#ddd; padding:36px 20
 .phone-wrap { text-align:center; }
 .phone-wrap .brand-lbl { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#8a8a8a; margin-bottom:10px; }
 .phone {
-  width:340px; height:660px; border-radius:44px; overflow:hidden; position:relative;
+  width:350px; height:690px; border-radius:44px; overflow:hidden; position:relative;
   background:var(--arta-sys-color-surface-app); color:var(--arta-sys-color-text-primary);
   border:1px solid #2c2c2e; box-shadow:0 24px 60px rgba(0,0,0,.55), inset 0 0 0 8px #000;
   text-align:left; display:flex; flex-direction:column;
   font-family:var(--arta-sys-type-body-family);
 }
-.statusbar { height:36px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 24px; font-size:11.5px; font-weight:600; }
-.scr { flex:1; overflow-y:auto; padding:6px 20px 90px; }
+.statusbar { height:34px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 24px; font-size:11.5px; font-weight:600; }
+.scr { flex:1; overflow-y:auto; padding:0 18px 24px; }
 .scr::-webkit-scrollbar { display:none; }
 
-.micro { font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--arta-sys-color-text-tertiary); }
-h2.display { font-family:var(--arta-sys-type-display-family); font-weight:var(--arta-sys-type-display-weight); font-size:22px; line-height:1.2; margin:8px 0 6px; }
-p.lede { font-size:12.5px; line-height:1.5; color:var(--arta-sys-color-text-secondary); }
-.hint { font-size:11px; line-height:1.5; color:var(--arta-sys-color-text-tertiary); }
+/* partner-owned nav shell */
+.navshell { display:flex; align-items:center; justify-content:space-between; padding:8px 2px 12px; border-bottom:1px solid var(--arta-sys-color-stroke-subtle); margin-bottom:12px; }
+.navshell .logo { font-family:var(--arta-sys-type-display-family); font-weight:600; font-size:15px; letter-spacing:.02em; }
+.navshell .tabs2 { display:flex; gap:12px; font-size:10.5px; letter-spacing:.06em; color:var(--arta-sys-color-text-tertiary); }
+.navshell .tabs2 .cur { color:var(--arta-sys-color-action-primary); }
 
-.hero { border-radius:var(--arta-sys-radius-surface); padding:16px; background:var(--arta-sys-gradient-brand); color:var(--arta-sys-color-text-on-gradient); margin-top:12px; }
-.hero h3 { font-family:var(--arta-sys-type-display-family); font-size:17px; font-weight:600; line-height:1.25; }
+.micro { font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--arta-sys-color-text-tertiary); }
+h2.display { font-family:var(--arta-sys-type-display-family); font-weight:var(--arta-sys-type-display-weight); font-size:21px; line-height:1.22; margin:8px 0 6px; }
+.hint { font-size:11px; line-height:1.55; color:var(--arta-sys-color-text-tertiary); }
+.big-num { font-family:var(--arta-sys-type-numeral-family); font-weight:300; font-size:36px; letter-spacing:-.01em; margin:2px 0; }
+
+.hero { border-radius:var(--arta-sys-radius-surface); padding:16px; background:var(--arta-sys-gradient-brand); color:var(--arta-sys-color-text-on-gradient); margin-top:12px; position:relative; }
+.hero h3 { font-family:var(--arta-sys-type-display-family); font-size:16.5px; font-weight:600; line-height:1.25; }
 .hero p { font-size:11px; line-height:1.5; margin-top:6px; opacity:.88; }
 .hero .pill { display:inline-block; margin-top:12px; background:rgba(0,0,0,.28); color:#fff; border-radius:999px; padding:7px 13px; font-size:9.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
 
-.card { background:var(--arta-sys-color-surface-raised); border:1px solid var(--arta-sys-color-stroke-subtle); border-radius:var(--arta-sys-radius-surface); padding:13px; margin-top:12px; }
-.kv { display:flex; justify-content:space-between; padding:5px 0; font-size:12px; }
+.card { background:var(--arta-sys-color-surface-raised); border:1px solid var(--arta-sys-color-stroke-subtle); border-radius:var(--arta-sys-radius-surface); padding:13px; margin-top:12px; position:relative; }
+.kv { display:flex; justify-content:space-between; padding:5px 0; font-size:12px; gap:10px; }
 .kv .k { color:var(--arta-sys-color-text-secondary); }
 .kv .v { font-weight:500; text-align:right; }
+.kv .v.pos { color:var(--arta-sys-color-credit-limit-available); }
+.kv .v.warn { color:var(--arta-sys-color-credit-interest-warning); }
 
-.terms { border:1px solid var(--arta-sys-color-stroke-strong); border-radius:var(--arta-sys-radius-surface); overflow:hidden; margin-top:12px; }
-.terms .t-head { padding:10px 13px; background:var(--arta-sys-color-surface-sunken); }
-.trow { display:flex; justify-content:space-between; gap:12px; padding:9px 13px; border-top:1px solid var(--arta-sys-color-stroke-subtle); font-size:11.5px; }
-.trow .tk { color:var(--arta-sys-color-disclosure-required); }
-.trow .tv { font-weight:600; white-space:nowrap; }
+.protected-note { font-size:11px; line-height:1.55; color:var(--arta-sys-color-disclosure-required); background:var(--arta-sys-color-surface-sunken); border:1px solid var(--arta-sys-color-stroke-subtle); border-radius:var(--arta-sys-radius-control); padding:10px 12px; margin-top:12px; position:relative; }
 
-.consent { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--arta-sys-color-stroke-subtle); }
-.consent:last-child { border-bottom:none; }
-.checkbox { width:19px; height:19px; border-radius:6px; border:2px solid var(--arta-sys-color-stroke-strong); flex:none; }
-.consent p { font-size:11px; line-height:1.5; color:var(--arta-sys-color-text-legal); }
+.btn { width:100%; border:none; cursor:pointer; font-family:inherit; border-radius:var(--arta-sys-radius-action); padding:13px 16px; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:var(--arta-sys-color-action-inverse); color:var(--arta-sys-color-action-inverse-fg); margin-top:12px; }
+.btn.ghost { background:transparent; border:1px solid var(--arta-sys-color-stroke-strong); color:var(--arta-sys-color-text-primary); margin-top:8px; }
+.powered { text-align:center; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--arta-sys-color-text-tertiary); padding:12px 0 2px; }
+.linklike { color:var(--arta-sys-color-text-link); font-size:11.5px; text-decoration:none; }
 
-.cardart { aspect-ratio:1.586; border-radius:14px; background:var(--arta-sys-gradient-card-art-1); margin:14px 0 4px; position:relative; color:#fff; box-shadow:0 16px 40px rgba(0,0,0,.45); }
-.cardart .wm { position:absolute; top:12px; left:14px; font-family:var(--arta-sys-type-display-family); font-weight:600; font-size:14px; }
-.cardart .num { position:absolute; bottom:12px; left:14px; font-size:11px; letter-spacing:.2em; opacity:.9; }
+/* AI card */
+.ai-card { border:1px solid var(--arta-sys-color-stroke-subtle); border-radius:var(--arta-sys-radius-surface); overflow:hidden; background:var(--arta-sys-color-surface-raised); margin-top:12px; position:relative; }
+.ai-head { display:flex; align-items:center; gap:8px; padding:10px 13px; border-bottom:1px solid var(--arta-sys-color-stroke-subtle); }
+.ai-glyph { width:18px; height:18px; border-radius:50%; background:var(--arta-sys-gradient-brand); flex:none; }
+.ai-body { padding:13px; }
+.ai-body h4 { font-family:var(--arta-sys-type-display-family); font-size:15.5px; font-weight:600; line-height:1.35; }
+.opt { display:flex; justify-content:space-between; align-items:center; gap:10px; width:100%; text-align:left; background:var(--arta-sys-color-surface-form); border:1px solid var(--arta-sys-color-stroke-subtle); border-radius:var(--arta-sys-radius-control); padding:11px 12px; color:var(--arta-sys-color-text-primary); font-size:12px; font-family:inherit; cursor:pointer; margin-top:8px; }
+.opt small { display:block; color:var(--arta-sys-color-text-tertiary); font-size:10.5px; margin-top:2px; }
+.ai-gov { padding:10px 13px; border-top:1px solid var(--arta-sys-color-stroke-subtle); font-size:10px; line-height:1.6; color:var(--arta-sys-color-ai-source); position:relative; }
 
-.btn { width:100%; border:none; cursor:pointer; font-family:inherit; border-radius:var(--arta-sys-radius-action); padding:13px 16px; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:var(--arta-sys-color-action-inverse); color:var(--arta-sys-color-action-inverse-fg); margin-top:14px; }
-.powered { text-align:center; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--arta-sys-color-text-tertiary); padding:10px 0 2px; }
-
-.decision-chip { display:inline-block; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--arta-sys-color-decision-approved); border:1px solid var(--arta-sys-color-decision-approved); border-radius:999px; padding:5px 11px; }
+/* governance tags pinned on modules */
+.tag { position:absolute; top:-8px; right:10px; font-size:8px; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; border-radius:999px; background:#0a0a0b; white-space:nowrap; }
+.tag.protected { color:var(--arta-sys-color-status-danger); border:1px solid var(--arta-sys-color-status-danger); }
+.tag.themed { color:var(--arta-sys-color-status-positive); border:1px solid var(--arta-sys-color-status-positive); }
+.tag.guardrail { color:var(--arta-sys-color-status-warning); border:1px solid var(--arta-sys-color-status-warning); }
 
 /* annotations */
-.annos { width:250px; flex:none; }
+.annos { width:252px; flex:none; }
 .annos .a-box { background:#141416; border:1px solid #26272b; border-radius:14px; padding:16px; margin-bottom:14px; }
 .annos h4 { font-size:10px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px; }
-.annos .a-box.changed h4 { color:var(--arta-sys-color-status-warning); }
-.annos .a-box.unchanged h4 { color:var(--arta-sys-color-status-positive); }
+.annos .a-box.changed h4 { color:var(--arta-sys-color-status-positive); }
+.annos .a-box.unchanged h4 { color:var(--arta-sys-color-status-danger); }
 .annos li { list-style:none; font-size:12px; color:#a5a6ab; padding:5px 0; border-bottom:1px solid #222327; }
 .annos li:last-child { border-bottom:none; }
 .annos li small { display:block; color:#6d6e73; font-size:10.5px; }
+
+/* bottom boxes: matrix + cannot-change */
+.below { display:flex; gap:16px; max-width:1010px; width:100%; flex-wrap:wrap; align-items:flex-start; }
+.box { flex:1; min-width:420px; background:#141416; border:1px solid #26272b; border-radius:14px; padding:18px; }
+.box h3 { font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:#a5a6ab; margin-bottom:12px; }
+.mx { width:100%; border-collapse:collapse; font-size:11.5px; }
+.mx th { text-align:left; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:#6d6e73; padding:6px 8px; border-bottom:1px solid #2a2b30; }
+.mx td { padding:7px 8px; border-bottom:1px solid #222327; color:#a5a6ab; vertical-align:top; line-height:1.45; }
+.mx td:first-child { color:#e8e6e2; font-weight:600; white-space:nowrap; }
+.cannot li { list-style:none; font-size:12px; color:#a5a6ab; padding:6px 0 6px 20px; border-bottom:1px solid #222327; position:relative; line-height:1.45; }
+.cannot li::before { content:"✕"; position:absolute; left:2px; color:var(--arta-sys-color-status-danger); font-size:11px; }
+.cannot li:last-child { border-bottom:none; }
 /* portfolio wrapper */
 .backlink { position:fixed; top:22px; left:26px; font-size:12.5px; z-index:99; }
 .backlink a { color:#9a9a94; text-decoration:none; }
@@ -631,23 +791,23 @@ p.lede { font-size:12.5px; line-height:1.5; color:var(--arta-sys-color-text-seco
 <div class="backlink"><a href="index.html">← Back to hub</a></div>
 
 <div class="stage-title">
-  <h1>White-Label — Governed Configuration</h1>
-  <p>"Northstar Invest Card, powered by Arta" — a fictional online brokerage issuing on Arta's rails.
-  Per Arta’s clarification, the product — a portfolio-secured charge card — sits inside the partner’s own product shell: the Arta core modules (pledge consent, Key Terms, decisioning) are embedded and non-removable; the shell, entry points and brand are the partner’s. What differs is a partner theme file (Layer 3) and a product configuration contract (Layer 2). Platform core (Layer 1) is locked by the token pipeline.</p>
-  <p style="margin-top:10px"><b>The partner owns the relationship and the surrounding product shell; Arta protects the integrity of consequential financial decisions.</b><br>
-  Partner app shell → partner-configurable experience → Arta-controlled card capabilities → decisioning, compliance &amp; servicing.</p>
+  <h1>White-Label — One Card Platform, Two Relationships</h1>
+  <p>"Northstar — an online brokerage offering an Arta-powered, portfolio-secured card to eligible investors."
+  The product sits <b>inside Northstar's own app shell</b>: Northstar owns discovery, navigation, brand and the
+  customer relationship; Arta powers eligibility, decisioning, compliance, security and AI guardrails.</p>
+  <p class="thesis">The visual language adapts; the decision integrity stays consistent.</p>
 </div>
 
 <div class="layers">
-  <div class="layer l1"><div class="ln">Layer 1 · Locked</div><b>Arta platform core</b><span>Security, KYC/AML model, decisioning, status model, disclosure hierarchy, consent logging, accessibility, AI guardrails, error/pending/declined patterns.</span></div>
-  <div class="layer l2"><div class="ln">Layer 2 · Governed</div><b>Product configuration</b><span>Eligibility, fees, advance rates by asset class, rewards rules, settlement, servicing SLA, market disclosures — contract-controlled data, not design.</span></div>
-  <div class="layer l3"><div class="ln">Layer 3 · Partner</div><b>Partner expression</b><span>Brand name &amp; logo, card art, palette within contrast limits, entry point, marketing copy, support channel, illustration, some typography.</span></div>
+  <div class="layer l1"><div class="ln">Arta core · Locked</div><b>Regulated card capabilities</b><span>Eligibility &amp; eligible-asset logic, limit decisioning, required data, disclosure completeness, consent records, authentication &amp; fraud, decision/error states, AI safety boundaries, audit trail, servicing.</span></div>
+  <div class="layer l2"><div class="ln">Guardrailed configuration</div><b>Adjustable, with rules</b><span>Brand colour within contrast requirements, type within supported scale, radius &amp; surfaces, tone of voice, AI assistant name, card artwork, product naming, benefit descriptions, order of non-critical modules.</span></div>
+  <div class="layer l3"><div class="ln">Partner-owned shell</div><b>Northstar's app</b><span>Navigation, account home, card discovery entry point, campaigns &amp; cross-sell, segmentation, loyalty, general support entry, marketing communications.</span></div>
 </div>
 
 <div class="tabs">
-  <button class="on" onclick="show('entry',this)">1 · Card entry</button>
-  <button onclick="show('review',this)">2 · Application review</button>
-  <button onclick="show('approval',this)">3 · Approval</button>
+  <button class="on" onclick="show('entry',this)">1 · Partner entry point</button>
+  <button onclick="show('offer',this)">2 · Personalised offer</button>
+  <button onclick="show('ai',this)">3 · AI payment guidance</button>
 </div>
 
 <div class="stage">
@@ -658,101 +818,161 @@ p.lede { font-size:12.5px; line-height:1.5; color:var(--arta-sys-color-text-seco
 
   <div class="annos">
     <div class="a-box changed">
-      <h4>Changed</h4>
+      <h4>Changed — partner expression</h4>
       <ul>
-        <li>Brand <small>name, logo, "powered by Arta"</small></li>
-        <li>Card art</li>
-        <li>Theme <small>palette &amp; radius via partner token file</small></li>
-        <li>Entry copy <small>and entry point in partner app</small></li>
-        <li>Rewards messaging <small>rule itself is Layer 2, governed</small></li>
-        <li>Rates &amp; fees <small>Layer 2 — contract, not design</small></li>
+        <li>App shell &amp; navigation <small>entirely Northstar's</small></li>
+        <li>Entry point &amp; discovery <small>partner decides where the card lives</small></li>
+        <li>Brand, theme, card art <small>via partner token file, contrast-validated</small></li>
+        <li>Product name <small>Northstar Reserve Card</small></li>
+        <li>Value-proposition copy &amp; benefits</li>
+        <li>AI assistant name <small>Northstar Assistant</small></li>
         <li>Support destination</li>
       </ul>
     </div>
     <div class="a-box unchanged">
-      <h4>Unchanged</h4>
+      <h4>Unchanged — Arta-governed</h4>
       <ul>
-        <li>Form structure</li>
-        <li>Disclosure prominence</li>
-        <li>Decision status <small>same decision.* tokens</small></li>
-        <li>Consent model <small>unchecked defaults, logged</small></li>
-        <li>AI limitations <small>guardrails &amp; source trail</small></li>
-        <li>Accessibility <small>contrast floors validated</small></li>
-        <li>Security signals <small>custody &amp; audit unchanged</small></li>
+        <li>Limit result &amp; calculation logic <small>same eligible-asset math</small></li>
+        <li>Required explanations <small>"why this limit", market-movement risk</small></li>
+        <li>Fee information hierarchy</li>
+        <li>Consent requirement <small>nothing pre-checked, all logged</small></li>
+        <li>Decision &amp; error states</li>
+        <li>AI boundaries <small>data shown, confirm-before-action, escalation, audit</small></li>
+        <li>Accessibility &amp; security signals</li>
       </ul>
     </div>
   </div>
 
   <div class="phone-wrap">
-    <div class="brand-lbl">Northstar Invest — partner</div>
+    <div class="brand-lbl">Northstar Invest — partner shell</div>
     <div class="phone theme-northstar"><div class="statusbar"><span>9:41</span><span style="opacity:.6">▪▪▪</span></div><div class="scr" id="phone-northstar"></div></div>
   </div>
 </div>
 
+<div class="below">
+  <div class="box">
+    <h3>Platform ownership model</h3>
+    <table class="mx">
+      <tr><th>Layer</th><th>Arta controls</th><th>Partner configures / owns</th></tr>
+      <tr><td>Distribution</td><td>Card capability &amp; eligibility API</td><td>App shell, entry point, promotion</td></tr>
+      <tr><td>Product</td><td>Eligible-asset &amp; limit logic</td><td>Product name, benefits, card artwork</td></tr>
+      <tr><td>Application</td><td>Required data &amp; decision states</td><td>Theme, tone, supporting content</td></tr>
+      <tr><td>Compliance</td><td>Mandatory disclosures &amp; consent</td><td>Jurisdiction-approved brand wording</td></tr>
+      <tr><td>Security</td><td>Authentication &amp; fraud standards</td><td>Partner login entry, account shell</td></tr>
+      <tr><td>AI</td><td>Data permissions, explanation, confirmation, escalation</td><td>Assistant name, visual identity, notification tone</td></tr>
+      <tr><td>Servicing</td><td>Card status, payment &amp; dispute capabilities</td><td>Navigation, support-handoff presentation</td></tr>
+    </table>
+  </div>
+  <div class="box">
+    <h3>What partners cannot change</h3>
+    <ul class="cannot">
+      <li>Hide or de-emphasise fees, or reduce the prominence of critical warnings with brand styling</li>
+      <li>Remove the portfolio / market-movement risk explanation</li>
+      <li>Alter a decisioning outcome — or present pending as approved</li>
+      <li>Remove the next step from a decline or adjusted offer</li>
+      <li>Pre-check any consent</li>
+      <li>Let the AI move money or sell assets without explicit confirmation</li>
+      <li>Hide which data the AI used</li>
+    </ul>
+    <p class="hint" style="margin-top:10px">In implementation: theme tokens, content schemas, protected components and
+    partner-level configuration permissions — the token pipeline already rejects governance violations at build time.</p>
+  </div>
+</div>
+
 <script>
-/* Layer 3 — partner expression + Layer 2 — product configuration (contract data) */
+/* Layer 3 — partner expression. Limit logic, disclosures and AI rules are identical by design. */
 const BRANDS = {
   arta: {
-    label:'Arta', wm:'arta', card:'Arta Card', powered:'',
-    entryKicker:'New · Arta Card', entryCopy:'Checking won’t affect your credit score until you submit.',
-    rewards:'Rewards sweep straight into your portfolio.',
-    support:'Arta lending team — in-app, 24/7',
-    entryNote:'Entry point: Arta home, pre-qualified hero.',
-    product:{ payment:'Full balance, monthly', fee:'S$150', security:'Pledge over selected assets', limit:'S$213,260', adjust:'7 days’ notice if values fall' }
+    shellLogo:'arta', navTabs:['Home','Invest','Cash','<span class="cur">Card</span>'],
+    portLabel:'Your portfolio', portValue:'S$1,240,000',
+    cardName:'Arta Card', assistant:'Arta AI · Investment Planner',
+    entryKicker:'New · Arta Card',
+    support:'Talk to Arta — in-app, 24/7',
+    powered:'', cash:'Arta Cash'
   },
   northstar: {
-    label:'Northstar', wm:'NORTHSTAR ✦', card:'Northstar Invest Card', powered:'Powered by Arta · custody BNY | Pershing',
-    entryKicker:'New · Northstar Invest Card', entryCopy:'Checking won’t affect your credit score until you submit.',
-    rewards:'2% back, deposited to your Northstar brokerage account.',
-    support:'Northstar support · serviced by Arta',
-    entryNote:'Entry point: Northstar app → Invest tab → Cards.',
-    product:{ payment:'Full balance, monthly', fee:'S$0 first year, then S$99', security:'Pledge over selected assets', limit:'S$180,000', adjust:'7 days’ notice if values fall' }
+    shellLogo:'NORTHSTAR ✦', navTabs:['Portfolio','Trade','<span class="cur">Cards</span>','Learn'],
+    portLabel:'Brokerage account', portValue:'S$1,240,000',
+    cardName:'Northstar Reserve Card', assistant:'Northstar Assistant',
+    entryKicker:'New · Northstar Reserve Card',
+    support:'Northstar support · specialist handoff',
+    powered:'Card capabilities powered by Arta', cash:'settlement account'
   }
 };
 
+const shell = (b) => `
+  <div class="navshell">
+    <span class="logo">${b.shellLogo}</span>
+    <span class="tabs2">${b.navTabs.map(t=>`<span>${t}</span>`).join('')}</span>
+  </div>`;
+
 const SCREENS = {
+  /* Frame 1 — partner-owned entry point */
   entry: (b) => `
-    <div class="micro" style="margin-top:8px">${b.card}</div>
+    ${shell(b)}
+    <div class="micro">${b.portLabel}</div>
+    <div class="big-num">${b.portValue}</div>
+    <div class="hint">+ S$18,300 this month</div>
     <div class="hero">
+      <span class="tag themed">Partner-owned entry</span>
       <div class="micro" style="color:inherit;opacity:.75">${b.entryKicker}</div>
-      <h3>Backed by your portfolio — up to ${b.product.limit}</h3>
-      <p>${b.entryCopy} Charge card — paid in full monthly. ${b.rewards}</p>
-      <span class="pill">See your offer →</span>
+      <h3>Unlock spending power from your portfolio</h3>
+      <p>You may be eligible for a limit of up to <b>S$50,000</b> — without selling a single position. Your portfolio keeps compounding.</p>
+      <span class="pill">View my offer →</span>
     </div>
-    <p class="hint" style="margin-top:10px">${b.entryNote}</p>
-    <p class="hint" style="margin-top:6px">Pre-qualification uses information already verified on the platform. No new data was pulled.</p>
+    <p class="hint" style="margin-top:10px">Eligibility is based on assets already held on the platform. Viewing your offer doesn't affect anything.</p>
     ${b.powered ? `<div class="powered">${b.powered}</div>` : ''}`,
 
-  review: (b) => `
-    <h2 class="display">Read once,<br>then decide.</h2>
+  /* Frame 2 — personalised offer / decision */
+  offer: (b) => `
+    ${shell(b)}
+    <div class="micro">${b.cardName}</div>
+    <h2 class="display">Your recommended limit</h2>
+    <div class="big-num">S$40,000</div>
     <div class="card">
-      <div class="kv"><span class="k">Applicant</span><span class="v">Alexandra W. Chen</span></div>
-      <div class="kv"><span class="k">Income</span><span class="v">S$285,000 / yr</span></div>
-      <div class="kv"><span class="k">Spending limit</span><span class="v">${b.product.limit}</span></div>
-    </div>
-    <div class="terms">
-      <div class="t-head"><span class="micro">Key terms — always visible</span></div>
-      <div class="trow"><span class="tk">Card type</span><span class="tv">Charge card — paid in full monthly</span></div>
-      <div class="trow"><span class="tk">Security</span><span class="tv">${b.product.security}</span></div>
-      <div class="trow"><span class="tk">Annual fee</span><span class="tv">${b.product.fee}</span></div>
-      <div class="trow"><span class="tk">If markets fall</span><span class="tv">${b.product.adjust}</span></div>
+      <span class="tag protected">Arta-governed</span>
+      <div class="kv"><span class="k">Eligible portfolio value</span><span class="v">S$182,000</span></div>
+      <div class="kv"><span class="k">Cash &amp; money-market · 90%</span><span class="v">S$27,000</span></div>
+      <div class="kv"><span class="k">Public markets · 60%</span><span class="v">S$21,000</span></div>
+      <div class="kv"><span class="k">Kept as market buffer</span><span class="v warn">− S$8,000</span></div>
+      <div class="kv" style="border-top:1px solid var(--arta-sys-color-stroke-subtle);margin-top:4px;padding-top:8px"><span class="k"><b>Recommended limit</b></span><span class="v pos">S$40,000</span></div>
+      <a class="linklike" href="#" onclick="return false">Why this limit?</a>
     </div>
     <div class="card">
-      <div class="consent"><span class="checkbox"></span><p>Everything in this application is true and complete.</p></div>
-      <div class="consent"><span class="checkbox"></span><p>A <b>Credit Bureau Singapore check</b> runs when I submit. It may affect my credit score.</p></div>
+      <span class="tag protected">Required disclosure</span>
+      <div class="kv"><span class="k">Interest</span><span class="v">None — settled in full monthly</span></div>
+      <div class="kv"><span class="k">Annual fee</span><span class="v">S$150</span></div>
+      <div class="kv"><span class="k">FX fee</span><span class="v">0%</span></div>
     </div>
+    <div class="protected-note">
+      <span class="tag protected">Protected</span>
+      If markets fall, your limit adjusts with <b>7 days' notice</b>. Your assets are never sold without your instruction.
+    </div>
+    <button class="btn">Accept S$40,000 limit</button>
+    <button class="btn ghost">Adjust my pledge</button>
     ${b.powered ? `<div class="powered">${b.powered}</div>` : ''}`,
 
-  approval: (b) => `
-    <div style="text-align:center;margin-top:10px"><span class="decision-chip">Approved</span>
-      <h2 class="display">Welcome to ${b.card}.</h2></div>
-    <div class="cardart"><span class="wm">${b.wm}</span><span class="num">•••• 4821</span></div>
-    <div class="card">
-      <div class="kv"><span class="k">Spending limit</span><span class="v">${b.product.limit}</span></div>
-      <div class="kv"><span class="k">Payment</span><span class="v">${b.product.payment}</span></div>
-      <div class="kv"><span class="k">Support</span><span class="v" style="max-width:160px">${b.support}</span></div>
+  /* Frame 3 — AI payment guidance (deep moment, partner-branded, Arta-governed) */
+  ai: (b) => `
+    ${shell(b)}
+    <div class="micro">${b.cardName} · payment due Friday</div>
+    <div class="ai-card">
+      <span class="tag guardrail">Name: partner · Rules: Arta</span>
+      <div class="ai-head"><div class="ai-glyph"></div><span class="micro">${b.assistant}</span></div>
+      <div class="ai-body">
+        <h4>Friday's card payment exceeds the cash in your ${b.cash} by S$7,400.</h4>
+        <p class="hint" style="margin-top:6px">Payment due: S$8,400 · Available: S$1,000. Here are your options — nothing happens without your confirmation.</p>
+        <button class="opt"><span>Transfer available cash<small>S$7,400 from money-market fund · settles Thursday</small></span><span>→</span></button>
+        <button class="opt"><span>Review assets that could provide liquidity<small>2 T-bill rungs mature within 9 days — zero-cost</small></span><span>→</span></button>
+        <button class="opt"><span>Adjust payment funding source<small>route this cycle to a different account</small></span><span>→</span></button>
+        <button class="opt"><span>Talk to a specialist<small>${b.support}</small></span><span>→</span></button>
+      </div>
+      <div class="ai-gov">
+        <span class="tag protected">Protected</span>
+        Uses: statement, settlement balance, portfolio positions · Recommendations are explained, never executed
+        without confirmation · High-impact choices escalate to a human · Every step is logged.
+      </div>
     </div>
-    <button class="btn">Add to Apple Wallet</button>
     ${b.powered ? `<div class="powered">${b.powered}</div>` : ''}`
 };
 

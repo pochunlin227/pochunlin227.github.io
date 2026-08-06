@@ -156,6 +156,9 @@
   --arta-ref-size-icon-md: 20px;
   --arta-ref-size-icon-lg: 24px;
   --arta-ref-size-checkbox: 22px;
+  --arta-ref-size-avatar: 40px;
+  --arta-ref-size-donut: 176px;
+  --arta-ref-size-donut-hole: 124px;
   --arta-ref-border-hairline: 1px;
   --arta-ref-border-regular: 1.5px;
   --arta-ref-border-focus: 2px;
@@ -482,6 +485,139 @@
   --arta-cmp-chip-radius: var(--arta-sys-radius-action);
   --arta-cmp-chip-height: var(--arta-ref-size-control-sm);
   --arta-cmp-chip-px: var(--arta-sys-space-stack-md);
+  --arta-cmp-stat-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-stat-radius: var(--arta-sys-radius-media);
+  --arta-cmp-stat-pad: var(--arta-sys-space-stack-xl);
+  --arta-cmp-stat-value-color: var(--arta-sys-color-action-primary);
+  --arta-cmp-stat-value-size: var(--arta-ref-font-size-1000);
+  --arta-cmp-stat-value-weight: var(--arta-ref-font-weight-light);
+  --arta-cmp-stat-caption-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-catalog-radius: var(--arta-sys-radius-media);
+  --arta-cmp-catalog-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-catalog-title-size: var(--arta-ref-font-size-700);
+  --arta-cmp-catalog-title-weight: var(--arta-ref-font-weight-semibold);
+  --arta-cmp-catalog-tagline-color: var(--arta-sys-color-text-on-gradient-secondary);
+  --arta-cmp-catalog-badge-bg: var(--arta-ref-color-alpha-white-28);
+  --arta-cmp-catalog-badge-fg: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-catalog-dim-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-catalog-dim-fg: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-fact-icon-size: var(--arta-ref-space-10);
+  --arta-cmp-fact-icon-bg: var(--arta-sys-color-status-info-surface);
+  --arta-cmp-fact-icon-fg: var(--arta-sys-color-status-info);
+  --arta-cmp-fact-text-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-fact-gap: var(--arta-sys-space-inline-md);
+  --arta-cmp-ticker-chip-bg: var(--arta-ref-color-alpha-white-16);
+  --arta-cmp-ticker-chip-radius: var(--arta-ref-radius-xs);
+  --arta-cmp-ticker-chip-fg: var(--arta-sys-color-text-primary);
+  --arta-cmp-ticker-pos-bg: var(--arta-sys-color-status-positive);
+  --arta-cmp-ticker-pos-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-ticker-neg-bg: var(--arta-sys-color-status-danger);
+  --arta-cmp-ticker-neg-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-ticker-row-divider: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-radiorow-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-radiorow-fg: var(--arta-sys-color-text-secondary);
+  --arta-cmp-radiorow-selected-bg: var(--arta-sys-color-status-info);
+  --arta-cmp-radiorow-selected-fg: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-radiorow-radius: var(--arta-sys-radius-control);
+  --arta-cmp-radiorow-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-donut-size: var(--arta-ref-size-donut);
+  --arta-cmp-donut-hole: var(--arta-ref-size-donut-hole);
+  --arta-cmp-donut-track: var(--arta-sys-color-surface-form);
+  --arta-cmp-donut-center-value-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-donut-center-label-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-contact-avatar-size: var(--arta-ref-size-avatar);
+  --arta-cmp-contact-avatar-bg: var(--arta-sys-color-surface-form);
+  --arta-cmp-contact-name-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-contact-badge-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-contact-divider: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-prompt-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-prompt-stroke: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-prompt-stroke-hover: var(--arta-sys-color-stroke-strong);
+  --arta-cmp-prompt-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-prompt-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-prompt-fg: var(--arta-sys-color-text-secondary);
+  --arta-cmp-prompt-icon-fg: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-takeaway-icon-size: var(--arta-ref-space-10);
+  --arta-cmp-takeaway-icon-bg: var(--arta-sys-color-status-positive);
+  --arta-cmp-takeaway-icon-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-takeaway-text-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-table-header-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-table-cell-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-table-value-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-table-divider: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-table-row-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-benefit-radius: var(--arta-sys-radius-media);
+  --arta-cmp-benefit-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-benefit-num-color: var(--arta-sys-color-text-on-gradient-secondary);
+  --arta-cmp-benefit-title-color: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-benefit-body-color: var(--arta-sys-color-text-on-gradient-secondary);
+  --arta-cmp-benefit-dim-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-benefit-dim-fg: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-fund-radius: var(--arta-sys-radius-media);
+  --arta-cmp-fund-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-fund-name-size: var(--arta-ref-font-size-700);
+  --arta-cmp-fund-min-size: var(--arta-ref-font-size-600);
+  --arta-cmp-fund-min-weight: var(--arta-ref-font-weight-semibold);
+  --arta-cmp-fund-badge-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-fund-badge-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-service-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-service-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-service-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-service-tile-size: var(--arta-ref-space-12);
+  --arta-cmp-service-tile-radius: var(--arta-ref-radius-sm);
+  --arta-cmp-service-tile-fg: var(--arta-sys-color-text-on-gradient);
+  --arta-cmp-service-title-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-service-desc-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-seg-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-seg-radius: var(--arta-sys-radius-action);
+  --arta-cmp-seg-fg: var(--arta-sys-color-text-secondary);
+  --arta-cmp-seg-selected-bg: var(--arta-sys-color-action-primary);
+  --arta-cmp-seg-selected-fg: var(--arta-sys-color-text-on-action);
+  --arta-cmp-seg-px: var(--arta-sys-space-stack-lg);
+  --arta-cmp-seg-height: var(--arta-sys-size-control-compact);
+  --arta-cmp-bars-base: var(--arta-sys-color-text-primary);
+  --arta-cmp-bars-delta: var(--arta-ref-color-violet-40);
+  --arta-cmp-bars-axis-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-bars-gridline: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-decay-dot-bg: var(--arta-sys-color-surface-inverse);
+  --arta-cmp-decay-dot-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-decay-bar: var(--arta-ref-color-violet-40);
+  --arta-cmp-decay-track: var(--arta-sys-color-surface-form);
+  --arta-cmp-decay-value-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-sector-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-sector-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-sector-pad: var(--arta-sys-space-stack-md);
+  --arta-cmp-sector-icon-bg: var(--arta-sys-color-surface-form);
+  --arta-cmp-sector-control-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-sector-control-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-chartline-primary: var(--arta-sys-color-action-primary);
+  --arta-cmp-chartline-secondary: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-chartline-accent: var(--arta-ref-color-mint-50);
+  --arta-cmp-chartline-grid: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-chartline-label-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-theme-card-bg: var(--arta-ref-color-alpha-white-8);
+  --arta-cmp-theme-card-stroke: var(--arta-sys-color-stroke-subtle);
+  --arta-cmp-theme-card-radius: var(--arta-sys-radius-media);
+  --arta-cmp-theme-card-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-theme-card-title-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-theme-card-desc-color: var(--arta-sys-color-text-secondary);
+  --arta-cmp-treemap-tile-bg: var(--arta-sys-color-surface-form);
+  --arta-cmp-treemap-tile-bg-hover: var(--arta-sys-color-surface-raised);
+  --arta-cmp-treemap-tile-fg: var(--arta-sys-color-text-primary);
+  --arta-cmp-treemap-gap: var(--arta-ref-space-1);
+  --arta-cmp-treemap-chip-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-treemap-chip-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-wizard-done-bg: var(--arta-sys-color-action-inverse);
+  --arta-cmp-wizard-done-fg: var(--arta-sys-color-action-inverse-fg);
+  --arta-cmp-wizard-current-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-wizard-todo-color: var(--arta-sys-color-text-tertiary);
+  --arta-cmp-wizard-ring: var(--arta-sys-color-stroke-strong);
+  --arta-cmp-answer-bg: var(--arta-sys-color-surface-raised);
+  --arta-cmp-answer-stroke-hover: var(--arta-sys-color-stroke-strong);
+  --arta-cmp-answer-radius: var(--arta-sys-radius-surface);
+  --arta-cmp-answer-pad: var(--arta-sys-space-stack-lg);
+  --arta-cmp-answer-label-color: var(--arta-sys-color-text-primary);
+  --arta-cmp-answer-desc-color: var(--arta-sys-color-text-secondary);
   --arta-cmp-input-bg: var(--arta-sys-color-surface-form);
   --arta-cmp-input-fg: var(--arta-sys-color-text-primary);
   --arta-cmp-input-placeholder: var(--arta-sys-color-text-tertiary);
@@ -872,14 +1008,9 @@ body.embed .phone { box-shadow:none; }
 .demo label { font-size:12px; color:#a5a6ab; width:76px; flex:none; }
 .demo select, .demo button.d { background:#1b1c1f; color:#e8e6e2; border:1px solid #2e2f34; border-radius:8px; padding:7px 10px; font-size:12px; font-family:inherit; cursor:pointer; }
 .demo .d.on { border-color:#a8cdf0; color:#a8cdf0; }
-/* portfolio wrapper */
-.backlink { position:fixed; top:22px; left:26px; font-size:12.5px; z-index:99; }
-.backlink a { color:#9a9a94; text-decoration:none; }
-.backlink a:hover { color:#f4f2ee; }
 </style>
 </head>
 <body class="theme-arta" id="root">
-<div class="backlink"><a href="index.html">← Back to hub</a></div>
 
 <div class="stage-title">
   <h1>Arta Card</h1>
