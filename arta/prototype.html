@@ -1409,7 +1409,7 @@ body.embed .phone { box-shadow:none; }
   </div>
   <div class="drow">
     <label>Outcome</label>
-    <select id="outcomeSel">
+    <select id="outcomeSel" onchange="if(this.value!=='auto')go(this.value)">
       <option value="auto">Auto — follows the persona</option>
       <option value="s6a">Approved (instant)</option>
       <option value="s6b">In review</option>
@@ -1417,7 +1417,7 @@ body.embed .phone { box-shadow:none; }
       <option value="s6d">Counter-offer</option>
       <option value="s6e">Declined</option>
     </select>
-    <span style="font-size:11px;color:#6d6e73">Margaux: pledging privates → phased limit</span>
+    <span style="font-size:11px;color:#6d6e73">previews now · applies on Submit</span>
   </div>
   <div class="drow">
     <label>Theme</label>
@@ -1427,16 +1427,21 @@ body.embed .phone { box-shadow:none; }
   </div>
   <div class="drow">
     <label>Jump to</label>
-    <select id="jumpSel" onchange="if(this.value)go(this.value)">
-      <option value="">—</option>
+    <select id="jumpSel" onchange="go(this.value)">
       <option value="s0">Entry (home)</option>
       <option value="s1">Before you start</option>
       <option value="s2">Ch.1 Confirm</option>
       <option value="s3a">Ch.2 Employment</option>
+      <option value="s3b">Ch.2 Employer</option>
       <option value="s3c">Ch.2 Income</option>
       <option value="s4">Ch.3 Pledge</option>
       <option value="s5">Ch.4 Review</option>
-      <option value="s7">Card home + AI moment</option>
+      <option value="s6a">Decision · Approved</option>
+      <option value="s6b">Decision · In review</option>
+      <option value="s6c">Decision · Docs needed</option>
+      <option value="s6d">Decision · Phased limit</option>
+      <option value="s6e">Decision · Declined</option>
+      <option value="s7">Card home + AI</option>
       <option value="s9">AI lifecycle map</option>
     </select>
     <button class="d" onclick="restart()">Restart</button>
@@ -1518,11 +1523,17 @@ function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   const sc=document.querySelector('#'+id+' .scroll'); if(sc) sc.scrollTop=0;
+  const j=document.getElementById('jumpSel');
+  if (j && [...j.options].some(o=>o.value===id)) j.value=id;
+  /* decision previews always reflect the current persona */
+  if (id==='s6d') prepPhased();
+  if (id==='s6a' && document.getElementById('apprLimit')) document.getElementById('apprLimit').textContent=fmt$(pledgeLimit());
 }
 function restart(){
   state.consents=[false,false,false];
   document.querySelectorAll('#s5 .consent').forEach(c=>c.classList.remove('checked'));
   document.getElementById('submitBtn').disabled=true;
+  document.getElementById('outcomeSel').value='auto';
   showAiState();
   go('s0');
 }
@@ -1557,14 +1568,7 @@ function submitApp(){
   if (override!=='auto') dest=override;
   else if (state.persona==='margaux') dest = state.pledge.alt ? 's6d' : 's6a';
   else dest=PERSONAS[state.persona].outcome;
-  if (dest==='s6d'){
-    const full=pledgeLimit(), phased=pledgeLimit(false);
-    state.offered=phased;
-    document.getElementById('coAsked').textContent=fmt$(full);
-    document.getElementById('coOffered').textContent=fmt$(phased);
-    document.getElementById('coOffered2').textContent=fmt$(phased);
-    document.getElementById('coAcceptLbl').textContent='Accept — start at '+fmt$(phased);
-  }
+  if (dest==='s6d') prepPhased();
   if (dest==='s6a') document.getElementById('apprLimit').textContent=fmt$(pledgeLimit());
   setTimeout(()=>go(dest),1800);
 }
@@ -1652,7 +1656,19 @@ function applyPersona(key){
   document.getElementById('docCo').textContent=(key==='dev')?p.empName.replace(', Inc.',''):'your entity';
   document.getElementById('offerLimit').textContent=fmt$(pledgeAllLimit(key));
   renderPledge();
-  restart();
+  prepPhased();
+  state.consents=[false,false,false];
+  document.querySelectorAll('#s5 .consent').forEach(c=>c.classList.remove('checked'));
+  document.getElementById('submitBtn').disabled=true;
+  showAiState();
+}
+function prepPhased(){
+  const full=pledgeLimit(), phased=pledgeLimit(false);
+  state.offered=phased;
+  document.getElementById('coAsked').textContent=fmt$(full);
+  document.getElementById('coOffered').textContent=fmt$(phased);
+  document.getElementById('coOffered2').textContent=fmt$(phased);
+  document.getElementById('coAcceptLbl').textContent='Accept — start at '+fmt$(phased);
 }
 function pledgeAllLimit(key){
   const a=PERSONAS[key].assets;
