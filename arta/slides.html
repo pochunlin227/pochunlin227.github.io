@@ -138,9 +138,9 @@
   .proto-col { flex: 0 0 auto; }
   .proto { --s: 0.62; width: calc(390px * var(--s)); height: calc(822px * var(--s)); border-radius: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); background: #000; }
   .proto iframe { width: 390px; height: 822px; border: 0; transform: scale(var(--s)); transform-origin: top left; }
-  .proto-cap { font-size: 12px; color: var(--text-dim); margin-top: 10px; max-width: calc(390px * var(--s)); line-height: 1.45; }
+  .proto-cap { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; width: calc(390px * var(--s)); line-height: 1.45; }
   .proto-cap b { display: block; color: var(--text); font-weight: 600; font-size: 12.5px; margin-bottom: 3px; }
-  .proto-cap span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .proto-cap span { display: block; }
   @media (min-height: 940px) { .proto { --s: 0.74; } }
   @media (min-height: 1120px) { .proto { --s: 0.85; } }
 
@@ -165,7 +165,6 @@
   .ms-chips span { border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 6px 12px; font-size: 11px; color: var(--text); }
   .livechip { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; border: 1px solid rgba(168,205,240,.45); color: var(--sky); border-radius: 999px; padding: 7px 14px; font-size: 11.5px; letter-spacing: .06em; text-decoration: none; }
   .livechip:hover { background: rgba(168,205,240,.1); }
-  .lcmap-img { width: 100%; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; margin-top: 10px; display: block; }
 
   /* ── voice-over mini dock (single, fixed, unobtrusive) ── */
   #voDock {
@@ -360,14 +359,13 @@
       <a href="#s9"><span class="num">11</span>The decision moment</a>
       <div class="nav-section">Flow 2 · AI</div>
       <a href="#s10"><span class="num">12</span>AI across the lifecycle</a>
-      <a href="#lcmap"><span class="num">13</span>The lifecycle, mapped</a>
-      <a href="#s11"><span class="num">14</span>Deep moment</a>
+      <a href="#s11"><span class="num">13</span>Deep moment</a>
       <div class="nav-section">Platform</div>
-      <a href="#s12"><span class="num">15</span>White-label model</a>
-      <a href="#s13"><span class="num">16</span>Same bones, partner skin</a>
+      <a href="#s12"><span class="num">14</span>White-label model</a>
+      <a href="#s13"><span class="num">15</span>Same bones, partner skin</a>
       <div class="nav-section">Closing</div>
-      <a href="#s14"><span class="num">17</span>What's limiting in the DS</a>
-      <a href="#s15"><span class="num">18</span>If I had more time</a>
+      <a href="#s14"><span class="num">16</span>What's limiting in the DS</a>
+      <a href="#s15"><span class="num">17</span>If I had more time</a>
     </nav>
     <div class="sidebar-foot">
       Navigate: <kbd>↑</kbd> <kbd>↓</kbd> or scroll<br>
@@ -387,7 +385,7 @@
         Po Chun Lin · August 2026<br>
         Designing a portfolio-secured charge card for Arta members — and the platform behind it.
       </div>
-      <div class="slide-num">00 / 18</div>
+      <div class="slide-num">00 / 17</div>
     </section>
 
     <section class="slide" id="s2">
@@ -402,7 +400,7 @@
       <div class="card" style="margin-top:18px;border-left:3px solid var(--sky)">
         <p style="font-size:1.22em;line-height:1.55;margin:0"><em>So the opportunity isn't to make a traditional card application prettier.<br><b>It's to design credit around an existing wealth relationship.</b></em></p>
       </div>
-      <div class="slide-num">01 / 18</div>
+      <div class="slide-num">01 / 17</div>
     </section>
 
     <section class="slide" id="s3">
@@ -415,7 +413,7 @@
         <div class="card"><span class="tag">Product</span><h3>Portfolio-secured charge card</h3><p>Eligible custodied assets and the existing Arta relationship can inform prequalification and the recommended limit. Portfolio use is explicit and member-controlled.</p></div>
         <div class="card"><span class="tag">Experience</span><h3>Mobile-first, inside Arta</h3><p>The launch experience lives inside the existing Arta app. I designed for both instant decisions and cases that require additional review.</p></div>
       </div>
-      <div class="slide-num">02 / 18</div>
+      <div class="slide-num">02 / 17</div>
     </section>
 
     <section class="slide" id="personas">
@@ -431,7 +429,7 @@
         <span class="tag">Design implication</span>
         <p style="font-size:1.18em;line-height:1.55;margin:6px 0 0"><em>I shouldn't design Arta Card for a generic credit-card applicant.<br><b>I should design for members whose wealth may sit in assets, equity and investments — not only salary.</b></em></p>
       </div>
-      <div class="slide-num">03 / 18</div>
+      <div class="slide-num">03 / 17</div>
     </section>
 
     <section class="slide" id="targets">
@@ -481,7 +479,7 @@
       </div>
       <p class="lede" style="margin-top:12px;font-size:14px"><b>Scope choice:</b> I considered a broader HENRY audience, but designed only one primary journey and one meaningful stress test to preserve depth.</p>
       <a class="livechip" href="prototype.html" target="_blank">BOTH ARCHETYPES ARE SWITCHABLE IN THE PROTOTYPE ↗</a>
-      <div class="slide-num">04 / 18</div>
+      <div class="slide-num">04 / 17</div>
     </section>
 
     <section class="slide" id="sdq">
@@ -497,7 +495,7 @@
         <div class="card"><span class="tag">02 · Protect member agency → Flow 2</span><h3>Explain before acting</h3><p>Make consequential decisions understandable, and keep the member in control.</p></div>
         <div class="card"><span class="tag">03 · Design for the platform → White-label</span><h3>Keep trust in the core</h3><p>Let partners own the brand expression while Arta protects decisioning, compliance, security and AI guardrails.</p></div>
       </div>
-      <div class="slide-num">05 / 18</div>
+      <div class="slide-num">05 / 17</div>
     </section>
 
     <section class="slide" id="s4">
@@ -532,7 +530,7 @@
         <span class="tag">Deliberately not designed</span>
         <p style="margin-top:6px;color:var(--text-dim)">Rewards catalogue · full transaction management · disputes · desktop/web · supplementary-card flows</p>
       </div>
-      <div class="slide-num">06 / 18</div>
+      <div class="slide-num">06 / 17</div>
     </section>
 
     <section class="slide" id="s5">
@@ -556,7 +554,7 @@
       </div>
       <p style="margin-top:14px;font-size:13px;color:var(--text-faint)">Every screen ahead is the live prototype, embedded.</p>
       <a class="livechip" href="prototype.html" target="_blank">OPEN THE LIVE PROTOTYPE ↗</a>
-      <div class="slide-num">07 / 18</div>
+      <div class="slide-num">07 / 17</div>
     </section>
 
     <section class="slide" id="s6">
@@ -564,11 +562,11 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>Entry &amp; confirming what Arta knows</h2>
       <div class="ph-row">
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s0" title="S0 · The offer is born a card in the portfolio grid — pre-qualified, terms stated up front"></iframe></div><div class="proto-cap"><b>The offer, in the portfolio grid</b><span>Pre-qualified from what Arta already holds — key terms stated before the funnel</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s1" title="S1 · Acquisition world: gradient surface, glass cards, the trust block"></iframe></div><div class="proto-cap"><b>What to expect</b><span>Four steps, mostly confirmation — with the trust block up front</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s2" title="S2 · Confirm, don’t collect — review cards, not input fields"></iframe></div><div class="proto-cap"><b>Confirm, don’t collect</b><span>The verified profile shown as review cards, not input fields</span></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>The offer, in the portfolio grid</b><span>Pre-qualified from what Arta already holds — key terms stated before the funnel</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s0" title="S0 · The offer is born a card in the portfolio grid — pre-qualified, terms stated up front"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>What to expect</b><span>Four steps, mostly confirmation — with the trust block up front</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s1" title="S1 · Acquisition world: gradient surface, glass cards, the trust block"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Confirm, don’t collect</b><span>The verified profile shown as review cards, not input fields</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s2" title="S2 · Confirm, don’t collect — review cards, not input fields"></iframe></div></div>
       </div>
-      <div class="slide-num">08 / 18</div>
+      <div class="slide-num">08 / 17</div>
     </section>
 
     <section class="slide" id="s7">
@@ -576,8 +574,8 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>Income is sensitive. The explanation shouldn't be optional.</h2>
       <div class="ph-row">
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s3c" title="Alexandra · salaried — income asked once, with 'Why we ask' attached"></iframe></div><div class="proto-cap"><b>Salaried — asked once</b><span>“Why we ask” travels with the question, not a help link</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=founder&jump=s3c" title="Dev · irregular income declared without shame — considered alongside eligible Arta assets; verification may follow"></iframe></div><div class="proto-cap"><b>Irregular income, declared plainly</b><span>Considered alongside eligible Arta assets; verification may follow</span></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Salaried — asked once</b><span>“Why we ask” travels with the question, not a help link</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s3c" title="Alexandra · salaried — income asked once, with 'Why we ask' attached"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Irregular income, declared plainly</b><span>Considered alongside eligible Arta assets; verification may follow</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=founder&jump=s3c" title="Dev · irregular income declared without shame — considered alongside eligible Arta assets; verification may follow"></iframe></div></div>
         <div style="flex:1">
           <ul class="points" style="margin-top:6px">
             <li>One question per screen — <span>"Used only for this application. Never shown in your profile."</span></li>
@@ -587,7 +585,7 @@
           </ul>
         </div>
       </div>
-      <div class="slide-num">09 / 18</div>
+      <div class="slide-num">09 / 17</div>
     </section>
 
     <section class="slide" id="s8">
@@ -595,12 +593,12 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>Make the security and settlement mechanics explicit</h2>
       <div class="ph-row">
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s4" title="S4 · Eligible assets that support the card — they stay invested; recommended limit with the assessment logic on demand"></iframe></div><div class="proto-cap"><b>Eligible assets &amp; recommended limit</b><span>Assets stay invested; assessment logic on demand, marked illustrative</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s4b" title="S4b · Settlement is a designed choice — full statement from Arta Cash by default, notified before each payment"></iframe></div><div class="proto-cap"><b>Settlement — a designed choice</b><span>The charge card’s core promise, not a summary row</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s5" title="S5 · Key Terms never fold; consents separate and unchecked; full agreement opens as Arta’s own bottom-sheet legal pattern"></iframe></div><div class="proto-cap"><b>Key Terms never fold</b><span>Consents separate and unchecked; full documents in Arta’s legal container</span></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Eligible assets &amp; recommended limit</b><span>Assets stay invested; assessment logic on demand, marked illustrative</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s4" title="S4 · Eligible assets that support the card — they stay invested; recommended limit with the assessment logic on demand"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Settlement — a designed choice</b><span>The charge card’s core promise, not a summary row</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s4b" title="S4b · Settlement is a designed choice — full statement from Arta Cash by default, notified before each payment"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Key Terms never fold</b><span>Consents separate and unchecked; full documents in Arta’s legal container</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s5" title="S5 · Key Terms never fold; consents separate and unchecked; full agreement opens as Arta’s own bottom-sheet legal pattern"></iframe></div></div>
       </div>
       <p class="lede">Pay-in-full monthly · the security arrangement · what happens if values fall — always expanded, structure compliance-locked. Hard-pull consent in plain language. Exact eligibility, rates and security terms sit with Credit, Risk and Legal — the prototype says so on screen.</p>
-      <div class="slide-num">10 / 18</div>
+      <div class="slide-num">10 / 17</div>
     </section>
 
     <section class="slide" id="s9">
@@ -609,21 +607,21 @@
       <div class="slide-kicker">Flow 1 · The application</div>
       <h2>The decision is a relationship moment</h2>
       <div class="ph-row">
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s6a" title="Approved — the newest card in your collection; virtual card usable now"></iframe></div><div class="proto-cap"><b>Approved</b><span>The newest card in your collection — virtual card usable now</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=founder&jump=s6b" title="Additional review — the evidence path differs, the rules don't; portfolio verified, nothing to do"></iframe></div><div class="proto-cap"><b>Additional review</b><span>The evidence path differs, the rules don’t — portfolio already verified</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s6e" title="Declined — private, specific as legally possible, zero cross-sell"></iframe></div><div class="proto-cap"><b>Declined</b><span>Private, specific as legally possible, zero cross-sell</span></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Approved</b><span>The newest card in your collection — virtual card usable now</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s6a" title="Approved — the newest card in your collection; virtual card usable now"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Additional review</b><span>The evidence path differs, the rules don’t — portfolio already verified</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=founder&jump=s6b" title="Additional review — the evidence path differs, the rules don't; portfolio verified, nothing to do"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Declined</b><span>Private, specific as legally possible, zero cross-sell</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s6e" title="Declined — private, specific as legally possible, zero cross-sell"></iframe></div></div>
       </div>
       <p class="lede">Five governed states — approved · phased limit · more info · additional review · declined. The persona changes the evidence path, never the rules — and a declined applicant is still a wealth member tomorrow.</p>
-      <div class="slide-num">11 / 18</div>
+      <div class="slide-num">11 / 17</div>
     </section>
 
     <section class="slide" id="s10">
       <div class="aurora-motion" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Flow 2 · AI across the lifecycle — Principle 2 · Explain before acting</div>
-      <h2>One AI relationship, not scattered features</h2>
+      <h2>One AI relationship, not five features</h2>
       <div class="ph-row" style="margin-top:26px">
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s9" title="The in-product map: five moments, one anatomy — "you are here" at Manage"></iframe></div><div class="proto-cap"><b>The lifecycle, in product</b><span>Five moments, one anatomy — “you are here” at Manage</span></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>The lifecycle, in product</b><span>Five moments, one anatomy — “you are here” at Manage</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s9" title="The in-product map: five moments, one anatomy — "you are here" at Manage"></iframe></div></div>
         <div style="flex:1">
           <ul class="points" style="margin-top:6px">
             <li>The card gives Arta AI <span>the one signal it never had: cash flow. Arta saw what you own; now it sees how money moves.</span></li>
@@ -632,29 +630,22 @@
           </ul>
         </div>
       </div>
-      <div class="slide-num">12 / 18</div>
+      <p class="lede" style="max-width:none;margin-top:20px">Every touchpoint belongs to an <b>existing</b> Arta AI agent, and one moment is deliberately chosen for depth. The connective tissue: one card anatomy · one voice · "we show the math" · explainable · never auto-executes.</p>
+      <div class="slide-num">12 / 17</div>
     </section>
 
-    <section class="slide" id="lcmap">
-      <div class="aurora-bar"></div>
-      <div class="slide-kicker">Flow 2 · AI across the lifecycle</div>
-      <h2>Every moment mapped — before going deep on one</h2>
-      <img class="lcmap-img" src="assets/ai-lifecycle-map.png" alt="AI across the card lifecycle: Apply, Onboard, Everyday use, Manage &amp; service, Grow &amp; retain — each touchpoint owned by an Arta AI agent, with Repayment Intelligence flagged as the deep moment" />
-      <p class="lede" style="max-width:none">Every touchpoint belongs to an <b>existing</b> Arta AI agent — Product Specialist extends to lending, Investment Planner gains cash-flow awareness — and one moment is deliberately chosen for depth. The connective tissue: one card anatomy · one voice · "we show the math" · explainable · never auto-executes.</p>
-      <div class="slide-num">13 / 18</div>
-    </section>
 
     <section class="slide" id="s11">
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Flow 2 · AI across the lifecycle</div>
       <h2>Deep moment: repayment intelligence — three realities, one anatomy</h2>
       <div class="ph-row">
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s7&ai=quiet" title="Quiet — a normal month: "Nothing needs you." The hardest decision was letting the AI stay silent"></iframe></div><div class="proto-cap"><b>Quiet</b><span>A normal month. The hardest call was letting the AI stay silent</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=founder&jump=s7" title="Nudge — the stress test: statement date moved to meet Dev's invoice cycle"></iframe></div><div class="proto-cap"><b>Nudge</b><span>Statement date moved to meet the founder’s invoice cycle</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s7" title="Intervene — the primary member: statement and capital call both clear from Cash, with a zero-cost T-bill fix — arithmetic no bank can do"></iframe></div><div class="proto-cap"><b>Intervene</b><span>Settlement sequencing with a zero-cost fix — the capital-call line no bank can write</span></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Quiet</b><span>A normal month. The hardest call was letting the AI stay silent</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s7&ai=quiet" title="Quiet — a normal month: "Nothing needs you." The hardest decision was letting the AI stay silent"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Nudge</b><span>Statement date moved to meet the founder’s invoice cycle</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=founder&jump=s7" title="Nudge — the stress test: statement date moved to meet Dev's invoice cycle"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Intervene</b><span>Settlement sequencing with a zero-cost fix — the capital-call line no bank can write</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s7" title="Intervene — the primary member: statement and capital call both clear from Cash, with a zero-cost T-bill fix — arithmetic no bank can do"></iframe></div></div>
       </div>
       <p class="lede">"What if markets move?" reprices her limit live — headroom transparency only a portfolio-secured card needs; "Why am I seeing this?" lists sources, calls itself arithmetic, and hands over the off switch.</p>
-      <div class="slide-num">14 / 18</div>
+      <div class="slide-num">13 / 17</div>
     </section>
 
     <section class="slide" id="s12">
@@ -671,7 +662,7 @@
       <p style="font-family:ui-monospace,'SF Mono',monospace;font-size:12px;letter-spacing:.05em;color:var(--sky);margin:16px 0 0;opacity:.9">Partner app shell&nbsp;&nbsp;→&nbsp;&nbsp;Partner-configurable experience&nbsp;&nbsp;→&nbsp;&nbsp;Arta-controlled card capabilities&nbsp;&nbsp;→&nbsp;&nbsp;Decisioning, compliance &amp; servicing</p>
       <p class="lede" style="margin-top:20px">The line is enforced by the token pipeline, not by review: a partner theme that re-points a decision color to its brand pink <b>fails the build</b>. One chain: <code style="color:var(--sky)">#a8cdf0 → ref.color.sky.40 → sys.action.primary → cmp.btn.primary.bg</code> — Arta is simply theme #1.</p>
       <a class="livechip" href="storybook/index.html" target="_blank">LIVE STORYBOOK — 3 THEMES, GOVERNANCE STORIES ↗</a>
-      <div class="slide-num">15 / 18</div>
+      <div class="slide-num">14 / 17</div>
     </section>
 
     <section class="slide" id="s13">
@@ -679,13 +670,13 @@
       <div class="slide-kicker">Platform · White-label</div>
       <h2>Same bones, partner skin</h2>
       <div class="ph-row">
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s5&theme=arta" title="Arta — Key Terms &amp; consents"></iframe></div><div class="proto-cap"><b>Arta</b><span>Key Terms &amp; consents</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s5&theme=meridian" title="Meridian Securities — identical DOM, sys-token overrides only"></iframe></div><div class="proto-cap"><b>Meridian Securities</b><span>Identical DOM — sys-token overrides only</span></div></div>
-        <div class="proto-col"><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s6a&theme=meridian" title="Meridian — approval moment within motion &amp; compliance guardrails"></iframe></div><div class="proto-cap"><b>Meridian — approval moment</b><span>Within motion &amp; compliance guardrails</span></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Arta</b><span>Key Terms &amp; consents</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s5&theme=arta" title="Arta — Key Terms &amp; consents"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Meridian Securities</b><span>Identical DOM — sys-token overrides only</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s5&theme=meridian" title="Meridian Securities — identical DOM, sys-token overrides only"></iframe></div></div>
+        <div class="proto-col"><div class="proto-cap"><b>Meridian — approval moment</b><span>Within motion &amp; compliance guardrails</span></div><div class="proto"><iframe loading="lazy" src="prototype.html?embed=1&persona=operator&jump=s6a&theme=meridian" title="Meridian — approval moment within motion &amp; compliance guardrails"></iframe></div></div>
       </div>
       <p class="lede">Two fictional partners (Meridian, Northstar) prove the pipeline inside a partner-owned shell: the Arta core modules are identical everywhere — everything around them belongs to the partner.</p>
       <a class="livechip" href="whitelabel.html" target="_blank">SIDE-BY-SIDE GOVERNANCE PROTOTYPE ↗</a>
-      <div class="slide-num">16 / 18</div>
+      <div class="slide-num">15 / 17</div>
     </section>
 
     <section class="slide" id="s14">
@@ -699,7 +690,7 @@
       </div>
       <p class="lede" style="margin-top:20px">And because a critique should be constructive: the missing layer now exists — <b>151 ref / 117 sys / 123 cmp tokens</b>, the lending components, and three themes, running in a validated pipeline.</p>
       <a class="livechip" href="design-system.html" target="_blank">DESIGN-SYSTEM CONTRIBUTION ↗</a>
-      <div class="slide-num">17 / 18</div>
+      <div class="slide-num">16 / 17</div>
     </section>
 
     <section class="slide" id="s15">
@@ -720,7 +711,7 @@
         <a class="livechip" href="design-system.html" target="_blank" style="margin-left:8px">DESIGN SYSTEM ↗</a>
       </div>
       <div class="byline" style="margin-top:22px">Thank you · Po Chun Lin · pochun.lin@thepacinglabs.com · linpochun.com</div>
-      <div class="slide-num">18 / 18</div>
+      <div class="slide-num">17 / 17</div>
     </section>
 
   </main>
@@ -771,7 +762,7 @@
 <script>
 /* ── voice-over: single mini dock; active slide = the one under the viewport center.
    Scrolling to a new slide ALWAYS pauses the previous narration.
-   Files: assets/audio/slide-01.mp3 … slide-19.mp3; missing files degrade gracefully. */
+   Files: assets/audio/slide-01.mp3 … slide-17.mp3; missing files degrade gracefully. */
 (function () {
   const deck = document.getElementById('deck');
   const slides = [...deck.querySelectorAll('section.slide')];
