@@ -1012,7 +1012,7 @@ body.embed .phone { box-shadow:none; }
 
 /* demo controls — floating panel so phone + controls are always visible together */
 .demo {
-  width:320px; background:rgba(17,18,20,.94); border:1px solid #26272b; border-radius:16px; padding:16px 18px;
+  width:344px; background:rgba(17,18,20,.94); border:1px solid #26272b; border-radius:16px; padding:16px 18px;
   position:fixed; left:24px; top:50%; transform:translateY(-50%);
   max-height:88vh; overflow-y:auto; z-index:60;
   -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
@@ -1031,6 +1031,7 @@ body.embed .phone { box-shadow:none; }
 .demo .drow { display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
 .demo label { font-size:12px; color:#a5a6ab; width:76px; flex:none; }
 .demo select, .demo button.d { background:#1b1c1f; color:#e8e6e2; border:1px solid #2e2f34; border-radius:8px; padding:7px 10px; font-size:12px; font-family:inherit; cursor:pointer; }
+.demo select { flex:1 1 auto; min-width:0; max-width:100%; text-overflow:ellipsis; }
 .demo .d.on { border-color:#a8cdf0; color:#a8cdf0; }
 </style>
 </head>
