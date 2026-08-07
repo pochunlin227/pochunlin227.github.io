@@ -984,6 +984,15 @@ body.embed .phone { box-shadow:none; }
 
 /* small action sheet */
 .sheet.small { max-height:none; padding-bottom:26px; }
+/* Singpass verification — retrieved-and-verified state + the attribute list shown before consent */
+.verified-row { margin-top:10px; font-size:12.5px; color:var(--status-positive); line-height:1.5; }
+.sp-attrs { margin:2px 24px 0; border:1px solid var(--border-subtle); border-radius:var(--radius-ctl); overflow:hidden; }
+.sp-attrs .sp-a { display:flex; justify-content:space-between; gap:12px; padding:11px 14px; font-size:13px; border-bottom:1px solid var(--border-subtle); }
+.sp-attrs .sp-a:last-child { border-bottom:none; }
+.sp-attrs .sp-a .k { color:var(--text-secondary); }
+.sp-attrs .sp-a .v { color:var(--text-primary); text-align:right; }
+.sp-note { margin:12px 24px 0; font-size:11.5px; line-height:1.6; color:var(--text-tertiary); }
+
 .as-title { font-size:13px; color:var(--text-secondary); padding:2px 24px 10px; }
 .as-opt { display:block; width:calc(100% - 48px); margin:6px 24px 0; text-align:left; background:var(--surface-raised); border:1px solid var(--border-subtle); color:var(--text-primary); border-radius:var(--radius-ctl); padding:14px 16px; font-size:14.5px; font-family:var(--font-ui); cursor:pointer; }
 .as-opt small { color:var(--text-tertiary); display:block; font-size:11.5px; margin-top:2px; }
@@ -1119,7 +1128,7 @@ body.embed .phone { box-shadow:none; }
           <div class="kv"><span class="k">NRIC</span><span class="v">S••••321A</span></div>
         </div>
       </div>
-      <p class="hint" style="margin-top:12px">Editing an address or tax residence may require a quick re-verification. It won't stop this application.</p>
+      <p class="hint" style="margin-top:12px">Editing an address or tax residence may require a quick re-verification — <b style="color:var(--text-secondary)">retrieving it again with Singpass</b> takes about 30 seconds. Either way, it won't stop this application.</p>
     </div>
     <div class="cta-dock"><button class="btn primary" onclick="go('s3a')">This is all still correct</button></div>
   </section>
@@ -1163,13 +1172,18 @@ body.embed .phone { box-shadow:none; }
       <div class="field">
         <div class="currency"><span>$</span><input inputmode="numeric" id="incomeInput" value="285,000" oninput="fmtIncome(this)" /></div>
       </div>
+      <div class="verified-row" id="incomeVerified" style="display:none">✓ Verified via <b>Singpass</b> · IRAS Notice of Assessment 2025</div>
       <div class="card" style="margin-top:16px">
         <b style="font-size:14px">Why we ask</b>
         <p class="hint" style="margin-top:4px">Income forms part of the application assessment. Your eligible Arta assets may also support your available limit. It never appears on your member profile.</p>
       </div>
       <div class="card" id="irregularCard" style="margin-top:12px;display:none">
         <b style="font-size:14px">Irregular income is okay.</b>
-        <p class="hint" style="margin-top:4px">We'll consider the information you provide alongside eligible Arta assets. Additional verification may still be required — a recent Notice of Assessment or bank statements would cover it.</p>
+        <p class="hint" style="margin-top:4px">We'll consider what you declare alongside your eligible Arta assets. Because it varies, we'll want to verify it — you choose how.</p>
+        <div class="stack" style="margin-top:12px">
+          <button class="choice" id="spChoice" onclick="openSingpass()"><span>Verify with <b>Singpass</b><small>Retrieve your Notice of Assessment from IRAS · about 30 seconds · decision today</small></span><span class="dot"></span></button>
+          <button class="choice" onclick="pickEvidenceUpload(this)"><span>Upload a document instead<small>Notice of Assessment or 6 months of bank statements · reviewed in 1–2 days</small></span><span class="dot"></span></button>
+        </div>
       </div>
     </div>
     <div class="cta-dock"><button class="btn primary" onclick="go('s4')">Continue</button></div>
@@ -1328,7 +1342,7 @@ body.embed .phone { box-shadow:none; }
       <h2 class="display">Two documents for <span id="docCo">Nimbus Labs</span>.</h2>
       <p class="lede">Part of your pledge is held through your company — verifying the entity unlocks those assets. Your application is saved either way.</p>
       <div class="stack" style="margin-top:16px">
-        <button class="choice" onclick="this.classList.toggle('selected')"><span id="docOpt1">ACRA BizFile extract<small>Confirms the entity and your authority</small></span><span class="dot"></span></button>
+        <button class="choice" onclick="this.classList.toggle('selected')"><span id="docOpt1">Retrieve with <b>Singpass</b> (Myinfo Business)<small>Pulls the ACRA record and your authority to act — no upload</small></span><span class="dot"></span></button>
         <button class="choice" onclick="this.classList.toggle('selected')"><span>Board resolution for the pledge<small>Template provided — one signature</small></span><span class="dot"></span></button>
       </div>
       <div class="banner info">Documents go straight to the credit team, are used only for this decision, and are deleted from review queues after it. Assets held personally are already verified — you could start with those today.</div>
@@ -1531,6 +1545,28 @@ body.embed .phone { box-shadow:none; }
     </div>
   </div>
 
+  <!-- ============ SINGPASS / MYINFO CONSENT ============
+       SG market pattern: Arta already knows WHO you are — Singpass proves WHAT YOU EARN.
+       Used as a verification shortcut, not a prefill shortcut. -->
+  <div class="sheet-scrim" id="spScrim" onclick="this.classList.remove('open')">
+    <div class="sheet small" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="as-title">You'll authorise this inside Singpass. Arta never sees your Singpass credentials.</div>
+      <div style="padding:0 24px 4px">
+        <h2 class="display" style="font-size:22px;margin:0 0 4px">Retrieve from Myinfo</h2>
+        <p class="hint" style="line-height:1.55">Arta is requesting these fields for this application only:</p>
+      </div>
+      <div class="sp-attrs">
+        <div class="sp-a"><span class="k">Assessable income</span><span class="v">IRAS Notice of Assessment</span></div>
+        <div class="sp-a"><span class="k">Employment / self-employment</span><span class="v">Declared status</span></div>
+        <div class="sp-a"><span class="k">CPF contribution history</span><span class="v">Last 12 months</span></div>
+      </div>
+      <p class="sp-note">Retrieved data is used for this credit decision, is visible only to Arta's credit team, and is never added to your member profile. You can decline and upload a document instead — it takes longer, nothing else changes.<br><span style="opacity:.75">Exact Myinfo attributes and consent scope would be confirmed with Compliance.</span></p>
+      <button class="btn primary" style="width:calc(100% - 48px);margin:14px 24px 0" onclick="singpassDone()">Continue to Singpass</button>
+      <button class="as-cancel" onclick="document.getElementById('spScrim').classList.remove('open')">Not now — I'll upload a document</button>
+    </div>
+  </div>
+
   <!-- ============ HOW SECURING WORKS (assessment logic drawer) ============ -->
   <div class="sheet-scrim" id="logicScrim" onclick="this.classList.remove('open')">
     <div class="sheet small" onclick="event.stopPropagation()">
@@ -1620,6 +1656,14 @@ body.embed .phone { box-shadow:none; }
     <span style="font-size:11px;color:#6d6e73">three intensities, one anatomy</span>
   </div>
   <div class="drow">
+    <label>Evidence</label>
+    <select id="evidenceSel" onchange="setEvidence(this.value)">
+      <option value="upload">Upload a document — review</option>
+      <option value="singpass">Verify with Singpass — decision today</option>
+    </select>
+    <span style="font-size:11px;color:#6d6e73">the member picks their own friction</span>
+  </div>
+  <div class="drow">
     <label>Outcome</label>
     <select id="outcomeSel" onchange="if(this.value!=='auto')go(this.value)">
       <option value="auto">Auto — follows the persona</option>
@@ -1662,7 +1706,7 @@ body.embed .phone { box-shadow:none; }
 </div>
 
 <script>
-const state = { consents:[false,false,false], limit:0, pay:'Full balance · Arta Cash', persona:'operator', empChoice:'Employed', pledge:{cash:true,pub:true,alt:true}, offered:0 };
+const state = { consents:[false,false,false], limit:0, pay:'Full balance · Arta Cash', persona:'operator', empChoice:'Employed', pledge:{cash:true,pub:true,alt:true}, offered:0, incomeVerified:false };
 
 /* No invented advance rates: the prototype shows a RECOMMENDED limit per member and
    marks the assessment logic as illustrative — exact eligibility, rates and security
@@ -1717,7 +1761,12 @@ function renderPledge() {
   const any = ['cash','pub','alt'].some(k=>state.pledge[k]);
   state.limit = p.reco;
   document.getElementById('limitValue').textContent = founder ? 'Up to ' + fmt$(p.reco) : fmt$(p.reco);
-  document.getElementById('reviewLimit').textContent = (founder ? 'Up to ' : '') + fmt$(p.reco) + (founder ? ' · subject to verification' : '');
+  document.getElementById('reviewLimit').textContent = (founder && !state.incomeVerified ? 'Up to ' : '') + fmt$(p.reco) + (founder && !state.incomeVerified ? ' · subject to verification' : '');
+  const rIn = document.getElementById('revIncome');
+  if (rIn) {
+    const base = fmt$(PERSONAS[state.persona].income.replace(/,/g,'')) + ' / yr';
+    rIn.textContent = base + (state.incomeVerified ? ' · verified via Singpass' : '');
+  }
   document.getElementById('apprLimit').textContent = fmt$(p.reco);
   document.getElementById('homeLimit').textContent = fmt$(p.reco);
   document.getElementById('revPledge').textContent =
@@ -1795,6 +1844,8 @@ function submitApp(){
   let dest;
   if (override!=='auto') dest=override;
   else if (state.persona==='operator') dest = state.pledge.alt ? 's6d' : 's6a';
+  /* Singpass-verified income closes the one open question → decision lands today. */
+  else if (state.persona==='founder' && state.incomeVerified) dest='s6a';
   else dest=PERSONAS[state.persona].outcome;
   if (dest==='s6d') prepPhased();
   if (dest==='s6a') document.getElementById('apprLimit').textContent=fmt$(pledgeLimit());
@@ -1895,6 +1946,11 @@ function applyPersona(key){
   document.getElementById('empYears').value=p.empYears;
   document.getElementById('incomeInput').value=p.income;
   document.getElementById('revName').textContent=p.name;
+  state.incomeVerified=false;
+  document.getElementById('incomeVerified').style.display='none';
+  document.getElementById('spChoice').classList.remove('selected');
+  document.querySelectorAll('#irregularCard .choice').forEach(c=>c.classList.remove('selected'));
+  const evSel=document.getElementById('evidenceSel'); if (evSel) evSel.value='upload';
   document.getElementById('revIncome').textContent=fmt$(p.income.replace(/,/g,''))+' / yr';
   document.getElementById('docCo').textContent=(key==='founder')?p.empName.replace(', Inc.',''):'your entity';
   document.getElementById('offerLine').textContent=p.offerLine;
@@ -1915,6 +1971,39 @@ function prepPhased(){
   document.getElementById('coAcceptLbl').textContent='Accept — start at '+fmt$(reco);
 }
 function openLogic(){ document.getElementById('logicScrim').classList.add('open'); }
+
+/* ---- Singpass / Myinfo verification ----
+   The member chooses their own evidence path. Verified income resolves the one open
+   question, so the decision lands today; uploading a document routes to review instead.
+   The persona never changes the rules — only which evidence is available right now. */
+function openSingpass(){ document.getElementById('spScrim').classList.add('open'); }
+function singpassDone(){
+  state.incomeVerified = true;
+  document.getElementById('spScrim').classList.remove('open');
+  document.getElementById('incomeVerified').style.display = '';
+  document.getElementById('spChoice').classList.add('selected');
+  document.querySelectorAll('#irregularCard .choice').forEach(c=>{ if(c.id!=='spChoice') c.classList.remove('selected'); });
+  const sel=document.getElementById('evidenceSel'); if (sel) sel.value='singpass';
+  renderPledge();
+}
+function pickEvidenceUpload(el){
+  state.incomeVerified = false;
+  document.getElementById('incomeVerified').style.display = 'none';
+  document.getElementById('spChoice').classList.remove('selected');
+  el.classList.add('selected');
+  const sel=document.getElementById('evidenceSel'); if (sel) sel.value='upload';
+  renderPledge();
+}
+function setEvidence(v){
+  if (v==='singpass') singpassDone();
+  else {
+    state.incomeVerified=false;
+    document.getElementById('incomeVerified').style.display='none';
+    document.getElementById('spChoice').classList.remove('selected');
+    document.querySelectorAll('#irregularCard .choice').forEach(c=>{ if(c.id!=='spChoice') c.classList.remove('selected'); });
+    renderPledge();
+  }
+}
 
 /* long-press (Stacks vocabulary) */
 function longpress(el, fn){
