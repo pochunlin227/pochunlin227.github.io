@@ -808,16 +808,16 @@ body.embed .rationale { display:none !important; }
 
 /* chapter progress */
 .chapters { display:flex; gap:6px; padding:2px 24px 14px; }
-.chapters span { flex:1; text-align:center; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-tertiary); padding-top:8px; position:relative; }
+.chapters span { flex:1; text-align:center; font-size:10px; letter-spacing:var(--arta-ref-font-letter-spacing-caps); text-transform:uppercase; color:var(--text-tertiary); padding-top:8px; position:relative; }
 .chapters span::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; border-radius:2px; background:var(--border-subtle); }
 .chapters span.done::before, .chapters span.now::before { background:var(--action-primary); }
 .chapters span.now { color:var(--text-secondary); }
 
 /* type */
-.micro { font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--text-tertiary); }
+.micro { font-size:var(--arta-ref-font-size-100); font-weight:var(--arta-ref-font-weight-semibold); letter-spacing:var(--arta-ref-font-letter-spacing-caps); text-transform:uppercase; color:var(--text-tertiary); }
 h2.display { font-family:var(--font-display); font-weight:var(--display-weight); font-size:27px; line-height:1.18; letter-spacing:-.01em; margin:10px 0 8px; }
-p.lede { font-size:14.5px; line-height:1.5; color:var(--text-secondary); }
-.hint { font-size:12.5px; line-height:1.5; color:var(--text-tertiary); }
+p.lede { font-size:var(--arta-sys-type-body-size); line-height:var(--arta-sys-type-body-line-height); color:var(--text-secondary); }
+.hint { font-size:var(--arta-sys-type-legal-size); line-height:var(--arta-sys-type-legal-line-height); color:var(--text-tertiary); }
 
 /* cards & rows */
 .card { background:var(--surface-raised); border:1px solid var(--border-subtle); border-radius:var(--radius-card); padding:16px; }
@@ -890,7 +890,7 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 .terms { border:1px solid var(--border-strong); border-radius:var(--radius-card); overflow:hidden; }
 .terms .t-head { padding:14px 16px; background:var(--surface-sunken); display:flex; justify-content:space-between; align-items:center; }
 .terms .t-head .micro { color:var(--text-secondary); }
-.trow { display:flex; justify-content:space-between; gap:16px; padding:12.5px 16px; border-top:1px solid var(--border-subtle); font-size:13.5px; line-height:1.45; }
+.trow { display:flex; justify-content:space-between; gap:16px; padding:12.5px 16px; border-top:1px solid var(--border-subtle); font-size:var(--arta-ref-font-size-300); line-height:1.45; }
 .trow .tk { color:var(--text-legal); }
 .trow .tv { text-align:right; font-weight:600; white-space:nowrap; }
 .trow .tv small { display:block; font-weight:400; color:var(--text-tertiary); font-size:11px; }
@@ -901,7 +901,7 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 .checkbox { width:24px; height:24px; border-radius:7px; border:2px solid var(--border-strong); flex:none; display:flex; align-items:center; justify-content:center; color:transparent; font-size:14px; transition:.12s; margin-top:1px; }
 /* real-app: checked box fills with the inverse color, dark check glyph */
 .consent.checked .checkbox { background:var(--arta-sys-color-action-inverse); border-color:var(--arta-sys-color-action-inverse); color:var(--arta-sys-color-action-inverse-fg); }
-.consent p { font-size:13px; line-height:1.5; color:var(--text-legal); }
+.consent p { font-size:var(--arta-sys-type-legal-size); line-height:var(--arta-sys-type-legal-line-height); color:var(--text-legal); }
 .consent p b { font-weight:600; }
 
 /* entry hero card */
@@ -942,7 +942,7 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 /* decision screens — Arta's label language: caps section labels, a centered stat hero, fact tiles */
 .stat-hero { text-align:center; margin:20px 0 4px; }
 .stat-hero .big { font-family:var(--font-display); font-size:42px; font-weight:500; letter-spacing:-.01em; margin-top:6px; }
-.sec-label { font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--text-tertiary); margin:22px 0 10px; }
+.sec-label { font-size:var(--arta-ref-font-size-100); font-weight:var(--arta-ref-font-weight-semibold); letter-spacing:var(--arta-ref-font-letter-spacing-caps); text-transform:uppercase; color:var(--text-tertiary); margin:22px 0 10px; }
 .fact-tiles { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .ftile { background:var(--surface-raised); border:1px solid var(--border-subtle); border-radius:var(--radius-card); padding:13px 14px; }
 .ftile .micro { display:block; margin-bottom:6px; }
@@ -1545,7 +1545,6 @@ body.embed .stage { display:block; width:auto; }
           <p class="hint" style="margin-top:8px">You'll get a receipt the moment it clears. Change your mind anytime before Aug 7, 11:59 PM.</p>
         </div>
       </div>
-      <button class="btn quiet" style="text-align:left;padding-left:2px" onclick="go('s9')">See the whole AI relationship →</button>
 
       <div style="height:14px"></div>
       <div class="card">
@@ -1572,22 +1571,6 @@ body.embed .stage { display:block; width:auto; }
     </div>
   </section>
 
-  <!-- ============ S9 AI LIFECYCLE MAP ============ -->
-  <section class="screen" id="s9">
-    <div class="appbar"><button class="back" onclick="go('s7')">‹</button><span class="spacer"></span><span class="bar-label">Arta AI × <span class="bn-card">Arta Card</span></span></div>
-    <div class="scroll">
-      <h2 class="display"><span class="lc-grad">One relationship,<br>five moments.</span></h2>
-      <p class="lede">The card gives <span class="bn-ai">Arta AI</span> the one signal it never had — your cash flow. Every moment shares one anatomy: a conclusion, the math, one tap, an exit.</p>
-      <div style="margin-top:8px">
-        <div class="lc-step"><div class="lc-num">1</div><div class="lc-body"><b>Apply</b><div class="role">Pre-qualification from what Arta already holds; any term explained inline, on demand.</div><div class="felt">Confidence before committing</div></div></div>
-        <div class="lc-step"><div class="lc-num">2</div><div class="lc-body"><b>Onboard</b><div class="role">Autopay and statement date recommended from your actual cash-flow pattern — not defaults by inertia.</div><div class="felt">Set up right on day one</div></div></div>
-        <div class="lc-step"><div class="lc-num">3</div><div class="lc-body"><b>Everyday</b><div class="role">Spend insights in wealth context — your Stacks, your burn rate, your growth. Never a budgeting app scold.</div><div class="felt">"I understand my money"</div></div></div>
-        <div class="lc-step here"><div class="lc-num">4</div><div class="lc-body"><b>Manage<span class="here-chip">You are here</span></b><div class="role">Settlement sequencing and limit headroom, computed on your numbers — one tap to act. Quiet when nothing needs you.</div><div class="felt">My cash does two jobs without me juggling</div></div></div>
-        <div class="lc-step"><div class="lc-num">5</div><div class="lc-body"><b>Grow</b><div class="role">Rewards sweep into your portfolio as the newest card in the grid; an annual card + wealth review.</div><div class="felt">The card compounds too</div></div></div>
-      </div>
-      <p class="hint" style="margin-top:12px">One anatomy, three intensities — quiet, nudge, intervene. The member sets the default (operator: intervene; founder: nudge); the demo panel can force any state, because knowing when to stay silent is a product decision, not a persona trait.</p>
-    </div>
-  </section>
 
   <!-- ============ AI RECALC + WHY SHEETS ============ -->
   <div class="sheet-scrim" id="headroomScrim" onclick="this.classList.remove('open')">
@@ -1784,7 +1767,6 @@ body.embed .stage { display:block; width:auto; }
       <option value="s6d">Decision · Phased limit</option>
       <option value="s6e">Decision · Declined</option>
       <option value="s7">Card home + AI</option>
-      <option value="s9">AI lifecycle map</option>
     </select>
     <button class="d" onclick="restart()">Restart</button>
   </div>
@@ -1935,9 +1917,6 @@ const RATIONALE = {
         '<b>Quiet · nudge · intervene</b> — one anatomy: a conclusion, the math, one tap, an exit.',
         'The hardest design decision was letting the AI stay silent on a normal month.',
         'Chat exists behind "Ask about this" — never the default.']},
-  s9:  { t:'One AI relationship, five moments', s:'Flow 2 · Lifecycle', p:[
-        'Every touchpoint extends an agent Arta already has — no new mascot.',
-        'This map is a product screen, not a slide: members can open it themselves.']},
 };
 function renderRationale(id){
   const r=RATIONALE[id], el=document.getElementById('rationale');
@@ -2146,8 +2125,8 @@ const FLOWS = {
            rows:['flow','persona','evidence','outcome','jump'],
            jumps:['s0','s1','s2','s3a','s3b','s3c','s4','s4b','s5','s6a','s6b','s6c','s6d','s6e'] },
   ai:    { start:'s7', title:'Flow 2 · AI states',
-           rows:['flow','persona','ai','jump'],
-           jumps:['s7','s9'] },
+           rows:['flow','persona','ai'],
+           jumps:['s7'] },
   /* theme row stays hidden in both — white-label is its own prototype now;
      ?theme= deep links from the slides still work. */
 };
@@ -2264,7 +2243,7 @@ applyPersona('operator');
   const f = q.get('flow');
   const j = q.get('jump');
   if (f && FLOWS[f]) enterFlow(f);
-  else if (q.get('embed') || j) applyFlowUI((j==='s7'||j==='s9') ? 'ai' : 'apply');
+  else if (q.get('embed') || j) applyFlowUI(j==='s7' ? 'ai' : 'apply');
   else enterFlow('apply');
   if (j && document.getElementById(j)) go(j);
   renderRationale(document.querySelector('.screen.active')?.id);
