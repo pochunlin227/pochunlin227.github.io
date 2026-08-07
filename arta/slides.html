@@ -337,6 +337,21 @@
     .tl-time { margin-top: 2px; }
     .tl-step h3, .tl-step p { grid-column: 2; }
   }
+
+  /* ── native AI lifecycle map (slide: One AI relationship) ── */
+  .lc-row { display: flex; align-items: stretch; gap: 0; margin-top: 20px; }
+  .lc-stage { flex: 1; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.11); border-radius: 14px; padding: 18px 16px; display: flex; flex-direction: column; }
+  .lc-stage .st { font-family: ui-monospace, 'SF Mono', monospace; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #82827b; }
+  .lc-stage p { font-size: 13.5px; color: var(--text-dim, #a9a9a2); line-height: 1.55; margin-top: 9px; flex: 1; }
+  .lc-stage .felt { font-size: 12px; color: #82827b; font-style: italic; margin-top: 10px; }
+  .lc-stage.hot { border-color: rgba(168,216,240,.55); background: rgba(168,216,240,.06); box-shadow: 0 0 24px rgba(168,216,240,.08); }
+  .lc-stage.hot .st { color: #a8d8f0; }
+  .lc-stage .deep { display: inline-block; margin-top: 10px; font-family: ui-monospace, 'SF Mono', monospace; font-size: 10px; letter-spacing: .14em; color: #a8d8f0; border: 1px solid rgba(168,216,240,.4); border-radius: 99px; padding: 3px 10px; align-self: flex-start; }
+  .lc-arr { align-self: center; color: #82827b; padding: 0 7px; font-size: 14px; flex: none; }
+  @media (max-width: 940px) {
+    .lc-row { flex-direction: column; gap: 10px; }
+    .lc-arr { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -672,7 +687,18 @@
       <div class="slide-kicker">Flow 2 · AI across the lifecycle — Principle 2 · Explain before acting</div>
       <h2>One AI relationship, not five features</h2>
       <p class="lede" style="max-width:none;margin-top:0">The card gives Arta AI the one signal it never had — <b>cash flow</b>. Arta saw what you own; now it sees how money moves. Every touchpoint extends an agent Arta already has, and one moment is deliberately chosen for depth.</p>
-      <img class="lcmap-img" src="assets/ai-lifecycle-map.png" alt="AI across the card lifecycle: Apply, Onboard, Everyday use, Manage &amp; service, Grow &amp; retain — each touchpoint owned by an existing Arta AI agent, with Repayment Intelligence flagged as the deep moment" />
+      <div class="lc-row">
+        <div class="lc-stage"><span class="st">01 · Apply</span><p>Pre-qualified from data Arta already holds — and you can ask about any term, inline.</p><span class="felt">Confidence before committing</span></div>
+        <span class="lc-arr">→</span>
+        <div class="lc-stage"><span class="st">02 · Onboard</span><p>Autopay and statement date recommended from the member's real cash-flow patterns.</p><span class="felt">Set up right on day one, not defaults-by-inertia</span></div>
+        <span class="lc-arr">→</span>
+        <div class="lc-stage"><span class="st">03 · Everyday use</span><p>Spend insights in wealth context — burn vs. income vs. portfolio — with anomalies flagged.</p><span class="felt">"I understand my money"</span></div>
+        <span class="lc-arr">→</span>
+        <div class="lc-stage hot"><span class="st">04 · Manage &amp; service</span><p><b style="color:var(--text)">Repayment Intelligence</b> — settlement sequencing, limit guidance, dispute triage with pre-filled evidence.</p><span class="deep">THE DEEP MOMENT · NEXT SLIDE</span></div>
+        <span class="lc-arr">→</span>
+        <div class="lc-stage"><span class="st">05 · Grow &amp; retain</span><p>Rewards sweep into investments; an annual card-plus-wealth review, with real math.</p><span class="felt">The card compounds into the portfolio</span></div>
+      </div>
+      <p style="margin-top:16px;font-size:13.5px;color:var(--text-dim,#a9a9a2)">No new mascot: <b style="color:var(--text)">Product Specialist</b> extends to lending terms; <b style="color:var(--text)">Investment Planner</b> gains cash-flow awareness. Same anatomy, same voice, one rule — <b style="color:var(--text)">we show the math</b>.</p>
       <div class="slide-num">13 / 19</div>
     </section>
 
