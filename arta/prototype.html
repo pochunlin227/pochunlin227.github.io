@@ -2222,7 +2222,10 @@ function stackAdded(name){
 }
 
 function setTheme(t){
-  document.getElementById('root').className='theme-'+t;
+  /* swap only the theme class — never wipe body classes (embed mode lives there too) */
+  const root=document.getElementById('root');
+  root.classList.remove('theme-arta','theme-meridian');
+  root.classList.add('theme-'+t);
   document.getElementById('themeArta').classList.toggle('on',t==='arta');
   document.getElementById('themeMeridian').classList.toggle('on',t==='meridian');
   document.getElementById('cardWm').innerHTML=(t==='arta')?'<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAuCAYAAAAFmhZ8AAADUklEQVR42u1cUbKrIAxNHdfVwS5M0IWJ043xPm6dx/UKBEhotTkzTj90CJxjSALYm3MOBL9gAEAH7g0AsJ59gJ1o/Af3yD11hQGK6F8IEV1EF4joAhFdIKILRHTBWdAjn9vq0zHyzBN+Fi5WoZUUWO4BfhaWkrhFVuTUy9BQ0NEJ2wEEDOSvkKkdSUPieR9LZMzWIziFGgdQr+tewP+UfAGcc/tLOecWRwNz0H7utWS0rzKfz7XHPXZq7tWRne7Aq2yhdx9BA4CDNsuXC3HfW4ODe3vk8d2ONM00IMss/HJisVMhjEJ8867snUt4c3LBW+CX8H72/kAkMftsETKTjZE4u9cXEcUgxmMD3AOSf70ll0fZ+154CwAzQiyDFCJ3T7pm6rZeKQlIu8vrd64Uci0UXxdwjw0RFgAeoSwymPkhLpPIKhfC7J2jali8fiqC6qOEv1L+FYIbxdnxqGFG0RVxiWjeIHzNlRJedYwxyr4hNnIcZ9KEC00tsHoLNId5FWf2/kwkdNSYGJeAtRfrzyJ80DG6NxnmEJzbGwc4zxm5KPdXEb3V9KtO5O3B8NozEDIiaseB2Mu/Hcr7TdbufQOBBTwCF3Ofs5/+qQKbLxB582AS7nuE0J/sxfbCQrNx3wcMWhBcTuyj7F3B/z3pWu/b9oW5X57nhQQ3UL+fjuLe9/SSN2xreA6UaaM4L1pwXch96GyiCunZe0YHpCE5AEk/pWsCB8uO6al93LnQiJRyaaRmQ/LVxj7RYI1BJXqiOIo5xq2ibY1J5KhrYBG9jqOJi/sOwh/h12be+oIi3Rsnd2yic8TdRZz4cyuBjqGWNnDuBO6ZSExbhS3FIXgqppcMsKTe/DSkqpSxkS1V8JKguO8gfupzzDC4wDXj+JEzuNcLrhhF18j2N+7RM3aXMcAjY77Bq9TkK5LA7bMhF7kwuY1N3KPnHnl6dX+EmQIcHzC2OlGawxWlLRLuOy8W24zpDYMJzrtbtzbs+5pRk2O5t7E2/el9JhxIi4OK3Hg0LrNsq753hW/c1QXfcGvo8Q8C/i0glm6Pvk+/FRrfEoqrCE4pRo7Hl3I/YWen1N+PKIifzUpttZpIHFsziACCdiiFyYnXa6WdEP/+Vusa0e8P/gEN8n4Y2hQF7AAAAABJRU5ErkJggg==" alt="arta" style="height:15px;display:block;margin-top:2px">':'MERIDIAN';
