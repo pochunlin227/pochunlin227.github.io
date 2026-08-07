@@ -137,14 +137,15 @@
   .lcmap-img { width: 100%; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; margin-top: 22px; display: block; }
 
   /* live prototype embeds — real screens, not screenshots */
-  .proto-col { flex: 0 0 auto; }
-  .proto { --s: 0.62; width: calc(390px * var(--s)); height: calc(822px * var(--s)); border-radius: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); background: #000; }
+  /* --s lives on the column so the caption can share the frame's width and wrap inside it */
+  .proto-col { flex: 0 0 auto; --s: 0.62; width: calc(390px * var(--s)); }
+  .proto { width: calc(390px * var(--s)); height: calc(822px * var(--s)); border-radius: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.13); background: #000; }
   .proto iframe { width: 390px; height: 822px; border: 0; transform: scale(var(--s)); transform-origin: top left; }
-  .proto-cap { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; width: calc(390px * var(--s)); line-height: 1.45; }
+  .proto-cap { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; max-width: 100%; line-height: 1.45; }
   .proto-cap b { display: block; color: var(--text); font-weight: 600; font-size: 12.5px; margin-bottom: 3px; }
   .proto-cap span { display: block; }
-  @media (min-height: 940px) { .proto { --s: 0.74; } }
-  @media (min-height: 1120px) { .proto { --s: 0.85; } }
+  @media (min-height: 940px) { .proto-col { --s: 0.74; } }
+  @media (min-height: 1120px) { .proto-col { --s: 0.85; } }
 
   /* member-study persona cards (native rebuild of the PNG design — crisp at any size) */
   .ms-row { display: flex; gap: 22px; margin-top: 26px; }

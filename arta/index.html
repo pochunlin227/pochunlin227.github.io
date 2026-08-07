@@ -83,10 +83,18 @@
   a.card--hero h2 { font-size: 32px; margin-bottom: 10px; }
   a.card--hero p { font-size: 16px; max-width: 620px; min-height: 0; }
   a.card--hero .go { font-size: 13px; margin-top: 24px; }
+  .flow-list { margin-top: 16px; border-top: 1px solid var(--line); }
+  .flow-list a { display: block; position: relative; padding: 13px 30px 13px 2px; border-bottom: 1px solid var(--line); text-decoration: none; }
+  .flow-list a:last-child { border-bottom: none; padding-bottom: 4px; }
+  .flow-list a b { display: block; font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .flow-list a small { display: block; margin-top: 3px; font-size: 12px; color: var(--text-faint); line-height: 1.45; }
+  .flow-list a::after { content: "→"; position: absolute; right: 4px; top: 13px; color: var(--sky); opacity: .55; transition: opacity .15s, transform .15s; }
+  .flow-list a:hover b { color: var(--sky); }
+  .flow-list a:hover::after { opacity: 1; transform: translateX(3px); }
   .sub-kicker {
     margin-top: 34px; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--text-faint);
   }
-  a.card {
+  .card {
     display: block; text-decoration: none; color: var(--text);
     background: var(--bg-card);
     border: 1px solid var(--line);
@@ -94,9 +102,7 @@
     padding: 26px 24px 24px;
     transition: transform .18s ease, border-color .18s ease, background .18s ease;
   }
-  a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.22); background: #242424; }
-  .card a.go { text-decoration: none; }
-  .card a.go:hover { color: var(--text); }
+  a.card:hover, .card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.22); background: #242424; }
   .card .num {
     font-size: 10px; letter-spacing: .22em; color: var(--text-faint);
     display: block; margin-bottom: 22px;
@@ -146,20 +152,22 @@
 
     <div class="sub-kicker">Explore the work</div>
     <div class="cards">
-      <a class="card" href="design-system.html">
+      <div class="card">
         <span class="num">02</span>
+        <h2>Interactive Prototypes</h2>
+        <p>Three working walkthroughs, one product — pick the story you want to see.</p>
+        <div class="flow-list">
+          <a href="prototype.html?flow=apply"><b>Flow 1 · The application</b><small>Pre-qualified offer → pledge → settlement → decision, for two members</small></a>
+          <a href="prototype.html?flow=ai"><b>Flow 2 · AI states</b><small>Quiet, nudge, intervene — the card home intelligence</small></a>
+          <a href="whitelabel.html"><b>White-label · Northstar</b><small>The same capability inside a partner's app</small></a>
+        </div>
+      </div>
+      <a class="card" href="design-system.html">
+        <span class="num">03</span>
         <h2>Arta Card System</h2>
         <p>A focused design-system contribution for portfolio-secured card applications, AI guidance, and partner-brand configuration — documented through live components, patterns, and theme comparisons.</p>
         <span class="go">Explore the system →</span>
       </a>
-      <div class="card" style="display:block">
-        <span class="num">03</span>
-        <h2>Interactive Prototypes</h2>
-        <p>Three working walkthroughs, one product — pick the story you want to see.</p>
-        <a class="go" href="prototype.html?flow=apply" style="display:flex;margin-top:16px">Flow 1 · The application →</a>
-        <a class="go" href="prototype.html?flow=ai" style="display:flex;margin-top:10px">Flow 2 · AI states →</a>
-        <a class="go" href="whitelabel.html" style="display:flex;margin-top:10px">White-label · Northstar →</a>
-      </div>
     </div>
 
     <div class="foot">

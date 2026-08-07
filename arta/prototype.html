@@ -947,7 +947,9 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 /* embed mode — clean phone for iframe embedding (slides deep-link with ?embed=1&persona=&jump=&theme=) */
 body.embed { padding:0; gap:0; background:transparent; }
 body.embed .stage-title, body.embed .demo, body.embed .backlink { display:none; }
-body.embed .phone { box-shadow:none; }
+/* frameless in embeds — the host page draws the device frame, so the phone's own
+   radius/border/ring would double up as a second arc */
+body.embed .phone { box-shadow:none; border:none; border-radius:0; }
 
 /* portfolio card grid — Design-at-Arta: the card is the atomic, collectible unit */
 .cardgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
