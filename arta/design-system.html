@@ -886,7 +886,7 @@ function render() {
     ${p.note ? `<p class="desc">${p.note}</p>` : ''}
     <div class="tabs">${p.states.map((s, i) => `<button data-i="${i}" class="${i === stateIdx ? 'on' : ''}">${s.name}</button>`).join('')}</div>
     <div class="frame">
-      <iframe id="sbframe" src="storybook/iframe.html?id=${encodeURIComponent(state.id)}&globals=theme:${theme}" title="${p.leaf} — ${state.name}"></iframe>
+      <iframe id="sbframe" src="storybook/iframe.html?id=${encodeURIComponent(state.id)}&globals=theme:${theme}&fit=1" title="${p.leaf} — ${state.name}"></iframe>
       <div class="frame-foot">
         <span>Live story · theme <b style="color:var(--doc-text)">${theme.replace('theme-','')}</b></span>
         <a href="storybook/index.html?path=/story/${encodeURIComponent(state.id)}" target="_blank">Open in Storybook ↗</a>
@@ -905,7 +905,8 @@ function render() {
       const d = f.contentDocument;
       if (!d || !d.body) return;
       const h = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight, d.body.offsetHeight);
-      if (h > 80) f.style.height = h + 40 + 'px';
+      const next = Math.min(h + 24, 4000);
+      if (h > 80 && Math.abs(next - f.clientHeight) > 8) f.style.height = next + 'px';
     } catch (e) { /* cross-origin: keep min-height */ }
   };
   f.addEventListener('load', () => {
