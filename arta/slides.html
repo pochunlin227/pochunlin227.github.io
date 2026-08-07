@@ -841,7 +841,7 @@
 <script>
 /* ── voice-over: single mini dock; active slide = the one under the viewport center.
    Scrolling to a new slide ALWAYS pauses the previous narration.
-   Files: assets/audio/slide-01.mp3 … slide-17.mp3; missing files degrade gracefully. */
+   Files: assets/audio/slide-01.mp3 … slide-20.mp3; missing files degrade gracefully. */
 (function () {
   const deck = document.getElementById('deck');
   const slides = [...deck.querySelectorAll('section.slide')];
@@ -920,6 +920,10 @@
   const unlock = () => { if (unlocked) return; unlocked = true; dock.classList.remove('fresh'); if (mode === 'auto' && !playing) play(); render(); };
   window.addEventListener('pointerdown', unlock);
   window.addEventListener('keydown', unlock);
+  /* scroll gestures: attempt playback — play() flips unlocked only when the browser allows it */
+  const tryPlay = () => { if (!unlocked && mode === 'auto' && !playing) play(); };
+  window.addEventListener('wheel', tryPlay, { passive: true });
+  window.addEventListener('touchstart', tryPlay, { passive: true });
 
   const master = $('voMaster');
   function mUi() { master.textContent = 'Voice-over: ' + (mode === 'auto' ? 'Auto' : 'Off'); master.classList.toggle('on', mode === 'auto'); }
@@ -932,6 +936,9 @@
     mUi(); render();
   });
   mUi(); detect();
+  /* try to start narration immediately — succeeds when the browser permits autoplay
+     (e.g. returning visitors); otherwise the dock shows "Click to start narration" */
+  if (mode === 'auto') play();
 })();
 </script>
 </body>
