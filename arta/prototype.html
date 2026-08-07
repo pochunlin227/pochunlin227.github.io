@@ -1063,11 +1063,11 @@ body.embed .phone { box-shadow:none; }
         <div class="pcard offer" onclick="go('s1')">
           <span class="badge-new">New</span>
           <span class="nm">Arta Card</span>
-          <div><span class="amt">Backed by your portfolio — up to <b id="offerLimit">S$213,000</b></span><span class="up">See your offer →</span></div>
+          <div><span class="amt" id="offerLine">You're prequalified to explore a limit up to S$40,000</span><span class="up">See your offer →</span></div>
         </div>
       </div>
       <p class="stack-hint">Long-press any card to add it to a Stack.</p>
-      <p class="hint" style="margin-top:10px">Pre-qualification uses only what Arta already knows — no credit pull until you submit. APR 21.99–27.99% variable · S$150 annual fee, stated up front.</p>
+      <p class="hint" style="margin-top:10px">Pre-qualification uses only what Arta already knows — no credit pull until you submit. Paid in full monthly · Portfolio-secured · No revolving balance · S$150 annual fee<span style="opacity:.6">*</span> <span style="opacity:.6">*illustrative for this exercise</span></p>
     </div>
   </section>
 
@@ -1076,12 +1076,13 @@ body.embed .phone { box-shadow:none; }
     <div class="appbar"><button class="back" onclick="go('s0')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
     <div class="scroll">
       <div class="micro">The application</div>
-      <h2 class="display">Three minutes.<br>Mostly confirmation.</h2>
-      <p class="lede">You're an Arta member, so we already hold most of what a card application needs. You'll confirm it — not retype it.</p>
+      <h2 class="display">Most of the work<br>is already done.</h2>
+      <p class="lede">You're an Arta member, so we'll reuse information we've verified — and only ask for what's specific to this card.</p>
       <div class="stack" style="margin-top:18px">
-        <div class="card row"><b style="font-size:22px;width:26px">1</b><div><b style="font-size:14.5px">Confirm your details</b><p class="hint">Identity, addresses, tax residence — prefilled from your Arta profile.</p></div></div>
-        <div class="card row"><b style="font-size:22px;width:26px">2</b><div><b style="font-size:14.5px">Income & employment</b><p class="hint">Asked because regulation asks — it won't set your limit.</p></div></div>
-        <div class="card row"><b style="font-size:22px;width:26px">3</b><div><b style="font-size:14.5px">Pledge & review</b><p class="hint">Choose the assets behind your card — your limit is computed in the open. Then read the terms once.</p></div></div>
+        <div class="card row"><b style="font-size:22px;width:26px">1</b><div><b style="font-size:14.5px">Confirm your profile</b><p class="hint">Identity · contact · tax residence — prefilled from your Arta profile.</p></div></div>
+        <div class="card row"><b style="font-size:22px;width:26px">2</b><div><b style="font-size:14.5px">Complete your financial picture</b><p class="hint">Income and any information still needed.</p></div></div>
+        <div class="card row"><b style="font-size:22px;width:26px">3</b><div><b style="font-size:14.5px">Review your card setup</b><p class="hint">Eligible assets · recommended limit · settlement.</p></div></div>
+        <div class="card row"><b style="font-size:22px;width:26px">4</b><div><b style="font-size:14.5px">Understand &amp; submit</b><p class="hint">Key terms · declarations — read once, decide clearly.</p></div></div>
       </div>
       <div class="trust">
         <div class="t"><b>Private</b><span>Income is used for this application only — never shown on your profile.</span></div>
@@ -1089,14 +1090,15 @@ body.embed .phone { box-shadow:none; }
         <div class="t"><b>Protected</b><span>Data is encrypted and reviewed only by Arta's lending team.</span></div>
         <div class="t"><b>Regulated</b><span>Required disclosures are shown in full before you commit.</span></div>
       </div>
+      <p class="hint" style="margin-top:12px">Most applications take about 3 minutes. Additional verification may take longer.</p>
     </div>
-    <div class="cta-dock"><button class="btn primary" onclick="go('s2')">Start — chapter 1 of 4</button></div>
+    <div class="cta-dock"><button class="btn primary" onclick="go('s2')">Start with what we know</button></div>
   </section>
 
   <!-- ============ S2 CH1 CONFIRM ============ -->
   <section class="screen" id="s2">
     <div class="appbar"><button class="back" onclick="go('s1')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
-    <div class="chapters"><span class="now">Confirm</span><span>Income</span><span>Pledge</span><span>Review</span></div>
+    <div class="chapters"><span class="now">Confirm</span><span>Complete</span><span>Secure</span><span>Settle</span><span>Commit</span></div>
     <div class="scroll">
       <h2 class="display">Still correct?</h2>
       <p class="lede">Pulled from your verified Arta profile.</p>
@@ -1125,7 +1127,7 @@ body.embed .phone { box-shadow:none; }
   <!-- ============ S3a EMPLOYMENT STATUS ============ -->
   <section class="screen" id="s3a">
     <div class="appbar"><button class="back" onclick="go('s2')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
-    <div class="chapters"><span class="done">Confirm</span><span class="now">Income</span><span>Pledge</span><span>Review</span></div>
+    <div class="chapters"><span class="done">Confirm</span><span class="now">Complete</span><span>Secure</span><span>Settle</span><span>Commit</span></div>
     <div class="scroll">
       <h2 class="display">How do you earn today?</h2>
       <div class="stack" style="margin-top:16px" id="empChoices">
@@ -1141,7 +1143,7 @@ body.embed .phone { box-shadow:none; }
   <!-- ============ S3b EMPLOYER ============ -->
   <section class="screen" id="s3b">
     <div class="appbar"><button class="back" onclick="go('s3a')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
-    <div class="chapters"><span class="done">Confirm</span><span class="now">Income</span><span>Pledge</span><span>Review</span></div>
+    <div class="chapters"><span class="done">Confirm</span><span class="now">Complete</span><span>Secure</span><span>Settle</span><span>Commit</span></div>
     <div class="scroll">
       <h2 class="display">Where do you work?</h2>
       <div class="field"><label id="empLbl">Employer</label><input class="input" id="empName" value="Vertex Biotech Inc." /></div>
@@ -1154,17 +1156,20 @@ body.embed .phone { box-shadow:none; }
   <!-- ============ S3c INCOME ============ -->
   <section class="screen" id="s3c">
     <div class="appbar"><button class="back" onclick="go('s3b')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
-    <div class="chapters"><span class="done">Confirm</span><span class="now">Income</span><span>Pledge</span><span>Review</span></div>
+    <div class="chapters"><span class="done">Confirm</span><span class="now">Complete</span><span>Secure</span><span>Settle</span><span>Commit</span></div>
     <div class="scroll">
       <h2 class="display">Annual income</h2>
-      <p class="lede">Before tax, in S$. An estimate is fine.</p>
+      <p class="lede">Before tax, in S$. An estimate is okay — we'll tell you if we need evidence.</p>
       <div class="field">
         <div class="currency"><span>$</span><input inputmode="numeric" id="incomeInput" value="285,000" oninput="fmtIncome(this)" /></div>
       </div>
-      <p class="hint" style="margin-top:10px">Asked for regulatory completeness — your spending limit comes from your pledged portfolio, not your payslip. It never appears on your member profile.</p>
       <div class="card" style="margin-top:16px">
-        <b style="font-size:14px">This number won't set your limit.</b>
-        <p class="hint" style="margin-top:4px">Your limit comes from the portfolio you choose to pledge — that's the next step, and the math is shown in the open.</p>
+        <b style="font-size:14px">Why we ask</b>
+        <p class="hint" style="margin-top:4px">Income forms part of the application assessment. Your eligible Arta assets may also support your available limit. It never appears on your member profile.</p>
+      </div>
+      <div class="card" id="irregularCard" style="margin-top:12px;display:none">
+        <b style="font-size:14px">Irregular income is okay.</b>
+        <p class="hint" style="margin-top:4px">We'll consider the information you provide alongside eligible Arta assets. Additional verification may still be required — a recent Notice of Assessment or bank statements would cover it.</p>
       </div>
     </div>
     <div class="cta-dock"><button class="btn primary" onclick="go('s4')">Continue</button></div>
@@ -1173,24 +1178,19 @@ body.embed .phone { box-shadow:none; }
   <!-- ============ S4 CH3 TERMS ============ -->
   <section class="screen" id="s4">
     <div class="appbar"><button class="back" onclick="go('s3c')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
-    <div class="chapters"><span class="done">Confirm</span><span class="done">Income</span><span class="now">Pledge</span><span>Review</span></div>
+    <div class="chapters"><span class="done">Confirm</span><span class="done">Complete</span><span class="now">Secure</span><span>Settle</span><span>Commit</span></div>
     <div class="scroll">
-      <h2 class="display">Your portfolio sets your limit.</h2>
-      <p class="lede">Choose what stands behind the card. Advance rates are platform-set and always shown — never a black box.</p>
+      <h2 class="display">Choose the eligible assets that support your card</h2>
+      <p class="lede">These assets remain invested while they support your card, subject to the security terms.</p>
       <div class="stack" style="margin-top:14px">
-        <button class="choice selected" id="plCash" onclick="togglePledge('cash',this)"><span>Arta Cash<small id="plCashSub">S$40,200 × 90% → S$36,180</small></span><span class="dot"></span></button>
-        <button class="choice selected" id="plPub" onclick="togglePledge('pub',this)"><span>Public markets<small id="plPubSub">S$240,100 × 60% → S$144,060</small></span><span class="dot"></span></button>
-        <button class="choice selected" id="plAlt" onclick="togglePledge('alt',this)"><span>Private markets &amp; alternatives<small id="plAltSub">S$132,080 × 25% → S$33,020</small></span><span class="dot"></span></button>
+        <button class="choice selected" id="plCash" onclick="togglePledge('cash',this)"><span>Arta Cash<small id="plCashSub">Included</small></span><span class="dot"></span></button>
+        <button class="choice selected" id="plPub" onclick="togglePledge('pub',this)"><span>Public markets<small id="plPubSub">Included</small></span><span class="dot"></span></button>
+        <button class="choice selected" id="plAlt" onclick="togglePledge('alt',this)"><span>Private markets &amp; alternatives<small id="plAltSub">Eligibility varies — reviewed when pledged</small></span><span class="dot"></span></button>
       </div>
-      <div class="micro" style="margin-top:20px">Your spending limit</div>
-      <div class="limit-value" id="limitValue">S$213,260</div>
-      <div class="reco-chip" id="recoChip">✓ Eligible value × advance rate — recalculated as markets move</div>
-
-      <div class="micro" style="margin:26px 0 8px">Settlement — a charge card is paid in full, monthly</div>
-      <div class="seg" id="autopaySeg">
-        <button class="choice selected" onclick="pickPay(this,'Full balance · Arta Cash')"><span>From Arta Cash<small>Default — the cycle's float keeps earning until the due date.</small></span><span class="dot"></span></button>
-        <button class="choice" onclick="pickPay(this,'Full balance · linked bank (GIRO)')"><span>From a linked bank<small>GIRO, full statement balance each cycle</small></span><span class="dot"></span></button>
-      </div>
+      <div class="micro" style="margin-top:20px">Recommended limit</div>
+      <div class="limit-value" id="limitValue">S$40,000</div>
+      <div class="reco-chip" id="recoChip">Based on eligible assets held with Arta and your current application profile</div>
+      <button class="btn quiet" style="text-align:left;padding-left:2px" onclick="openLogic()">How does securing the card work? →</button>
 
       <div class="micro" style="margin:26px 0 8px">Card design</div>
       <div class="art-row">
@@ -1199,13 +1199,33 @@ body.embed .phone { box-shadow:none; }
         <div class="art c" onclick="pickArt(this)"></div>
       </div>
     </div>
-    <div class="cta-dock"><button class="btn primary" id="s4Next" onclick="go('s5')">Review everything</button></div>
+    <div class="cta-dock"><button class="btn primary" id="s4Next" onclick="go('s4b')">Continue to settlement</button></div>
+  </section>
+
+  <!-- ============ S4b CH4 SETTLE ============ -->
+  <section class="screen" id="s4b">
+    <div class="appbar"><button class="back" onclick="go('s4')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
+    <div class="chapters"><span class="done">Confirm</span><span class="done">Complete</span><span class="done">Secure</span><span class="now">Settle</span><span>Commit</span></div>
+    <div class="scroll">
+      <h2 class="display">Choose how your monthly balance is paid</h2>
+      <p class="lede">This is a charge card: your statement balance is due in full each month.</p>
+      <div class="seg" id="autopaySeg" style="margin-top:14px">
+        <button class="choice selected" onclick="pickPay(this,'Full balance · Arta Cash')"><span>Pay automatically from <span class="bn-cash">Arta Cash</span><small>Account •••• 4821 — we'll notify you before each payment date. Recommended.</small></span><span class="dot"></span></button>
+        <button class="choice" onclick="pickPay(this,'Full balance · linked bank (GIRO)')"><span>Use another eligible account<small>Full statement balance via GIRO each cycle</small></span><span class="dot"></span></button>
+      </div>
+      <div class="card" id="settleWarn" style="margin-top:14px;display:none">
+        <b style="font-size:14px">A heads-up, not a blocker</b>
+        <p class="hint" style="margin-top:4px">Your current Arta Cash balance is below your recommended limit. It doesn't affect today's application — you'll just need enough cash to settle each monthly statement.</p>
+      </div>
+      <p class="hint" style="margin-top:14px">Your investments aren't used for routine monthly settlement — exact terms are defined in the Security Agreement.<span style="opacity:.6"> Illustrative wording for this exercise.</span></p>
+    </div>
+    <div class="cta-dock"><button class="btn primary" onclick="go('s5')">Set settlement</button></div>
   </section>
 
   <!-- ============ S5 REVIEW & KEY TERMS ============ -->
   <section class="screen" id="s5">
-    <div class="appbar"><button class="back" onclick="go('s4')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
-    <div class="chapters"><span class="done">Confirm</span><span class="done">Income</span><span class="done">Pledge</span><span class="now">Review</span></div>
+    <div class="appbar"><button class="back" onclick="go('s4b')">‹</button><span class="spacer"></span><span class="bar-label bn-card">Arta Card</span></div>
+    <div class="chapters"><span class="done">Confirm</span><span class="done">Complete</span><span class="done">Secure</span><span class="done">Settle</span><span class="now">Commit</span></div>
     <div class="scroll">
       <h2 class="display">Read once,<br>then decide.</h2>
 
@@ -1213,8 +1233,8 @@ body.embed .phone { box-shadow:none; }
         <div class="head"><span class="micro">Your application</span><button class="edit" onclick="go('s2')">Change</button></div>
         <div class="kv"><span class="k">Applicant</span><span class="v" id="revName">Alexandra W. Chen</span></div>
         <div class="kv"><span class="k">Income</span><span class="v" id="revIncome">S$285,000 / yr</span></div>
-        <div class="kv"><span class="k">Pledged assets</span><span class="v" id="revPledge">Cash · Public · Alternatives</span></div>
-        <div class="kv"><span class="k">Spending limit</span><span class="v" id="reviewLimit">S$213,260</span></div>
+        <div class="kv"><span class="k">Eligible assets</span><span class="v" id="revPledge">Cash · Public · Alternatives</span></div>
+        <div class="kv"><span class="k">Recommended limit</span><span class="v" id="reviewLimit">S$40,000</span></div>
         <div class="kv"><span class="k">Settlement</span><span class="v" id="reviewPay">Full balance · Arta Cash</span></div>
       </div>
 
@@ -1223,19 +1243,29 @@ body.embed .phone { box-shadow:none; }
         <div class="t-head"><span class="micro">Key terms — the part worth reading</span></div>
         <div class="trow"><span class="tk">Card type</span><span class="tv">Charge card<small>paid in full monthly — balances never revolve</small></span></div>
         <div class="trow"><span class="tk">Security</span><span class="tv">Pledge over selected assets<small>custodied at BNY | Pershing</small></span></div>
-        <div class="trow"><span class="tk">Spending limit</span><span class="tv">Eligible value × advance rate<small>recalculated as values move</small></span></div>
-        <div class="trow"><span class="tk">If markets fall</span><span class="tv">Limit adjusts, 7 days' notice<small>we never sell your assets without instruction</small></span></div>
-        <div class="trow"><span class="tk">Annual fee</span><span class="tv">S$150</span></div>
+        <div class="trow"><span class="tk">Spending limit</span><span class="tv">May change<small>if eligible asset values or eligibility change</small></span></div>
+        <div class="trow"><span class="tk">If asset values fall</span><span class="tv">Limit may adjust<small>with notice — see Security Agreement for exact terms</small></span></div>
+        <div class="trow"><span class="tk">Annual fee</span><span class="tv">S$150<small>illustrative for this exercise</small></span></div>
         <div class="trow"><span class="tk">Foreign transaction fee</span><span class="tv">S$0</span></div>
         <div class="trow"><span class="tk">Late payment</span><span class="tv">Up to S$40<small>+ finance charge on overdue amounts only</small></span></div>
       </div>
-      <button class="btn quiet" style="text-align:left;padding-left:2px" onclick="openSheet()">Read the full Cardmember Agreement →</button>
+      <div style="height:10px"></div>
+      <div class="micro" style="margin-bottom:6px">Full documents</div>
+      <div class="card" style="padding:6px 16px">
+        <div class="kv" style="cursor:pointer" onclick="openSheet()"><span class="k">Cardmember Agreement</span><span class="v">→</span></div>
+        <div class="kv" style="cursor:pointer" onclick="openSheet()"><span class="k">Security Agreement</span><span class="v">→</span></div>
+        <div class="kv" style="cursor:pointer" onclick="openSheet()"><span class="k">Fee Schedule</span><span class="v">→</span></div>
+        <div class="kv" style="cursor:pointer" onclick="openSheet()"><span class="k">Privacy Notice</span><span class="v">→</span></div>
+      </div>
 
       <div style="height:8px"></div>
       <div class="card">
         <div class="consent" onclick="toggleConsent(this,0)"><span class="checkbox">✓</span><p>Everything in this application is true and complete.</p></div>
         <div class="consent" onclick="toggleConsent(this,1)"><span class="checkbox">✓</span><p>Arta may run a <b>Credit Bureau Singapore check</b> now. This can lower your credit score by a few points for a short time.</p></div>
-        <div class="consent" onclick="toggleConsent(this,2)"><span class="checkbox">✓</span><p>I grant Arta a <b>security interest over the selected assets</b> and agree to the Cardmember Agreement.</p></div>
+        <div class="consent" onclick="toggleConsent(this,2)"><span class="checkbox">✓</span><p>I grant Arta a <b>security interest over the selected assets</b> and agree to the Cardmember and Security Agreements.</p></div>
+      </div>
+      <div class="card" style="margin-top:10px">
+        <div class="consent" onclick="this.classList.toggle('checked')"><span class="checkbox">✓</span><p>Send me <span class="bn-card">Arta Card</span> offers and updates. <b>Optional</b> — doesn't affect this application.</p></div>
       </div>
     </div>
     <div class="cta-dock"><button class="btn primary" id="submitBtn" disabled onclick="submitApp()">Submit application</button></div>
@@ -1277,15 +1307,16 @@ body.embed .phone { box-shadow:none; }
   <!-- ============ S6b IN REVIEW ============ -->
   <section class="screen" id="s6b">
     <div class="scroll" style="padding-top:26px">
-      <div class="micro" style="color:var(--status-info)">In review</div>
-      <h2 class="display">A human is taking a look.</h2>
-      <p class="lede">Nothing is wrong — some applications need a second pair of eyes. There's nothing you need to do.</p>
+      <div class="micro" style="color:var(--status-info)">Additional review</div>
+      <h2 class="display">We're verifying one part of your application.</h2>
+      <p class="lede">Your application is complete. Because part of your declared financial information needs additional verification, a specialist is reviewing it — that's the process, not a judgment.</p>
       <div class="timeline">
         <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Application submitted</b><span>Today, 9:41 AM</span></div></div>
-        <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Under review</b><span>Typically 1–2 business days</span></div></div>
+        <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Portfolio verified</b><span>Eligible assets confirmed from your Arta account</span></div></div>
+        <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Financial information review</b><span>Typically 1–2 business days · no action needed</span></div></div>
         <div class="tl-step"><div class="tl-rail"><div class="tl-dot"></div></div><div class="tl-body"><b>Decision</b><span>We'll notify you the moment it's made</span></div></div>
       </div>
-      <div class="banner info">Your Credit Bureau Singapore report was accessed once for this application. Waiting doesn't affect your score further.</div>
+      <div class="banner info">Your Arta investment account and existing member relationship are unaffected. Your Credit Bureau Singapore report was accessed once for this application — waiting doesn't affect your score further.</div>
     </div>
     <div class="cta-dock"><button class="btn ghost" onclick="go('s0')">Back to Arta</button></div>
   </section>
@@ -1312,15 +1343,15 @@ body.embed .phone { box-shadow:none; }
   <section class="screen" id="s6d">
     <div class="scroll" style="padding-top:26px">
       <div class="micro" style="color:var(--status-warn)">Approved — with a phased limit</div>
-      <h2 class="display">Start at <span id="coOffered2">S$611,000</span> today.<br>The rest follows the fund.</h2>
-      <p class="lede">Your private-market positions pledge at their next official valuation — until the fund's Sep 30 NAV, they contribute zero. Nothing is declined; the limit simply follows the collateral.</p>
+      <h2 class="display">Start at <span id="coOffered2">S$40,000</span> today.<br>The rest follows the fund.</h2>
+      <p class="lede">Your private-market positions are reviewed at their next official valuation — until then, your limit is supported by cash and public assets. Nothing is declined; the limit simply follows the eligible collateral.</p>
       <div class="card" style="margin-top:16px">
-        <div class="fact-row"><span class="k">With privates, once valued</span><span class="v" id="coAsked">S$961,113</span></div>
-        <div class="fact-row"><span class="k">Starting limit today</span><span class="v" id="coOffered">S$611,113</span></div>
-        <div class="fact-row"><span class="k">After Sep 30 NAV</span><span class="v">Rises automatically</span></div>
+        <div class="fact-row"><span class="k">Starting limit today</span><span class="v" id="coOffered">S$40,000</span></div>
+        <div class="fact-row"><span class="k">Private investments</span><span class="v" id="coAsked">Reviewed at next valuation</span></div>
+        <div class="fact-row"><span class="k">After the next NAV</span><span class="v">Limit may increase</span></div>
         <div class="fact-row"><span class="k">Everything else</span><span class="v">Unchanged</span></div>
       </div>
-      <p class="hint" style="margin-top:10px">No action needed on your side — we track the fund calendar and notify you when the limit steps up.</p>
+      <p class="hint" style="margin-top:10px">No action needed on your side — we track the fund calendar and notify you if the limit steps up.</p>
     </div>
     <div class="cta-dock">
       <button class="btn primary" onclick="apprFromCounter()"><span id="coAcceptLbl">Accept — start at S$611,113</span></button>
@@ -1381,7 +1412,7 @@ body.embed .phone { box-shadow:none; }
           </div>
           <div class="ai-actions">
             <button class="ai-btn main" onclick="nudgeAct()">Move my statement date to the 18th</button>
-            <button class="ai-btn alt" onclick="alert('What changes: statement + due date shift together. Grace period, APR, limit — unchanged.')">What changes if I do?</button>
+            <button class="ai-btn alt" onclick="alert('What changes: statement + due date shift together. Your limit and settlement terms — unchanged.')">What changes if I do?</button>
           </div>
         </div>
         <div class="ai-foot">
@@ -1470,17 +1501,17 @@ body.embed .phone { box-shadow:none; }
   <div class="sheet-scrim" id="headroomScrim" onclick="this.classList.remove('open')">
     <div class="sheet small" onclick="event.stopPropagation()">
       <div class="sheet-handle"></div>
-      <div class="as-title">If markets move — your limit, live</div>
+      <div class="as-title">If markets move — how your limit could respond</div>
       <div style="padding:0 24px 6px">
-        <div class="recalc-num" id="hmLimit">S$865,000</div>
+        <div class="recalc-num" id="hmLimit">S$37,200</div>
         <input type="range" id="hmRange" min="-20" max="20" step="5" value="-10" oninput="hmUpdate(this.value)">
         <div class="range-labels"><span>Markets −20%</span><span>+20%</span></div>
         <div class="math" style="margin-top:14px">
-          <div class="m-row"><span>Market-priced collateral <span id="hmPct">−10%</span></span><span id="hmMkt">S$747,000</span></div>
-          <div class="m-row"><span>Cash contribution — unaffected</span><span id="hmCash">S$131,113</span></div>
-          <div class="m-net"><span>Your limit would be</span><span id="hmLimit2">S$865,000</span></div>
+          <div class="m-row"><span>Market-supported portion <span id="hmPct">−10%</span></span><span id="hmMkt">S$25,200</span></div>
+          <div class="m-row"><span>Cash-supported portion — stable</span><span id="hmCash">S$12,000</span></div>
+          <div class="m-net"><span>Your limit could be</span><span id="hmLimit2">S$37,200</span></div>
         </div>
-        <p class="hint" style="margin-top:8px">Limit reductions take effect with 7 days' notice. Spending below the new limit is never interrupted — and we never sell your assets.</p>
+        <p class="hint" style="margin-top:8px">Limit changes come with notice, and spending below the adjusted limit isn't interrupted — see the Security Agreement for exact terms.<span style="opacity:.6"> Illustrative sensitivity, not a quote.</span></p>
       </div>
       <button class="btn primary" style="width:calc(100% - 48px);margin:10px 24px 0" onclick="document.getElementById('headroomScrim').classList.remove('open')">Got it</button>
       <button class="as-cancel" onclick="document.getElementById('headroomScrim').classList.remove('open')">Close</button>
@@ -1497,6 +1528,21 @@ body.embed .phone { box-shadow:none; }
       <button class="as-opt" onclick="alert('Snoozed for 30 days.')">Snooze repayment nudges<small>30 days</small></button>
       <button class="as-opt" onclick="alert('Repayment intelligence off. Re-enable anytime in Card settings.')">Turn off repayment intelligence<small>You stay in full control</small></button>
       <button class="as-cancel" onclick="document.getElementById('whyScrim').classList.remove('open')">Close</button>
+    </div>
+  </div>
+
+  <!-- ============ HOW SECURING WORKS (assessment logic drawer) ============ -->
+  <div class="sheet-scrim" id="logicScrim" onclick="this.classList.remove('open')">
+    <div class="sheet small" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="as-title">How securing the card works</div>
+      <div style="padding:0 24px 6px">
+        <p class="hint" style="line-height:1.6"><b style="color:var(--text-legal)">What's included:</b> the eligible assets you select stay invested in your Arta account while they support the card.</p>
+        <p class="hint" style="line-height:1.6;margin-top:8px"><b style="color:var(--text-legal)">Values can change:</b> if eligible asset values or eligibility change, your recommended limit may change with notice — spending below the adjusted limit isn't interrupted.</p>
+        <p class="hint" style="line-height:1.6;margin-top:8px"><b style="color:var(--text-legal)">If action is needed:</b> the Security Agreement defines when Arta may require action and what rights Arta has under the arrangement.</p>
+        <p class="hint" style="line-height:1.6;margin-top:10px;opacity:.7">Illustrative assessment logic for this exercise — exact eligibility, rates and security terms would be defined with Credit, Risk and Legal.</p>
+      </div>
+      <button class="as-cancel" onclick="document.getElementById('logicScrim').classList.remove('open')">Close</button>
     </div>
   </div>
 
@@ -1531,14 +1577,13 @@ body.embed .phone { box-shadow:none; }
         <p style="margin-top:6px">The legally binding version of everything you saw in Key Terms — in a readable form, not a PDF dump.</p>
         <h5>How this card works</h5>
         <p>The Arta Card is a charge card: the full statement balance is due each cycle, and balances never revolve. There is no purchase APR because there is no borrowing — a finance charge applies only to amounts that remain unpaid after the due date.</p>
-        <h5>The pledge</h5>
-        <p>Your spending limit is secured by the assets you selected, custodied at BNY | Pershing. Advance rates by asset class are shown at all times. If pledged values fall, your limit adjusts with 7 days' notice; spending below the adjusted limit is never interrupted, and Arta never sells your assets without your instruction.</p>
+        <h5>The security arrangement</h5>
+        <p>Your spending limit is supported by the eligible assets you selected, custodied at BNY | Pershing. If eligible asset values or eligibility change, your limit may adjust with notice; spending below the adjusted limit is not interrupted. The exact eligibility rules, adjustment mechanics and Arta's rights under the security arrangement are defined in the Security Agreement.</p>
         <h5>Fees</h5>
         <ul>
-          <li>Annual fee: S$150, billed on your first statement and each anniversary.</li>
+          <li>Annual fee: S$150, billed on your first statement and each anniversary. <em>Illustrative for this exercise.</em></li>
           <li>Foreign transaction fee: none.</li>
           <li>Late payment fee: up to S$40. We notify you before it is ever applied.</li>
-          <li>Cash advance APR: 29.99% variable, from the day of the advance.</li>
         </ul>
         <h5>Credit reporting</h5>
         <p>Submitting this application authorizes one hard credit inquiry. Your account activity — balances and payment history — is reported to Credit Bureau Singapore monthly.</p>
@@ -1579,7 +1624,7 @@ body.embed .phone { box-shadow:none; }
     <select id="outcomeSel" onchange="if(this.value!=='auto')go(this.value)">
       <option value="auto">Auto — follows the persona</option>
       <option value="s6a">Approved (instant)</option>
-      <option value="s6b">In review</option>
+      <option value="s6b">Additional review</option>
       <option value="s6c">More info needed</option>
       <option value="s6d">Counter-offer</option>
       <option value="s6e">Declined</option>
@@ -1598,13 +1643,14 @@ body.embed .phone { box-shadow:none; }
       <option value="s0">Entry (home)</option>
       <option value="s1">Before you start</option>
       <option value="s2">Ch.1 Confirm</option>
-      <option value="s3a">Ch.2 Employment</option>
-      <option value="s3b">Ch.2 Employer</option>
-      <option value="s3c">Ch.2 Income</option>
-      <option value="s4">Ch.3 Pledge</option>
-      <option value="s5">Ch.4 Review</option>
+      <option value="s3a">Ch.2 Complete · Employment</option>
+      <option value="s3b">Ch.2 Complete · Employer</option>
+      <option value="s3c">Ch.2 Complete · Income</option>
+      <option value="s4">Ch.3 Secure</option>
+      <option value="s4b">Ch.4 Settle</option>
+      <option value="s5">Ch.5 Commit</option>
       <option value="s6a">Decision · Approved</option>
-      <option value="s6b">Decision · In review</option>
+      <option value="s6b">Decision · Additional review</option>
       <option value="s6c">Decision · Docs needed</option>
       <option value="s6d">Decision · Phased limit</option>
       <option value="s6e">Decision · Declined</option>
@@ -1618,7 +1664,9 @@ body.embed .phone { box-shadow:none; }
 <script>
 const state = { consents:[false,false,false], limit:0, pay:'Full balance · Arta Cash', persona:'operator', empChoice:'Employed', pledge:{cash:true,pub:true,alt:true}, offered:0 };
 
-const RATES = { cash: 0.9, pub: 0.6, alt: 0.25 };
+/* No invented advance rates: the prototype shows a RECOMMENDED limit per member and
+   marks the assessment logic as illustrative — exact eligibility, rates and security
+   terms would be defined with Credit, Risk and Legal. */
 const PLEDGE_LABELS = { cash: 'Cash', pub: 'Public', alt: 'Alternatives' };
 /* Two members, per "designing for the core, testing the edges":
    operator — PRIMARY (The Equity-Rich Operator): wealth substantial but largely invested;
@@ -1633,6 +1681,8 @@ const PERSONAS = {
     emp:'Employed', empLbl:'Employer', empName:'Vertex Biotech Inc.', empRole:'VP of Engineering', empYears:'4',
     income:'350,000',
     assets: { cash: 200000, pub: 1280000, alt: 920000 },
+    reco: 40000,
+    offerLine: "You're prequalified to explore a limit up to S$40,000",
     outcome:'dynamic'
   },
   founder: {
@@ -1641,43 +1691,44 @@ const PERSONAS = {
     emp:'Self-employed', empLbl:'Business', empName:'Nimbus Labs, Inc.', empRole:'Founder & CEO', empYears:'3',
     income:'180,000',
     assets: { cash: 61940, pub: 180000, alt: 280000 },
-    outcome:'s6c'
+    reco: 25000,
+    offerLine: 'See what your portfolio may support',
+    outcome:'s6b' /* declared income needs verification → additional review. The evidence path differs — the rules don't. */
   }
 };
 
 function fmt$(n){ return 'S$' + Number(n).toLocaleString('en-US'); }
 
-function pledgeLimit(includeAlt) {
-  const a = PERSONAS[state.persona].assets;
-  let sum = 0;
-  for (const k of ['cash','pub','alt']) {
-    if (!state.pledge[k]) continue;
-    if (k === 'alt' && includeAlt === false) continue;
-    sum += Math.round(a[k] * RATES[k]);
-  }
-  return sum;
-}
+function pledgeLimit() { return PERSONAS[state.persona].reco; }
 function renderPledge() {
-  const a = PERSONAS[state.persona].assets;
-  const subs = { cash: 'plCashSub', pub: 'plPubSub', alt: 'plAltSub' };
+  const p = PERSONAS[state.persona];
+  const founder = state.persona === 'founder';
+  const subs = {
+    cash: 'Included',
+    pub: founder ? 'Included · concentrated position — may receive additional review' : 'Included',
+    alt: 'Eligibility varies — reviewed when pledged'
+  };
+  const subEls = { cash: 'plCashSub', pub: 'plPubSub', alt: 'plAltSub' };
   const rows = { cash: 'plCash', pub: 'plPub', alt: 'plAlt' };
   for (const k of ['cash','pub','alt']) {
-    document.getElementById(subs[k]).textContent =
-      fmt$(a[k]) + ' × ' + Math.round(RATES[k]*100) + '% → ' + fmt$(Math.round(a[k]*RATES[k]));
+    document.getElementById(subEls[k]).textContent = subs[k];
     document.getElementById(rows[k]).classList.toggle('selected', state.pledge[k]);
   }
-  const lim = pledgeLimit();
-  state.limit = lim;
-  document.getElementById('limitValue').textContent = fmt$(lim);
-  document.getElementById('reviewLimit').textContent = fmt$(lim);
-  document.getElementById('apprLimit').textContent = fmt$(lim);
-  document.getElementById('homeLimit').textContent = fmt$(lim);
+  const any = ['cash','pub','alt'].some(k=>state.pledge[k]);
+  state.limit = p.reco;
+  document.getElementById('limitValue').textContent = founder ? 'Up to ' + fmt$(p.reco) : fmt$(p.reco);
+  document.getElementById('reviewLimit').textContent = (founder ? 'Up to ' : '') + fmt$(p.reco) + (founder ? ' · subject to verification' : '');
+  document.getElementById('apprLimit').textContent = fmt$(p.reco);
+  document.getElementById('homeLimit').textContent = fmt$(p.reco);
   document.getElementById('revPledge').textContent =
     ['cash','pub','alt'].filter(k=>state.pledge[k]).map(k=>PLEDGE_LABELS[k]).join(' · ') || 'None selected';
-  document.getElementById('s4Next').disabled = lim === 0;
-  document.getElementById('recoChip').textContent = lim === 0
-    ? 'Select at least one asset group to back the card'
-    : '✓ Eligible value × advance rate — recalculated as markets move';
+  document.getElementById('s4Next').disabled = !any;
+  document.getElementById('recoChip').textContent = !any
+    ? 'Select at least one asset group to support the card'
+    : founder
+      ? 'Subject to verification — confirmed with your decision'
+      : 'Based on eligible assets held with Arta and your current application profile'
+        + (state.pledge.alt ? ' · private assets reviewed at next valuation' : '');
 }
 function togglePledge(k, el) {
   state.pledge[k] = !state.pledge[k];
@@ -1709,6 +1760,8 @@ function pickEmp(el,v){
   el.parentNode.querySelectorAll('.choice').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById('empNext').disabled=false;
+  /* adaptive friction: the irregular-income reassurance follows the CHOICE, not the persona */
+  document.getElementById('irregularCard').style.display=(v==='Self-employed')?'':'none';
 }
 function pickPay(el,v){
   state.pay=v;
@@ -1748,7 +1801,7 @@ function submitApp(){
   setTimeout(()=>go(dest),1800);
 }
 function apprFromCounter(){
-  document.getElementById('apprLimit').textContent=fmt$(state.offered||pledgeLimit(false));
+  document.getElementById('apprLimit').textContent=fmt$(state.offered||pledgeLimit());
   go('s6a');
 }
 /* AI defaults follow the persona; the demo panel (or ?ai= deep link) can force any of the
@@ -1779,11 +1832,12 @@ function openHeadroom(){
   hmUpdate(document.getElementById('hmRange').value);
 }
 function hmUpdate(v){
+  /* Illustrative sensitivity: a stable cash-supported portion plus a market-supported
+     portion that moves with values. No advance rates implied. */
   v=Number(v);
-  const a=PERSONAS[state.persona].assets;
-  const cashC=state.pledge.cash?Math.round(a.cash*RATES.cash):0;
-  const mktBase=(state.pledge.pub?Math.round(a.pub*RATES.pub):0)+(state.pledge.alt?Math.round(a.alt*RATES.alt):0);
-  const mkt=Math.round(mktBase*(1+v/100));
+  const reco=PERSONAS[state.persona].reco;
+  const cashC=Math.round(reco*0.3);
+  const mkt=Math.round(reco*0.7*(1+v/100));
   const lim=cashC+mkt;
   document.getElementById('hmPct').textContent=(v>0?'+':'')+v+'%';
   document.getElementById('hmMkt').textContent=fmt$(mkt);
@@ -1820,6 +1874,7 @@ function agreeSheet(){
 /* personas */
 function applyPersona(key){
   state.persona=key;
+  const pSel=document.getElementById('personaSel'); if (pSel) pSel.value=key;
   state.pledge={cash:true,pub:true,alt:true};
   const p=PERSONAS[key];
   state.empChoice=p.emp;
@@ -1842,7 +1897,9 @@ function applyPersona(key){
   document.getElementById('revName').textContent=p.name;
   document.getElementById('revIncome').textContent=fmt$(p.income.replace(/,/g,''))+' / yr';
   document.getElementById('docCo').textContent=(key==='founder')?p.empName.replace(', Inc.',''):'your entity';
-  document.getElementById('offerLimit').textContent=fmt$(pledgeAllLimit(key));
+  document.getElementById('offerLine').textContent=p.offerLine;
+  document.getElementById('irregularCard').style.display=(p.emp==='Self-employed')?'':'none';
+  document.getElementById('settleWarn').style.display=(key==='founder')?'':'none';
   renderPledge();
   prepPhased();
   state.consents=[false,false,false];
@@ -1851,17 +1908,13 @@ function applyPersona(key){
   showAiState();
 }
 function prepPhased(){
-  const full=pledgeLimit(), phased=pledgeLimit(false);
-  state.offered=phased;
-  document.getElementById('coAsked').textContent=fmt$(full);
-  document.getElementById('coOffered').textContent=fmt$(phased);
-  document.getElementById('coOffered2').textContent=fmt$(phased);
-  document.getElementById('coAcceptLbl').textContent='Accept — start at '+fmt$(phased);
+  const reco=PERSONAS[state.persona].reco;
+  state.offered=reco;
+  document.getElementById('coOffered').textContent=fmt$(reco);
+  document.getElementById('coOffered2').textContent=fmt$(reco);
+  document.getElementById('coAcceptLbl').textContent='Accept — start at '+fmt$(reco);
 }
-function pledgeAllLimit(key){
-  const a=PERSONAS[key].assets;
-  return ['cash','pub','alt'].reduce((s,k)=>s+Math.round(a[k]*RATES[k]),0);
-}
+function openLogic(){ document.getElementById('logicScrim').classList.add('open'); }
 
 /* long-press (Stacks vocabulary) */
 function longpress(el, fn){
