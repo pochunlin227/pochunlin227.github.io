@@ -984,6 +984,16 @@ body.embed .phone { box-shadow:none; }
 
 /* small action sheet */
 .sheet.small { max-height:none; padding-bottom:26px; }
+/* flow chooser — the prototype's own index: one file, three curated entries */
+.flow-chooser { position:absolute; inset:0; z-index:80; background:var(--surface-app); display:none; flex-direction:column; padding:34px 24px 24px; overflow-y:auto; }
+.flow-chooser.open { display:flex; }
+body.embed .flow-chooser { display:none !important; }
+.fc-card { text-align:left; width:100%; background:var(--surface-raised); border:1px solid var(--border-subtle); border-radius:var(--radius-card); padding:16px; cursor:pointer; margin-top:12px; font-family:var(--font-ui); color:var(--text-primary); transition:border-color .15s; }
+.fc-card:hover { border-color:var(--border-strong); }
+.fc-card b { font-size:15px; display:block; }
+.fc-card p { margin-top:4px; }
+.fc-card .fc-go { display:inline-block; margin-top:10px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--action-primary); }
+
 /* Singpass verification — retrieved-and-verified state + the attribute list shown before consent */
 .verified-row { margin-top:10px; font-size:12.5px; color:var(--status-positive); line-height:1.5; }
 .sp-attrs { margin:2px 24px 0; border:1px solid var(--border-subtle); border-radius:var(--radius-ctl); overflow:hidden; }
@@ -1055,6 +1065,28 @@ body.embed .phone { box-shadow:none; }
 
 <div class="phone" id="phone">
   <div class="statusbar"><span>9:41</span><span style="letter-spacing:2px;opacity:.7">▪▪▪</span></div>
+
+  <!-- ============ FLOW CHOOSER (the prototype's index) ============ -->
+  <div class="flow-chooser" id="flowChooser">
+    <div class="micro">Arta Card — working prototype</div>
+    <h2 class="display" style="margin-top:10px">Three stories,<br>one product.</h2>
+    <p class="lede">Pick a flow — the demo panel shows only the controls that matter for it. Switch anytime.</p>
+    <button class="fc-card" onclick="enterFlow('apply')">
+      <b>Flow 1 · The application</b>
+      <p class="hint">Pre-qualified offer → confirm → complete → secure → settle → commit → decision. Two members, two evidence paths.</p>
+      <span class="fc-go">Start here →</span>
+    </button>
+    <button class="fc-card" onclick="enterFlow('ai')">
+      <b>Flow 2 · AI across the lifecycle</b>
+      <p class="hint">The card home with three AI intensities — quiet, nudge, intervene — plus the in-product lifecycle map.</p>
+      <span class="fc-go">Open card home →</span>
+    </button>
+    <button class="fc-card" onclick="openWhitelabel()">
+      <b>White-label · Northstar</b>
+      <p class="hint">The same capability inside a partner's app — what themes, and what never does. Opens its own prototype.</p>
+      <span class="fc-go">Open partner view →</span>
+    </button>
+  </div>
 
   <!-- ============ S0 HOME / ENTRY ============ -->
   <section class="screen active" id="s0">
@@ -1638,14 +1670,19 @@ body.embed .phone { box-shadow:none; }
 <!-- ============ DEMO CONTROLS ============ -->
 <div class="demo">
   <h3 onclick="toggleDemo()">Demo controls — for the walkthrough <span class="caret">▾</span></h3>
-  <div class="drow">
+  <div class="drow" data-row="flow">
+    <label>Flow</label>
+    <span id="flowLabel" style="font-size:12px;color:#a5a6ab">—</span>
+    <button class="d" onclick="openChooser()">Switch</button>
+  </div>
+  <div class="drow" data-row="persona">
     <label>Persona</label>
     <select id="personaSel" onchange="applyPersona(this.value)">
       <option value="operator">Primary — The Equity-Rich Operator (Alexandra)</option>
       <option value="founder">Stress test — The De-Risking Founder (Dev)</option>
     </select>
   </div>
-  <div class="drow">
+  <div class="drow" data-row="ai">
     <label>AI state</label>
     <select id="aiSel" onchange="setAiState(this.value)">
       <option value="auto">Auto — follows the member</option>
@@ -1655,7 +1692,7 @@ body.embed .phone { box-shadow:none; }
     </select>
     <span style="font-size:11px;color:#6d6e73">three intensities, one anatomy</span>
   </div>
-  <div class="drow">
+  <div class="drow" data-row="evidence">
     <label>Evidence</label>
     <select id="evidenceSel" onchange="setEvidence(this.value)">
       <option value="upload">Upload a document — review</option>
@@ -1663,7 +1700,7 @@ body.embed .phone { box-shadow:none; }
     </select>
     <span style="font-size:11px;color:#6d6e73">the member picks their own friction</span>
   </div>
-  <div class="drow">
+  <div class="drow" data-row="outcome">
     <label>Outcome</label>
     <select id="outcomeSel" onchange="if(this.value!=='auto')go(this.value)">
       <option value="auto">Auto — follows the persona</option>
@@ -1675,13 +1712,13 @@ body.embed .phone { box-shadow:none; }
     </select>
     <span style="font-size:11px;color:#6d6e73">previews now · applies on Submit</span>
   </div>
-  <div class="drow">
+  <div class="drow" data-row="theme">
     <label>Theme</label>
     <button class="d on" id="themeArta" onclick="setTheme('arta')">Arta</button>
     <button class="d" id="themeMeridian" onclick="setTheme('meridian')">Meridian Securities</button>
     <span style="font-size:11px;color:#6d6e73">same flow, swapped tokens</span>
   </div>
-  <div class="drow">
+  <div class="drow" data-row="jump">
     <label>Jump to</label>
     <select id="jumpSel" onchange="go(this.value)">
       <option value="s0">Entry (home)</option>
@@ -1802,7 +1839,7 @@ function restart(){
   aiOverride='auto';
   const aiSel=document.getElementById('aiSel'); if (aiSel) aiSel.value='auto';
   showAiState();
-  go('s0');
+  go(FLOWS[currentFlow] ? FLOWS[currentFlow].start : 's0');
 }
 function pickEmp(el,v){
   state.empChoice=v; /* the skip is choice-driven, not persona-driven */
@@ -1972,6 +2009,37 @@ function prepPhased(){
 }
 function openLogic(){ document.getElementById('logicScrim').classList.add('open'); }
 
+/* ---- flow chooser: one prototype file, three curated entries.
+   Each flow shows only the demo controls that matter for it. ---- */
+const FLOWS = {
+  apply: { start:'s0', title:'Flow 1 · Application',
+           rows:['flow','persona','evidence','outcome','theme','jump'],
+           jumps:['s0','s1','s2','s3a','s3b','s3c','s4','s4b','s5','s6a','s6b','s6c','s6d','s6e'] },
+  ai:    { start:'s7', title:'Flow 2 · AI states',
+           rows:['flow','persona','ai','theme','jump'],
+           jumps:['s7','s9'] },
+};
+let currentFlow = 'apply';
+function applyFlowUI(f){
+  currentFlow = f;
+  const cfg = FLOWS[f];
+  document.querySelectorAll('.demo .drow[data-row]').forEach(r=>{
+    r.style.display = cfg.rows.includes(r.dataset.row) ? '' : 'none';
+  });
+  const j = document.getElementById('jumpSel');
+  [...j.options].forEach(o=>{ o.hidden = !cfg.jumps.includes(o.value); });
+  document.getElementById('flowLabel').textContent = cfg.title;
+}
+function enterFlow(f){
+  document.getElementById('flowChooser').classList.remove('open');
+  applyFlowUI(f);
+  go(FLOWS[f].start);
+}
+function openChooser(){ document.getElementById('flowChooser').classList.add('open'); }
+function openWhitelabel(){
+  location.href = location.pathname.includes('/arta/') ? 'whitelabel.html' : 'white-label-prototype.html';
+}
+
 /* ---- Singpass / Myinfo verification ----
    The member chooses their own evidence path. Verified income resolves the one open
    question, so the decision lands today; uploading a document routes to review instead.
@@ -2051,7 +2119,14 @@ applyPersona('operator');
   const sel=document.getElementById('personaSel'); if (sel && p && PERSONAS[p]) sel.value=p;
   const t = q.get('theme'); if (t) setTheme(t);
   const ai = q.get('ai'); if (ai && (ai==='auto'||AI_MAP[ai])) setAiState(ai);
-  const j = q.get('jump'); if (j && document.getElementById(j)) go(j);
+  /* flow entry: ?flow=apply|ai skips the chooser; embed/jump deep links (the slides)
+     infer their flow silently; a plain open shows the chooser — the prototype's index. */
+  const f = q.get('flow');
+  const j = q.get('jump');
+  if (f && FLOWS[f]) enterFlow(f);
+  else if (q.get('embed') || j) applyFlowUI((j==='s7'||j==='s9') ? 'ai' : 'apply');
+  else { applyFlowUI('apply'); openChooser(); }
+  if (j && document.getElementById(j)) go(j);
 })();
 </script>
 </body>
