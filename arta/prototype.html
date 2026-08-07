@@ -723,8 +723,8 @@ body { font-family: var(--font-ui); display:flex; flex-direction:column; align-i
    phone in the middle, demo controls left, per-screen reasoning right */
 .rationale {
   width:344px; background:rgba(17,18,20,.94); border:1px solid #26272b; border-radius:16px; padding:16px 18px;
-  position:fixed; right:24px; top:50%; transform:translateY(-50%);
-  max-height:88vh; overflow-y:auto; z-index:60;
+  position:sticky; top:24px; grid-column:3; grid-row:1; justify-self:start;
+  max-height:calc(100vh - 48px); overflow-y:auto; z-index:60;
   -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
   box-shadow:0 18px 50px rgba(0,0,0,.5);
 }
@@ -739,7 +739,6 @@ body { font-family: var(--font-ui); display:flex; flex-direction:column; align-i
 .rationale li { position:relative; padding:7px 0 7px 16px; font-size:12.5px; color:#a5a6ab; line-height:1.55; }
 .rationale li::before { content:""; position:absolute; left:0; top:14px; width:5px; height:5px; border-radius:50%; background:#a8cdf0; }
 .rationale li b { color:#e8e6e2; font-weight:600; }
-@media (max-width:1279px) { .rationale { display:none; } }
 body.embed .rationale { display:none !important; }
 
 /* back navigation to hub */
@@ -1056,11 +1055,27 @@ body.embed .phone { box-shadow:none; border:none; border-radius:0; }
 /* recalc sheet */
 .recalc-num { font-family:var(--font-display); font-size:34px; font-weight:500; margin:6px 0 2px; }
 
-/* demo controls — floating panel so phone + controls are always visible together */
+/* stage — one grid, three columns sharing a top edge: controls · phone · rationale.
+   Panels are sticky (not fixed) so they scroll with the page and never float mid-air. */
+.stage { display:grid; grid-template-columns:344px 390px 344px; gap:28px; justify-content:center; align-items:start; width:100%; }
+body.embed .stage { display:block; width:auto; }
+@media (max-width:1279px) {
+  .stage { grid-template-columns:344px 390px; }
+  .rationale { display:none; }
+}
+@media (max-width:899px) {
+  .stage { grid-template-columns:min(100%, 390px); }
+  /* narrow screens: the panel stays a fixed, collapsible bottom bar — always reachable, no scrolling back and forth
+     (!important: the base sticky rule is declared later in the sheet) */
+  .demo { position:fixed !important; left:12px; right:12px; bottom:12px !important; top:auto !important; width:auto; max-width:390px; margin:0 auto; max-height:62vh; justify-self:auto; }
+  body { padding-bottom:170px; }
+}
+
+/* demo controls — column 1, sticky beside the phone */
 .demo {
   width:344px; background:rgba(17,18,20,.94); border:1px solid #26272b; border-radius:16px; padding:16px 18px;
-  position:fixed; left:24px; top:50%; transform:translateY(-50%);
-  max-height:88vh; overflow-y:auto; z-index:60;
+  position:sticky; top:24px; grid-column:1; grid-row:1; justify-self:end;
+  max-height:calc(100vh - 48px); overflow-y:auto; z-index:60;
   -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
   box-shadow:0 18px 50px rgba(0,0,0,.5);
 }
@@ -1069,9 +1084,7 @@ body.embed .phone { box-shadow:none; border:none; border-radius:0; }
 .demo.min .drow { display:none; }
 .demo.min h3 { margin-bottom:0; }
 .demo.min h3 .caret { transform:rotate(-90deg); }
-@media (max-width:1150px) {
-  .demo { left:12px; right:12px; top:auto; bottom:12px; transform:none; width:auto; max-width:390px; margin:0 auto; max-height:62vh; }
-  body { padding-bottom:170px; }
+@media (max-width:899px) {
   .stage-title { padding-top:42px; }
 }
 .demo .drow { display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
@@ -1090,6 +1103,7 @@ body.embed .phone { box-shadow:none; border:none; border-radius:0; }
   Use the demo panel to switch member, evidence path, and decision outcome. All data is illustrative.</p>
 </div>
 
+<div class="stage">
 <div class="phone" id="phone">
   <div class="statusbar"><span>9:41</span><span style="letter-spacing:2px;opacity:.7">▪▪▪</span></div>
 
@@ -1759,6 +1773,7 @@ body.embed .phone { box-shadow:none; border:none; border-radius:0; }
     <ul id="rPoints"></ul>
   </div>
 </div>
+</div><!-- /.stage -->
 
 <script>
 const state = { consents:[false,false,false], limit:0, pay:'Full balance · Arta Cash', persona:'operator', empChoice:'Employed', pledge:{cash:true,pub:true,alt:true}, offered:0, incomeVerified:false };
@@ -1953,7 +1968,7 @@ function fmtIncome(inp){
 }
 /* demo panel collapse — collapsed on narrow screens so it never buries the phone */
 function toggleDemo(){ document.querySelector('.demo').classList.toggle('min'); }
-const demoMq = window.matchMedia('(max-width:1150px)');
+const demoMq = window.matchMedia('(max-width:899px)');
 function syncDemo(){ document.querySelector('.demo')?.classList.toggle('min', demoMq.matches); }
 syncDemo();
 demoMq.addEventListener ? demoMq.addEventListener('change', syncDemo) : demoMq.addListener(syncDemo);
