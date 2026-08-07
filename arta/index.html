@@ -75,7 +75,17 @@
   }
   .lede { margin-top: 16px; font-size: 16.5px; color: var(--text-dim); line-height: 1.6; max-width: 560px; }
 
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
+  a.card--hero {
+    display: block; margin-top: 48px;
+    padding: 40px 38px 36px; border-radius: 24px;
+  }
+  a.card--hero h2 { font-size: 32px; margin-bottom: 10px; }
+  a.card--hero p { font-size: 16px; max-width: 620px; min-height: 0; }
+  a.card--hero .go { font-size: 13px; margin-top: 24px; }
+  .sub-kicker {
+    margin-top: 34px; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--text-faint);
+  }
   a.card {
     display: block; text-decoration: none; color: var(--text);
     background: var(--bg-card);
@@ -125,13 +135,15 @@
     <h1>The <em>Arta Card</em></h1>
     <p class="lede">A credit card launch for Arta's own members — and the white-label platform behind it. Presentation, design-system contribution, and an interactive prototype.</p>
 
+    <a class="card card--hero" href="slides.html">
+      <span class="num">01 · Start here</span>
+      <h2>Presentation</h2>
+      <p>My read on the problem, the two flows, the white-label model — and the trade-offs behind every cut. Every phone screen in the deck is the live prototype, with per-slide voice-over.</p>
+      <span class="go">View slides →</span>
+    </a>
+
+    <div class="sub-kicker">Supporting artifacts</div>
     <div class="cards">
-      <a class="card" href="slides.html">
-        <span class="num">01</span>
-        <h2>Presentation</h2>
-        <p>My read on the problem, the two flows, the white-label model — and the trade-offs behind every cut.</p>
-        <span class="go">View slides →</span>
-      </a>
       <a class="card" href="design-system.html">
         <span class="num">02</span>
         <h2>Design System</h2>
@@ -153,7 +165,7 @@
     </div>
 
     <div class="foot">
-      Po Chun Lin · <a href="mailto:pochun.lin@thepacinglabs.com">pochun.lin@thepacinglabs.com</a> · <a href="https://www.linpochun.com">linpochun.com</a><br>
+      Po Chun Lin · <a href="mailto:pochunlin227@gmail.com">pochunlin227@gmail.com</a> · <a href="https://www.linpochun.com">linpochun.com</a><br>
       Prepared for the Arta Finance design exercise. Not affiliated with Arta Finance.
     </div>
   </main>
