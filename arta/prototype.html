@@ -1476,7 +1476,7 @@ body.embed .stage { display:block; width:auto; }
       <div class="row" style="align-items:flex-start;justify-content:space-between">
         <div>
           <div class="micro">Current balance</div>
-          <div class="limit-value" style="font-size:36px">S$8,420<sup>19</sup></div>
+          <div class="limit-value" style="font-size:36px" id="cardBal">S$8,420<sup>19</sup></div>
           <p class="hint">Statement closed Jul 30 · Payment due Aug 8 · Limit <span id="homeLimit">S$25,000</span></p>
         </div>
         <div class="cardchip" id="cardChip" title="Long-press for card actions"></div>
@@ -1804,6 +1804,7 @@ const PERSONAS = {
     income:'350,000',
     assets: { cash: 200000, pub: 1280000, alt: 920000 },
     reco: 40000,
+    balV:'8,420', balS:'19',
     offerLine: "You're prequalified to explore a limit up to S$40,000",
     outcome:'dynamic'
   },
@@ -1814,6 +1815,7 @@ const PERSONAS = {
     income:'180,000',
     assets: { cash: 61940, pub: 180000, alt: 280000 },
     reco: 25000,
+    balV:'4,183', balS:'72',
     offerLine: 'See what your portfolio may support',
     outcome:'s6b' /* declared income needs verification → additional review. The evidence path differs — the rules don't. */
   }
@@ -2011,6 +2013,11 @@ function showAiState(){
   document.getElementById(id).style.display='';
 }
 function setAiState(v){
+  /* panel rule, extended: each AI story belongs to a member — nudge is the founder's
+     invoice cycle, intervene is the operator's capital call. Switching the state
+     switches to that member, so the numbers always belong to the person on screen. */
+  if (v==='nudge' && state.persona!=='founder') applyPersona('founder');
+  if (v==='intervene' && state.persona!=='operator') applyPersona('operator');
   aiOverride = v;
   const sel=document.getElementById('aiSel'); if (sel) sel.value=v;
   if (document.querySelector('.screen.active')?.id!=='s7') go('s7');
@@ -2100,6 +2107,7 @@ function applyPersona(key){
   document.getElementById('revIncome').textContent=fmt$(p.income.replace(/,/g,''))+' / yr';
   document.getElementById('docCo').textContent=(key==='founder')?p.empName.replace(', Inc.',''):'your entity';
   document.getElementById('offerLine').textContent=p.offerLine;
+  const cb=document.getElementById('cardBal'); if (cb) cb.innerHTML='S$'+p.balV+'<sup>'+p.balS+'</sup>';
   document.getElementById('irregularCard').style.display=(p.emp==='Self-employed')?'':'none';
   document.getElementById('settleWarn').style.display=(key==='founder')?'':'none';
   renderPledge();
