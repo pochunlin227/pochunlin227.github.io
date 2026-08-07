@@ -1,4 +1,4 @@
-const u={title:"04 AI Patterns/AI interaction model"},e={render:()=>`
+const u={title:"04 Patterns/AI: explain, recommend, confirm, act"},e={render:()=>`
     <p style="max-width:70ch;color:var(--arta-sys-color-text-secondary);font-size:13.5px;line-height:1.6">
       The AI may <b>observe, explain and recommend</b> freely. Anything consequential — moving money, selling
       assets, changing the repayment source, modifying card settings — requires explicit

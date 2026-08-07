@@ -1,4 +1,4 @@
-const i={title:"03 Lending Patterns/Disclosures & Key Terms"},e=(n,o)=>`
+const l={title:"03 Card components/Key Terms"},e=(n,o)=>`
   <div class="arta-keyterms__row">
     <span class="arta-keyterms__term">${n}</span>
     <span class="arta-keyterms__value">${o}</span>
@@ -29,7 +29,7 @@ const i={title:"03 Lending Patterns/Disclosures & Key Terms"},e=(n,o)=>`
         Governance: this module's structure is <b>compliance-locked</b> for white-label partners —
         themable colors/type family, but rows can't be hidden, reordered, or shrunk below legal minimums.
         Consents always default unchecked.</p>
-    </div>`};var s,t,r;a.parameters={...a.parameters,docs:{...(s=a.parameters)==null?void 0:s.docs,source:{originalSource:`{
+    </div>`};var t,r,s;a.parameters={...a.parameters,docs:{...(t=a.parameters)==null?void 0:t.docs,source:{originalSource:`{
   render: () => \`
     <div class="sb-col" style="max-width:380px">
       <div class="arta-keyterms">
@@ -58,4 +58,4 @@ const i={title:"03 Lending Patterns/Disclosures & Key Terms"},e=(n,o)=>`
         themable colors/type family, but rows can't be hidden, reordered, or shrunk below legal minimums.
         Consents always default unchecked.</p>
     </div>\`
-}`,...(r=(t=a.parameters)==null?void 0:t.docs)==null?void 0:r.source}}};const l=["ArtaCard"];export{a as ArtaCard,l as __namedExportsOrder,i as default};
+}`,...(s=(r=a.parameters)==null?void 0:r.docs)==null?void 0:s.source}}};const i=["ArtaCard"];export{a as ArtaCard,i as __namedExportsOrder,l as default};

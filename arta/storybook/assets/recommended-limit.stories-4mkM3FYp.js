@@ -1,4 +1,4 @@
-const P={title:"03 Lending Patterns/Recommended limit"},e=({theme:N="",limit:O="S$40,000",requested:c=null,buffer:l="healthy",loading:C=!1,whyOpen:L=!1})=>`
+const P={title:"03 Card components/Recommended limit"},e=({theme:N="",limit:O="S$40,000",requested:c=null,buffer:l="healthy",loading:C=!1,whyOpen:L=!1})=>`
   <div class="${N}" style="max-width:380px;background:var(--arta-sys-color-surface-app);color:var(--arta-sys-color-text-primary);padding:20px;border-radius:14px;font-family:var(--arta-sys-type-body-family)">
     <div class="sb-h" style="margin-top:0">Your recommended limit</div>
     ${C?`
@@ -25,7 +25,7 @@ const P={title:"03 Lending Patterns/Recommended limit"},e=({theme:N="",limit:O="
   </div>`,r=`<p style="max-width:64ch;color:var(--arta-sys-color-text-secondary);font-size:12.5px;line-height:1.6;margin-top:14px">
   <b>Protected:</b> the limit result, the open math, the buffer disclosure and the 7-days'-notice line are
   platform policy — identical for every brand. <b>Themeable:</b> surfaces, type, radius, accent colours.
-  <b>A11y:</b> buffer states never rely on colour alone — the label carries the meaning.</p>`,a={render:()=>e({theme:"theme-arta"})+r},t={render:()=>e({theme:"theme-northstar"})+r},s={render:()=>e({theme:"theme-arta",limit:"S$28,000",requested:"S$40,000"})+r},o={render:()=>e({theme:"theme-arta",buffer:"warning"})+r},i={render:()=>e({theme:"theme-arta",loading:!0})+r},n={render:()=>e({theme:"theme-arta",whyOpen:!0})+r};var d,m,p;a.parameters={...a.parameters,docs:{...(d=a.parameters)==null?void 0:d.docs,source:{originalSource:`{
+  <b>A11y:</b> buffer states never rely on colour alone — the label carries the meaning.</p>`,a={render:()=>e({theme:"theme-arta"})+r},t={render:()=>e({theme:"theme-northstar"})+r},o={render:()=>e({theme:"theme-arta",limit:"S$28,000",requested:"S$40,000"})+r},s={render:()=>e({theme:"theme-arta",buffer:"warning"})+r},i={render:()=>e({theme:"theme-arta",loading:!0})+r},n={render:()=>e({theme:"theme-arta",whyOpen:!0})+r};var d,m,p;a.parameters={...a.parameters,docs:{...(d=a.parameters)==null?void 0:d.docs,source:{originalSource:`{
   render: () => limitCard({
     theme: 'theme-arta'
   }) + NOTE
@@ -33,18 +33,18 @@ const P={title:"03 Lending Patterns/Recommended limit"},e=({theme:N="",limit:O="
   render: () => limitCard({
     theme: 'theme-northstar'
   }) + NOTE
-}`,...(h=(u=t.parameters)==null?void 0:u.docs)==null?void 0:h.source}}};var f,b,v;s.parameters={...s.parameters,docs:{...(f=s.parameters)==null?void 0:f.docs,source:{originalSource:`{
+}`,...(h=(u=t.parameters)==null?void 0:u.docs)==null?void 0:h.source}}};var f,b,v;o.parameters={...o.parameters,docs:{...(f=o.parameters)==null?void 0:f.docs,source:{originalSource:`{
   render: () => limitCard({
     theme: 'theme-arta',
     limit: 'S$28,000',
     requested: 'S$40,000'
   }) + NOTE
-}`,...(v=(b=s.parameters)==null?void 0:b.docs)==null?void 0:v.source}}};var x,g,$;o.parameters={...o.parameters,docs:{...(x=o.parameters)==null?void 0:x.docs,source:{originalSource:`{
+}`,...(v=(b=o.parameters)==null?void 0:b.docs)==null?void 0:v.source}}};var x,g,$;s.parameters={...s.parameters,docs:{...(x=s.parameters)==null?void 0:x.docs,source:{originalSource:`{
   render: () => limitCard({
     theme: 'theme-arta',
     buffer: 'warning'
   }) + NOTE
-}`,...($=(g=o.parameters)==null?void 0:g.docs)==null?void 0:$.source}}};var S,k,w;i.parameters={...i.parameters,docs:{...(S=i.parameters)==null?void 0:S.docs,source:{originalSource:`{
+}`,...($=(g=s.parameters)==null?void 0:g.docs)==null?void 0:$.source}}};var S,k,w;i.parameters={...i.parameters,docs:{...(S=i.parameters)==null?void 0:S.docs,source:{originalSource:`{
   render: () => limitCard({
     theme: 'theme-arta',
     loading: true
@@ -54,4 +54,4 @@ const P={title:"03 Lending Patterns/Recommended limit"},e=({theme:N="",limit:O="
     theme: 'theme-arta',
     whyOpen: true
   }) + NOTE
-}`,...(z=(E=n.parameters)==null?void 0:E.docs)==null?void 0:z.source}}};const A=["ArtaDefault","NorthstarTheme","LowerThanRequested","PortfolioBufferWarning","LoadingDecision","WhyThisLimitExpanded"];export{a as ArtaDefault,i as LoadingDecision,s as LowerThanRequested,t as NorthstarTheme,o as PortfolioBufferWarning,n as WhyThisLimitExpanded,A as __namedExportsOrder,P as default};
+}`,...(z=(E=n.parameters)==null?void 0:E.docs)==null?void 0:z.source}}};const A=["ArtaDefault","NorthstarTheme","LowerThanRequested","PortfolioBufferWarning","LoadingDecision","WhyThisLimitExpanded"];export{a as ArtaDefault,i as LoadingDecision,o as LowerThanRequested,t as NorthstarTheme,s as PortfolioBufferWarning,n as WhyThisLimitExpanded,A as __namedExportsOrder,P as default};

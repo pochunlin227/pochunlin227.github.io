@@ -1,4 +1,4 @@
-import{s as r,d as l}from"./helpers-BwuIyHmI.js";const o={title:"04 AI Patterns/Expert escalation",parameters:l([`Named-expert escalation modal (Family Office Service). Two details worth copying: the expert is **named**, and the question list includes the anti-sell question ("why might this NOT be right for me?") — honesty as premium, verbatim from Arta's product.`].join(`
+import{s as r,d as l}from"./helpers-BwuIyHmI.js";const o={title:"04 Patterns/Human escalation",parameters:l([`Named-expert escalation modal (Family Office Service). Two details worth copying: the expert is **named**, and the question list includes the anti-sell question ("why might this NOT be right for me?") — honesty as premium, verbatim from Arta's product.`].join(`
 `))},t={render:()=>`
     <div class="arta-keyterms" style="max-width:420px;text-align:center">
       <div style="font-size:28px">✻</div>

@@ -1,4 +1,4 @@
-const c={title:"03 Lending Patterns/Verified data confirmation"},e=(r,n,o=!0)=>`
+const c={title:"04 Patterns/Confirm, don’t collect"},e=(r,n,o=!0)=>`
   <div class="arta-review">
     <div>
       <div class="arta-review__label">${r}</div>
@@ -6,7 +6,7 @@ const c={title:"03 Lending Patterns/Verified data confirmation"},e=(r,n,o=!0)=>`
       ${o?'<div class="arta-review__verified">✓ Verified at onboarding</div>':""}
     </div>
     <button class="arta-review__edit">Edit</button>
-  </div>`,a={render:()=>`
+  </div>`,t={render:()=>`
     <div class="sb-col">
       <div class="sb-h">Chapter 1 — identity as review cards, not inputs</div>
       ${e("Legal name","Lin Po-Chun")}
@@ -18,7 +18,7 @@ const c={title:"03 Lending Patterns/Verified data confirmation"},e=(r,n,o=!0)=>`
         The core Flow-1 pattern: Arta already KYC'd this member, so the application <em>confirms</em>
         instead of <em>collecting</em>. Editing address or tax residence flags possible re-verification
         inline without blocking submission.</p>
-    </div>`};var t,i,s;a.parameters={...a.parameters,docs:{...(t=a.parameters)==null?void 0:t.docs,source:{originalSource:`{
+    </div>`};var a,i,s;t.parameters={...t.parameters,docs:{...(a=t.parameters)==null?void 0:a.docs,source:{originalSource:`{
   render: () => \`
     <div class="sb-col">
       <div class="sb-h">Chapter 1 — identity as review cards, not inputs</div>
@@ -32,4 +32,4 @@ const c={title:"03 Lending Patterns/Verified data confirmation"},e=(r,n,o=!0)=>`
         instead of <em>collecting</em>. Editing address or tax residence flags possible re-verification
         inline without blocking submission.</p>
     </div>\`
-}`,...(s=(i=a.parameters)==null?void 0:i.docs)==null?void 0:s.source}}};const d=["ConfirmDontCollect"];export{a as ConfirmDontCollect,d as __namedExportsOrder,c as default};
+}`,...(s=(i=t.parameters)==null?void 0:i.docs)==null?void 0:s.source}}};const d=["ConfirmDontCollect"];export{t as ConfirmDontCollect,d as __namedExportsOrder,c as default};

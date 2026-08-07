@@ -1,4 +1,4 @@
-import{s as i,d as r}from"./helpers-BwuIyHmI.js";const o={title:"03 Lending Patterns/Explained takeaway",parameters:r(['"The Arta Takeaway" — three-column summary closing every education page, here carrying the Arta Card story.',"","**Tokens** `arta.cmp.takeaway.*`. **Mobile** columns stack."].join(`
+import{s as i,d as r}from"./helpers-BwuIyHmI.js";const n={title:"03 Card components/Explained takeaway",parameters:r(['"The Arta Takeaway" — three-column summary closing every education page, here carrying the Arta Card story.',"","**Tokens** `arta.cmp.takeaway.*`. **Mobile** columns stack."].join(`
 `))},a={render:()=>`
     <div class="arta-takeaway" style="max-width:760px">
       <div class="arta-takeaway__col"><div class="arta-takeaway__icon">🏆</div><p>Backed by your portfolio — the limit follows your eligible assets, computed in the open.</p></div>
@@ -22,4 +22,4 @@ import{s as i,d as r}from"./helpers-BwuIyHmI.js";const o={title:"03 Lending Patt
     <p>A charge card: paid in full monthly, no revolving balances, no interest by design.</p>
   </div>
 </div>\`)
-}`,...(t=(s=a.parameters)==null?void 0:s.docs)==null?void 0:t.source}}};const d=["ThreeColumns"];export{a as ThreeColumns,d as __namedExportsOrder,o as default};
+}`,...(t=(s=a.parameters)==null?void 0:s.docs)==null?void 0:t.source}}};const d=["ThreeColumns"];export{a as ThreeColumns,d as __namedExportsOrder,n as default};

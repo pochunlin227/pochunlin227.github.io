@@ -1,4 +1,4 @@
-const x={title:"03 Lending Patterns/Decision states"},e=(s,l,c,y,u="")=>`
+const m={title:"04 Patterns/Decision & outcomes"},e=(s,l,c,y,u="")=>`
   <div style="flex:1;min-width:250px;background:var(--arta-sys-color-surface-raised);border:1px solid var(--arta-sys-color-stroke-subtle);border-radius:var(--arta-sys-radius-surface);padding:16px">
     <span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--arta-sys-color-decision-${s});border:1px solid var(--arta-sys-color-decision-${s});border-radius:999px;padding:4px 10px">${l}</span>
     <b style="display:block;font-size:14.5px;margin:12px 0 6px">${c}</b>
@@ -56,4 +56,4 @@ const x={title:"03 Lending Patterns/Decision states"},e=(s,l,c,y,u="")=>`
       <button class="arta-btn" style="width:100%;margin-top:12px">Accept S$40,000 — start today</button>
       <button class="arta-btn arta-btn--secondary" style="width:100%;margin-top:8px">Adjust my pledge</button>
     </div>\`
-}`,...(p=(d=a.parameters)==null?void 0:d.docs)==null?void 0:p.source}}};const m=["AllOutcomes","AdjustedOfferPattern"];export{a as AdjustedOfferPattern,t as AllOutcomes,m as __namedExportsOrder,x as default};
+}`,...(p=(d=a.parameters)==null?void 0:d.docs)==null?void 0:p.source}}};const x=["AllOutcomes","AdjustedOfferPattern"];export{a as AdjustedOfferPattern,t as AllOutcomes,x as __namedExportsOrder,m as default};

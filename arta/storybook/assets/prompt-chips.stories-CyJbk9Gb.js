@@ -1,4 +1,4 @@
-import{s as i,d as p}from"./helpers-BwuIyHmI.js";const n={title:"04 AI Patterns/AI prompt chips",parameters:p(["AI prompt-suggestion chips (dashboard) — member language, verbatim from the product. The highlighted chip is the in-product lending demand signal the charge card answers.","","**States** default · evidence-highlight (`text.ai` border). **Mobile** full-width column."].join(`
+import{s as i,d as p}from"./helpers-BwuIyHmI.js";const n={title:"04 Patterns/AI prompt entry",parameters:p(["AI prompt-suggestion chips (dashboard) — member language, verbatim from the product. The highlighted chip is the in-product lending demand signal the charge card answers.","","**States** default · evidence-highlight (`text.ai` border). **Mobile** full-width column."].join(`
 `))},a={render:()=>`
     <div class="sb-h">default / evidence-highlight</div>
     <div class="sb-col">
