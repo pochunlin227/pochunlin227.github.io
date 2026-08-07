@@ -939,6 +939,15 @@ input[type=range]::-webkit-slider-thumb { appearance:none; width:26px; height:26
 .fact-row:last-child { border-bottom:none; }
 .fact-row .k { color:var(--text-secondary); } .fact-row .v { font-weight:600; }
 
+/* decision screens — Arta's label language: caps section labels, a centered stat hero, fact tiles */
+.stat-hero { text-align:center; margin:20px 0 4px; }
+.stat-hero .big { font-family:var(--font-display); font-size:42px; font-weight:500; letter-spacing:-.01em; margin-top:6px; }
+.sec-label { font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--text-tertiary); margin:22px 0 10px; }
+.fact-tiles { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.ftile { background:var(--surface-raised); border:1px solid var(--border-subtle); border-radius:var(--radius-card); padding:13px 14px; }
+.ftile .micro { display:block; margin-bottom:6px; }
+.ftile p { font-size:12.5px; color:var(--text-legal); line-height:1.5; }
+
 /* timeline */
 .timeline { margin-top:18px; }
 .tl-step { display:flex; gap:14px; }
@@ -1356,13 +1365,17 @@ body.embed .stage { display:block; width:auto; }
       <div class="approved-card"><span class="wm" id="cardWm"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAuCAYAAAAFmhZ8AAADUklEQVR42u1cUbKrIAxNHdfVwS5M0IWJ043xPm6dx/UKBEhotTkzTj90CJxjSALYm3MOBL9gAEAH7g0AsJ59gJ1o/Af3yD11hQGK6F8IEV1EF4joAhFdIKILRHTBWdAjn9vq0zHyzBN+Fi5WoZUUWO4BfhaWkrhFVuTUy9BQ0NEJ2wEEDOSvkKkdSUPieR9LZMzWIziFGgdQr+tewP+UfAGcc/tLOecWRwNz0H7utWS0rzKfz7XHPXZq7tWRne7Aq2yhdx9BA4CDNsuXC3HfW4ODe3vk8d2ONM00IMss/HJisVMhjEJ8867snUt4c3LBW+CX8H72/kAkMftsETKTjZE4u9cXEcUgxmMD3AOSf70ll0fZ+154CwAzQiyDFCJ3T7pm6rZeKQlIu8vrd64Uci0UXxdwjw0RFgAeoSwymPkhLpPIKhfC7J2jali8fiqC6qOEv1L+FYIbxdnxqGFG0RVxiWjeIHzNlRJedYwxyr4hNnIcZ9KEC00tsHoLNId5FWf2/kwkdNSYGJeAtRfrzyJ80DG6NxnmEJzbGwc4zxm5KPdXEb3V9KtO5O3B8NozEDIiaseB2Mu/Hcr7TdbufQOBBTwCF3Ofs5/+qQKbLxB582AS7nuE0J/sxfbCQrNx3wcMWhBcTuyj7F3B/z3pWu/b9oW5X57nhQQ3UL+fjuLe9/SSN2xreA6UaaM4L1pwXch96GyiCunZe0YHpCE5AEk/pWsCB8uO6al93LnQiJRyaaRmQ/LVxj7RYI1BJXqiOIo5xq2ibY1J5KhrYBG9jqOJi/sOwh/h12be+oIi3Rsnd2yic8TdRZz4cyuBjqGWNnDuBO6ZSExbhS3FIXgqppcMsKTe/DSkqpSxkS1V8JKguO8gfupzzDC4wDXj+JEzuNcLrhhF18j2N+7RM3aXMcAjY77Bq9TkK5LA7bMhF7kwuY1N3KPnHnl6dX+EmQIcHzC2OlGawxWlLRLuOy8W24zpDYMJzrtbtzbs+5pRk2O5t7E2/el9JhxIi4OK3Hg0LrNsq753hW/c1QXfcGvo8Q8C/i0glm6Pvk+/FRrfEoqrCE4pRo7Hl3I/YWen1N+PKIifzUpttZpIHFsziACCdiiFyYnXa6WdEP/+Vusa0e8P/gEN8n4Y2hQF7AAAAABJRU5ErkJggg==" alt="arta" style="height:15px;display:block;margin-top:2px"></span><span class="num">•••• 4821</span></div>
       <div class="join-row"><div class="mini-card m1"></div><div class="mini-card m2"></div><div class="mini-card m3"></div><div class="mini-card new"></div></div>
       <div class="join-cap"><span class="micro">The newest card in your collection</span></div>
-      <div class="card" style="margin-top:16px">
-        <div class="fact-row"><span class="k">Spending limit</span><span class="v" id="apprLimit">S$213,260</span></div>
-        <div class="fact-row"><span class="k">Payment</span><span class="v">Full balance, monthly — no revolving</span></div>
-        <div class="fact-row"><span class="k">Settlement</span><span class="v">Full balance · <span class="bn-cash">Arta Cash</span></span></div>
-        <div class="fact-row"><span class="k">Physical card</span><span class="v">Arrives in 5–7 days</span></div>
+      <div class="stat-hero">
+        <div class="micro">Spending limit</div>
+        <div class="big" id="apprLimit">S$40,000</div>
       </div>
-      <p class="hint" style="margin-top:10px">Everything above is confirmed in writing in your documents vault.</p>
+      <div class="sec-label" style="text-align:center">Your terms</div>
+      <div class="card">
+        <div class="fact-row"><span class="k">Payment</span><span class="v">Full balance, monthly</span></div>
+        <div class="fact-row"><span class="k">Settlement</span><span class="v"><span class="bn-cash">Arta Cash</span></span></div>
+        <div class="fact-row"><span class="k">Physical card</span><span class="v">5–7 days</span></div>
+      </div>
+      <p class="hint" style="margin-top:10px;text-align:center">Confirmed in writing, in your Documents vault.</p>
     </div>
     <div class="cta-dock">
       <button class="btn primary" onclick="alert('Provisioning sheet: virtual card added to Apple Wallet.')"> Add to Apple Wallet — use it now</button>
@@ -1374,15 +1387,22 @@ body.embed .stage { display:block; width:auto; }
   <section class="screen" id="s6b">
     <div class="scroll" style="padding-top:26px">
       <div class="micro" style="color:var(--status-info)">Additional review</div>
-      <h2 class="display">We're verifying one part of your application.</h2>
-      <p class="lede">Your application is complete. Because part of your declared financial information needs additional verification, a specialist is reviewing it — that's the process, not a judgment.</p>
-      <div class="timeline">
-        <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Application submitted</b><span>Today, 9:41 AM</span></div></div>
-        <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Portfolio verified</b><span>Eligible assets confirmed from your Arta account</span></div></div>
-        <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Financial information review</b><span>Typically 1–2 business days · no action needed</span></div></div>
-        <div class="tl-step"><div class="tl-rail"><div class="tl-dot"></div></div><div class="tl-body"><b>Decision</b><span>We'll notify you the moment it's made</span></div></div>
+      <h2 class="display">One thing left to verify.</h2>
+      <p class="lede">A specialist is checking your declared income. Process — not judgment.</p>
+      <div class="sec-label">Where you are</div>
+      <div class="card" style="padding:16px 16px 6px">
+        <div class="timeline" style="margin-top:0">
+          <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Submitted</b><span>Today, 9:41 AM</span></div></div>
+          <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Portfolio verified</b><span>From your Arta account</span></div></div>
+          <div class="tl-step"><div class="tl-rail"><div class="tl-dot on"></div><div class="tl-line"></div></div><div class="tl-body"><b>Income review</b><span>1–2 business days</span></div></div>
+          <div class="tl-step"><div class="tl-rail"><div class="tl-dot"></div></div><div class="tl-body"><b>Decision</b><span>We'll notify you</span></div></div>
+        </div>
       </div>
-      <div class="banner info">Your Arta investment account and existing member relationship are unaffected. Your Credit Bureau Singapore report was accessed once for this application — waiting doesn't affect your score further.</div>
+      <div class="sec-label">Meanwhile</div>
+      <div class="fact-tiles">
+        <div class="ftile"><span class="micro" style="color:var(--status-positive)">Nothing to do</span><p>We'll come to you the moment it's decided.</p></div>
+        <div class="ftile"><span class="micro">Membership unaffected</span><p>Investments, cash and access — unchanged.</p></div>
+      </div>
     </div>
     <div class="cta-dock"><button class="btn ghost" onclick="go('s0')">Back to Arta</button></div>
   </section>
@@ -1392,7 +1412,7 @@ body.embed .stage { display:block; width:auto; }
     <div class="scroll" style="padding-top:26px">
       <div class="micro" style="color:var(--status-warn)">One more thing</div>
       <h2 class="display">Two documents for <span id="docCo">Nimbus Labs</span>.</h2>
-      <p class="lede">Part of your pledge is held through your company — verifying the entity unlocks those assets. Your application is saved either way.</p>
+      <p class="lede">Part of your pledge sits in your company — verifying the entity unlocks it. Your application is saved either way.</p>
       <div class="stack" style="margin-top:16px">
         <button class="choice" onclick="this.classList.toggle('selected')"><span id="docOpt1">Retrieve with <b>Singpass</b> (Myinfo Business)<small>Pulls the ACRA record and your authority to act — no upload</small></span><span class="dot"></span></button>
         <button class="choice" onclick="this.classList.toggle('selected')"><span>Board resolution for the pledge<small>Template provided — one signature</small></span><span class="dot"></span></button>
@@ -1410,7 +1430,7 @@ body.embed .stage { display:block; width:auto; }
     <div class="scroll" style="padding-top:26px">
       <div class="micro" style="color:var(--status-warn)">Approved — with a phased limit</div>
       <h2 class="display">Start at <span id="coOffered2">S$40,000</span> today.<br>The rest follows the fund.</h2>
-      <p class="lede">Your private-market positions are reviewed at their next official valuation — until then, your limit is supported by cash and public assets. Nothing is declined; the limit simply follows the eligible collateral.</p>
+      <p class="lede">Private assets join at their next official valuation. Nothing is declined — the limit follows the eligible collateral.</p>
       <div class="card" style="margin-top:16px">
         <div class="fact-row"><span class="k">Starting limit today</span><span class="v" id="coOffered">S$40,000</span></div>
         <div class="fact-row"><span class="k">Private investments</span><span class="v" id="coAsked">Reviewed at next valuation</span></div>
@@ -1429,13 +1449,19 @@ body.embed .stage { display:block; width:auto; }
   <section class="screen" id="s6e">
     <div class="scroll" style="padding-top:26px">
       <div class="micro">Our decision</div>
-      <h2 class="display">We can't offer you a card right now.</h2>
-      <p class="lede">This came down to <b style="color:var(--text-primary)">verifying eligibility of the pledged assets</b> — not your standing as an Arta member, which is unchanged.</p>
-      <div class="card" style="margin-top:16px">
-        <b style="font-size:14.5px">What happens next</b>
-        <p class="hint" style="margin-top:6px;line-height:1.6">A written explanation of the specific reasons arrives within 7 days — and after a decline, your Credit Bureau Singapore report is free to request. You can apply again anytime after 90 days, and if your utilization changes sooner, we'll let you know.</p>
+      <h2 class="display">Not this time.</h2>
+      <p class="lede">It came down to <b style="color:var(--text-primary)">collateral eligibility</b> — not your standing as a member.</p>
+      <div class="sec-label">What happens next</div>
+      <div class="card">
+        <div class="fact-row"><span class="k">Written reasons</span><span class="v">Within 7 days</span></div>
+        <div class="fact-row"><span class="k">Your CBS report</span><span class="v">Free to request</span></div>
+        <div class="fact-row"><span class="k">Apply again</span><span class="v">After 90 days</span></div>
       </div>
-      <div class="banner info">No one at Arta outside the lending team can see this decision. Your investments, cash, and member access are exactly as they were.</div>
+      <div class="sec-label">Meanwhile</div>
+      <div class="fact-tiles">
+        <div class="ftile"><span class="micro">Private</span><p>Only the lending team sees this decision.</p></div>
+        <div class="ftile"><span class="micro" style="color:var(--status-positive)">Membership unchanged</span><p>Investments, cash and access — as they were.</p></div>
+      </div>
     </div>
     <div class="cta-dock">
       <button class="btn ghost" onclick="alert('Schedules a call with a human — no scripts, no upsell.')">Talk to a human about this</button>
