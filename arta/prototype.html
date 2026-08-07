@@ -1677,7 +1677,7 @@ body.embed .flow-chooser { display:none !important; }
   </div>
   <div class="drow" data-row="persona">
     <label>Persona</label>
-    <select id="personaSel" onchange="applyPersona(this.value)">
+    <select id="personaSel" onchange="demoPersona(this.value)">
       <option value="operator">Primary — The Equity-Rich Operator (Alexandra)</option>
       <option value="founder">Stress test — The De-Risking Founder (Dev)</option>
     </select>
@@ -1905,6 +1905,7 @@ function showAiState(){
 function setAiState(v){
   aiOverride = v;
   const sel=document.getElementById('aiSel'); if (sel) sel.value=v;
+  if (document.querySelector('.screen.active')?.id!=='s7') go('s7');
   showAiState();
 }
 function aiDone(msg){
@@ -2013,11 +2014,13 @@ function openLogic(){ document.getElementById('logicScrim').classList.add('open'
    Each flow shows only the demo controls that matter for it. ---- */
 const FLOWS = {
   apply: { start:'s0', title:'Flow 1 · Application',
-           rows:['flow','persona','evidence','outcome','theme','jump'],
+           rows:['flow','persona','evidence','outcome','jump'],
            jumps:['s0','s1','s2','s3a','s3b','s3c','s4','s4b','s5','s6a','s6b','s6c','s6d','s6e'] },
   ai:    { start:'s7', title:'Flow 2 · AI states',
-           rows:['flow','persona','ai','theme','jump'],
+           rows:['flow','persona','ai','jump'],
            jumps:['s7','s9'] },
+  /* theme row stays hidden in both — white-label is its own prototype now;
+     ?theme= deep links from the slides still work. */
 };
 let currentFlow = 'apply';
 function applyFlowUI(f){
@@ -2036,6 +2039,13 @@ function enterFlow(f){
   go(FLOWS[f].start);
 }
 function openChooser(){ document.getElementById('flowChooser').classList.add('open'); }
+/* persona from the panel: re-render in place, but never leave the member stranded on a screen
+   outside the current flow */
+function demoPersona(v){
+  applyPersona(v);
+  const cur=document.querySelector('.screen.active')?.id;
+  if (!FLOWS[currentFlow].jumps.includes(cur)) go(FLOWS[currentFlow].start);
+}
 function openWhitelabel(){
   location.href = location.pathname.includes('/arta/') ? 'whitelabel.html' : 'white-label-prototype.html';
 }
@@ -2062,13 +2072,18 @@ function pickEvidenceUpload(el){
   const sel=document.getElementById('evidenceSel'); if (sel) sel.value='upload';
   renderPledge();
 }
+/* Panel rule: every control navigates to where its effect is visible.
+   Evidence is the founder's scenario — selecting it switches the member and lands on the income screen. */
 function setEvidence(v){
+  if (state.persona!=='founder') applyPersona('founder');
+  const sel=document.getElementById('evidenceSel'); if (sel) sel.value=v;
+  go('s3c');
   if (v==='singpass') singpassDone();
   else {
     state.incomeVerified=false;
     document.getElementById('incomeVerified').style.display='none';
     document.getElementById('spChoice').classList.remove('selected');
-    document.querySelectorAll('#irregularCard .choice').forEach(c=>{ if(c.id!=='spChoice') c.classList.remove('selected'); });
+    const up=document.querySelectorAll('#irregularCard .choice')[1]; if (up) up.classList.add('selected');
     renderPledge();
   }
 }

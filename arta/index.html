@@ -95,6 +95,8 @@
     transition: transform .18s ease, border-color .18s ease, background .18s ease;
   }
   a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.22); background: #242424; }
+  .card a.go { text-decoration: none; }
+  .card a.go:hover { color: var(--text); }
   .card .num {
     font-size: 10px; letter-spacing: .22em; color: var(--text-faint);
     display: block; margin-bottom: 22px;
@@ -150,12 +152,14 @@
         <p>A focused design-system contribution for portfolio-secured card applications, AI guidance, and partner-brand configuration — documented through live components, patterns, and theme comparisons.</p>
         <span class="go">Explore the system →</span>
       </a>
-      <a class="card" href="prototype.html">
+      <div class="card" style="display:block">
         <span class="num">03</span>
-        <h2>Interactive Prototype</h2>
-        <p>An interactive walkthrough of the application journey — from personalised prequalification and verified-data confirmation to the final decision.</p>
-        <span class="go">Try the application →</span>
-      </a>
+        <h2>Interactive Prototypes</h2>
+        <p>Three working walkthroughs, one product — pick the story you want to see.</p>
+        <a class="go" href="prototype.html?flow=apply" style="display:flex;margin-top:16px">Flow 1 · The application →</a>
+        <a class="go" href="prototype.html?flow=ai" style="display:flex;margin-top:10px">Flow 2 · AI states →</a>
+        <a class="go" href="whitelabel.html" style="display:flex;margin-top:10px">White-label · Northstar →</a>
+      </div>
     </div>
 
     <div class="foot">
