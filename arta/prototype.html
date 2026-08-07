@@ -719,6 +719,29 @@
 html,body { background:#0a0a0b; }
 body { font-family: var(--font-ui); display:flex; flex-direction:column; align-items:center; gap:20px; padding:36px 16px 60px; color:#ddd; }
 
+/* design rationale — the v1 side-by-side idea, kept in sync with the live screen:
+   phone in the middle, demo controls left, per-screen reasoning right */
+.rationale {
+  width:344px; background:rgba(17,18,20,.94); border:1px solid #26272b; border-radius:16px; padding:16px 18px;
+  position:fixed; right:24px; top:50%; transform:translateY(-50%);
+  max-height:88vh; overflow-y:auto; z-index:60;
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  box-shadow:0 18px 50px rgba(0,0,0,.5);
+}
+.rationale h3 { font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:#6d6e73; margin-bottom:12px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:8px; user-select:none; }
+.rationale h3 .caret { transition:transform .18s ease; font-size:12px; }
+.rationale.min .r-body { display:none; }
+.rationale.min h3 { margin-bottom:0; }
+.rationale.min h3 .caret { transform:rotate(-90deg); }
+.rationale .r-title { font-size:15px; font-weight:600; color:#e8e6e2; line-height:1.35; }
+.rationale .r-sub { font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#6d6e73; margin-top:4px; }
+.rationale ul { list-style:none; margin:10px 0 0; padding:0; }
+.rationale li { position:relative; padding:7px 0 7px 16px; font-size:12.5px; color:#a5a6ab; line-height:1.55; }
+.rationale li::before { content:""; position:absolute; left:0; top:14px; width:5px; height:5px; border-radius:50%; background:#a8cdf0; }
+.rationale li b { color:#e8e6e2; font-weight:600; }
+@media (max-width:1279px) { .rationale { display:none; } }
+body.embed .rationale { display:none !important; }
+
 /* back navigation to hub */
 .backlink { position:fixed; top:20px; left:24px; z-index:70; font-size:12.5px; }
 .backlink a { color:#9a9a94; text-decoration:none; background:rgba(17,18,20,.8); border:1px solid #26272b; border-radius:999px; padding:8px 14px; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
@@ -1744,6 +1767,16 @@ body.embed .flow-chooser { display:none !important; }
   </div>
 </div>
 
+<!-- ============ DESIGN RATIONALE (right dock, follows the active screen) ============ -->
+<div class="rationale" id="rationale">
+  <h3 onclick="this.parentElement.classList.toggle('min')">Design rationale — this screen <span class="caret">▾</span></h3>
+  <div class="r-body">
+    <div class="r-title" id="rTitle">—</div>
+    <div class="r-sub" id="rSub"></div>
+    <ul id="rPoints"></ul>
+  </div>
+</div>
+
 <script>
 const state = { consents:[false,false,false], limit:0, pay:'Full balance · Arta Cash', persona:'operator', empChoice:'Employed', pledge:{cash:true,pub:true,alt:true}, offered:0, incomeVerified:false };
 
@@ -1823,9 +1856,79 @@ function togglePledge(k, el) {
   renderPledge();
 }
 
+/* per-screen design rationale — the walkthrough script, docked beside the phone */
+const RATIONALE = {
+  s0:  { t:'Entry — honesty before the funnel', s:'Portfolio home', p:[
+        '<b>Economics before a single tap.</b> Paid-in-full monthly · portfolio-secured · the fee — on the offer card itself.',
+        '<b>Pre-qualified, softly.</b> "No credit pull until you submit" defuses the biggest application anxiety.',
+        'Gradients are reserved for brand moments — never for data entry.']},
+  s1:  { t:'Orientation — most of the work is done', s:'Acquisition world', p:[
+        'Reuse what Arta has verified; ask only what credit still needs.',
+        'Four steps previewed, honestly: verification may take longer than 3 minutes — and the copy says so.',
+        'The trust block answers "why do you need this?" before anyone asks.']},
+  s2:  { t:'Confirm, don\'t collect', s:'Chapter 1 · Confirm', p:[
+        'The verified profile renders as <b>review cards, not input fields</b>.',
+        'Edits may need re-verification — Singpass makes that a 30-second detour, never a blocker.']},
+  s3a: { t:'Adaptive friction begins', s:'Chapter 2 · Complete', p:[
+        'The path follows the <b>answer</b>, not the persona — investment-income members skip the employer questions.',
+        'One question per screen keeps the sensitive chapter calm.']},
+  s3b: { t:'Employment — light touch', s:'Chapter 2 · Complete', p:[
+        'Known facts arrive prefilled; the member corrects instead of composing.']},
+  s3c: { t:'Income — context, not suspicion', s:'Chapter 2 · Complete', p:[
+        '<b>"Why we ask" travels with the question</b> — income is part of the picture, eligible assets can support the limit.',
+        '<b>Singpass is the member\'s choice:</b> retrieve the IRAS NoA for a decision today, or upload and route to review.',
+        'The evidence path changes. The rules never do.']},
+  s4:  { t:'Secure — assets stay invested', s:'Chapter 3 · Secure', p:[
+        'Eligible assets support the card while <b>remaining invested</b>.',
+        'A recommended limit with "how this was determined" on demand — assessment logic marked illustrative, owned by Credit, Risk and Legal.',
+        'No invented advance rates anywhere in the flow.']},
+  s4b: { t:'Settle — the charge card\'s core promise', s:'Chapter 4 · Settle', p:[
+        'Full statement, monthly — <b>chosen, not buried in a summary row</b>.',
+        'Default: pay automatically from Arta Cash, with notice before each payment.',
+        'Investments aren\'t used for routine settlement — the Security Agreement defines the exact terms.']},
+  s5:  { t:'Commit — read once, decide clearly', s:'Chapter 5 · Commit', p:[
+        '<b>Key Terms never fold.</b> The part worth reading stays visible.',
+        'Consents are separate, unchecked, and in plain language — the hard pull says what it costs.',
+        'Full documents open in Arta\'s own legal container, not a PDF dump.']},
+  s6:  { t:'Deciding', s:'Decision', p:['Usually under a minute — and never a dead end on the other side.']},
+  s6a: { t:'Approved — a relationship moment', s:'Decision · Approved', p:[
+        'Restrained celebration; the terms restated <b>in writing</b>.',
+        'The virtual card works now — the physical one is logistics, not the product.']},
+  s6b: { t:'Additional review — process, not judgment', s:'Decision · Review', p:[
+        '<b>Portfolio verified ✓</b> stays visible — only the declared income is being checked.',
+        'Nothing for the member to do; the relationship is untouched.',
+        'The evidence path differs between members. The rules don\'t.']},
+  s6c: { t:'More info — with a shortcut', s:'Decision · Docs', p:[
+        'Entity docs retrieved via Myinfo Business instead of uploads, wherever possible.',
+        'The application is saved either way.']},
+  s6d: { t:'Phased limit — nothing declined', s:'Decision · Phased', p:[
+        'Private assets join at their next official valuation; the limit follows the eligible collateral.',
+        'A real choice, without urgency theatre.']},
+  s6e: { t:'Declined — with dignity', s:'Decision · Declined', p:[
+        'Private, specific as legally possible, written reasons within 7 days.',
+        '<b>Zero cross-sell.</b> A declined applicant is still a wealth member tomorrow.']},
+  s7:  { t:'Card home — AI at three intensities', s:'Flow 2 · Manage', p:[
+        '<b>Quiet · nudge · intervene</b> — one anatomy: a conclusion, the math, one tap, an exit.',
+        'The hardest design decision was letting the AI stay silent on a normal month.',
+        'Chat exists behind "Ask about this" — never the default.']},
+  s9:  { t:'One AI relationship, five moments', s:'Flow 2 · Lifecycle', p:[
+        'Every touchpoint extends an agent Arta already has — no new mascot.',
+        'This map is a product screen, not a slide: members can open it themselves.']},
+};
+function renderRationale(id){
+  const r=RATIONALE[id], el=document.getElementById('rationale');
+  if(!el) return;
+  el.style.visibility = r ? '' : 'hidden';
+  if(!r) return;
+  document.getElementById('rTitle').innerHTML=r.t;
+  document.getElementById('rSub').textContent=r.s;
+  document.getElementById('rPoints').innerHTML=r.p.map(x=>'<li>'+x+'</li>').join('');
+}
+
 function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  renderRationale(id);
   const sc=document.querySelector('#'+id+' .scroll'); if(sc) sc.scrollTop=0;
   const j=document.getElementById('jumpSel');
   if (j && [...j.options].some(o=>o.value===id)) j.value=id;
@@ -2040,7 +2143,10 @@ function enterFlow(f){
   applyFlowUI(f);
   go(FLOWS[f].start);
 }
-function openChooser(){ document.getElementById('flowChooser').classList.add('open'); }
+function openChooser(){
+  document.getElementById('flowChooser').classList.add('open');
+  const r=document.getElementById('rationale'); if (r) r.style.visibility='hidden';
+}
 /* persona from the panel: re-render in place, but never leave the member stranded on a screen
    outside the current flow */
 function demoPersona(v){
@@ -2144,6 +2250,7 @@ applyPersona('operator');
   else if (q.get('embed') || j) applyFlowUI((j==='s7'||j==='s9') ? 'ai' : 'apply');
   else { applyFlowUI('apply'); openChooser(); }
   if (j && document.getElementById(j)) go(j);
+  renderRationale(document.querySelector('.screen.active')?.id);
 })();
 </script>
 </body>
