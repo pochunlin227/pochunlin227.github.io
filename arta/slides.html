@@ -299,6 +299,32 @@
     .ph-row { flex-wrap: wrap; }
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
   }
+
+  /* ── risk-first timeline (slide 06) ── */
+  .tl-bar { display: flex; gap: 4px; margin: 20px 0 6px; }
+  .tl-bar .seg { height: 10px; border-radius: 99px; background: rgba(255,255,255,.13); }
+  .tl-bar .seg.hot { background: linear-gradient(90deg, #c9b8f0, #a8d8f0); }
+  .tl-bar-labels { display: flex; gap: 4px; margin-bottom: 30px; }
+  .tl-bar-labels span { font-family: ui-monospace, 'SF Mono', monospace; font-size: 9.5px; letter-spacing: .12em; color: #6b6b66; text-align: center; white-space: nowrap; overflow: hidden; }
+  .tl-bar-labels span.hot { color: #a8d8f0; }
+  .tl { display: flex; position: relative; margin-top: 6px; }
+  .tl::before { content: ""; position: absolute; left: 0; right: 14px; top: 10px; height: 1px; background: rgba(255,255,255,.16); }
+  .tl-step { flex: 1; position: relative; padding-right: 16px; }
+  .tl-dot { width: 21px; height: 21px; border-radius: 50%; background: #101010; border: 1.5px solid rgba(255,255,255,.35); display: grid; place-content: center; font-family: ui-monospace, 'SF Mono', monospace; font-size: 9px; color: #9a9a94; position: relative; z-index: 1; }
+  .tl-step.hot .tl-dot { border-color: #a8d8f0; color: #a8d8f0; box-shadow: 0 0 14px rgba(168,216,240,.4); }
+  .tl-time { margin-top: 12px; font-family: ui-monospace, 'SF Mono', monospace; font-size: 10px; letter-spacing: .14em; color: #6b6b66; }
+  .tl-step.hot .tl-time { color: #a8d8f0; }
+  .tl-step h3 { font-size: 14.5px; font-weight: 600; margin-top: 5px; letter-spacing: 0; }
+  .tl-step p { font-size: 12px; color: #9a9a94; line-height: 1.55; margin-top: 5px; }
+  @media (max-width: 900px) {
+    .tl-bar, .tl-bar-labels { display: none; }
+    .tl { flex-direction: column; gap: 20px; }
+    .tl::before { left: 10px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+    .tl-step { display: grid; grid-template-columns: 21px 1fr; column-gap: 14px; padding-right: 0; }
+    .tl-dot { grid-row: 1 / span 3; }
+    .tl-time { margin-top: 2px; }
+    .tl-step h3, .tl-step p { grid-column: 2; }
+  }
 </style>
 </head>
 <body>
@@ -472,13 +498,29 @@
       <div class="aurora-bar"></div>
       <div class="slide-kicker">Opening · 06 · Risk-first process + deliberate cuts</div>
       <h2>I spent the 5 hours where the product risk was highest</h2>
-      <div class="grid-3" style="margin-top:8px">
-        <div class="card"><span class="tag">01 · 30 min</span><h3>Frame the product</h3><p>Clarifications · assumptions · success criteria</p></div>
-        <div class="card"><span class="tag">02 · 45 min</span><h3>Audit the existing experience</h3><p>Arta product language · HSBC disclosure scope · system gaps</p></div>
-        <div class="card"><span class="tag">03 · 2 hrs</span><h3>Solve the highest-risk flow</h3><p>Application · disclosures · decision states</p></div>
-        <div class="card"><span class="tag">04 · 1 hr</span><h3>Define the AI relationship</h3><p>Lifecycle map · one deep moment · guardrails</p></div>
-        <div class="card"><span class="tag">05 · 45 min</span><h3>Prove it can scale</h3><p>White label · component &amp; token model</p></div>
-        <div class="card"><span class="tag">06 · 30 min</span><h3>Edit the story</h3><p>Tradeoffs · cuts · presentation</p></div>
+      <div class="tl-bar">
+        <div class="seg" style="flex:30"></div>
+        <div class="seg" style="flex:45"></div>
+        <div class="seg hot" style="flex:120"></div>
+        <div class="seg" style="flex:60"></div>
+        <div class="seg" style="flex:45"></div>
+        <div class="seg" style="flex:30"></div>
+      </div>
+      <div class="tl-bar-labels">
+        <span style="flex:30">30M</span>
+        <span style="flex:45">45M</span>
+        <span class="hot" style="flex:120">2 HRS · THE HIGHEST-RISK FLOW</span>
+        <span style="flex:60">1 HR</span>
+        <span style="flex:45">45M</span>
+        <span style="flex:30">30M</span>
+      </div>
+      <div class="tl">
+        <div class="tl-step"><div class="tl-dot">01</div><div class="tl-time">30 MIN</div><h3>Frame the product</h3><p>Clarifications · assumptions · success criteria</p></div>
+        <div class="tl-step"><div class="tl-dot">02</div><div class="tl-time">45 MIN</div><h3>Audit the existing experience</h3><p>Arta product language · HSBC disclosure scope · system gaps</p></div>
+        <div class="tl-step hot"><div class="tl-dot">03</div><div class="tl-time">2 HRS</div><h3>Solve the highest-risk flow</h3><p>Application · disclosures · decision states</p></div>
+        <div class="tl-step"><div class="tl-dot">04</div><div class="tl-time">1 HR</div><h3>Define the AI relationship</h3><p>Lifecycle map · one deep moment · guardrails</p></div>
+        <div class="tl-step"><div class="tl-dot">05</div><div class="tl-time">45 MIN</div><h3>Prove it can scale</h3><p>White label · component &amp; token model</p></div>
+        <div class="tl-step"><div class="tl-dot">06</div><div class="tl-time">30 MIN</div><h3>Edit the story</h3><p>Tradeoffs · cuts · presentation</p></div>
       </div>
       <div class="card" style="margin-top:16px">
         <span class="tag">Deliberately not designed</span>
