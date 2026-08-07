@@ -1108,7 +1108,7 @@ body.embed .phone { box-shadow:none; }
         <button class="choice" onclick="pickEmp(this,'Retired')"><span>Retired / not employed</span><span class="dot"></span></button>
       </div>
     </div>
-    <div class="cta-dock"><button class="btn primary" id="empNext" disabled onclick="go(state.persona==='margaux'?'s3c':'s3b')">Continue</button></div>
+    <div class="cta-dock"><button class="btn primary" id="empNext" disabled onclick="go(state.empChoice==='Investing income'?'s3c':'s3b')">Continue</button></div>
   </section>
 
   <!-- ============ S3b EMPLOYER ============ -->
@@ -1334,7 +1334,7 @@ body.embed .phone { box-shadow:none; }
       <p class="stack-hint" style="margin-top:6px">Long-press the card for freeze &amp; details.</p>
 
       <div style="height:16px"></div>
-      <!-- AI state 1: QUIET (Alexandra — nothing needs her) -->
+      <!-- AI state 1: QUIET (a normal month — nothing needs the member) -->
       <div class="ai-quiet" id="aiQuiet" style="display:none">
         <div class="ai-glyph"></div>
         <p><b style="color:var(--text-primary)">Nothing needs you.</b> Settlement is scheduled in full from <span class="bn-cash">Arta Cash</span> on Aug 8, and your limit has comfortable headroom. <span class="bn-ai">Arta AI</span> speaks up only when the math changes.</p>
@@ -1363,7 +1363,7 @@ body.embed .phone { box-shadow:none; }
         </div>
       </div>
 
-      <!-- AI state 3: INTERVENE (Margaux — the math, shown) -->
+      <!-- AI state 3: INTERVENE (operator default — the math, shown) -->
       <div class="ai-card" id="aiCard">
         <div class="ai-head"><div class="ai-glyph"></div><span class="micro"><span class="bn-ai">Arta AI</span> · Repayment</span></div>
         <div class="ai-stream">Read your statement · cash &amp; maturities · fund calendar — 3 signals</div>
@@ -1435,7 +1435,7 @@ body.embed .phone { box-shadow:none; }
         <div class="lc-step here"><div class="lc-num">4</div><div class="lc-body"><b>Manage<span class="here-chip">You are here</span></b><div class="role">Settlement sequencing and limit headroom, computed on your numbers — one tap to act. Quiet when nothing needs you.</div><div class="felt">My cash does two jobs without me juggling</div></div></div>
         <div class="lc-step"><div class="lc-num">5</div><div class="lc-body"><b>Grow</b><div class="role">Rewards sweep into your portfolio as the newest card in the grid; an annual card + wealth review.</div><div class="felt">The card compounds too</div></div></div>
       </div>
-      <p class="hint" style="margin-top:12px">Three member realities, one anatomy — switch personas in the demo panel and watch moment 4 change its judgment.</p>
+      <p class="hint" style="margin-top:12px">One anatomy, three intensities — quiet, nudge, intervene. The member sets the default (operator: intervene; founder: nudge); the demo panel can force any state, because knowing when to stay silent is a product decision, not a persona trait.</p>
     </div>
   </section>
 
@@ -1533,10 +1533,19 @@ body.embed .phone { box-shadow:none; }
   <div class="drow">
     <label>Persona</label>
     <select id="personaSel" onchange="applyPersona(this.value)">
-      <option value="alexandra">Alexandra — salaried optimizer</option>
-      <option value="dev">Dev — founder, lumpy income</option>
-      <option value="margaux">Margaux — portfolio-first</option>
+      <option value="operator">Primary — The Equity-Rich Operator (Alexandra)</option>
+      <option value="founder">Stress test — The De-Risking Founder (Dev)</option>
     </select>
+  </div>
+  <div class="drow">
+    <label>AI state</label>
+    <select id="aiSel" onchange="setAiState(this.value)">
+      <option value="auto">Auto — follows the member</option>
+      <option value="quiet">Quiet — nothing needs you</option>
+      <option value="nudge">Nudge — cash-flow structure</option>
+      <option value="intervene">Intervene — the math, shown</option>
+    </select>
+    <span style="font-size:11px;color:#6d6e73">three intensities, one anatomy</span>
   </div>
   <div class="drow">
     <label>Outcome</label>
@@ -1580,34 +1589,32 @@ body.embed .phone { box-shadow:none; }
 </div>
 
 <script>
-const state = { consents:[false,false,false], limit:0, pay:'Full balance · Arta Cash', persona:'alexandra', pledge:{cash:true,pub:true,alt:true}, offered:0 };
+const state = { consents:[false,false,false], limit:0, pay:'Full balance · Arta Cash', persona:'operator', empChoice:'Employed', pledge:{cash:true,pub:true,alt:true}, offered:0 };
 
 const RATES = { cash: 0.9, pub: 0.6, alt: 0.25 };
 const PLEDGE_LABELS = { cash: 'Cash', pub: 'Public', alt: 'Alternatives' };
+/* Two members, per "designing for the core, testing the edges":
+   operator — PRIMARY (The Equity-Rich Operator): wealth substantial but largely invested;
+              wants liquidity without liquidating. Pledging privates → phased limit (s6d).
+   founder  — DESIGN STRESS TEST (The De-Risking Founder): hypothesis-led edge case —
+              significant eligible assets, irregular income; tests whether portfolio-aware
+              decisioning holds when income-led underwriting would misjudge. */
 const PERSONAS = {
-  alexandra: {
-    name:'Alexandra W. Chen', dob:'14 Mar 1988', cit:'Singapore',
-    total:'S$412,380', sup:'12', change:'+ S$18,204.00 total change',
-    emp:'Employed', empLbl:'Employer', empName:'Vertex Biotech Inc.', empRole:'Director of Engineering', empYears:'4',
-    income:'285,000',
-    assets: { cash: 40200, pub: 240100, alt: 132080 },
-    outcome:'s6a'
+  operator: {
+    name:'Alexandra W. Chen', dob:'14 Mar 1992', cit:'Singapore',
+    total:'S$2,400,000', sup:'00', change:'+ S$96,400.00 total change',
+    emp:'Employed', empLbl:'Employer', empName:'Vertex Biotech Inc.', empRole:'VP of Engineering', empYears:'4',
+    income:'350,000',
+    assets: { cash: 200000, pub: 1280000, alt: 920000 },
+    outcome:'dynamic'
   },
-  dev: {
+  founder: {
     name:'Dev Patel', dob:'02 Nov 1990', cit:'Singapore',
     total:'S$521,940', sup:'08', change:'+ S$9,412.00 total change',
     emp:'Self-employed', empLbl:'Business', empName:'Nimbus Labs, Inc.', empRole:'Founder & CEO', empYears:'3',
     income:'180,000',
     assets: { cash: 61940, pub: 180000, alt: 280000 },
     outcome:'s6c'
-  },
-  margaux: {
-    name:'Margaux Laurent', dob:'27 Jun 1979', cit:'France · Singapore PR',
-    total:'S$2,345,681', sup:'77', change:'+ S$120,334.00 total change',
-    emp:'Investing income', empLbl:'Employer', empName:'—', empRole:'—', empYears:'—',
-    income:'95,000',
-    assets: { cash: 145681, pub: 800000, alt: 1400000 },
-    outcome:'dynamic'
   }
 };
 
@@ -1665,10 +1672,13 @@ function restart(){
   document.querySelectorAll('#s5 .consent').forEach(c=>c.classList.remove('checked'));
   document.getElementById('submitBtn').disabled=true;
   document.getElementById('outcomeSel').value='auto';
+  aiOverride='auto';
+  const aiSel=document.getElementById('aiSel'); if (aiSel) aiSel.value='auto';
   showAiState();
   go('s0');
 }
-function pickEmp(el){
+function pickEmp(el,v){
+  state.empChoice=v; /* the skip is choice-driven, not persona-driven */
   el.parentNode.querySelectorAll('.choice').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById('empNext').disabled=false;
@@ -1697,7 +1707,7 @@ function submitApp(){
   const override=document.getElementById('outcomeSel').value;
   let dest;
   if (override!=='auto') dest=override;
-  else if (state.persona==='margaux') dest = state.pledge.alt ? 's6d' : 's6a';
+  else if (state.persona==='operator') dest = state.pledge.alt ? 's6d' : 's6a';
   else dest=PERSONAS[state.persona].outcome;
   if (dest==='s6d') prepPhased();
   if (dest==='s6a') document.getElementById('apprLimit').textContent=fmt$(pledgeLimit());
@@ -1707,10 +1717,20 @@ function apprFromCounter(){
   document.getElementById('apprLimit').textContent=fmt$(state.offered||pledgeLimit(false));
   go('s6a');
 }
-const AI_STATE = { alexandra:'aiQuiet', dev:'aiNudge', margaux:'aiCard' };
+/* AI defaults follow the persona; the demo panel (or ?ai= deep link) can force any of the
+   three intensities — quiet / nudge / intervene are product states, not persona property. */
+const AI_STATE = { operator:'aiCard', founder:'aiNudge' };
+const AI_MAP = { quiet:'aiQuiet', nudge:'aiNudge', intervene:'aiCard' };
+let aiOverride = 'auto';
 function showAiState(){
   ['aiQuiet','aiNudge','aiCard','aiCardDone'].forEach(id=>document.getElementById(id).style.display='none');
-  document.getElementById(AI_STATE[state.persona]).style.display='';
+  const id = aiOverride!=='auto' ? AI_MAP[aiOverride] : AI_STATE[state.persona];
+  document.getElementById(id).style.display='';
+}
+function setAiState(v){
+  aiOverride = v;
+  const sel=document.getElementById('aiSel'); if (sel) sel.value=v;
+  showAiState();
 }
 function aiDone(msg){
   ['aiQuiet','aiNudge','aiCard'].forEach(id=>document.getElementById(id).style.display='none');
@@ -1768,6 +1788,9 @@ function applyPersona(key){
   state.persona=key;
   state.pledge={cash:true,pub:true,alt:true};
   const p=PERSONAS[key];
+  state.empChoice=p.emp;
+  aiOverride='auto';
+  const aiSel=document.getElementById('aiSel'); if (aiSel) aiSel.value='auto';
   document.querySelector('#s0 .amount').innerHTML=p.total+'<sup>'+p.sup+'</sup>';
   document.querySelector('#s0 .change').textContent=p.change;
   document.getElementById('pName').textContent=p.name;
@@ -1784,7 +1807,7 @@ function applyPersona(key){
   document.getElementById('incomeInput').value=p.income;
   document.getElementById('revName').textContent=p.name;
   document.getElementById('revIncome').textContent=fmt$(p.income.replace(/,/g,''))+' / yr';
-  document.getElementById('docCo').textContent=(key==='dev')?p.empName.replace(', Inc.',''):'your entity';
+  document.getElementById('docCo').textContent=(key==='founder')?p.empName.replace(', Inc.',''):'your entity';
   document.getElementById('offerLimit').textContent=fmt$(pledgeAllLimit(key));
   renderPledge();
   prepPhased();
@@ -1839,14 +1862,19 @@ function setTheme(t){
   document.querySelectorAll('.bn-ai').forEach(e=>e.textContent=bn.ai);
 }
 
-applyPersona('alexandra');
+applyPersona('operator');
 
-/* deep-link support: ?persona=margaux&jump=s7&theme=meridian&embed=1 */
+/* deep-link support: ?persona=operator&jump=s7&theme=meridian&ai=quiet&embed=1
+   legacy keys (alexandra/margaux/dev) alias to the two-member model */
 (function(){
   const q = new URLSearchParams(location.search);
   if (q.get('embed')) document.body.classList.add('embed');
-  const p = q.get('persona'); if (p && PERSONAS[p]) applyPersona(p);
+  const ALIAS = { alexandra:'operator', margaux:'operator', dev:'founder' };
+  let p = q.get('persona'); if (p) p = ALIAS[p] || p;
+  if (p && PERSONAS[p]) applyPersona(p);
+  const sel=document.getElementById('personaSel'); if (sel && p && PERSONAS[p]) sel.value=p;
   const t = q.get('theme'); if (t) setTheme(t);
+  const ai = q.get('ai'); if (ai && (ai==='auto'||AI_MAP[ai])) setAiState(ai);
   const j = q.get('jump'); if (j && document.getElementById(j)) go(j);
 })();
 </script>
