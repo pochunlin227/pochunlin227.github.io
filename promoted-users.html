@@ -165,6 +165,26 @@
 
   .cfoot-menu{display:flex;gap:44px;align-items:center}
   @media(max-width:640px){.cfoot-menu{gap:14px;flex-wrap:wrap;row-gap:10px}.cfoot-menu a{font-size:14px}}
+
+  /* ---------- strategy spine ---------- */
+  .spine{margin-top:56px}
+  .spine-label{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+  .spine-label::before{content:"";width:28px;height:2px;background:var(--yellow)}
+  .spine h3{font-size:20px;color:var(--navy);margin-bottom:26px}
+  .spine-track{display:grid;grid-template-columns:repeat(6,1fr);position:relative}
+  .spine-track::before{content:"";position:absolute;top:17px;left:8.3%;right:8.3%;height:2.5px;background:var(--line)}
+  .spine-step{position:relative;text-align:center;padding:0 8px;text-decoration:none;display:block}
+  .spine-step .dot{width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--yellow);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto;position:relative;z-index:1;border:3px solid var(--bg);box-shadow:0 0 0 1.5px var(--line);transition:transform .25s cubic-bezier(.34,1.56,.64,1),background .2s}
+  .spine-step:hover .dot{transform:scale(1.18);background:var(--blue)}
+  .spine-step b{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-top:12px}
+  .spine-step p{font-size:12px;color:var(--gray);line-height:1.55;margin-top:4px}
+  @media(max-width:820px){
+    .spine-track{grid-template-columns:1fr;gap:2px}
+    .spine-track::before{left:17px;right:auto;top:10px;bottom:10px;width:2.5px;height:auto}
+    .spine-step{display:flex;align-items:flex-start;gap:16px;text-align:left;padding:10px 0}
+    .spine-step .dot{margin:0;flex:none}
+    .spine-step b{margin-top:2px}
+  }
 </style>
 </head>
 <body>
@@ -450,6 +470,43 @@
         <li>Ran user testing — 8 unmoderated sessions + 58 first-click tests</li>
         <li>Aligned Post-booking, B4B Product, Identification teams and Serko</li>
       </ul>
+    </div>
+
+    <div class="spine reveal">
+      <span class="spine-label">How I ran it</span>
+      <h3>The experiment spine — measure, bet, learn</h3>
+      <div class="spine-track">
+        <a class="spine-step" href="#context">
+          <span class="dot">01</span>
+          <b>Signal</b>
+          <p>~30% of bookings were business trips stuck on the leisure site.</p>
+        </a>
+        <a class="spine-step" href="#clarify">
+          <span class="dot">02</span>
+          <b>Baseline</b>
+          <p>One month of A/A measurement before designing anything.</p>
+        </a>
+        <a class="spine-step" href="#concept">
+          <span class="dot">03</span>
+          <b>Hypothesis</b>
+          <p>A written bet: ≥1% lift — with B2C guardrails that must not move.</p>
+        </a>
+        <a class="spine-step" href="#test">
+          <span class="dot">04</span>
+          <b>Align</b>
+          <p>One journey negotiated across four systems and five teams.</p>
+        </a>
+        <a class="spine-step" href="#impact">
+          <span class="dot">05</span>
+          <b>Experiment</b>
+          <p>+1.42% registrations, guardrails intact. 114 companies in two weeks.</p>
+        </a>
+        <a class="spine-step" href="#reflection">
+          <span class="dot">06</span>
+          <b>Learn</b>
+          <p>The 70K survey a year later: the door worked — the room wasn’t done.</p>
+        </a>
+      </div>
     </div>
   </div>
 </section>
