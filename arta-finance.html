@@ -361,6 +361,13 @@
 </div>
 <script>
 (function(){
+  var KEY='pc_arta_preview';
+  if(location.search.indexOf('preview')>-1){localStorage.setItem(KEY,'1');}
+  if(localStorage.getItem(KEY)==='1'){
+    var l=document.getElementById('lock'); if(l)l.remove();
+    window.dispatchEvent(new Event('scroll'));
+    return;
+  }
   document.documentElement.style.overflow='hidden';
 })();
 </script>
