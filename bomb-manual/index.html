@@ -1202,8 +1202,7 @@
     var act = document.querySelector('.spread.active');
     if (!act) return;
     if (!window.matchMedia('(min-width:1100px)').matches) { act.style.zoom = ''; return; }
-    var navH = document.querySelector('.tabbar').offsetHeight;
-    var availH = window.innerHeight - navH - 48;
+    var availH = window.innerHeight - 144;
     var availW = window.innerWidth - 32;
     var single = act.querySelectorAll(':scope > .page').length < 2;
     var z = Math.min(availH / 1252, availW / (single ? 700 : 1372), 1.15) * zoomFactor;
