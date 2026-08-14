@@ -42,7 +42,7 @@
     max-width:820px;
     flex:0 1 680px;
     min-width:0;
-    min-height:1200px;
+    min-height:980px;
     margin:0;
     padding:44px 48px 52px 92px;
     border-radius:2px 10px 10px 2px;
@@ -1215,7 +1215,7 @@
     if (!window.matchMedia('(min-width:1100px)').matches) { act.style.zoom = ''; return; }
     var availH = window.innerHeight - 144;
     var availW = window.innerWidth - 32;
-    var z = Math.min(availH / 1252, availW / 1372, 1.15) * zoomFactor;
+    var z = Math.min(availH / 1032, availW / 1372, 1.15) * zoomFactor;
     act.style.zoom = Math.max(.4, Math.min(z, 1.6));
   }
   document.getElementById('zoom-out').addEventListener('click', function(e){ e.preventDefault(); zoomFactor = Math.max(.5, zoomFactor - .1); applyZoom(); });
