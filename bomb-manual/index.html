@@ -273,15 +273,41 @@
   .spread.active{
     display:flex; justify-content:center; align-items:flex-start; gap:4px;
     margin:0 auto 44px;
+    position:relative;
   }
-  .spread.active.flip-fwd{
-    animation:flipFwd .9s cubic-bezier(.25,.6,.3,1);
-    transform-origin:left center;
+  @media (max-width:1099px){
+    .spread.active.flip-fwd{
+      animation:flipFwd .9s cubic-bezier(.25,.6,.3,1);
+      transform-origin:left center;
+    }
+    .spread.active.flip-back{
+      animation:flipBack .9s cubic-bezier(.25,.6,.3,1);
+      transform-origin:right center;
+    }
   }
-  .spread.active.flip-back{
-    animation:flipBack .9s cubic-bezier(.25,.6,.3,1);
-    transform-origin:right center;
+  /* 單頁翻面層:右頁繞書脊掀起 → 新左頁落下 */
+  .flippg{
+    position:absolute; z-index:6; pointer-events:none;
+    backface-visibility:hidden;
   }
+  .flippg .page{
+    width:100%; height:100%; min-height:0; margin:0; flex:none;
+  }
+  .flippg.as-right .page{ padding:44px 48px 52px 92px; border-radius:2px 10px 10px 2px; }
+  .flippg.as-right .page::before{ left:66px; right:auto; }
+  .flippg.as-right .page::after{ left:20px; right:auto; }
+  .flippg.as-left .page{ padding:44px 92px 52px 48px; border-radius:10px 2px 2px 10px; }
+  .flippg.as-left .page::before{ left:auto; right:66px; }
+  .flippg.as-left .page::after{ left:auto; right:20px; }
+  .flippg.stay{ z-index:5; }
+  .flippg.rise-right{ transform-origin:left center; animation:riseR .45s cubic-bezier(.5,.05,.85,.4) forwards; }
+  .flippg.land-left{ transform-origin:right center; animation:landL .45s cubic-bezier(.15,.6,.4,1) forwards; }
+  .flippg.rise-left{ transform-origin:right center; animation:riseL .45s cubic-bezier(.5,.05,.85,.4) forwards; }
+  .flippg.land-right{ transform-origin:left center; animation:landR .45s cubic-bezier(.15,.6,.4,1) forwards; }
+  @keyframes riseR{ 0%{ transform:perspective(2400px) rotateY(0deg); } 100%{ transform:perspective(2400px) rotateY(-88deg); } }
+  @keyframes landL{ 0%{ transform:perspective(2400px) rotateY(88deg); } 100%{ transform:perspective(2400px) rotateY(0deg); } }
+  @keyframes riseL{ 0%{ transform:perspective(2400px) rotateY(0deg); } 100%{ transform:perspective(2400px) rotateY(88deg); } }
+  @keyframes landR{ 0%{ transform:perspective(2400px) rotateY(-88deg); } 100%{ transform:perspective(2400px) rotateY(0deg); } }
   @media (max-width:1099px){
     .spread.active{ flex-direction:column; align-items:center; gap:24px; }
   }
@@ -887,15 +913,59 @@
     var id = (location.hash || '#s1').slice(1);
     return ORDER.indexOf(id) >= 0 ? id : 's1';
   }
+  function pageFlip(oldSp, newSp, fwd){
+    var op = oldSp.querySelectorAll(':scope > .page');
+    var np = newSp.querySelectorAll(':scope > .page');
+    if (op.length < 2 || np.length < 2) return false;
+    function mk(src, ref, cls){
+      var w = document.createElement('div');
+      w.className = 'flippg ' + cls;
+      w.style.left = ref.offsetLeft + 'px';
+      w.style.top = ref.offsetTop + 'px';
+      w.style.width = ref.offsetWidth + 'px';
+      w.style.height = ref.offsetHeight + 'px';
+      var c = src.cloneNode(true);
+      w.appendChild(c);
+      newSp.appendChild(w);
+      return w;
+    }
+    if (fwd) {
+      var stay = mk(op[0], np[0], 'as-left stay');
+      var rise = mk(op[1], np[1], 'as-right rise-right');
+      setTimeout(function(){
+        rise.remove();
+        var land = mk(np[0], np[0], 'as-left land-left');
+        setTimeout(function(){ land.remove(); stay.remove(); }, 470);
+      }, 440);
+    } else {
+      var stay = mk(op[1], np[1], 'as-right stay');
+      var rise = mk(op[0], np[0], 'as-left rise-left');
+      setTimeout(function(){
+        rise.remove();
+        var land = mk(np[1], np[1], 'as-right land-right');
+        setTimeout(function(){ land.remove(); stay.remove(); }, 470);
+      }, 440);
+    }
+    return true;
+  }
   function show(){
     var id = currentId();
     var i = ORDER.indexOf(id);
-    var dirClass = (lastIdx >= 0 && i < lastIdx) ? 'flip-back' : 'flip-fwd';
+    var fwd = !(lastIdx >= 0 && i < lastIdx);
+    var oldSp = lastIdx >= 0 ? document.getElementById(ORDER[lastIdx]) : null;
     spreads.forEach(function(p){
       p.classList.remove('flip-fwd', 'flip-back');
       p.classList.toggle('active', p.id === id);
-      if (p.id === id && lastIdx !== i) p.classList.add(dirClass);
     });
+    document.querySelectorAll('.flippg').forEach(function(el){ el.remove(); });
+    if (oldSp && lastIdx !== i) {
+      var newSp = document.getElementById(id);
+      var wide = window.matchMedia('(min-width:1100px)').matches;
+      var noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var done = false;
+      if (wide && !noMotion) done = pageFlip(oldSp, newSp, fwd);
+      if (!done && !noMotion) newSp.classList.add(fwd ? 'flip-fwd' : 'flip-back');
+    }
     ind.innerHTML = '第 ' + (i + 1) + ' / ' + ORDER.length + ' 頁' +
       (id === 's-gm' ? '<span class="gm-mark">⚠</span>' : '');
     prev.classList.toggle('disabled', i === 0);

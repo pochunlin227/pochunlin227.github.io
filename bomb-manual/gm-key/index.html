@@ -273,15 +273,41 @@
   .spread.active{
     display:flex; justify-content:center; align-items:flex-start; gap:4px;
     margin:0 auto 44px;
+    position:relative;
   }
-  .spread.active.flip-fwd{
-    animation:flipFwd .9s cubic-bezier(.25,.6,.3,1);
-    transform-origin:left center;
+  @media (max-width:1099px){
+    .spread.active.flip-fwd{
+      animation:flipFwd .9s cubic-bezier(.25,.6,.3,1);
+      transform-origin:left center;
+    }
+    .spread.active.flip-back{
+      animation:flipBack .9s cubic-bezier(.25,.6,.3,1);
+      transform-origin:right center;
+    }
   }
-  .spread.active.flip-back{
-    animation:flipBack .9s cubic-bezier(.25,.6,.3,1);
-    transform-origin:right center;
+  /* 單頁翻面層:右頁繞書脊掀起 → 新左頁落下 */
+  .flippg{
+    position:absolute; z-index:6; pointer-events:none;
+    backface-visibility:hidden;
   }
+  .flippg .page{
+    width:100%; height:100%; min-height:0; margin:0; flex:none;
+  }
+  .flippg.as-right .page{ padding:44px 48px 52px 92px; border-radius:2px 10px 10px 2px; }
+  .flippg.as-right .page::before{ left:66px; right:auto; }
+  .flippg.as-right .page::after{ left:20px; right:auto; }
+  .flippg.as-left .page{ padding:44px 92px 52px 48px; border-radius:10px 2px 2px 10px; }
+  .flippg.as-left .page::before{ left:auto; right:66px; }
+  .flippg.as-left .page::after{ left:auto; right:20px; }
+  .flippg.stay{ z-index:5; }
+  .flippg.rise-right{ transform-origin:left center; animation:riseR .45s cubic-bezier(.5,.05,.85,.4) forwards; }
+  .flippg.land-left{ transform-origin:right center; animation:landL .45s cubic-bezier(.15,.6,.4,1) forwards; }
+  .flippg.rise-left{ transform-origin:right center; animation:riseL .45s cubic-bezier(.5,.05,.85,.4) forwards; }
+  .flippg.land-right{ transform-origin:left center; animation:landR .45s cubic-bezier(.15,.6,.4,1) forwards; }
+  @keyframes riseR{ 0%{ transform:perspective(2400px) rotateY(0deg); } 100%{ transform:perspective(2400px) rotateY(-88deg); } }
+  @keyframes landL{ 0%{ transform:perspective(2400px) rotateY(88deg); } 100%{ transform:perspective(2400px) rotateY(0deg); } }
+  @keyframes riseL{ 0%{ transform:perspective(2400px) rotateY(0deg); } 100%{ transform:perspective(2400px) rotateY(88deg); } }
+  @keyframes landR{ 0%{ transform:perspective(2400px) rotateY(-88deg); } 100%{ transform:perspective(2400px) rotateY(0deg); } }
   @media (max-width:1099px){
     .spread.active{ flex-direction:column; align-items:center; gap:24px; }
   }
