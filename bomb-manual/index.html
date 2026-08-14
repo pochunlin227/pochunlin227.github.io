@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>拆彈手冊 — 專家版</title>
+<style>
+  :root{
+    --desk:#23262b;
+    --paper:#ffffff;
+    --ink:#17181a;
+    --ink-soft:#4a4e55;
+    --rule:#c9cdd3;
+    --hazard:#d96500;
+    --hazard-soft:#fff3e6;
+    --stamp:#b3261e;
+    --mono:"SF Mono",ui-monospace,Menlo,monospace;
+    --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  }
+  :root{ --tab-fg:#cfd3d9; --tab-border:#5a5f66; }
+  @media (prefers-color-scheme: light){ :root{ --desk:#e2e0da; --tab-fg:#3c4046; --tab-border:#9aa0a6; } }
+  :root[data-theme="dark"]{ --desk:#1a1c20; --tab-fg:#cfd3d9; --tab-border:#5a5f66; }
+  :root[data-theme="light"]{ --desk:#e2e0da; --tab-fg:#3c4046; --tab-border:#9aa0a6; }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; }
+  body{
+    background:var(--desk);
+    font-family:var(--sans);
+    color:var(--ink);
+    padding:32px 12px 64px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    background:var(--paper);
+    max-width:820px;
+    margin:0 auto 40px;
+    padding:44px 48px 52px;
+    box-shadow:0 6px 30px rgba(0,0,0,.35);
+    position:relative;
+  }
+  @media (max-width:640px){ .page{ padding:28px 20px 36px; } }
+
+  /* ── masthead ── */
+  .masthead{
+    border:3px solid var(--ink);
+    padding:18px 22px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    margin-bottom:8px;
+  }
+  .masthead h1{ margin:0; font-size:26px; letter-spacing:.35em; font-weight:900; }
+  .masthead .sub{ margin:4px 0 0; font-size:12px; letter-spacing:.2em; color:var(--ink-soft); }
+  .classified{
+    font-family:var(--mono); font-size:11px; font-weight:700;
+    color:var(--stamp); border:2px solid var(--stamp);
+    padding:6px 10px; transform:rotate(-4deg); white-space:nowrap;
+    letter-spacing:.15em;
+  }
+  .pageno{
+    font-family:var(--mono); font-size:11px; color:var(--ink-soft);
+    letter-spacing:.2em; text-align:right; margin:10px 2px 26px;
+  }
+
+  h2.section{
+    font-size:17px; font-weight:900; letter-spacing:.25em;
+    border-left:8px solid var(--hazard);
+    padding:4px 0 4px 14px; margin:34px 0 6px;
+  }
+  h2.section:first-of-type{ margin-top:22px; }
+  .section-note{
+    margin:0 0 18px 22px; font-size:13.5px; color:var(--ink-soft); line-height:1.8;
+    max-width:60ch;
+  }
+  .section-note strong{ color:var(--ink); }
+
+  /* ── intro flow ── */
+  .flow{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:14px; margin:16px 0 4px;
+  }
+  .flow .step{ border:1.5px solid var(--ink); padding:14px 16px; position:relative; }
+  .flow .step .k{
+    font-family:var(--mono); font-size:11px; font-weight:700;
+    letter-spacing:.15em; color:var(--hazard); display:block; margin-bottom:6px;
+  }
+  .flow .step p{ margin:0; font-size:13px; line-height:1.7; }
+
+  .boxmap{
+    display:grid; grid-template-columns:1fr 1fr; gap:6px;
+    max-width:340px; margin:18px auto 6px;
+  }
+  .boxmap .cell{
+    border:2px solid var(--ink); padding:14px 10px; text-align:center;
+    font-size:12.5px; line-height:1.6; min-height:86px;
+    display:flex; flex-direction:column; justify-content:center; gap:2px;
+  }
+  .boxmap .cell b{ font-size:13px; }
+  .boxmap .cell .tag{ font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--ink-soft); }
+  .boxmap .cell.hot{ background:var(--hazard-soft); border-color:var(--hazard); }
+  .boxmap-caption{ text-align:center; font-size:11.5px; color:var(--ink-soft); margin:6px 0 0; }
+
+  /* ── wire index (page 1, no answers) ── */
+  .idx-list{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+  @media (max-width:560px){ .idx-list{ grid-template-columns:1fr; } }
+  .idx-row{
+    border:1.5px solid var(--ink); padding:12px 14px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .idx-row .no{ font-family:var(--mono); font-weight:700; font-size:13px; letter-spacing:.1em; white-space:nowrap; }
+  .chips{ display:flex; gap:6px; }
+  .chip{ width:24px; height:24px; border-radius:5px; border:1.5px solid rgba(0,0,0,.3); }
+  .idx-row .go{
+    margin-left:auto; font-size:11.5px; color:var(--hazard); font-weight:700; white-space:nowrap;
+  }
+
+  /* ── wire diagram on set pages ── */
+  .wcard{ border:1.5px solid var(--ink); padding:16px 18px 12px; max-width:420px; margin-top:14px; }
+  .wcard .seq{ font-size:12.5px; color:var(--ink-soft); letter-spacing:.06em; display:block; margin-bottom:8px; }
+  .wcard .cut{ margin:8px 0 2px; font-size:15px; font-weight:800; }
+  .wcard .cut em{
+    font-style:normal; color:var(--hazard);
+    border-bottom:3px double var(--hazard); padding:0 2px;
+  }
+  .wcard svg{ display:block; width:100%; height:auto; }
+
+  /* ── zones ── */
+  .zones{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+  @media (max-width:640px){ .zones{ grid-template-columns:1fr; } }
+  .zone{ border:1px dashed var(--rule); padding:12px 10px 14px; text-align:center; }
+  .zone .zk{
+    font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.12em;
+    color:var(--hazard); display:block; margin-bottom:8px;
+  }
+  .zone svg{ display:block; margin:0 auto; }
+  .zone .zt{ font-size:12.5px; margin:8px 0 0; line-height:1.7; }
+  .zone .zt b{ font-size:13px; }
+  .muted{ color:var(--ink-soft); }
+
+  /* ── GM page ── */
+  .gm-banner{
+    border:3px double var(--stamp); color:var(--stamp);
+    text-align:center; font-weight:900; letter-spacing:.3em;
+    padding:10px; margin:20px 0 6px; font-size:15px;
+  }
+  table.gm{ width:100%; border-collapse:collapse; margin-top:14px; font-size:12.5px; }
+  table.gm th{
+    border-bottom:2px solid var(--ink); text-align:left; padding:8px 8px;
+    font-size:11px; letter-spacing:.12em;
+  }
+  table.gm td{
+    border-bottom:1px solid var(--rule); padding:9px 8px; vertical-align:top;
+    font-variant-numeric:tabular-nums; line-height:1.65;
+  }
+  table.gm tr.decoy td{ background:var(--hazard-soft); }
+  .pill{
+    font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em;
+    padding:2px 7px; border:1.5px solid currentColor; white-space:nowrap;
+  }
+  .pill.real{ color:#2e8b46; }
+  .pill.fake{ color:var(--stamp); }
+  .gm-notes{ font-size:13px; line-height:1.9; max-width:62ch; }
+  .gm-notes li{ margin-bottom:6px; }
+  .score{
+    display:inline-block; font-family:var(--mono); font-weight:700;
+    background:var(--ink); color:var(--paper); padding:2px 8px; font-size:12px;
+  }
+  .table-scroll{ overflow-x:auto; }
+
+  /* ── notebook tabs & paging ── */
+  .tabbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+    padding:14px 8px; margin:-32px -12px 28px;
+    background:var(--desk); box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+  .tab{
+    font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em;
+    color:var(--tab-fg); border:1.5px solid var(--tab-border);
+    padding:7px 12px; border-radius:6px; text-decoration:none; white-space:nowrap;
+  }
+  .tab:hover{ border-color:var(--tab-fg); }
+  .tab:focus-visible{ outline:2px solid var(--hazard); outline-offset:2px; }
+  .nav-btn{ min-width:96px; text-align:center; }
+  .nav-btn.disabled{ opacity:.35; pointer-events:none; }
+  .pageind{
+    font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em;
+    color:var(--tab-fg); padding:7px 14px; white-space:nowrap;
+    display:inline-flex; align-items:center;
+  }
+  .pageind .gm-mark{ color:#c96f69; margin-left:6px; }
+  .page{ display:none; }
+  .page.active{ display:block; animation:flip .25s ease; }
+  @keyframes flip{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .page.active{ animation:none; } }
+  a.idx-row{ color:inherit; text-decoration:none; transition:background .15s,border-color .15s; }
+  a.idx-row:hover{ background:var(--hazard-soft); border-color:var(--hazard); }
+  a.idx-row:focus-visible{ outline:2px solid var(--hazard); outline-offset:2px; }
+
+  @media print{
+    body{ background:#fff; padding:0; }
+    .tabbar{ display:none; }
+    .page{ display:block; box-shadow:none; margin:0; max-width:none; page-break-after:always; }
+    .page:last-child{ page-break-after:auto; }
+  }
+</style>
+
+</head>
+<body>
+<nav class="tabbar">
+  <a class="tab nav-btn" id="nav-prev" href="#">‹ 上一頁</a>
+  <span class="pageind" id="pageind">第 1 / 11 頁</span>
+  <a class="tab nav-btn" id="nav-next" href="#">下一頁 ›</a>
+</nav>
+<style>
+</style>
+
+<!-- ═══════════════ 第 1 頁:角色與流程 ═══════════════ -->
+<div class="page" id="p-intro">
+  <div class="masthead">
+    <div>
+      <h1>拆彈手冊</h1>
+      <p class="sub">BOMB DEFUSAL MANUAL · 解碼員(讀手冊者)專用</p>
+    </div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 01 / 11 · 出動前必讀</p>
+
+  <h2 class="section">三人角色</h2>
+  <p class="section-note"><strong>拆彈手</strong> — 矇眼,炸彈在他手上,只有他能動手拆。<strong>觀測員</strong> — 看得到炸彈,但聽不到任何聲音(戴耳機播音樂)。<strong>解碼員</strong> — 唯一能看手冊的人,但不能發出任何聲音,只能比手畫腳。</p>
+
+  <h2 class="section">傳話流程</h2>
+  <div class="flow">
+    <div class="step"><span class="k">STEP 1 · 觀測員觀察</span>
+      <p>觀測員看<b>拆彈手手中的炸彈</b>,把左上角四條線的顏色(由左到右)<b>說</b>給解碼員聽。</p></div>
+    <div class="step"><span class="k">STEP 2 · 解碼員查表</span>
+      <p>解碼員在下方索引找到相符題組,<b>翻到該題組的專屬頁</b>,把「剪哪條線」<b>比</b>給觀測員看 — 不能出聲、不能把手冊秀出來。</p></div>
+    <div class="step"><span class="k">STEP 3 · 觀測員傳令</span>
+      <p>觀測員把看懂的手勢翻成話,<b>講</b>給拆彈手聽。觀測員聽不到,講錯了也不知道 — 解碼員要盯著。</p></div>
+    <div class="step"><span class="k">STEP 4 · 拆彈手動手</span>
+      <p>拆彈手照聽到的指令剪線。剪對才能開盒,其餘三區塊照該題組頁的答案,用同樣流程接力。</p></div>
+  </div>
+
+  <div class="boxmap">
+    <div class="cell hot"><span class="tag">左上 ZONE A</span><b>剪線</b><span>4 條線・剪 1 條</span></div>
+    <div class="cell"><span class="tag">右上 ZONE B</span><b>竹籤排序</b><span>5 選 4・左到右</span></div>
+    <div class="cell"><span class="tag">左下 ZONE C</span><b>形狀拼盤</b><span>2×2 排列</span></div>
+    <div class="cell"><span class="tag">右下 ZONE D</span><b>磁鐵三角</b><span>選 3 顆・號碼＋顏色</span></div>
+  </div>
+  <p class="boxmap-caption">炸彈盒為 2×2 四宮格。先解左上,其餘三區開盒後才可操作。</p>
+</div>
+
+<!-- ═══════════════ 第 2 頁:剪線索引(不含答案) ═══════════════ -->
+<div class="page" id="p-index">
+  <div class="masthead">
+    <div>
+      <h1>剪線索引</h1>
+      <p class="sub">WIRE INDEX · 本頁無答案,僅供對照題組</p>
+    </div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 02 / 11</p>
+
+  <h2 class="section">剪線索引</h2>
+  <p class="section-note">聽觀測員<strong>由左到右</strong>唸出四條線的顏色,在下表找到<strong>一字不差</strong>的排列,然後<strong>翻到該題組的專屬頁</strong> — 剪線答案只印在那一頁。表中有些排列非常相似,找錯行就會害拆彈手剪錯線。</p>
+
+  <div class="idx-list">
+    <a class="idx-row" href="#p-set1"><span class="no">題組 1</span>
+      <span class="chips"><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span></span>
+      <span class="go">→ 第 3 頁</span></a>
+    <a class="idx-row" href="#p-set2"><span class="no">題組 2</span>
+      <span class="chips"><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#1c1c1e"></span></span>
+      <span class="go">→ 第 4 頁</span></a>
+    <a class="idx-row" href="#p-set3"><span class="no">題組 3</span>
+      <span class="chips"><span class="chip" style="background:#fff"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#1c1c1e"></span></span>
+      <span class="go">→ 第 5 頁</span></a>
+    <a class="idx-row" href="#p-set4"><span class="no">題組 4</span>
+      <span class="chips"><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#d23b2f"></span></span>
+      <span class="go">→ 第 6 頁</span></a>
+    <a class="idx-row" href="#p-set5"><span class="no">題組 5</span>
+      <span class="chips"><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#1c1c1e"></span></span>
+      <span class="go">→ 第 7 頁</span></a>
+    <a class="idx-row" href="#p-set6"><span class="no">題組 6</span>
+      <span class="chips"><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#d23b2f"></span></span>
+      <span class="go">→ 第 8 頁</span></a>
+    <a class="idx-row" href="#p-set7"><span class="no">題組 7</span>
+      <span class="chips"><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#d23b2f"></span></span>
+      <span class="go">→ 第 9 頁</span></a>
+    <a class="idx-row" href="#p-set8"><span class="no">題組 8</span>
+      <span class="chips"><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#2e8b46"></span></span>
+      <span class="go">→ 第 10 頁</span></a>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 1(第 2 頁) ═══════════════ -->
+<div class="page" id="p-set1">
+  <div class="masthead">
+    <div><h1>題組 1</h1><p class="sub">MODULE SET 1 · 線:黑・紅・綠・白</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 03 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:黑・紅・綠・白</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="黑 紅 綠 白,剪綠色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 30, 34 50, 30 64" stroke="#1c1c1e" fill="none"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#d23b2f" fill="none"/>
+        <path d="M150 10 C 146 28, 154 34, 150 40" stroke="#2e8b46" fill="none"/>
+        <path d="M150 52 C 152 58, 148 60, 150 64" stroke="#2e8b46" fill="none"/>
+        <path d="M210 10 C 206 30, 214 50, 210 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M210 10 C 206 30, 214 50, 210 64" stroke="#fff" fill="none"/>
+      </g>
+      <text x="150" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>綠色</em>(第 3 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <circle cx="28" cy="28" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+        <path transform="translate(82,30) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+        <path transform="translate(28,82) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+        <circle cx="82" cy="82" r="8" fill="#17181a"/>
+      </svg>
+      <p class="zt">大圓|星星<br>愛心|小圓</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#d23b2f"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#2b6cb0"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#f2b705"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#2e8b46"/>
+        </g>
+      </svg>
+      <p class="zt"><b>紅 藍 黃 綠</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#f2b705" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#17181a">4</text>
+        <circle cx="24" cy="62" r="15" fill="#d23b2f" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1</text>
+        <circle cx="86" cy="62" r="15" fill="#2b6cb0" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">6</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 2(第 3 頁) ═══════════════ -->
+<div class="page" id="p-set2">
+  <div class="masthead">
+    <div><h1>題組 2</h1><p class="sub">MODULE SET 2 · 線:綠・白・紅・黑</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 04 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:綠・白・紅・黑</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="綠 白 紅 黑,剪紅色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 30, 34 50, 30 64" stroke="#2e8b46" fill="none"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#fff" fill="none"/>
+        <path d="M150 10 C 146 28, 154 34, 150 40" stroke="#d23b2f" fill="none"/>
+        <path d="M150 52 C 152 58, 148 60, 150 64" stroke="#d23b2f" fill="none"/>
+        <path d="M210 10 C 206 30, 214 50, 210 64" stroke="#1c1c1e" fill="none"/>
+      </g>
+      <text x="150" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>紅色</em>(第 3 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <path transform="translate(28,28) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+        <circle cx="82" cy="28" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+        <circle cx="28" cy="82" r="8" fill="#17181a"/>
+        <path transform="translate(82,84) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+      </svg>
+      <p class="zt">愛心|大圓<br>小圓|星星</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#f2b705"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#2b6cb0"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#e8720c"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#d23b2f"/>
+        </g>
+      </svg>
+      <p class="zt"><b>黃 藍 橘 紅</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#2e8b46" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">2</text>
+        <circle cx="24" cy="62" r="15" fill="#f2b705" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#17181a">6</text>
+        <circle cx="86" cy="62" r="15" fill="#d23b2f" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">4</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 3(第 4 頁) ═══════════════ -->
+<div class="page" id="p-set3">
+  <div class="masthead">
+    <div><h1>題組 3</h1><p class="sub">MODULE SET 3 · 線:白・綠・紅・黑</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 05 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:白・綠・紅・黑</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="白 綠 紅 黑,剪白色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 28, 34 34, 30 40" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M30 10 C 26 28, 34 34, 30 40" stroke="#fff" fill="none"/>
+        <path d="M30 52 C 32 58, 28 60, 30 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M30 52 C 32 58, 28 60, 30 64" stroke="#fff" fill="none"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#2e8b46" fill="none"/>
+        <path d="M150 10 C 146 30, 154 50, 150 64" stroke="#d23b2f" fill="none"/>
+        <path d="M210 10 C 206 30, 214 50, 210 64" stroke="#1c1c1e" fill="none"/>
+      </g>
+      <text x="30" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>白色</em>(第 1 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <path transform="translate(28,30) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+        <path transform="translate(82,28) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+        <circle cx="28" cy="82" r="8" fill="#17181a"/>
+        <circle cx="82" cy="82" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+      </svg>
+      <p class="zt">星星|愛心<br>小圓|大圓</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#e8720c"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#2e8b46"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#d23b2f"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#2b6cb0"/>
+        </g>
+      </svg>
+      <p class="zt"><b>橘 綠 紅 藍</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#2b6cb0" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">5</text>
+        <circle cx="24" cy="62" r="15" fill="#2e8b46" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">3</text>
+        <circle cx="86" cy="62" r="15" fill="#f2b705" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#17181a">1</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 4(第 5 頁) ═══════════════ -->
+<div class="page" id="p-set4">
+  <div class="masthead">
+    <div><h1>題組 4</h1><p class="sub">MODULE SET 4 · 線:黑・白・綠・紅</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 06 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:黑・白・綠・紅</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="黑 白 綠 紅,剪紅色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 30, 34 50, 30 64" stroke="#1c1c1e" fill="none"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#fff" fill="none"/>
+        <path d="M150 10 C 146 30, 154 50, 150 64" stroke="#2e8b46" fill="none"/>
+        <path d="M210 10 C 206 28, 214 34, 210 40" stroke="#d23b2f" fill="none"/>
+        <path d="M210 52 C 212 58, 208 60, 210 64" stroke="#d23b2f" fill="none"/>
+      </g>
+      <text x="210" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>紅色</em>(第 4 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <circle cx="28" cy="28" r="8" fill="#17181a"/>
+        <circle cx="82" cy="28" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+        <path transform="translate(28,84) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+        <path transform="translate(82,82) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+      </svg>
+      <p class="zt">小圓|大圓<br>星星|愛心</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#f2b705"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#d23b2f"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#2e8b46"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#e8720c"/>
+        </g>
+      </svg>
+      <p class="zt"><b>黃 紅 綠 橘</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#d23b2f" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">6</text>
+        <circle cx="24" cy="62" r="15" fill="#2b6cb0" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">3</text>
+        <circle cx="86" cy="62" r="15" fill="#2e8b46" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 5(第 6 頁) ═══════════════ -->
+<div class="page" id="p-set5">
+  <div class="masthead">
+    <div><h1>題組 5</h1><p class="sub">MODULE SET 5 · 線:紅・綠・白・黑</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 07 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:紅・綠・白・黑</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="紅 綠 白 黑,剪黑色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 30, 34 50, 30 64" stroke="#d23b2f" fill="none"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#2e8b46" fill="none"/>
+        <path d="M150 10 C 146 30, 154 50, 150 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M150 10 C 146 30, 154 50, 150 64" stroke="#fff" fill="none"/>
+        <path d="M210 10 C 206 28, 214 34, 210 40" stroke="#1c1c1e" fill="none"/>
+        <path d="M210 52 C 212 58, 208 60, 210 64" stroke="#1c1c1e" fill="none"/>
+      </g>
+      <text x="210" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>黑色</em>(第 4 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <path transform="translate(28,28) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+        <circle cx="82" cy="28" r="8" fill="#17181a"/>
+        <circle cx="28" cy="82" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+        <path transform="translate(82,84) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+      </svg>
+      <p class="zt">愛心|小圓<br>大圓|星星</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#2b6cb0"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#e8720c"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#2e8b46"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#f2b705"/>
+        </g>
+      </svg>
+      <p class="zt"><b>藍 橘 綠 黃</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#2e8b46" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1</text>
+        <circle cx="24" cy="62" r="15" fill="#f2b705" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#17181a">2</text>
+        <circle cx="86" cy="62" r="15" fill="#d23b2f" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">5</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 6(第 7 頁) ═══════════════ -->
+<div class="page" id="p-set6">
+  <div class="masthead">
+    <div><h1>題組 6</h1><p class="sub">MODULE SET 6 · 線:黑・綠・白・紅</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 08 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:黑・綠・白・紅</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="黑 綠 白 紅,剪白色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 30, 34 50, 30 64" stroke="#1c1c1e" fill="none"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#2e8b46" fill="none"/>
+        <path d="M150 10 C 146 28, 154 34, 150 40" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M150 10 C 146 28, 154 34, 150 40" stroke="#fff" fill="none"/>
+        <path d="M150 52 C 152 58, 148 60, 150 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M150 52 C 152 58, 148 60, 150 64" stroke="#fff" fill="none"/>
+        <path d="M210 10 C 206 30, 214 50, 210 64" stroke="#d23b2f" fill="none"/>
+      </g>
+      <text x="150" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>白色</em>(第 3 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <circle cx="28" cy="28" r="8" fill="#17181a"/>
+        <path transform="translate(82,30) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+        <circle cx="28" cy="82" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+        <path transform="translate(82,82) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+      </svg>
+      <p class="zt">小圓|星星<br>大圓|愛心</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#2e8b46"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#d23b2f"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#f2b705"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#2b6cb0"/>
+        </g>
+      </svg>
+      <p class="zt"><b>綠 紅 黃 藍</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#2b6cb0" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">6</text>
+        <circle cx="24" cy="62" r="15" fill="#d23b2f" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">2</text>
+        <circle cx="86" cy="62" r="15" fill="#f2b705" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#17181a">5</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 7(第 8 頁) ═══════════════ -->
+<div class="page" id="p-set7">
+  <div class="masthead">
+    <div><h1>題組 7</h1><p class="sub">MODULE SET 7 · 線:綠・黑・白・紅</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 09 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:綠・黑・白・紅</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="綠 黑 白 紅,剪黑色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 30, 34 50, 30 64" stroke="#2e8b46" fill="none"/>
+        <path d="M90 10 C 94 28, 86 34, 90 40" stroke="#1c1c1e" fill="none"/>
+        <path d="M90 52 C 88 58, 92 60, 90 64" stroke="#1c1c1e" fill="none"/>
+        <path d="M150 10 C 146 30, 154 50, 150 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M150 10 C 146 30, 154 50, 150 64" stroke="#fff" fill="none"/>
+        <path d="M210 10 C 206 30, 214 50, 210 64" stroke="#d23b2f" fill="none"/>
+      </g>
+      <text x="90" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>黑色</em>(第 2 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <circle cx="28" cy="28" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+        <path transform="translate(82,28) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+        <path transform="translate(28,84) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+        <circle cx="82" cy="82" r="8" fill="#17181a"/>
+      </svg>
+      <p class="zt">大圓|愛心<br>星星|小圓</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#2b6cb0"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#2e8b46"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#e8720c"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#d23b2f"/>
+        </g>
+      </svg>
+      <p class="zt"><b>藍 綠 橘 紅</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#2e8b46" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">5</text>
+        <circle cx="24" cy="62" r="15" fill="#2b6cb0" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1</text>
+        <circle cx="86" cy="62" r="15" fill="#d23b2f" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">3</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 題組 8(第 9 頁) ═══════════════ -->
+<div class="page" id="p-set8">
+  <div class="masthead">
+    <div><h1>題組 8</h1><p class="sub">MODULE SET 8 · 線:紅・白・黑・綠</p></div>
+    <div class="classified">機密<br>拆彈手・觀測員不得閱讀</div>
+  </div>
+  <p class="pageno">PAGE 10 / 11</p>
+
+  <h2 class="section">A · 剪線</h2>
+  <div class="wcard">
+    <span class="seq">左→右:紅・白・黑・綠</span>
+    <svg viewBox="0 0 240 74" role="img" aria-label="紅 白 黑 綠,剪綠色">
+      <g stroke-width="7" stroke-linecap="round">
+        <path d="M30 10 C 26 30, 34 50, 30 64" stroke="#d23b2f" fill="none"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#9aa0a6" stroke-width="8.5" fill="none" opacity=".35"/>
+        <path d="M90 10 C 94 30, 86 50, 90 64" stroke="#fff" fill="none"/>
+        <path d="M150 10 C 146 30, 154 50, 150 64" stroke="#1c1c1e" fill="none"/>
+        <path d="M210 10 C 206 28, 214 34, 210 40" stroke="#2e8b46" fill="none"/>
+        <path d="M210 52 C 212 58, 208 60, 210 64" stroke="#2e8b46" fill="none"/>
+      </g>
+      <text x="210" y="50" font-size="13" text-anchor="middle">✂️</text>
+    </svg>
+    <p class="cut">剪 <em>綠色</em>(第 4 條)</p>
+  </div>
+
+  <h2 class="section">開盒後三區塊</h2>
+  <div class="zones">
+    <div class="zone"><span class="zk">左下 C · 形狀 2×2</span>
+      <svg viewBox="0 0 110 110" width="100" height="100">
+        <rect x="2" y="2" width="106" height="106" fill="none" stroke="#c9cdd3"/>
+        <line x1="55" y1="2" x2="55" y2="108" stroke="#c9cdd3"/><line x1="2" y1="55" x2="108" y2="55" stroke="#c9cdd3"/>
+        <path transform="translate(28,30) scale(1.5)" d="M0,-11 L3.2,-3.4 L11,-3.4 L4.5,1.7 L6.8,9 L0,4.4 L-6.8,9 L-4.5,1.7 L-11,-3.4 L-3.2,-3.4 Z" fill="#17181a"/>
+        <circle cx="82" cy="28" r="8" fill="#17181a"/>
+        <path transform="translate(28,82) scale(1.7)" d="M0,6 C-6,0 -8,-4 -5,-7 C-2.5,-9 0,-6.5 0,-5 C0,-6.5 2.5,-9 5,-7 C8,-4 6,0 0,6 Z" fill="#d23b2f"/>
+        <circle cx="82" cy="82" r="17" fill="none" stroke="#17181a" stroke-width="2.5"/>
+      </svg>
+      <p class="zt">星星|小圓<br>愛心|大圓</p>
+    </div>
+    <div class="zone"><span class="zk">右上 B · 竹籤 左→右</span>
+      <svg viewBox="0 0 120 64" width="112" height="60">
+        <g stroke-width="9" stroke-linecap="round">
+          <line x1="18" y1="8" x2="18" y2="56" stroke="#e8720c"/>
+          <line x1="46" y1="8" x2="46" y2="56" stroke="#d23b2f"/>
+          <line x1="74" y1="8" x2="74" y2="56" stroke="#f2b705"/>
+          <line x1="102" y1="8" x2="102" y2="56" stroke="#2e8b46"/>
+        </g>
+      </svg>
+      <p class="zt"><b>橘 紅 黃 綠</b></p>
+    </div>
+    <div class="zone"><span class="zk">右下 D · 磁鐵三角</span>
+      <svg viewBox="0 0 110 84" width="104" height="80">
+        <circle cx="55" cy="20" r="15" fill="#d23b2f" stroke="#17181a" stroke-width="2.5"/><text x="55" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">2</text>
+        <circle cx="24" cy="62" r="15" fill="#2b6cb0" stroke="#17181a" stroke-width="2.5"/><text x="24" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">4</text>
+        <circle cx="86" cy="62" r="15" fill="#2e8b46" stroke="#17181a" stroke-width="2.5"/><text x="86" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">6</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 第 10 頁:主持人答案總表 ═══════════════ -->
+<div class="page" id="p-gm">
+  <div class="masthead">
+    <div>
+      <h1>主持人總表</h1>
+      <p class="sub">GAME MASTER KEY · 出題與計分專用</p>
+    </div>
+    <div class="classified">最高機密<br>僅主持人</div>
+  </div>
+  <p class="pageno">PAGE 11 / 11 · 請與手冊分開保管(可沿此頁裁切)</p>
+
+  <div class="gm-banner">⚠ 本頁不可讓拆彈手、觀測員、解碼員看到 ⚠</div>
+
+  <h2 class="section">八組題目真偽</h2>
+  <p class="section-note">手冊共列 8 組:<strong>6 組是真的</strong>(實際做成炸彈盒),<strong>題組 2、題組 6 是混亂用的假題</strong> — 線色排列與真題極為相似,只放在手冊裡干擾,不做成實體。</p>
+
+  <div class="table-scroll">
+  <table class="gm">
+    <thead><tr>
+      <th>題組</th><th>真偽</th><th>線(左→右)</th><th>剪</th><th>形狀 2×2(上排/下排)</th><th>竹籤 左→右</th><th>磁鐵 上/下左/下右</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="pill real">真</span></td><td>黑 紅 綠 白</td><td><b>綠</b></td><td>大圓 星星/愛心 小圓</td><td>紅 藍 黃 綠</td><td>4黃 / 1紅 / 6藍</td></tr>
+      <tr class="decoy"><td>2</td><td><span class="pill fake">假・混亂</span></td><td>綠 白 紅 黑</td><td>紅</td><td>愛心 大圓/小圓 星星</td><td>黃 藍 橘 紅</td><td>2綠 / 6黃 / 4紅</td></tr>
+      <tr><td>3</td><td><span class="pill real">真</span></td><td>白 綠 紅 黑</td><td><b>白</b></td><td>星星 愛心/小圓 大圓</td><td>橘 綠 紅 藍</td><td>5藍 / 3綠 / 1黃</td></tr>
+      <tr><td>4</td><td><span class="pill real">真</span></td><td>黑 白 綠 紅</td><td><b>紅</b></td><td>小圓 大圓/星星 愛心</td><td>黃 紅 綠 橘</td><td>6紅 / 3藍 / 1綠</td></tr>
+      <tr><td>5</td><td><span class="pill real">真</span></td><td>紅 綠 白 黑</td><td><b>黑</b></td><td>愛心 小圓/大圓 星星</td><td>藍 橘 綠 黃</td><td>1綠 / 2黃 / 5紅</td></tr>
+      <tr class="decoy"><td>6</td><td><span class="pill fake">假・混亂</span></td><td>黑 綠 白 紅</td><td>白</td><td>小圓 星星/大圓 愛心</td><td>綠 紅 黃 藍</td><td>6藍 / 2紅 / 5黃</td></tr>
+      <tr><td>7</td><td><span class="pill real">真</span></td><td>綠 黑 白 紅</td><td><b>黑</b></td><td>大圓 愛心/星星 小圓</td><td>藍 綠 橘 紅</td><td>5綠 / 1藍 / 3紅</td></tr>
+      <tr><td>8</td><td><span class="pill real">真</span></td><td>紅 白 黑 綠</td><td><b>綠</b></td><td>星星 小圓/愛心 大圓</td><td>橘 紅 黃 綠</td><td>2紅 / 4藍 / 6綠</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 class="section">計分與佈置</h2>
+  <ul class="gm-notes">
+    <li>剪對線 <span class="score">+10 分</span>(每組一次機會;剪錯可視難度決定直接爆炸或扣分)。</li>
+    <li>三個開盒區塊可自訂:例如每區完成再各 +10 分,全部完成額外加成。</li>
+    <li>實體佈置:依「真」的 6 組製作炸彈盒 — 左上裝該組四色線(順序照表)、右上放 5 支竹籤(紅黃橘藍綠)、左下放 4 個形狀片、右下放 1–6 號磁鐵。</li>
+    <li>磁鐵上色:每盒的磁鐵依表塗色或貼色貼(黃/紅/綠/藍)— 同一號碼在不同盒子顏色可能不同,解碼員必須同時傳「號碼＋顏色」,號碼和顏色都對才算完成。</li>
+    <li>混亂題(2、6)只印在手冊,不做實體;它們的線色和真題只差一兩個位置,逼解碼員逐字核對。</li>
+    <li>角色檢查:拆彈手確實矇眼、觀測員耳機音量夠大聽不到說話、解碼員全程不出聲(出聲可扣分)。</li>
+    <li>手勢提示(可選):預設<b>不</b>教玩家手勢,讓他們自己發明溝通方式。若隊伍完全卡死,主持人可提示:數字用手指比、顏色拍身體部位(頭=紅、肩=黃、手肘=橘、膝=藍、腳=綠)、形狀用手在空中畫、剪刀手勢=剪。</li>
+    <li>Web 版對應:同一份答案表可直接做成遊戲的關卡資料(6 關 + 手冊 8 組)。</li>
+  </ul>
+</div>
+
+<script>
+(function(){
+  var ORDER = ['p-intro','p-index','p-set1','p-set2','p-set3','p-set4','p-set5','p-set6','p-set7','p-set8','p-gm'];
+  var NAMES = { 'p-intro':'流程', 'p-index':'索引', 'p-set1':'題組 1', 'p-set2':'題組 2', 'p-set3':'題組 3', 'p-set4':'題組 4', 'p-set5':'題組 5', 'p-set6':'題組 6', 'p-set7':'題組 7', 'p-set8':'題組 8', 'p-gm':'主持人' };
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var prev = document.getElementById('nav-prev');
+  var next = document.getElementById('nav-next');
+  var ind = document.getElementById('pageind');
+
+  function currentId(){
+    var id = (location.hash || '#p-intro').slice(1);
+    return ORDER.indexOf(id) >= 0 ? id : 'p-intro';
+  }
+  function show(){
+    var id = currentId();
+    var i = ORDER.indexOf(id);
+    pages.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    ind.innerHTML = '第 ' + (i + 1) + ' / ' + ORDER.length + ' 頁 · ' + NAMES[id] +
+      (id === 'p-gm' ? '<span class="gm-mark">⚠</span>' : '');
+    prev.classList.toggle('disabled', i === 0);
+    next.classList.toggle('disabled', i === ORDER.length - 1);
+    prev.href = i > 0 ? '#' + ORDER[i - 1] : '#' + id;
+    next.href = i < ORDER.length - 1 ? '#' + ORDER[i + 1] : '#' + id;
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+  document.addEventListener('keydown', function(e){
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var i = ORDER.indexOf(currentId());
+    if (e.key === 'ArrowLeft' && i > 0) location.hash = '#' + ORDER[i - 1];
+    if (e.key === 'ArrowRight' && i < ORDER.length - 1) location.hash = '#' + ORDER[i + 1];
+  });
+  show();
+})();
+</script>
+
+</body>
+</html>
