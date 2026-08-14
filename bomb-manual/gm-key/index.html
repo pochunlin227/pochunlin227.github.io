@@ -265,9 +265,28 @@
   }
   .pageind .gm-mark{ color:#c96f69; margin-left:6px; }
   .page{ display:none; }
-  .page.active{ display:block; animation:flip .25s ease; }
-  @keyframes flip{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
-  @media (prefers-reduced-motion: reduce){ .page.active{ animation:none; } }
+  .page.active{ display:block; }
+  .page.active.flip-fwd{
+    animation:flipFwd .5s cubic-bezier(.2,.7,.3,1);
+    transform-origin:left center;
+  }
+  .page.active.flip-back{
+    animation:flipBack .5s cubic-bezier(.2,.7,.3,1);
+    transform-origin:left center;
+  }
+  @keyframes flipFwd{
+    0%{ transform:perspective(1800px) rotateY(55deg); opacity:0; box-shadow:-30px 10px 40px rgba(0,0,0,.35); }
+    60%{ opacity:1; }
+    100%{ transform:perspective(1800px) rotateY(0deg); opacity:1; }
+  }
+  @keyframes flipBack{
+    0%{ transform:perspective(1800px) rotateY(-45deg); opacity:0; box-shadow:30px 10px 40px rgba(0,0,0,.35); }
+    60%{ opacity:1; }
+    100%{ transform:perspective(1800px) rotateY(0deg); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .page.active.flip-fwd, .page.active.flip-back{ animation:none; }
+  }
   a.idx-row{ color:inherit; text-decoration:none; transition:background .15s,border-color .15s; }
   a.idx-row:hover{ background:var(--hazard-soft); border-color:var(--hazard); }
   a.idx-row:focus-visible{ outline:2px solid var(--hazard); outline-offset:2px; }
