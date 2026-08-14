@@ -39,8 +39,10 @@
       repeating-linear-gradient(90deg, transparent 0 27px, rgba(43,108,176,.055) 27px 28px),
       linear-gradient(120deg, #fffdf6, #fffef9 45%, #faf6ec);
     max-width:820px;
+    flex:0 1 680px;
+    min-width:0;
     min-height:1200px;
-    margin:0 auto 44px;
+    margin:0;
     padding:44px 48px 52px 92px;
     border-radius:2px 10px 10px 2px;
     box-shadow:
@@ -50,47 +52,6 @@
       13px 14px 26px rgba(0,0,0,.28);
     position:relative;
     z-index:1;
-  }
-  /* 攤開的左頁:翻過去頁面的背面,與右頁同尺寸、書脊相接 */
-  #turned{ display:none; }
-  @media (min-width:1100px){
-    .page{
-      width:min(680px, calc(50vw - 32px));
-      margin-left:50%; margin-right:0;
-      box-shadow:
-        0 6px 30px rgba(0,0,0,.35),
-        5px 5px 0 -2px #efece1,
-        10px 10px 0 -4px #e3dfd1,
-        13px 14px 26px rgba(0,0,0,.28),
-        inset 30px 0 28px -24px rgba(0,0,0,.14);
-    }
-    #turned{
-      display:block; position:absolute; top:32px; right:50%;
-      width:min(680px, calc(50vw - 32px));
-      height:1200px;
-      pointer-events:none; z-index:0;
-      background:
-        radial-gradient(circle at calc(100% - 14px) 48px, rgba(0,0,0,.14) 5.5px, rgba(0,0,0,.05) 6.5px, transparent 8px) repeat-y,
-        repeating-linear-gradient(0deg, transparent 0 27px, rgba(43,108,176,.05) 27px 28px),
-        repeating-linear-gradient(90deg, transparent 0 27px, rgba(43,108,176,.03) 27px 28px),
-        linear-gradient(260deg, #fbf8ef, #f3eede 60%, #ebe4d1);
-      background-size:100% 96px, auto auto, auto auto, auto auto;
-      border-radius:14px 2px 2px 14px;
-      box-shadow:
-        0 6px 30px rgba(0,0,0,.35),
-        -6px 6px 0 -2px #efece1,
-        -12px 12px 0 -4px #e3dfd1,
-        -14px 14px 26px rgba(0,0,0,.28),
-        inset -38px 0 34px -28px rgba(0,0,0,.2);
-    }
-    #turned::before{
-      content:''; position:absolute; inset:10px -6px -12px 12px;
-      background:linear-gradient(260deg, #f2edde, #e6dfcb);
-      border-radius:14px 2px 2px 14px;
-      transform:rotate(.8deg);
-      z-index:-1;
-      box-shadow:-6px 8px 16px rgba(0,0,0,.2);
-    }
   }
   .page::before{
     content:''; position:absolute; top:0; bottom:0; left:66px; width:2px;
@@ -102,7 +63,7 @@
     background-size:22px 96px; background-repeat:repeat-y; pointer-events:none;
   }
   @media (max-width:640px){
-    .page{ padding:28px 20px 36px 58px; }
+    .page{ padding:28px 20px 36px 58px; flex:0 0 auto; width:100%; }
     .page::before{ left:42px; }
     .page::after{ left:8px; top:32px; bottom:32px; }
     .masthead{ flex-direction:column; align-items:flex-start; gap:10px; padding:14px 16px; }
@@ -308,28 +269,55 @@
     display:inline-flex; align-items:center;
   }
   .pageind .gm-mark{ color:#c96f69; margin-left:6px; }
-  .page{ display:none; }
-  .page.active{ display:block; }
-  .page.active.flip-fwd{
+  .spread{ display:none; }
+  .spread.active{
+    display:flex; justify-content:center; align-items:flex-start; gap:4px;
+    margin:0 auto 44px;
+  }
+  .spread.active.flip-fwd{
     animation:flipFwd .9s cubic-bezier(.25,.6,.3,1);
     transform-origin:left center;
   }
-  .page.active.flip-back{
+  .spread.active.flip-back{
     animation:flipBack .9s cubic-bezier(.25,.6,.3,1);
-    transform-origin:left center;
+    transform-origin:right center;
+  }
+  @media (max-width:1099px){
+    .spread.active{ flex-direction:column; align-items:center; gap:24px; }
+  }
+  /* 左頁鏡像:打孔與紅線靠書脊(右緣) */
+  .spread .page:first-child{
+    padding:44px 92px 52px 48px;
+    border-radius:10px 2px 2px 10px;
+  }
+  .spread .page:first-child::before{ left:auto; right:66px; }
+  .spread .page:first-child::after{ left:auto; right:20px; }
+  .spread .page:only-child{
+    padding:44px 48px 52px 92px;
+    border-radius:2px 10px 10px 2px;
+  }
+  .spread .page:only-child::before{ left:66px; right:auto; }
+  .spread .page:only-child::after{ left:20px; right:auto; }
+  @media (max-width:640px){
+    .spread .page:first-child{ padding:28px 58px 36px 20px; }
+    .spread .page:first-child::before{ right:42px; }
+    .spread .page:first-child::after{ right:8px; }
+    .spread .page:only-child{ padding:28px 20px 36px 58px; }
+    .spread .page:only-child::before{ left:42px; right:auto; }
+    .spread .page:only-child::after{ left:8px; right:auto; }
   }
   @keyframes flipFwd{
-    0%{ transform:perspective(1800px) rotateY(55deg); opacity:0; box-shadow:-30px 10px 40px rgba(0,0,0,.35); }
-    60%{ opacity:1; }
-    100%{ transform:perspective(1800px) rotateY(0deg); opacity:1; }
+    0%{ transform:perspective(2000px) rotateY(-42deg); opacity:0; }
+    30%{ opacity:1; }
+    100%{ transform:perspective(2000px) rotateY(0deg); opacity:1; }
   }
   @keyframes flipBack{
-    0%{ transform:perspective(1800px) rotateY(-45deg); opacity:0; box-shadow:30px 10px 40px rgba(0,0,0,.35); }
-    60%{ opacity:1; }
-    100%{ transform:perspective(1800px) rotateY(0deg); opacity:1; }
+    0%{ transform:perspective(2000px) rotateY(42deg); opacity:0; }
+    30%{ opacity:1; }
+    100%{ transform:perspective(2000px) rotateY(0deg); opacity:1; }
   }
   @media (prefers-reduced-motion: reduce){
-    .page.active.flip-fwd, .page.active.flip-back{ animation:none; }
+    .spread.active.flip-fwd, .spread.active.flip-back{ animation:none; }
   }
   a.idx-row{ color:inherit; text-decoration:none; transition:background .15s,border-color .15s; }
   a.idx-row:hover{ background:var(--hazard-soft); border-color:var(--hazard); }
@@ -337,9 +325,10 @@
 
   @media print{
     body{ background:#fff; padding:0; }
-    .tabbar, #turned{ display:none; }
+    .tabbar{ display:none; }
+    .spread{ display:block; }
     .page{
-      display:block; box-shadow:none; margin:0; max-width:none; width:auto; min-height:auto;
+      display:block; box-shadow:none; margin:0; max-width:none; width:auto; min-height:auto; flex:none;
       background:#fff; border-radius:0; padding:24px 32px;
       page-break-after:always;
     }
@@ -353,15 +342,15 @@
 </head>
 <body>
 <nav class="tabbar" aria-label="手冊翻頁導覽">
-  <a class="tab nav-btn" id="nav-prev" href="#">‹ 上一頁</a>
+  <a class="tab nav-btn" id="nav-prev" href="#">‹ 往回翻</a>
   <span class="pageind" id="pageind" aria-live="polite">第 1 / 11 頁</span>
-  <a class="tab nav-btn" id="nav-next" href="#">下一頁 ›</a>
+  <a class="tab nav-btn" id="nav-next" href="#">翻頁 ›</a>
 </nav>
-<div id="turned" aria-hidden="true"></div>
 <style>
 </style>
 
 <!-- ═══════════════ 第 1 頁:角色與流程 ═══════════════ -->
+<div class="spread" id="s1">
 <div class="page" id="p-intro">
   <div class="masthead">
     <div>
@@ -413,32 +402,35 @@
   <div class="idx-list">
     <div class="idx-row" role="group" aria-label="題組 1,線色由左到右:黑、紅、綠、白"><span class="no">題組 1</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span></span>
-      <span class="go">→ 第 3 頁</span></div>
+      <span class="go">→ 第 2 頁・左</span></div>
     <div class="idx-row" role="group" aria-label="題組 2,線色由左到右:綠、白、紅、黑"><span class="no">題組 2</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#1c1c1e"></span></span>
-      <span class="go">→ 第 4 頁</span></div>
+      <span class="go">→ 第 2 頁・右</span></div>
     <div class="idx-row" role="group" aria-label="題組 3,線色由左到右:白、綠、紅、黑"><span class="no">題組 3</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#fff"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#1c1c1e"></span></span>
-      <span class="go">→ 第 5 頁</span></div>
+      <span class="go">→ 第 3 頁・左</span></div>
     <div class="idx-row" role="group" aria-label="題組 4,線色由左到右:黑、白、綠、紅"><span class="no">題組 4</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#d23b2f"></span></span>
-      <span class="go">→ 第 6 頁</span></div>
+      <span class="go">→ 第 3 頁・右</span></div>
     <div class="idx-row" role="group" aria-label="題組 5,線色由左到右:紅、綠、白、黑"><span class="no">題組 5</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#1c1c1e"></span></span>
-      <span class="go">→ 第 7 頁</span></div>
+      <span class="go">→ 第 4 頁・左</span></div>
     <div class="idx-row" role="group" aria-label="題組 6,線色由左到右:黑、綠、白、紅"><span class="no">題組 6</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#d23b2f"></span></span>
-      <span class="go">→ 第 8 頁</span></div>
+      <span class="go">→ 第 4 頁・右</span></div>
     <div class="idx-row" role="group" aria-label="題組 7,線色由左到右:綠、黑、白、紅"><span class="no">題組 7</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#2e8b46"></span><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#d23b2f"></span></span>
-      <span class="go">→ 第 9 頁</span></div>
+      <span class="go">→ 第 5 頁・左</span></div>
     <div class="idx-row" role="group" aria-label="題組 8,線色由左到右:紅、白、黑、綠"><span class="no">題組 8</span>
       <span class="chips" aria-hidden="true"><span class="chip" style="background:#d23b2f"></span><span class="chip" style="background:#fff"></span><span class="chip" style="background:#1c1c1e"></span><span class="chip" style="background:#2e8b46"></span></span>
-      <span class="go">→ 第 10 頁</span></div>
+      <span class="go">→ 第 5 頁・右</span></div>
   </div>
 </div>
 
-<!-- ═══════════════ 題組 1(第 2 頁) ═══════════════ -->
+</div><!-- /s1 -->
+
+<!-- ═══════════════ 題組 1 ═══════════════ -->
+<div class="spread" id="s2">
 <div class="page" id="p-set1">
   <div class="masthead slim">
     <div><h1>題組 1</h1><p class="sub">MODULE SET 1 · 線:黑・紅・綠・白</p></div>
@@ -546,7 +538,10 @@
   </div>
 </div>
 
-<!-- ═══════════════ 題組 3(第 4 頁) ═══════════════ -->
+</div><!-- /s2 -->
+
+<!-- ═══════════════ 題組 3 ═══════════════ -->
+<div class="spread" id="s3">
 <div class="page" id="p-set3">
   <div class="masthead slim">
     <div><h1>題組 3</h1><p class="sub">MODULE SET 3 · 線:白・綠・紅・黑</p></div>
@@ -655,7 +650,10 @@
   </div>
 </div>
 
-<!-- ═══════════════ 題組 5(第 6 頁) ═══════════════ -->
+</div><!-- /s3 -->
+
+<!-- ═══════════════ 題組 5 ═══════════════ -->
+<div class="spread" id="s4">
 <div class="page" id="p-set5">
   <div class="masthead slim">
     <div><h1>題組 5</h1><p class="sub">MODULE SET 5 · 線:紅・綠・白・黑</p></div>
@@ -764,7 +762,10 @@
   </div>
 </div>
 
-<!-- ═══════════════ 題組 7(第 8 頁) ═══════════════ -->
+</div><!-- /s4 -->
+
+<!-- ═══════════════ 題組 7 ═══════════════ -->
+<div class="spread" id="s5">
 <div class="page" id="p-set7">
   <div class="masthead slim">
     <div><h1>題組 7</h1><p class="sub">MODULE SET 7 · 線:綠・黑・白・紅</p></div>
@@ -872,45 +873,38 @@
   </div>
 </div>
 
+</div><!-- /s5 -->
+
 <script>
 (function(){
-  var ORDER = ['p-intro','p-index','p-set1','p-set2','p-set3','p-set4','p-set5','p-set6','p-set7','p-set8'];
-  var NAMES = { 'p-intro':'流程', 'p-index':'索引', 'p-set1':'題組 1', 'p-set2':'題組 2', 'p-set3':'題組 3', 'p-set4':'題組 4', 'p-set5':'題組 5', 'p-set6':'題組 6', 'p-set7':'題組 7', 'p-set8':'題組 8', 'p-gm':'主持人' };
-  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var ORDER = ['s1','s2','s3','s4','s5'];
+  var spreads = Array.prototype.slice.call(document.querySelectorAll('.spread'));
   var prev = document.getElementById('nav-prev');
   var next = document.getElementById('nav-next');
   var ind = document.getElementById('pageind');
-
-  function currentId(){
-    var id = (location.hash || '#p-intro').slice(1);
-    return ORDER.indexOf(id) >= 0 ? id : 'p-intro';
-  }
   var lastIdx = -1;
+  function currentId(){
+    var id = (location.hash || '#s1').slice(1);
+    return ORDER.indexOf(id) >= 0 ? id : 's1';
+  }
   function show(){
     var id = currentId();
     var i = ORDER.indexOf(id);
     var dirClass = (lastIdx >= 0 && i < lastIdx) ? 'flip-back' : 'flip-fwd';
-    pages.forEach(function(p){
+    spreads.forEach(function(p){
       p.classList.remove('flip-fwd', 'flip-back');
       p.classList.toggle('active', p.id === id);
       if (p.id === id && lastIdx !== i) p.classList.add(dirClass);
     });
-    lastIdx = i;
     ind.innerHTML = '第 ' + (i + 1) + ' / ' + ORDER.length + ' 頁' +
-      (id === 'p-gm' ? '<span class="gm-mark">⚠</span>' : '');
+      (id === 's-gm' ? '<span class="gm-mark">⚠</span>' : '');
     prev.classList.toggle('disabled', i === 0);
     next.classList.toggle('disabled', i === ORDER.length - 1);
     prev.href = i > 0 ? '#' + ORDER[i - 1] : '#' + id;
     next.href = i < ORDER.length - 1 ? '#' + ORDER[i + 1] : '#' + id;
+    lastIdx = i;
     window.scrollTo(0, 0);
-    syncTurned();
   }
-  function syncTurned(){
-    var t = document.getElementById('turned');
-    var act = document.querySelector('.page.active');
-    if (t && act) requestAnimationFrame(function(){ t.style.height = act.offsetHeight + 'px'; });
-  }
-  window.addEventListener('resize', syncTurned);
   window.addEventListener('hashchange', show);
   document.addEventListener('keydown', function(e){
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
