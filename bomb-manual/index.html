@@ -300,12 +300,12 @@
     transform-origin:left center;
   }
   @keyframes flipFwd{
-    0%{ transform:perspective(1800px) rotateY(55deg); opacity:0; box-shadow:-30px 10px 40px rgba(0,0,0,.35); }
+    0%{ transform:perspective(1800px) rotateY(-55deg); opacity:0; box-shadow:30px 10px 40px rgba(0,0,0,.35); }
     60%{ opacity:1; }
     100%{ transform:perspective(1800px) rotateY(0deg); opacity:1; }
   }
   @keyframes flipBack{
-    0%{ transform:perspective(1800px) rotateY(-45deg); opacity:0; box-shadow:30px 10px 40px rgba(0,0,0,.35); }
+    0%{ transform:perspective(1800px) rotateY(45deg); opacity:0; box-shadow:-30px 10px 40px rgba(0,0,0,.35); }
     60%{ opacity:1; }
     100%{ transform:perspective(1800px) rotateY(0deg); opacity:1; }
   }
