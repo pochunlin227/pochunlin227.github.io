@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>拆彈手冊 — 主持人總表</title>
+<style>
+  :root{
+    --desk:#23262b;
+    --paper:#ffffff;
+    --ink:#17181a;
+    --ink-soft:#4a4e55;
+    --rule:#c9cdd3;
+    --hazard:#d96500;
+    --hazard-soft:#fff3e6;
+    --stamp:#b3261e;
+    --mono:"SF Mono",ui-monospace,Menlo,monospace;
+    --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  }
+  :root{ --tab-fg:#cfd3d9; --tab-border:#5a5f66; }
+  @media (prefers-color-scheme: light){ :root{ --desk:#e2e0da; --tab-fg:#3c4046; --tab-border:#9aa0a6; } }
+  :root[data-theme="dark"]{ --desk:#1a1c20; --tab-fg:#cfd3d9; --tab-border:#5a5f66; }
+  :root[data-theme="light"]{ --desk:#e2e0da; --tab-fg:#3c4046; --tab-border:#9aa0a6; }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; }
+  body{
+    background:var(--desk);
+    font-family:var(--sans);
+    color:var(--ink);
+    padding:32px 12px 64px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    background:
+      repeating-linear-gradient(0deg, transparent 0 27px, rgba(43,108,176,.10) 27px 28px),
+      repeating-linear-gradient(90deg, transparent 0 27px, rgba(43,108,176,.055) 27px 28px),
+      linear-gradient(120deg, #fffdf6, #fffef9 45%, #faf6ec);
+    max-width:820px;
+    margin:0 auto 44px;
+    padding:44px 48px 52px 92px;
+    border-radius:2px 10px 10px 2px;
+    box-shadow:
+      0 6px 30px rgba(0,0,0,.35),
+      5px 5px 0 -2px #efece1,
+      10px 10px 0 -4px #e3dfd1,
+      13px 14px 26px rgba(0,0,0,.28);
+    position:relative;
+  }
+  .page::before{
+    content:''; position:absolute; top:0; bottom:0; left:66px; width:2px;
+    background:rgba(214,69,53,.32); pointer-events:none;
+  }
+  .page::after{
+    content:''; position:absolute; top:48px; bottom:48px; left:20px; width:22px;
+    background-image:radial-gradient(circle at 11px 11px, var(--desk) 6.5px, rgba(0,0,0,.3) 7px 8px, transparent 8.5px);
+    background-size:22px 96px; background-repeat:repeat-y; pointer-events:none;
+  }
+  @media (max-width:640px){
+    .page{ padding:28px 20px 36px 58px; }
+    .page::before{ left:42px; }
+    .page::after{ left:8px; top:32px; bottom:32px; }
+  }
+
+  /* ── masthead ── */
+  .masthead{
+    border:3px solid var(--ink);
+    padding:18px 22px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    margin-bottom:8px;
+    position:relative;
+    background:rgba(255,255,255,.55);
+  }
+  .masthead::after{
+    content:''; position:absolute; top:-13px; right:30px; width:96px; height:26px;
+    background:rgba(242,183,5,.38); transform:rotate(3deg);
+    box-shadow:0 1px 2px rgba(0,0,0,.08); pointer-events:none;
+  }
+  .masthead.slim::after{ width:64px; height:20px; top:-10px; }
+  .masthead h1{ margin:0; font-size:26px; letter-spacing:.35em; font-weight:900; }
+  .masthead .sub{ margin:4px 0 0; font-size:12px; letter-spacing:.2em; color:var(--ink-soft); }
+  .masthead.slim{ padding:8px 16px; border-width:2px; }
+  .masthead.slim h1{ font-size:16px; letter-spacing:.25em; display:inline; }
+  .masthead.slim .sub{ display:inline; margin:0 0 0 12px; font-size:11px; }
+  .classified{
+    font-family:var(--mono); font-size:11px; font-weight:700;
+    color:var(--stamp); border:2px solid var(--stamp);
+    padding:6px 10px; transform:rotate(-4deg); white-space:nowrap;
+    letter-spacing:.15em;
+  }
+  .pageno{
+    font-family:var(--mono); font-size:11px; color:var(--ink-soft);
+    letter-spacing:.2em; text-align:right; margin:10px 2px 26px;
+  }
+
+  h2.section{
+    font-size:17px; font-weight:900; letter-spacing:.25em;
+    border-left:8px solid var(--hazard);
+    padding:4px 16px 4px 14px; margin:34px 0 6px;
+    width:fit-content;
+    background:linear-gradient(transparent 52%, rgba(242,183,5,.35) 52% 92%, transparent 92%);
+  }
+  h2.section:first-of-type{ margin-top:22px; }
+  .section-note{
+    margin:0 0 18px 22px; font-size:13.5px; color:var(--ink-soft); line-height:1.8;
+    max-width:60ch;
+  }
+  .section-note strong{ color:var(--ink); }
+
+  /* ── intro flow ── */
+  .flow{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:14px; margin:16px 0 4px;
+  }
+  .flow .step{
+    background:#fff; border:1px solid #e3ded2; border-radius:6px;
+    padding:14px 16px; position:relative;
+    box-shadow:0 2px 6px rgba(0,0,0,.06);
+  }
+  .flow .step:nth-child(odd){ transform:rotate(-.35deg); }
+  .flow .step:nth-child(even){ transform:rotate(.35deg); }
+  .flow .step .k{
+    font-family:var(--mono); font-size:11px; font-weight:700;
+    letter-spacing:.15em; color:var(--hazard); display:block; margin-bottom:6px;
+  }
+  .flow .step p{ margin:0; font-size:13px; line-height:1.7; }
+
+  .boxmap{
+    display:grid; grid-template-columns:1fr 1fr; gap:6px;
+    max-width:340px; margin:18px auto 6px;
+  }
+  .boxmap .cell{
+    background:#fff;
+    border:2px solid var(--ink); padding:14px 10px; text-align:center;
+    font-size:12.5px; line-height:1.6; min-height:86px;
+    display:flex; flex-direction:column; justify-content:center; gap:2px;
+  }
+  .boxmap .cell b{ font-size:13px; }
+  .boxmap .cell .tag{ font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--ink-soft); }
+  .boxmap .cell.hot{ background:var(--hazard-soft); border-color:var(--hazard); }
+  .boxmap-caption{ text-align:center; font-size:11.5px; color:var(--ink-soft); margin:6px 0 0; }
+
+  /* ── wire index (page 1, no answers) ── */
+  .idx-list{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+  @media (max-width:560px){ .idx-list{ grid-template-columns:1fr; } }
+  .idx-row{
+    background:#fff; border:1px solid #e3ded2; border-radius:6px;
+    padding:12px 14px;
+    display:flex; align-items:center; gap:14px;
+    box-shadow:0 2px 6px rgba(0,0,0,.06);
+  }
+  .idx-row .no{ font-family:var(--mono); font-weight:700; font-size:13px; letter-spacing:.1em; white-space:nowrap; }
+  .chips{ display:flex; gap:6px; }
+  .chip{ width:24px; height:24px; border-radius:5px; border:1.5px solid rgba(0,0,0,.3); }
+  .idx-row .go{
+    margin-left:auto; font-size:11.5px; color:var(--hazard); font-weight:700; white-space:nowrap;
+  }
+
+  /* ── wire diagram on set pages ── */
+  .wcard{
+    background:#fff; border:1px solid #e3ded2; border-radius:6px;
+    padding:20px 18px 14px; max-width:420px; margin-top:18px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    position:relative; transform:rotate(-.35deg);
+  }
+  .wcard::before{
+    content:''; position:absolute; top:-9px; left:26px;
+    transform:rotate(-3deg); width:64px; height:16px;
+    background:rgba(214,69,53,.16); box-shadow:0 1px 2px rgba(0,0,0,.06);
+    pointer-events:none;
+  }
+  .wcard .seq{ font-size:12.5px; color:var(--ink-soft); letter-spacing:.06em; display:block; margin-bottom:8px; }
+  .wcard .cut{ margin:8px 0 2px; font-size:15px; font-weight:800; }
+  .wcard .cut em{
+    font-style:normal; color:var(--hazard);
+    border-bottom:3px double var(--hazard); padding:0 2px;
+  }
+  .wcard svg{ display:block; width:100%; height:auto; }
+
+  /* ── zones ── */
+  .zones{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+  @media (max-width:640px){ .zones{ grid-template-columns:1fr; } }
+  .zone{
+    background:#fff; border:1px solid #e3ded2; border-radius:6px;
+    padding:16px 10px 18px; text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    position:relative;
+  }
+  .zone::before{
+    content:''; position:absolute; top:-9px; left:50%;
+    transform:translateX(-50%) rotate(-2deg); width:58px; height:16px;
+    background:rgba(43,108,176,.18); box-shadow:0 1px 2px rgba(0,0,0,.06);
+    pointer-events:none;
+  }
+  .zones .zone:nth-child(1){ transform:rotate(-.6deg); }
+  .zones .zone:nth-child(2){ transform:rotate(.45deg); }
+  .zones .zone:nth-child(3){ transform:rotate(-.3deg); }
+  .zone .zk{
+    font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.12em;
+    color:var(--hazard); display:block; margin-bottom:8px;
+  }
+  .zone svg{ display:block; margin:0 auto; }
+  .zone .zt{ font-size:12.5px; margin:8px 0 0; line-height:1.7; }
+  .zone .zt b{ font-size:13px; }
+  .muted{ color:var(--ink-soft); }
+
+  /* ── GM page ── */
+  .gm-banner{
+    border:3px double var(--stamp); color:var(--stamp);
+    text-align:center; font-weight:900; letter-spacing:.3em;
+    padding:10px; margin:20px 0 6px; font-size:15px;
+  }
+  table.gm{ width:100%; border-collapse:collapse; margin-top:14px; font-size:12.5px; background:rgba(255,255,255,.9); }
+  table.gm th{
+    border-bottom:2px solid var(--ink); text-align:left; padding:8px 8px;
+    font-size:11px; letter-spacing:.12em;
+  }
+  table.gm td{
+    border-bottom:1px solid var(--rule); padding:9px 8px; vertical-align:top;
+    font-variant-numeric:tabular-nums; line-height:1.65;
+  }
+  table.gm tr.decoy td{ background:var(--hazard-soft); }
+  .pill{
+    font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em;
+    padding:2px 7px; border:1.5px solid currentColor; white-space:nowrap;
+  }
+  .pill.real{ color:#2e8b46; }
+  .pill.fake{ color:var(--stamp); }
+  .gm-notes{ font-size:13px; line-height:1.9; max-width:62ch; }
+  .gm-notes li{ margin-bottom:6px; }
+  .score{
+    display:inline-block; font-family:var(--mono); font-weight:700;
+    background:var(--ink); color:var(--paper); padding:2px 8px; font-size:12px;
+  }
+  .table-scroll{ overflow-x:auto; }
+
+  /* ── notebook tabs & paging ── */
+  .tabbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+    padding:14px 8px; margin:-32px -12px 28px;
+    background:var(--desk); box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+  .tab{
+    font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em;
+    color:var(--tab-fg); border:1.5px solid var(--tab-border);
+    padding:7px 12px; border-radius:6px; text-decoration:none; white-space:nowrap;
+  }
+  .tab:hover{ border-color:var(--tab-fg); }
+  .tab:focus-visible{ outline:2px solid var(--hazard); outline-offset:2px; }
+  .nav-btn{ min-width:96px; text-align:center; }
+  .nav-btn.disabled{ opacity:.35; pointer-events:none; }
+  .pageind{
+    font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em;
+    color:var(--tab-fg); padding:7px 14px; white-space:nowrap;
+    display:inline-flex; align-items:center;
+  }
+  .pageind .gm-mark{ color:#c96f69; margin-left:6px; }
+  .page{ display:none; }
+  .page.active{ display:block; animation:flip .25s ease; }
+  @keyframes flip{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .page.active{ animation:none; } }
+  a.idx-row{ color:inherit; text-decoration:none; transition:background .15s,border-color .15s; }
+  a.idx-row:hover{ background:var(--hazard-soft); border-color:var(--hazard); }
+  a.idx-row:focus-visible{ outline:2px solid var(--hazard); outline-offset:2px; }
+
+  @media print{
+    body{ background:#fff; padding:0; }
+    .tabbar{ display:none; }
+    .page{
+      display:block; box-shadow:none; margin:0; max-width:none;
+      background:#fff; border-radius:0; padding:24px 32px;
+      page-break-after:always;
+    }
+    .page::before, .page::after, .masthead::after, .zone::before, .wcard::before{ display:none; }
+    .zone, .wcard, .flow .step, .zones .zone{ transform:none; box-shadow:none; }
+    .masthead{ background:none; }
+    .page:last-child{ page-break-after:auto; }
+  }
+</style>
+<style>.page{display:block}</style>
+</head>
+<body>
+<!-- ═══════════════ 第 10 頁:主持人答案總表 ═══════════════ -->
+<div class="page" id="p-gm">
+  <div class="masthead">
+    <div>
+      <h1>主持人總表</h1>
+      <p class="sub">GAME MASTER KEY · 出題與計分專用</p>
+    </div>
+    <div class="classified">最高機密<br>僅主持人</div>
+  </div>
+  <p class="pageno">HOST ONLY · 請勿把這個網址給任何玩家</p>
+
+  <div class="gm-banner">⚠ 本頁不可讓拆彈手、觀測員、解碼員看到 ⚠</div>
+
+  <h2 class="section">八組題目真偽</h2>
+  <p class="section-note">手冊共列 8 組:<strong>6 組是真的</strong>(實際做成炸彈盒),<strong>題組 2、題組 6 是混亂用的假題</strong> — 線色排列與真題極為相似,只放在手冊裡干擾,不做成實體。</p>
+
+  <div class="table-scroll">
+  <table class="gm">
+    <thead><tr>
+      <th scope="col">題組</th><th scope="col">真偽</th><th scope="col">線(左→右)</th><th scope="col">剪</th><th scope="col">形狀 2×2(上排/下排)</th><th scope="col">竹籤 左→右</th><th scope="col">磁鐵 上/下左/下右</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="pill real">真</span></td><td>黑 紅 綠 白</td><td><b>綠</b></td><td>大圓 星星/愛心 小圓</td><td>紅 藍 黃 綠</td><td>4黃 / 1紅 / 6藍</td></tr>
+      <tr class="decoy"><td>2</td><td><span class="pill fake">假・混亂</span></td><td>綠 白 紅 黑</td><td>紅</td><td>愛心 大圓/小圓 星星</td><td>黃 藍 橘 紅</td><td>2綠 / 6黃 / 4紅</td></tr>
+      <tr><td>3</td><td><span class="pill real">真</span></td><td>白 綠 紅 黑</td><td><b>白</b></td><td>星星 愛心/小圓 大圓</td><td>橘 綠 紅 藍</td><td>5藍 / 3綠 / 1黃</td></tr>
+      <tr><td>4</td><td><span class="pill real">真</span></td><td>黑 白 綠 紅</td><td><b>紅</b></td><td>小圓 大圓/星星 愛心</td><td>黃 紅 綠 橘</td><td>6紅 / 3藍 / 1綠</td></tr>
+      <tr><td>5</td><td><span class="pill real">真</span></td><td>紅 綠 白 黑</td><td><b>黑</b></td><td>愛心 小圓/大圓 星星</td><td>藍 橘 綠 黃</td><td>1綠 / 2黃 / 5紅</td></tr>
+      <tr class="decoy"><td>6</td><td><span class="pill fake">假・混亂</span></td><td>黑 綠 白 紅</td><td>白</td><td>小圓 星星/大圓 愛心</td><td>綠 紅 黃 藍</td><td>6藍 / 2紅 / 5黃</td></tr>
+      <tr><td>7</td><td><span class="pill real">真</span></td><td>綠 黑 白 紅</td><td><b>黑</b></td><td>大圓 愛心/星星 小圓</td><td>藍 綠 橘 紅</td><td>5綠 / 1藍 / 3紅</td></tr>
+      <tr><td>8</td><td><span class="pill real">真</span></td><td>紅 白 黑 綠</td><td><b>綠</b></td><td>星星 小圓/愛心 大圓</td><td>橘 紅 黃 綠</td><td>2紅 / 4藍 / 6綠</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 class="section">計分與佈置</h2>
+  <ul class="gm-notes">
+    <li>剪對線 <span class="score">+10 分</span>(每組一次機會;剪錯可視難度決定直接爆炸或扣分)。</li>
+    <li>三個開盒區塊可自訂:例如每區完成再各 +10 分,全部完成額外加成。</li>
+    <li>實體佈置:依「真」的 6 組製作炸彈盒 — 左上裝該組四色線(順序照表)、右上放 5 支竹籤(紅黃橘藍綠)、左下放 4 個形狀片、右下放 1–6 號磁鐵。</li>
+    <li>磁鐵上色:每盒的磁鐵依表塗色或貼色貼(黃/紅/綠/藍)— 同一號碼在不同盒子顏色可能不同,解碼員必須同時傳「號碼＋顏色」,號碼和顏色都對才算完成。</li>
+    <li>混亂題(2、6)只印在手冊,不做實體;它們的線色和真題只差一兩個位置,逼解碼員逐字核對。</li>
+    <li>角色檢查:拆彈手確實矇眼、觀測員耳機音量夠大聽不到說話、解碼員全程不出聲(出聲可扣分)。</li>
+    <li>手勢提示(可選):預設<b>不</b>教玩家手勢,讓他們自己發明溝通方式。若隊伍完全卡死,主持人可提示:數字用手指比、顏色拍身體部位(頭=紅、肩=黃、手肘=橘、膝=藍、腳=綠)、形狀用手在空中畫、剪刀手勢=剪。</li>
+    <li>Web 版對應:同一份答案表可直接做成遊戲的關卡資料(6 關 + 手冊 8 組)。</li>
+  </ul>
+</div>
+
+
+</body>
+</html>
