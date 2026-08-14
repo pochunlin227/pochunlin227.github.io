@@ -314,11 +314,11 @@
   }
   @media (max-width:1099px){
     .spread.active.flip-fwd{
-      animation:flipFwd .9s cubic-bezier(.25,.6,.3,1);
+      animation:flipFwd .7s cubic-bezier(.25,.6,.3,1);
       transform-origin:left center;
     }
     .spread.active.flip-back{
-      animation:flipBack .9s cubic-bezier(.25,.6,.3,1);
+      animation:flipBack .7s cubic-bezier(.25,.6,.3,1);
       transform-origin:right center;
     }
   }
@@ -338,10 +338,11 @@
   .spread .flippg.as-left .page::after{ left:auto; right:20px; }
   .flippg.stay{ z-index:5; }
   .spread.opening > .page{ visibility:hidden; }
-  .flippg.rise-right{ transform-origin:left center; animation:riseR .45s cubic-bezier(.5,.05,.85,.4) forwards; }
-  .flippg.land-left{ transform-origin:right center; animation:landL .45s cubic-bezier(.15,.6,.4,1) forwards; }
-  .flippg.rise-left{ transform-origin:right center; animation:riseL .45s cubic-bezier(.5,.05,.85,.4) forwards; }
-  .flippg.land-right{ transform-origin:left center; animation:landR .45s cubic-bezier(.15,.6,.4,1) forwards; }
+  .spread.measuring > .page{ visibility:hidden; }
+  .flippg.rise-right{ transform-origin:left center; animation:riseR .34s cubic-bezier(.5,.05,.85,.4) forwards; }
+  .flippg.land-left{ transform-origin:right center; animation:landL .34s cubic-bezier(.15,.6,.4,1) forwards; }
+  .flippg.rise-left{ transform-origin:right center; animation:riseL .34s cubic-bezier(.5,.05,.85,.4) forwards; }
+  .flippg.land-right{ transform-origin:left center; animation:landR .34s cubic-bezier(.15,.6,.4,1) forwards; }
   @keyframes riseR{ 0%{ transform:perspective(2400px) rotateY(0deg); } 100%{ transform:perspective(2400px) rotateY(-88deg); } }
   @keyframes landL{ 0%{ transform:perspective(2400px) rotateY(88deg); } 100%{ transform:perspective(2400px) rotateY(0deg); } }
   @keyframes riseL{ 0%{ transform:perspective(2400px) rotateY(0deg); } 100%{ transform:perspective(2400px) rotateY(88deg); } }
