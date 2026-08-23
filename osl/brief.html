@@ -84,6 +84,24 @@ section{padding:64px 0}
 .callout p.claim{color:var(--ink); font-size:1.06rem; font-weight:600; letter-spacing:-.01em;
   line-height:1.45}
 
+/* input chips */
+.inputs{display:flex; flex-wrap:wrap; gap:7px; margin-top:11px}
+.inputs span{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.02em;
+  color:var(--accent); background:var(--accent-soft); border-radius:99px; padding:5px 11px}
+
+/* funnel diagram */
+.funnel{border:1px solid var(--rule); border-radius:12px; background:var(--surface-2);
+  padding:16px 16px 14px; margin:4px 0 14px; overflow-x:auto}
+.fsteps{display:flex; align-items:center; gap:6px; min-width:520px}
+.fstep{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.02em; white-space:nowrap;
+  color:var(--ink); border:1px solid var(--rule); border-radius:7px; padding:5px 8px; background:var(--surface)}
+.farrow{color:var(--ink-3); font-size:11px; flex:none}
+.fnotes{display:flex; gap:6px; margin-top:9px; min-width:520px}
+.fnote{flex:1; border-top:1px solid var(--rule-2); padding-top:7px; font-size:11px;
+  line-height:1.35; color:var(--ink-2)}
+.fnote b{display:block; color:var(--accent); font-family:"IBM Plex Mono",monospace; font-size:9px;
+  letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px}
+
 /* persona map */
 .map{border:1px solid var(--rule); border-radius:11px; overflow:hidden; margin-top:10px;
   background:var(--surface-2)}
@@ -192,11 +210,12 @@ footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px
 }
 </style>
 
+
 <header class="mast">
   <div class="wrap">
-    <p class="eyebrow">Design exercise &middot; Page 2 of 2 &middot; The brief</p>
-    <h1>Why this screen is <em>built the way it is</em></h1>
-    <p class="lead">Design decisions, how I would research the drop-off, the assumption I would put in front of users first, and where AI did and did not belong in getting here.</p>
+    <p class="eyebrow">Design exercise &middot; The brief</p>
+    <h1>Why this screen is <em>built this way</em></h1>
+    <p class="lead">The product thesis, the inputs that shaped it, the decisions on the screen, how I would research abandonment, the assumption I would validate, and where AI belonged in the process.</p>
     <p class="navlink"><a href="index.html">&larr; Overview</a> &middot; prototype: <a href="banxa-verify-light.html">wallet</a> &middot; <a href="banxa-verify-consumer-light.html">consumer app</a></p>
   </div>
 </header>
@@ -207,77 +226,145 @@ footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px
       <div class="doc">
 
         <div class="block">
-          <h3>The reframe <em>What the screen is for</em></h3>
+          <h3>The product thesis <em>What the screen is for</em></h3>
           <div class="callout">
-            <p class="claim">The screen's job is not to justify the identity check. It is to be the last unknown in the flow.</p>
+            <p class="claim">KYC is required. Surprise is not.</p>
           </div>
-          <p>Verification is non-negotiable &mdash; customer due diligence is a standing expectation for virtual asset service providers. How predictable it feels is ours. &ldquo;First-time buyer&rdquo; is also not one person: six motivations arrive here, each with its own objection, and the screen has to answer all six without naming any.</p>
-          <div class="map">
-            <div class="mrow mhead"><div>Who</div><div>Thinking at this step</div><div>What the screen owes them</div></div>
-            <div class="mrow pri"><div><b>Curious sampler</b><span class="pt">Primary</span></div><div><q>It's $200. Why my passport?</q></div><div>Reasons that hold at any size &mdash; the ask is about the account, not the amount.</div></div>
-            <div class="mrow"><div><b>FOMO buyer</b></div><div><q>Will I lose this price?</q></div><div>Order saved, time named, nothing charged yet.</div></div>
-            <div class="mrow"><div><b>Long-term beginner</b></div><div><q>Is this a scam?</q></div><div>The handoff named up top; licensing as a reason to stay.</div></div>
-            <div class="mrow"><div><b>Utility buyer</b></div><div><q>Don't make this a project.</q></div><div>The whole path in view; nothing over two minutes.</div></div>
-            <div class="mrow"><div><b>Self-custody believer</b></div><div><q>Isn't crypto free of this?</q></div><div>An honest boundary: the price of the card, not the chain.</div></div>
-            <div class="mrow"><div><b>Brought by a friend</b></div><div><q>I don't know these words.</q></div><div>Wallet address answered before they meet it.</div></div>
+          <p>For a first-time buyer, identity verification can feel like the product changes halfway through: they choose an amount and payment method, then an unfamiliar provider asks for an ID.</p>
+          <p>This screen is designed to make that required step feel predictable rather than punitive. Before asking for anything sensitive, it clarifies who is handling verification, why it matters to the buyer, what they need to do, and what happens to the order while they do it.</p>
+          <div class="inputs">
+            <span>~50 survey responses</span>
+            <span>10+ competitor flows reviewed</span>
+            <span>OSL design language</span>
           </div>
+        </div>
 
+        <div class="block">
+          <h3>Design process <em>Three inputs</em></h3>
+          <ul>
+            <li><b>First-time buyer survey.</b> I ran an early survey with approximately 50 participants to understand how people react when KYC appears after they have selected an amount and payment method. It explored trust, privacy, payment safety, effort, and unfamiliar crypto terminology.</li>
+            <li><b>Competitor review.</b> I reviewed more than 10 crypto buying and payment apps to understand how identity verification is introduced in real purchase flows &mdash; when KYC appears, how providers explain the request, whether order and payment status remain visible, how verification methods are presented, and how users are supported when they meet unfamiliar terms.</li>
+            <li><b>OSL design language.</b> The interface uses OSL's design language as its base: colour, typography, hierarchy, and interaction patterns. This keeps the verification moment connected to the OSL ecosystem, rather than making it feel like a suspicious or disconnected third-party handoff.</li>
+          </ul>
         </div>
 
         <div class="block">
           <h3>Design decisions <em>Why this screen</em></h3>
           <ul>
-            <li><b>Introduce the stranger first.</b> The buyer tapped Buy inside another app; a company they have never heard of now wants a passport. One line names the handoff &mdash; and that this is the name on their statement. Built for two entry contexts: a self-custody wallet and a consumer money app.</li>
-            <li><b>Prompt in place before interrupting.</b> Verification arrives as a banner inside the buy screen, beside the live price and the amount they chose. A hard interruption is the moment a first-time buyer leaves and does not come back. The banner cannot be dismissed &mdash; the step is real &mdash; but it never seizes the screen either.</li>
-            <li><b>Buy stays visible, and stays off.</b> The purchase button is disabled until the check is done, but never leaves: the destination stays in view, and the banner directly above it is the way through. A gated primary action needs its reason within a thumb's reach or it reads as a bug.</li>
-            <li><b>The reason is the headline, not a footnote.</b> The banner and the sheet both lead with the benefit &mdash; <em>so nobody else can buy in your name</em> &mdash; and the privacy answer sits in the same breath, because &ldquo;never sold&rdquo; is the specific worry people voice about ID uploads. The regulatory reason is off the surface: it explains our obligation, not theirs. It was the first thing I cut, and whether that was right is worth checking.</li>
-            <li><b>Show the whole remaining path.</b> Four steps, total time, what comes next. Unpredictability, not identity, is what makes this feel punitive &mdash; and this makes &ldquo;necessary, not punitive&rdquo; checkable rather than asserted. The wallet address, from a real drop-off, is answered one line before they meet it.</li>
-            <li><b>Offer the method, not just the mandate.</b> The sheet goes straight to <em>how</em> &mdash; camera, upload, or tapping a passport to the phone. The live question is what your hands will do. The chip option is there because it is fastest and most flows omit it.</li>
-            <li><b>Close the loop out loud.</b> On success the banner is replaced by a verified row, Buy switches on, and the sheet says the order survived and the price is live again &mdash; answering, at the only moment it can be proved, the fear that started the whole hesitation.</li>
-            <li><b>Make the exit useful, and refuse punitive tone.</b> No Cancel; the only way out saves the order and sends a link. No red, no Required badge, no padlock as a barrier, and the failure path described before anyone fails.</li>
+            <li><b>Keep the purchase in view.</b> The selected amount, payment method, and Buy action remain visible. Verification is positioned as the path to completing the purchase &mdash; not a separate compliance flow that interrupts it.</li>
+            <li><b>Lead with the user benefit.</b> The screen explains verification through buyer protection, privacy, and order safety before introducing regulatory detail. At this moment users need to know why an ID request protects them, not only why the business is required to make it.</li>
+            <li><b>Make the next step feel finite.</b> The flow shows what is required, expected time, available verification methods, and what happens after approval. This reduces the feeling of entering an open-ended process.</li>
+            <li><b>Prepare users before they meet unfamiliar terms.</b> A first-time buyer may be willing to verify their identity but still abandon later when they see a term such as &ldquo;wallet address&rdquo; without context. Important concepts should be explained at the point of need, not after the user is already blocked.</li>
+            <li><b>Use visual continuity to build trust.</b> OSL's visual language provides a familiar, calm foundation for a sensitive moment. The design avoids warning-heavy patterns and treats verification as a normal part of a financial journey.</li>
           </ul>
         </div>
 
         <div class="block">
-          <h3>Research approach <em>Why people leave here</em></h3>
-          <p>Three populations sit behind one drop-off number and need opposite fixes: people who <b>won't</b> (don't accept or trust the ask), who <b>can't</b> (no ID to hand, unsupported document, name mismatch) and who <b>got stuck</b> (capture failure, rejection, silent pending). Sizing them precedes any copy decision.</p>
-          <ul>
-            <li><b>Instrument the step, not the screen.</b> Every sub-event from view to paid, with retries and back taps, cut by partner, document type and device &mdash; separating never-started from started-and-broke.</li>
-            <li><b>Ask at the moment of leaving.</b> One question on back-out &mdash; the only instrument that reaches people who never return.</li>
-            <li><b>Mine what exists.</b> Tickets, chat transcripts and store reviews, coded for theme &mdash; a day's work that usually reframes the problem before a session is booked.</li>
-            <li><b>Watch first-timers for real</b> &mdash; own phone, at home, from a partner app. &ldquo;My passport is upstairs&rdquo; never happens in a lab.</li>
-            <li><b>Call abandoners within 48 hours,</b> while the decision is recalled rather than reconstructed.</li>
-            <li><b>Then experiment,</b> one lever per arm, so results attribute to a cause.</li>
-          </ul>
-        </div>
-
-        <div class="block">
-          <h3>The assumption I'd validate <em>What this bets</em></h3>
-          <div class="callout">
-            <p class="claim">First-time buyers do not necessarily abandon because verification exists. They abandon because it appears unexpectedly, and they cannot predict its purpose, its effort, its privacy implications, or whether the purchase they already committed to will survive it.</p>
+          <h3>How I would research abandonment <em>Where users actually leave</em></h3>
+          <div class="funnel">
+            <div class="fsteps">
+              <span class="fstep">View KYC prompt</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Start verification</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Select method</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Capture / upload</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Submit</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Approved</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Buy</span>
+            </div>
+            <div class="fnotes">
+              <span class="fnote"><b>Trust</b>trust / surprise</span>
+              <span class="fnote"><b>Intent</b>willingness to start</span>
+              <span class="fnote"><b>Capability</b>documents, eligibility, access</span>
+              <span class="fnote"><b>Operational</b>capture, review, recovery failure</span>
+            </div>
           </div>
-          <p><b>Where it comes from.</b> Baymard puts documented checkout abandonment at 70.22% across fifty studies &mdash; distrust over card details 19%, forced account creation 18%, checkout too long or complicated 17%. Unexpected demands, not price. The sharper input is my own drop-off, because it was not the identity check: I cleared an on-ramp's verification and stopped at <b>Your wallet address</b>, did not know what one was, and left.</p>
-          <p><b>How I'd test it.</b> Code exit-survey text against the four predictability gaps &mdash; purpose, effort, privacy, order safety &mdash; plus a fifth for plain capability, and size them. Then two arms: one changes only the reasons and tone, the other only predictability. If the concept is right, the predictability arm carries the lift.</p>
-          <p><b>What would prove me wrong.</b> If can't and stuck together exceed roughly half the drop-off, or the reasons arm wins, this screen is decoration and the work belongs downstream in capture, ID coverage and resume flows. The banner carries its own risk worth measuring separately: it is persistent but non-blocking, which protects the session and can also be scrolled straight past, so I would watch banner-to-sheet rate against a blocking variant before assuming gentler is better.</p>
+          <p>The first survey helps identify perceived concerns. The next phase would measure where users actually leave.</p>
+          <ul>
+            <li><b>Instrument the entire journey.</b> Track progression, retries, back-outs, completion time, and failure states by partner, device, market, and document type.</li>
+            <li><b>Separate the drop-off into three groups.</b> <em>Won't proceed</em> &mdash; users who do not trust or accept the request. <em>Can't proceed</em> &mdash; users with document, eligibility, or access issues. <em>Get stuck</em> &mdash; users who begin but fail during capture, review, or recovery.</li>
+            <li><b>Ask at the point of exit.</b> A lightweight back-out question &mdash; &ldquo;What stopped you today?&rdquo; &mdash; reaches users who may never return.</li>
+            <li><b>Pair data with real behaviour.</b> Review support tickets, chat themes, and app-store feedback. Then observe first-time buyers on their own devices and in their own environment, where contextual friction is more visible.</li>
+            <li><b>Test one lever at a time.</b> Test reassurance, information timing, and verification mechanics separately, so any improvement in completion can be attributed to a clear cause.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>What this instrument can and cannot settle <em>Limits</em></h3>
+          <ul>
+            <li><b>Roughly 30&ndash;40 usable responses.</b> Fifty in the field, minus those screened out at Q1. Directional only, and nowhere near enough to cut by segment &mdash; six motivations across thirty-five people is five per cell, which is a story, not a finding.</li>
+            <li><b>Stated privacy concern will be inflated.</b> Q5 and Q15 ask how worried people are, and privacy is the textbook case where stated and revealed preference diverge. My own drop-off is the counter-example: I did not leave over privacy, I left because I did not understand a word.</li>
+            <li><b>Q4 and Q11 are stated intention.</b> Weak predictors of behaviour at the best of times, and Q11 asks people to rate my screen inside my own survey &mdash; expect a flattering number. The open text at Q12 and Q13 is where the signal actually is.</li>
+            <li><b>Q9 and Q10 are the only behavioural anchor.</b> Recalled action, not imagined action. They get weighted above everything else.</li>
+          </ul>
+          <p style="margin-top:11px"><a href="research.html">Full pre-registration &mdash; question weighting, and what I would fix in the instrument &rarr;</a></p>
+        </div>
+
+        <div class="block">
+          <h3>Pre-registered predictions <em>And what each one changes</em></h3>
+          <div class="map">
+            <div class="mrow mhead"><div>Question</div><div>What I predict</div><div>What I do about it</div></div>
+            <div class="mrow pri">
+              <div><b>Q10 verbatims</b><span class="pt">The one that matters</span></div>
+              <div>Reasons skew to friction and failure &mdash; could not find the document, capture kept failing, gave up waiting &mdash; not to refusal on privacy grounds.</div>
+              <div>Code into <b>won't / can't / stuck</b>. If can't + stuck reach half, this screen is not the highest-leverage surface and the work moves to capture and recovery. That is the kill criterion in the brief, and this is the question that fires it.</div>
+            </div>
+            <div class="mrow">
+              <div><b>Q5</b> what stops you</div>
+              <div>Privacy options lead on raw counts. But the predictability cluster &mdash; how long, what documents, has my card been charged &mdash; lands within about fifteen points of them.</div>
+              <div>If the two clusters are that close, predictability wins the design, because stated privacy concern is inflated and stated effort concern is not.</div>
+            </div>
+            <div class="mrow">
+              <div><b>Q7</b> message test</div>
+              <div>The benefit framing beats the regulatory one heavily; &ldquo;to meet regulatory requirements&rdquo; takes under fifteen percent.</div>
+              <div>Confirms demoting regulation off the surface. If it wins or comes close, that call was wrong and the licensing line goes back on the screen.</div>
+            </div>
+            <div class="mrow">
+              <div><b>Q17</b> time tolerance</div>
+              <div>Median at 1&ndash;3 minutes, with a meaningful share choosing &ldquo;it depends on the amount.&rdquo;</div>
+              <div>If under-a-minute plus depends-on-amount exceed forty percent, a flat &ldquo;&asymp; 3 min&rdquo; is a liability. The screen switches to per-step progress and time remaining, and the total comes off.</div>
+            </div>
+            <div class="mrow">
+              <div><b>Q14 / Q15</b> ranking</div>
+              <div>Data protection ranks first or second. Less obviously, &ldquo;has my payment already been charged&rdquo; lands in the top three.</div>
+              <div>If the payment worry ranks high it justifies &ldquo;nothing charged yet&rdquo; keeping prime position. If it ranks last, that line shrinks and the space goes to the failure path.</div>
+            </div>
+            <div class="mrow">
+              <div><b>Q16</b> information priority</div>
+              <div>&ldquo;What to do if verification fails&rdquo; scores higher than its usual place in the flow &mdash; near the bottom of a FAQ.</div>
+              <div>If it lands top three, the rejection-recovery screen stops being out of scope and becomes the next thing designed.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>The assumption to validate <em>What this design bets</em></h3>
+          <div class="callout">
+            <p class="claim">First-time buyers are not one abandonment group. Some leave because an unfamiliar provider asking for ID creates a trust and privacy concern. Others are willing to complete KYC, but abandon when crypto-specific concepts &mdash; such as a wallet address &mdash; appear without enough explanation at the moment they need to act.</p>
+            <p>This treats abandonment as both a trust gap and a comprehension gap.</p>
+          </div>
+          <p>If trust-related concerns dominate, the product should improve provider transparency, privacy reassurance, and payment clarity. If comprehension-related concerns dominate, the product should introduce contextual explanations and improve handoffs throughout the purchase journey.</p>
+          <p>If document, capture, or review failures account for most drop-off, this screen is not the main problem. The work should move downstream into ID coverage, capture quality, review states, and recovery flows.</p>
         </div>
 
         <div class="block">
           <h3>AI in my process <em>Where it helped</em></h3>
-          <p><b>Used for.</b> Breadth early &mdash; twenty framings of the reasons block so I could see the range rather than take the first; a desk scan of how regulated apps word this step; first-pass coding of tickets and open text, hand-checked on a sample; and building the prototypes fast.</p>
-          <p><b>Not trusted with.</b> Anything standing in for a real person &mdash; it has never had a passport upstairs or stalled on a word it did not know. Not why a number moved. Not final regulatory or privacy wording, which is compliance's. And never real user data into a general model.</p>
+          <p>AI was used as an exploration and synthesis assistant &mdash; not as the source of product truth.</p>
+          <p><b>What I used it for.</b> Building an early map of the crypto buying journey and common first-time buyer questions; summarising publicly available crypto, payment, and checkout research to identify themes worth investigating; drafting the initial survey plan and alternative question wording; creating a structured framework for reviewing 10+ competitor purchase flows; exploring different KYC messaging and information-hierarchy options; and building and iterating the HTML prototypes quickly.</p>
+          <p><b>How I evaluated it.</b> I compared an AI-first output, created with minimal direction, with a version shaped through my own research, competitor review, survey design, and product reasoning. The AI-first output usually produced more generic reassurance copy and too much information at once. I used it to explore the range, then reviewed and refined against the actual user task, partner context, and evidence collected.</p>
+          <p><b>What I would not trust it with.</b> Replacing user research or deciding which user concern matters most; explaining why a conversion metric changed without behavioural evidence; final compliance, privacy, or regulatory wording; and processing real user identities, documents, tickets, or other sensitive data in a general-purpose model.</p>
           <div class="ai">
             <div>
-              <p class="tag">Asked for &mdash; explain &ldquo;wallet address&rdquo; in one sentence</p>
+              <p class="tag">AI-generated output</p>
               <q>A wallet address is a unique alphanumeric identifier that represents the destination of your cryptocurrency transaction on the blockchain.</q>
-              <small>Fluent, accurate, useless at the moment it is needed.</small>
+              <small>Technically correct, and it answers a question nobody asked.</small>
             </div>
             <div>
-              <p class="tag out">Rejected &mdash; what shipped instead</p>
-              <q>Where your Bitcoin gets delivered &mdash; like an account number, for crypto. MetaMask already gave us yours.</q>
-              <small>Written after sitting with what the question actually is.</small>
+              <p class="tag out">Modified &mdash; what shipped</p>
+              <q>This is where your crypto will be delivered &mdash; like an account number for crypto. If you are buying through your wallet, it may already be connected for you.</q>
+              <small>Final wording still to be verified against the actual partner integration.</small>
             </div>
           </div>
-          <p class="verdict"><b>Verdict: rejected.</b> Someone asking what a wallet address is wants to know <em>do I have one, and am I about to lose my money getting this wrong.</em> The unblocking sentence is &ldquo;you already have one, and we have it&rdquo; &mdash; a fact that lives in the partner integration, not in the language.</p>
+          <p class="verdict"><b>Verdict: modified.</b> The original does not answer the first-time buyer's real question &mdash; <em>do I already have one, and could I lose my money if I get this wrong?</em></p>
         </div>
 
       </div>
@@ -286,8 +373,8 @@ footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px
         <div class="rail-card">
           <p class="label">How I'd know it worked</p>
           <div class="metric"><b>Verification completed &lt; 24h</b><span>Primary. From first view of this screen, not from action tap.</span></div>
-          <div class="metric"><b>View &rarr; action tap</b><span>Isolates whether the framing on this screen is doing its job.</span></div>
-          <div class="metric"><b>Destination step completion</b><span>The downstream proof that explaining it early actually worked.</span></div>
+          <div class="metric"><b>Prompt &rarr; start rate</b><span>Whether the banner is doing its job or being scrolled past.</span></div>
+          <div class="metric"><b>Destination step completion</b><span>The downstream proof that explaining a wallet address early actually worked.</span></div>
           <div class="metric"><b>Resume rate from saved orders</b><span>Whether the deferral exit recovers people or just hides the loss.</span></div>
           <div class="metric guard"><b>Fraud &amp; chargeback rate</b><span>Guardrail. A friction win that lets bad actors through is not a win.</span></div>
           <div class="metric guard"><b>Support contacts / 100 checks</b><span>Guardrail. Confusion moved off-screen is still confusion.</span></div>
@@ -295,14 +382,8 @@ footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px
         </div>
         <div class="rail-card">
           <p class="label">Out of scope, deliberately</p>
-          <div class="metric"><b>The capture screens</b><span>Where &ldquo;stuck&rdquo; users are actually lost. Different problem, different research.</span></div>
-          <div class="metric"><b>The pending state</b><span>Silent waits after submission are their own abandonment risk.</span></div>
-          <div class="metric"><b>Rejection recovery</b><span>The screen promises a survivable failure. That promise needs designing too.</span></div>
-        </div>
-        <div class="rail-card">
-          <p class="label">Open with compliance</p>
-          <div class="metric"><b>Retention wording</b><span>The screen commits to a retention period shown before capture. That number is theirs.</span></div>
-          <div class="metric"><b>Licensing phrasing</b><span>All regulatory language here is placeholder, pending review per market.</span></div>
+          <div class="metric"><b>Capture screens</b><span>Where &ldquo;stuck&rdquo; users are actually lost.</span></div>
+          <div class="metric"><b>Pending and rejection states</b><span>The screen promises a survivable failure; that promise needs designing too.</span></div>
         </div>
       </aside>
     </div>
@@ -310,6 +391,6 @@ footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px
 </section>
 
 <footer class="wrap">
-  <span>Independent design exercise. All regulatory wording is placeholder. Sources: Baymard Institute cart-abandonment research (Sept 2025); FATF virtual assets guidance.</span>
-  <span class="mono">PAGE 2 / 2 &middot; THE BRIEF</span>
+  <span>Independent design exercise. Not affiliated with or endorsed by OSL Group or Banxa; partner names are illustrative and all regulatory wording is placeholder, pending compliance review per market. Sources: first-time buyer survey (~50 respondents), comparative review of 10+ crypto buying and payment flows, published checkout research.</span>
+  <span class="mono">THE BRIEF</span>
 </footer>
