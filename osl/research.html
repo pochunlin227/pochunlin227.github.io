@@ -7,7 +7,7 @@
 <style>
 :root{
   --ground:#ECEEE6; --surface:#F6F7F3; --surface-2:#FFFFFF; --ink:#101208;
-  --ink-2:#474C40; --ink-3:#6F7468; --rule:#CFD1C8; --rule-2:#E0E2D9;
+  --ink-2:#474C40; --ink-3:#5F6458; --rule:#CFD1C8; --rule-2:#E0E2D9;
   --accent:#5C8A00; --accent-soft:#EEF7DA; --ochre:#5C8A00;
   --shadow:rgba(21,26,46,.10); --shadow-2:rgba(21,26,46,.16);
   --hl:rgba(168,129,47,.16); --hl-line:#A8812F;
@@ -15,7 +15,7 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --ground:#000000; --surface:#101112; --surface-2:#0C0D0E; --ink:#F5F7F0;
-    --ink-2:#A8AC9F; --ink-3:#7A7E74; --rule:#232426; --rule-2:#1B1C1E;
+    --ink-2:#A8AC9F; --ink-3:#9A9E94; --rule:#232426; --rule-2:#1B1C1E;
     --accent:#A6F60A; --accent-soft:rgba(166,246,10,.13); --ochre:#A6F60A;
     --shadow:rgba(0,0,0,.4); --shadow-2:rgba(0,0,0,.55);
     --hl:rgba(201,163,78,.18); --hl-line:#C9A34E;
@@ -33,8 +33,8 @@ a{color:var(--accent); text-underline-offset:3px}
 
 /* masthead */
 .mast{border-bottom:1px solid var(--rule); padding:52px 0 38px}
-.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--ink-3); margin:0 0 18px}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-2); margin:0 0 18px}
 .mast h1{font-weight:700;
   font-size:clamp(2.1rem,4.6vw,3.1rem); line-height:1.06; letter-spacing:-.02em; max-width:19ch}
 .mast h1 em{font-style:normal; color:var(--accent)}
@@ -69,8 +69,8 @@ section{padding:64px 0}
 .block h3{font-weight:650; font-size:1.35rem;
   letter-spacing:-.01em; margin-bottom:13px; padding-bottom:9px; border-bottom:1px solid var(--rule);
   display:flex; align-items:baseline; justify-content:space-between; gap:14px}
-.block h3 em{font-family:"IBM Plex Mono",monospace; font-style:normal; font-size:10.5px;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:400}
+.block h3 em{font-family:"IBM Plex Mono",monospace; font-style:normal; font-size:11.5px;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); font-weight:400}
 .block p{margin:0 0 12px; color:var(--ink-2)}
 .block p:last-child{margin-bottom:0}
 .block b{color:var(--ink); font-weight:600}
@@ -104,7 +104,7 @@ section{padding:64px 0}
   overflow:hidden; margin:6px 0 12px}
 .ai > div{padding:15px 17px; display:flex; flex-direction:column; gap:8px}
 .ai > div:first-child{border-right:1px solid var(--rule); background:var(--surface)}
-.ai .tag{font-family:"IBM Plex Mono",monospace; font-size:9.5px; letter-spacing:.13em;
+.ai .tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em;
   text-transform:uppercase; color:var(--ink-3)}
 .ai .tag.out{color:var(--accent)}
 .ai q{font-size:15px; line-height:1.45; color:var(--ink);
@@ -115,12 +115,12 @@ section{padding:64px 0}
 /* rail */
 .rail{position:sticky; top:26px; display:flex; flex-direction:column; gap:20px}
 .rail-card{border:1px solid var(--rule); border-radius:13px; padding:17px; background:var(--surface-2)}
-.rail-card > p.label{margin:0 0 11px; font-family:"IBM Plex Mono",monospace; font-size:9.5px;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+.rail-card > p.label{margin:0 0 11px; font-family:"IBM Plex Mono",monospace; font-size:11.5px;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2)}
 .metric{display:flex; flex-direction:column; gap:2px; padding:8px 0; border-top:1px solid var(--rule-2)}
 .metric:first-of-type{border-top:0; padding-top:0}
-.metric b{font-size:13px; font-weight:600; letter-spacing:-.005em}
-.metric span{font-size:12px; color:var(--ink-3); line-height:1.45}
+.metric b{font-size:13.5px; font-weight:600; letter-spacing:-.005em}
+.metric span{font-size:12.5px; color:var(--ink-3); line-height:1.45}
 .metric.guard b{color:var(--ochre)}
 
 footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px solid var(--rule);
@@ -170,6 +170,12 @@ footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px
   .block h3 em{font-size:7.2px}
   .block p{margin-bottom:4px}
   .block ul{gap:2.5px}
+  .inputs span{font-size:7.4px}
+  .fstep{font-size:6.8px}
+  .fnote{font-size:7.4px}
+  .fnote b{font-size:6.2px}
+  .funnel{padding:8px 9px 7px; margin:2px 0 6px}
+  .fsteps,.fnotes{min-width:0}
   .block ul li{padding-left:11px}
   .block ul li::before{top:6px; width:5px}
   .callout{padding:6px 9px; gap:3px; margin-bottom:5px}

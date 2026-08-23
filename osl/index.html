@@ -7,7 +7,7 @@
 <style>
 :root{
   --ground:#000000; --card:#0F1011; --card-2:#151617; --rule:#232426;
-  --ink:#F5F7F0; --ink-2:#A8AC9F; --ink-3:#7A7E74; --accent:#A6F60A;
+  --ink:#F5F7F0; --ink-2:#A8AC9F; --ink-3:#9A9E94; --accent:#A6F60A;
 }
 *{box-sizing:border-box}
 body{margin:0; min-height:100vh; background:var(--ground); color:var(--ink);
@@ -15,42 +15,40 @@ body{margin:0; min-height:100vh; background:var(--ground); color:var(--ink);
   -webkit-font-smoothing:antialiased; padding:88px 28px 72px}
 .wrap{max-width:860px; margin:0 auto}
 .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.17em;
-  text-transform:uppercase; color:var(--ink-3); margin:0 0 16px}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-2); margin:0 0 16px}
 h1{margin:0; font-size:clamp(2rem,5vw,2.6rem); font-weight:700; letter-spacing:-.03em; line-height:1.05}
 h1 em{font-style:normal; color:var(--accent)}
 .sub{margin:16px 0 0; color:var(--ink-2); font-size:1rem; max-width:46ch; line-height:1.6}
 
-.label{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.17em;
-  text-transform:uppercase; color:var(--ink-3); margin:52px 0 14px}
+.label{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-2); margin:52px 0 6px}
+.label-sub{margin:0 0 16px; font-size:15px; color:var(--ink-2); max-width:52ch; line-height:1.55}
 
 .card{display:block; text-decoration:none; color:inherit; background:var(--card);
   border:1px solid var(--rule); border-radius:20px; padding:28px 30px;
   transition:border-color .18s ease, background-color .18s ease, transform .18s ease}
 .card:hover{border-color:var(--accent); background:var(--card-2); transform:translateY(-2px)}
-.card .n{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.15em;
-  text-transform:uppercase; color:var(--ink-3)}
-.card h2{margin:14px 0 0; font-size:1.4rem; font-weight:650; letter-spacing:-.02em}
-.card p{margin:10px 0 0; color:var(--ink-2); font-size:14.5px; line-height:1.6; max-width:52ch}
+.card h2 .num{font-family:"IBM Plex Mono",monospace; font-size:1.05rem; font-weight:500;
+  color:var(--accent); margin-right:10px}
+.card h2 .thm{color:var(--ink-2); font-weight:500}
+.card h2{margin:0; font-size:1.4rem; font-weight:650; letter-spacing:-.02em; line-height:1.25}
+.card p{margin:10px 0 0; color:var(--ink-2); font-size:15.5px; line-height:1.6; max-width:52ch}
 .go{display:inline-flex; align-items:center; gap:8px; margin-top:22px;
-  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.13em;
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.11em;
   text-transform:uppercase; color:var(--accent)}
 .card:hover .go span{transform:translateX(3px)}
 .go span{transition:transform .18s ease}
 
 .duo{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:0}
 
-.spec{display:flex; align-items:center; gap:10px; margin-top:22px; padding:14px;
-  border:1px solid var(--rule); border-radius:12px}
-.spec .sq{width:26px; height:26px; border-radius:7px; flex:none; border:1px solid rgba(128,128,128,.22)}
-.spec .bars{flex:1; display:flex; flex-direction:column; gap:5px}
-.spec .bars b{display:block; height:6px; border-radius:3px; background:var(--accent)}
-.spec .bars i{display:block; height:5px; border-radius:3px; opacity:.22}
-.spec .bars i{background:#F4F6F7}
-.spec .dot{width:22px; height:22px; border-radius:50%; background:var(--accent); flex:none}
+.thumb{margin-top:20px}
+.thumb svg{display:block; height:74px; width:auto}
+.thumb.light{--pf:#DDDFD6; --ps:#F6F7F3; --pl:#C6C9BE; --pst:#C6C9BE}
+.thumb.dark{--pf:#1A1C1E; --ps:#0B0D10; --pl:#2E3134; --pst:#33363A}
 
 footer{margin-top:58px; padding-top:22px; border-top:1px solid var(--rule);
-  color:var(--ink-3); font-size:12px; line-height:1.6}
+  color:var(--ink-3); font-size:13.5px; line-height:1.6}
 
 @media (max-width:720px){ body{padding:56px 20px} .duo{grid-template-columns:1fr} }
 </style>
@@ -62,40 +60,36 @@ footer{margin-top:58px; padding-top:22px; border-top:1px solid var(--rule);
 
   <p class="label">Start here</p>
   <a class="card" href="brief.html">
-    <span class="n">01 &middot; One page</span>
-    <h2>The brief</h2>
+    <h2><span class="num">01</span>The brief</h2>
     <p>Design decisions, how I'd research the drop-off, the assumption I'd validate first, and where AI belonged in the process.</p>
     <span class="go">Read the brief <span>&rarr;</span></span>
   </a>
 
-  <p class="label">Prototype &mdash; two entry contexts, two visual languages. Each runs the whole flow: prompt &rarr; verify &rarr; verified.</p>
+  <p class="label">The prototype</p>
+  <p class="label-sub">Two entry contexts, two visual languages. Each one runs the whole flow &mdash; prompt, verify, verified.</p>
   <div class="duo">
     <a class="card" href="banxa-verify-light.html">
-      <span class="n">02 &middot; From a wallet &middot; Light</span>
-      <h2>MetaMask &rarr; Banxa</h2>
+      <h2><span class="num">02</span>MetaMask &rarr; Banxa <span class="thm">&middot; Light</span></h2>
       <p>Crypto-native entry. Paper-white, tight, institutional.</p>
-      <div class="spec spec-light"><span class="sq" style="background:#ECEEE6"></span><span class="sq" style="background:#F6F7F3"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <div class="thumb light"><svg viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="42" height="66" rx="10" fill="var(--pf)" stroke="var(--pst)"/><rect x="5" y="7" width="34" height="54" rx="6" fill="var(--ps)"/><rect x="17" y="4.5" width="10" height="2" rx="1" fill="var(--pst)"/><rect x="9" y="13" width="17" height="3.4" rx="1.7" fill="var(--accent)"/><rect x="9" y="20" width="26" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="25.5" width="21" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="33" width="26" height="9" rx="3" fill="var(--pl)" opacity=".55"/><rect x="9" y="49" width="26" height="7" rx="3.5" fill="var(--accent)"/></svg></div>
       <span class="go">Open <span>&rarr;</span></span>
     </a>
     <a class="card" href="banxa-verify-dark.html">
-      <span class="n">03 &middot; From a wallet &middot; Dark</span>
-      <h2>MetaMask &rarr; Banxa</h2>
+      <h2><span class="num">03</span>MetaMask &rarr; Banxa <span class="thm">&middot; Dark</span></h2>
       <p>Crypto-native entry. Near-black, larger, continuous.</p>
-      <div class="spec spec-dark"><span class="sq" style="background:#000000"></span><span class="sq" style="background:#101112"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <div class="thumb dark"><svg viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="42" height="66" rx="10" fill="var(--pf)" stroke="var(--pst)"/><rect x="5" y="7" width="34" height="54" rx="6" fill="var(--ps)"/><rect x="17" y="4.5" width="10" height="2" rx="1" fill="var(--pst)"/><rect x="9" y="13" width="17" height="3.4" rx="1.7" fill="var(--accent)"/><rect x="9" y="20" width="26" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="25.5" width="21" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="33" width="26" height="9" rx="3" fill="var(--pl)" opacity=".55"/><rect x="9" y="49" width="26" height="7" rx="3.5" fill="var(--accent)"/></svg></div>
       <span class="go">Open <span>&rarr;</span></span>
     </a>
     <a class="card" href="banxa-verify-consumer-light.html">
-      <span class="n">04 &middot; From a consumer app &middot; Light</span>
-      <h2>Kite &rarr; Banxa</h2>
+      <h2><span class="num">04</span>Kite &rarr; Banxa <span class="thm">&middot; Light</span></h2>
       <p>The entry that actually matches a first-time buyer.</p>
-      <div class="spec spec-light"><span class="sq" style="background:#ECEEE6"></span><span class="sq" style="background:#F6F7F3"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <div class="thumb light"><svg viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="42" height="66" rx="10" fill="var(--pf)" stroke="var(--pst)"/><rect x="5" y="7" width="34" height="54" rx="6" fill="var(--ps)"/><rect x="17" y="4.5" width="10" height="2" rx="1" fill="var(--pst)"/><rect x="9" y="13" width="17" height="3.4" rx="1.7" fill="var(--accent)"/><rect x="9" y="20" width="26" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="25.5" width="21" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="33" width="26" height="9" rx="3" fill="var(--pl)" opacity=".55"/><rect x="9" y="49" width="26" height="7" rx="3.5" fill="var(--accent)"/></svg></div>
       <span class="go">Open <span>&rarr;</span></span>
     </a>
     <a class="card" href="banxa-verify-consumer-dark.html">
-      <span class="n">05 &middot; From a consumer app &middot; Dark</span>
-      <h2>Kite &rarr; Banxa</h2>
+      <h2><span class="num">05</span>Kite &rarr; Banxa <span class="thm">&middot; Dark</span></h2>
       <p>The entry that actually matches a first-time buyer.</p>
-      <div class="spec spec-dark"><span class="sq" style="background:#000000"></span><span class="sq" style="background:#101112"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <div class="thumb dark"><svg viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="42" height="66" rx="10" fill="var(--pf)" stroke="var(--pst)"/><rect x="5" y="7" width="34" height="54" rx="6" fill="var(--ps)"/><rect x="17" y="4.5" width="10" height="2" rx="1" fill="var(--pst)"/><rect x="9" y="13" width="17" height="3.4" rx="1.7" fill="var(--accent)"/><rect x="9" y="20" width="26" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="25.5" width="21" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="33" width="26" height="9" rx="3" fill="var(--pl)" opacity=".55"/><rect x="9" y="49" width="26" height="7" rx="3.5" fill="var(--accent)"/></svg></div>
       <span class="go">Open <span>&rarr;</span></span>
     </a>
   </div>
