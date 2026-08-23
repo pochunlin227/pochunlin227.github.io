@@ -1,0 +1,104 @@
+<title>Verification · Design Exercise</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ground:#000000; --card:#0F1011; --card-2:#151617; --rule:#232426;
+  --ink:#F5F7F0; --ink-2:#A8AC9F; --ink-3:#7A7E74; --accent:#A6F60A;
+}
+*{box-sizing:border-box}
+body{margin:0; min-height:100vh; background:var(--ground); color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased; padding:88px 28px 72px}
+.wrap{max-width:860px; margin:0 auto}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 16px}
+h1{margin:0; font-size:clamp(2rem,5vw,2.6rem); font-weight:700; letter-spacing:-.03em; line-height:1.05}
+h1 em{font-style:normal; color:var(--accent)}
+.sub{margin:16px 0 0; color:var(--ink-2); font-size:1rem; max-width:46ch; line-height:1.6}
+
+.label{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--ink-3); margin:52px 0 14px}
+
+.card{display:block; text-decoration:none; color:inherit; background:var(--card);
+  border:1px solid var(--rule); border-radius:20px; padding:28px 30px;
+  transition:border-color .18s ease, background-color .18s ease, transform .18s ease}
+.card:hover{border-color:var(--accent); background:var(--card-2); transform:translateY(-2px)}
+.card .n{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3)}
+.card h2{margin:14px 0 0; font-size:1.4rem; font-weight:650; letter-spacing:-.02em}
+.card p{margin:10px 0 0; color:var(--ink-2); font-size:14.5px; line-height:1.6; max-width:52ch}
+.go{display:inline-flex; align-items:center; gap:8px; margin-top:22px;
+  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--accent)}
+.card:hover .go span{transform:translateX(3px)}
+.go span{transition:transform .18s ease}
+
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:0}
+
+.spec{display:flex; align-items:center; gap:10px; margin-top:22px; padding:14px;
+  border:1px solid var(--rule); border-radius:12px}
+.spec .sq{width:26px; height:26px; border-radius:7px; flex:none; border:1px solid rgba(128,128,128,.22)}
+.spec .bars{flex:1; display:flex; flex-direction:column; gap:5px}
+.spec .bars b{display:block; height:6px; border-radius:3px; background:var(--accent)}
+.spec .bars i{display:block; height:5px; border-radius:3px; opacity:.22}
+.spec .bars i{background:#F4F6F7}
+.spec .dot{width:22px; height:22px; border-radius:50%; background:var(--accent); flex:none}
+
+footer{margin-top:58px; padding-top:22px; border-top:1px solid var(--rule);
+  color:var(--ink-3); font-size:12px; line-height:1.6}
+
+@media (max-width:720px){ body{padding:56px 20px} .duo{grid-template-columns:1fr} }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Design exercise &middot; Director of Product Design &middot; August 2026</p>
+  <h1>Verification, <em>before the first buy</em></h1>
+  <p class="sub">One screen introducing identity verification to a first-time crypto buyer &mdash; built to feel necessary, not punitive.</p>
+
+  <p class="label">Start here</p>
+  <a class="card" href="brief.html">
+    <span class="n">01 &middot; One page</span>
+    <h2>The brief</h2>
+    <p>Design decisions, how I'd research the drop-off, the assumption I'd validate first, and where AI belonged in the process.</p>
+    <span class="go">Read the brief <span>&rarr;</span></span>
+  </a>
+
+  <p class="label">Prototype &mdash; two entry contexts, two visual languages. Each runs the whole flow: prompt &rarr; verify &rarr; verified.</p>
+  <div class="duo">
+    <a class="card" href="banxa-verify-light.html">
+      <span class="n">02 &middot; From a wallet &middot; Light</span>
+      <h2>MetaMask &rarr; Banxa</h2>
+      <p>Crypto-native entry. Paper-white, tight, institutional.</p>
+      <div class="spec spec-light"><span class="sq" style="background:#ECEEE6"></span><span class="sq" style="background:#F6F7F3"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <span class="go">Open <span>&rarr;</span></span>
+    </a>
+    <a class="card" href="banxa-verify-dark.html">
+      <span class="n">03 &middot; From a wallet &middot; Dark</span>
+      <h2>MetaMask &rarr; Banxa</h2>
+      <p>Crypto-native entry. Near-black, larger, continuous.</p>
+      <div class="spec spec-dark"><span class="sq" style="background:#000000"></span><span class="sq" style="background:#101112"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <span class="go">Open <span>&rarr;</span></span>
+    </a>
+    <a class="card" href="banxa-verify-consumer-light.html">
+      <span class="n">04 &middot; From a consumer app &middot; Light</span>
+      <h2>Kite &rarr; Banxa</h2>
+      <p>The entry that actually matches a first-time buyer.</p>
+      <div class="spec spec-light"><span class="sq" style="background:#ECEEE6"></span><span class="sq" style="background:#F6F7F3"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <span class="go">Open <span>&rarr;</span></span>
+    </a>
+    <a class="card" href="banxa-verify-consumer-dark.html">
+      <span class="n">05 &middot; From a consumer app &middot; Dark</span>
+      <h2>Kite &rarr; Banxa</h2>
+      <p>The entry that actually matches a first-time buyer.</p>
+      <div class="spec spec-dark"><span class="sq" style="background:#000000"></span><span class="sq" style="background:#101112"></span><span class="bars"><b style="width:62%"></b><i style="width:88%"></i></span><span class="dot"></span></div>
+      <span class="go">Open <span>&rarr;</span></span>
+    </a>
+  </div>
+
+  <footer>Independent design exercise. Not affiliated with or endorsed by OSL Group or Banxa. Kite is fictional; all regulatory wording is placeholder.</footer>
+</div>
