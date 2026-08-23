@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 :root{
   --ground:#ECEEE6; --surface:#F6F7F3; --surface-2:#FFFFFF; --ink:#101208;
@@ -23,8 +23,8 @@
 }
 *{box-sizing:border-box}
 body{margin:0; background:var(--ground); color:var(--ink);
-  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,sans-serif;
-  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
 .wrap{max-width:1240px; margin:0 auto; padding:0 28px}
 .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
 h1,h2,h3{text-wrap:balance; margin:0}
@@ -33,13 +33,13 @@ a{color:var(--accent); text-underline-offset:3px}
 
 /* masthead */
 .mast{border-bottom:1px solid var(--rule); padding:52px 0 38px}
-.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.1em;
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.07em;
   text-transform:uppercase; color:var(--ink-2); margin:0 0 18px}
 .mast h1{font-weight:700;
   font-size:clamp(2.1rem,4.6vw,3.1rem); line-height:1.06; letter-spacing:-.02em; max-width:19ch}
 .mast h1 em{font-style:normal; color:var(--accent)}
-.mast .lead{margin:18px 0 0; max-width:60ch; color:var(--ink-2); font-size:1.0625rem}
-.navlink{margin:24px 0 0; font-size:14px; color:var(--ink-3)}
+.mast .lead{margin:18px 0 0; max-width:62ch; color:var(--ink-2); font-size:1.15rem}
+.navlink{margin:24px 0 0; font-size:15px; color:var(--ink-2)}
 
 /* the one idea */
 .idea{border-left:2px solid var(--accent); background:var(--accent-soft);
@@ -66,11 +66,11 @@ section{padding:64px 0}
 /* ---------- brief layout ---------- */
 .grid{display:grid; grid-template-columns:1fr minmax(0,290px); gap:54px; align-items:start}
 .doc{display:flex; flex-direction:column; gap:34px; max-width:70ch}
-.block h3{font-weight:650; font-size:1.35rem;
+.block h3{font-weight:650; font-size:1.45rem;
   letter-spacing:-.01em; margin-bottom:13px; padding-bottom:9px; border-bottom:1px solid var(--rule);
   display:flex; align-items:baseline; justify-content:space-between; gap:14px}
-.block h3 em{font-family:"IBM Plex Mono",monospace; font-style:normal; font-size:11.5px;
-  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); font-weight:400}
+.block h3 em{font-family:inherit; font-style:normal; font-size:14.5px;
+  letter-spacing:0; text-transform:none; color:var(--ink-2); font-weight:400; white-space:nowrap}
 .block p{margin:0 0 12px; color:var(--ink-2)}
 .block p:last-child{margin-bottom:0}
 .block b{color:var(--ink); font-weight:600}
@@ -81,7 +81,7 @@ section{padding:64px 0}
 .callout{border-left:2px solid var(--accent); background:var(--accent-soft); padding:17px 20px;
   border-radius:0 12px 12px 0; display:flex; flex-direction:column; gap:9px; margin-bottom:14px}
 .callout p{margin:0}
-.callout p.claim{color:var(--ink); font-size:1.06rem; font-weight:600; letter-spacing:-.01em;
+.callout p.claim{color:var(--ink); font-size:1.18rem; font-weight:600; letter-spacing:-.01em;
   line-height:1.45}
 
 /* persona map */
@@ -89,14 +89,14 @@ section{padding:64px 0}
   background:var(--surface-2)}
 .mrow{display:grid; grid-template-columns:118px 1fr 1fr; border-top:1px solid var(--rule-2)}
 .mrow:first-child{border-top:0}
-.mrow > div{padding:8px 11px; font-size:12.5px; line-height:1.45; color:var(--ink-2)}
+.mrow > div{padding:10px 13px; font-size:14px; line-height:1.5; color:var(--ink-2)}
 .mrow > div + div{border-left:1px solid var(--rule-2)}
-.mrow.mhead > div{font-family:"IBM Plex Mono",monospace; font-size:8.5px; letter-spacing:.12em;
+.mrow.mhead > div{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-3); background:var(--surface); padding:6px 11px}
-.mrow b{color:var(--ink); font-weight:600; font-size:12.5px}
+.mrow b{color:var(--ink); font-weight:600; font-size:14px}
 .mrow q{font-style:italic; quotes:'\201C' '\201D'}
 .mrow.pri{background:var(--accent-soft)}
-.mrow .pt{font-family:"IBM Plex Mono",monospace; font-size:7.5px; letter-spacing:.1em;
+.mrow .pt{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.06em;
   text-transform:uppercase; color:var(--accent); display:block}
 
 /* ai example */
@@ -104,26 +104,26 @@ section{padding:64px 0}
   overflow:hidden; margin:6px 0 12px}
 .ai > div{padding:15px 17px; display:flex; flex-direction:column; gap:8px}
 .ai > div:first-child{border-right:1px solid var(--rule); background:var(--surface)}
-.ai .tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em;
+.ai .tag{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-3)}
 .ai .tag.out{color:var(--accent)}
-.ai q{font-size:15px; line-height:1.45; color:var(--ink);
+.ai q{font-size:16px; line-height:1.5; color:var(--ink);
   quotes:'\201C' '\201D'; display:block}
-.ai small{font-size:12.5px; color:var(--ink-3); line-height:1.5}
-.verdict{font-size:14.5px; color:var(--ink-2); padding-left:14px; border-left:2px solid var(--ochre)}
+.ai small{font-size:13.5px; color:var(--ink-2); line-height:1.5}
+.verdict{font-size:15.5px; color:var(--ink-2); padding-left:14px; border-left:2px solid var(--ochre)}
 
 /* rail */
 .rail{position:sticky; top:26px; display:flex; flex-direction:column; gap:20px}
 .rail-card{border:1px solid var(--rule); border-radius:13px; padding:17px; background:var(--surface-2)}
-.rail-card > p.label{margin:0 0 11px; font-family:"IBM Plex Mono",monospace; font-size:11.5px;
-  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2)}
+.rail-card > p.label{margin:0 0 12px; font-family:inherit; font-size:14px; font-weight:600;
+  letter-spacing:-.01em; text-transform:none; color:var(--ink)}
 .metric{display:flex; flex-direction:column; gap:2px; padding:8px 0; border-top:1px solid var(--rule-2)}
 .metric:first-of-type{border-top:0; padding-top:0}
-.metric b{font-size:13.5px; font-weight:600; letter-spacing:-.005em}
-.metric span{font-size:12.5px; color:var(--ink-3); line-height:1.45}
+.metric b{font-size:14.5px; font-weight:600; letter-spacing:-.005em}
+.metric span{font-size:13.5px; color:var(--ink-2); line-height:1.5}
 .metric.guard b{color:var(--ochre)}
 
-footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px solid var(--rule);
+footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px solid var(--rule);
   display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; margin-top:26px}
 
 @media (max-width:1000px){
@@ -170,6 +170,14 @@ footer{padding:38px 0 54px; color:var(--ink-3); font-size:12.5px; border-top:1px
   .block h3 em{font-size:7.2px}
   .block p{margin-bottom:4px}
   .block ul{gap:2.5px}
+  .mrow > div{padding:3px 6px}
+  .navlink{display:none}
+  .mast .lead{font-size:9.2px}
+  .callout p.claim{font-size:9.6px}
+  .block h3{font-size:10px}
+  .block h3 em{font-size:7.6px}
+  .rail-card > p.label{font-size:8px}
+  .ai .tag{font-size:7px}
   .inputs span{font-size:7.4px}
   .fstep{font-size:6.8px}
   .fnote{font-size:7.4px}
