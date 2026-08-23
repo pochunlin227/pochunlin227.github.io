@@ -64,8 +64,8 @@ section{padding:64px 0}
 .variant .vcap b{color:var(--ink-2); font-weight:600}
 
 /* ---------- brief layout ---------- */
-.grid{display:grid; grid-template-columns:1fr minmax(0,290px); gap:54px; align-items:start}
-.doc{display:flex; flex-direction:column; gap:34px; max-width:70ch}
+.grid{display:block}
+.doc{display:flex; flex-direction:column; gap:34px; max-width:74ch}
 .block h3{font-weight:650; font-size:1.45rem;
   letter-spacing:-.01em; margin-bottom:13px; padding-bottom:9px; border-bottom:1px solid var(--rule);
   display:flex; align-items:baseline; justify-content:space-between; gap:14px}
@@ -128,6 +128,12 @@ section{padding:64px 0}
 .ai q{font-size:16px; line-height:1.5; color:var(--ink);
   quotes:'\201C' '\201D'; display:block}
 .ai small{font-size:13.5px; color:var(--ink-2); line-height:1.5}
+.mx{display:grid; grid-template-columns:1fr 1fr; gap:0 26px; margin-top:6px}
+.mx > div{padding:11px 0; border-top:1px solid var(--rule-2)}
+.mx b{display:block; font-size:14.5px; font-weight:600; letter-spacing:-.005em}
+.mx span{display:block; font-size:13.5px; color:var(--ink-2); line-height:1.5; margin-top:2px}
+.mx .guard b{color:var(--ochre)}
+@media (max-width:720px){ .mx{grid-template-columns:1fr} }
 .verdict{font-size:15.5px; color:var(--ink-2); padding-left:14px; border-left:2px solid var(--ochre)}
 
 /* rail */
@@ -196,6 +202,10 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   .block h3 em{font-size:7.6px}
   .rail-card > p.label{font-size:8px}
   .ai .tag{font-size:7px}
+  .mx{grid-template-columns:1fr; gap:0}
+  .mx > div{padding:3px 0}
+  .mx b{font-size:9.2px}
+  .mx span{font-size:8.4px; line-height:1.3}
   .inputs span{font-size:7.4px}
   .fstep{font-size:6.8px}
   .fnote{font-size:7.4px}
@@ -310,44 +320,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             <li><b>Q4 and Q11 are stated intention.</b> Weak predictors of behaviour at the best of times, and Q11 asks people to rate my screen inside my own survey &mdash; expect a flattering number. The open text at Q12 and Q13 is where the signal actually is.</li>
             <li><b>Q9 and Q10 are the only behavioural anchor.</b> Recalled action, not imagined action. They get weighted above everything else.</li>
           </ul>
-          <p style="margin-top:11px"><a href="research.html">Full pre-registration &mdash; question weighting, and what I would fix in the instrument &rarr;</a></p>
-        </div>
-
-        <div class="block">
-          <h3>Pre-registered predictions <em>And what each one changes</em></h3>
-          <div class="map">
-            <div class="mrow mhead"><div>Question</div><div>What I predict</div><div>What I do about it</div></div>
-            <div class="mrow pri">
-              <div><b>Q10 verbatims</b><span class="pt">The one that matters</span></div>
-              <div>Reasons skew to friction and failure &mdash; could not find the document, capture kept failing, gave up waiting &mdash; not to refusal on privacy grounds.</div>
-              <div>Code into <b>won't / can't / stuck</b>. If can't + stuck reach half, this screen is not the highest-leverage surface and the work moves to capture and recovery. That is the kill criterion in the brief, and this is the question that fires it.</div>
-            </div>
-            <div class="mrow">
-              <div><b>Q5</b> what stops you</div>
-              <div>Privacy options lead on raw counts. But the predictability cluster &mdash; how long, what documents, has my card been charged &mdash; lands within about fifteen points of them.</div>
-              <div>If the two clusters are that close, predictability wins the design, because stated privacy concern is inflated and stated effort concern is not.</div>
-            </div>
-            <div class="mrow">
-              <div><b>Q7</b> message test</div>
-              <div>The benefit framing beats the regulatory one heavily; &ldquo;to meet regulatory requirements&rdquo; takes under fifteen percent.</div>
-              <div>Confirms demoting regulation off the surface. If it wins or comes close, that call was wrong and the licensing line goes back on the screen.</div>
-            </div>
-            <div class="mrow">
-              <div><b>Q17</b> time tolerance</div>
-              <div>Median at 1&ndash;3 minutes, with a meaningful share choosing &ldquo;it depends on the amount.&rdquo;</div>
-              <div>If under-a-minute plus depends-on-amount exceed forty percent, a flat &ldquo;&asymp; 3 min&rdquo; is a liability. The screen switches to per-step progress and time remaining, and the total comes off.</div>
-            </div>
-            <div class="mrow">
-              <div><b>Q14 / Q15</b> ranking</div>
-              <div>Data protection ranks first or second. Less obviously, &ldquo;has my payment already been charged&rdquo; lands in the top three.</div>
-              <div>If the payment worry ranks high it justifies &ldquo;nothing charged yet&rdquo; keeping prime position. If it ranks last, that line shrinks and the space goes to the failure path.</div>
-            </div>
-            <div class="mrow">
-              <div><b>Q16</b> information priority</div>
-              <div>&ldquo;What to do if verification fails&rdquo; scores higher than its usual place in the flow &mdash; near the bottom of a FAQ.</div>
-              <div>If it lands top three, the rejection-recovery screen stops being out of scope and becomes the next thing designed.</div>
-            </div>
-          </div>
+          <p style="margin-top:12px"><a href="research.html">Pre-registered predictions &mdash; what I expect each question to show, what changes on the screen if it does, and what would fire the kill criterion &rarr;</a></p>
         </div>
 
         <div class="block">
@@ -381,25 +354,23 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <p class="verdict"><b>Verdict: modified.</b> The original does not answer the first-time buyer's real question &mdash; <em>do I already have one, and could I lose my money if I get this wrong?</em></p>
         </div>
 
+
+        <div class="block">
+          <h3>How I'd know it worked <em>Success and guardrails</em></h3>
+          <div class="mx">
+            <div><b>Verification completed &lt; 24h</b><span>Primary. Measured from first view of this screen, not from action tap.</span></div>
+            <div><b>Prompt &rarr; start rate</b><span>Whether the banner is doing its job or being scrolled past.</span></div>
+            <div><b>Destination step completion</b><span>The downstream proof that explaining a wallet address early actually worked.</span></div>
+            <div><b>Resume rate from saved orders</b><span>Whether the deferral exit recovers people or just hides the loss.</span></div>
+            <div class="guard"><b>Fraud &amp; chargeback rate</b><span>Guardrail. A friction win that lets bad actors through is not a win.</span></div>
+            <div class="guard"><b>Support contacts / 100 checks</b><span>Guardrail. Confusion moved off-screen is still confusion.</span></div>
+            <div class="guard"><b>Manual review queue</b><span>Guardrail. Faster starts can flood the humans downstream.</span></div>
+            <div><b>Scope held deliberately</b><span>Capture, pending and rejection states are out of scope here &mdash; that is where &ldquo;stuck&rdquo; users are actually lost, and it is different research.</span></div>
+          </div>
+        </div>
+
       </div>
 
-      <aside class="rail">
-        <div class="rail-card">
-          <p class="label">How I'd know it worked</p>
-          <div class="metric"><b>Verification completed &lt; 24h</b><span>Primary. From first view of this screen, not from action tap.</span></div>
-          <div class="metric"><b>Prompt &rarr; start rate</b><span>Whether the banner is doing its job or being scrolled past.</span></div>
-          <div class="metric"><b>Destination step completion</b><span>The downstream proof that explaining a wallet address early actually worked.</span></div>
-          <div class="metric"><b>Resume rate from saved orders</b><span>Whether the deferral exit recovers people or just hides the loss.</span></div>
-          <div class="metric guard"><b>Fraud &amp; chargeback rate</b><span>Guardrail. A friction win that lets bad actors through is not a win.</span></div>
-          <div class="metric guard"><b>Support contacts / 100 checks</b><span>Guardrail. Confusion moved off-screen is still confusion.</span></div>
-          <div class="metric guard"><b>Manual review queue</b><span>Guardrail. Faster starts can flood the humans downstream.</span></div>
-        </div>
-        <div class="rail-card">
-          <p class="label">Out of scope, deliberately</p>
-          <div class="metric"><b>Capture screens</b><span>Where &ldquo;stuck&rdquo; users are actually lost.</span></div>
-          <div class="metric"><b>Pending and rejection states</b><span>The screen promises a survivable failure; that promise needs designing too.</span></div>
-        </div>
-      </aside>
     </div>
   </div>
 </section>
