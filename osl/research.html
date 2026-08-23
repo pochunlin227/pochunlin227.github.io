@@ -25,7 +25,7 @@
 body{margin:0; background:var(--ground); color:var(--ink);
   font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
   font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
-.wrap{max-width:1240px; margin:0 auto; padding:0 28px}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px}
 .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
 h1,h2,h3{text-wrap:balance; margin:0}
 a{color:var(--accent); text-underline-offset:3px}
@@ -36,9 +36,9 @@ a{color:var(--accent); text-underline-offset:3px}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.07em;
   text-transform:uppercase; color:var(--ink-2); margin:0 0 18px}
 .mast h1{font-weight:700;
-  font-size:clamp(2.1rem,4.6vw,3.1rem); line-height:1.06; letter-spacing:-.02em; max-width:19ch}
+  font-size:clamp(2.1rem,5.4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; max-width:22ch}
 .mast h1 em{font-style:normal; color:var(--accent)}
-.mast .lead{margin:18px 0 0; max-width:62ch; color:var(--ink-2); font-size:1.15rem}
+.mast .lead{margin:18px 0 0; max-width:none; color:var(--ink-2); font-size:1.15rem}
 .navlink{margin:24px 0 0; font-size:15px; color:var(--ink-2)}
 
 /* the one idea */
@@ -123,6 +123,15 @@ section{padding:64px 0}
 .metric span{font-size:13.5px; color:var(--ink-2); line-height:1.5}
 .metric.guard b{color:var(--ochre)}
 
+.sidenav{position:fixed; top:140px; left:max(20px, calc(50% - 560px)); width:150px;
+  display:none; flex-direction:column; gap:2px; z-index:40; opacity:0; transition:opacity .25s ease;
+  pointer-events:none}
+.sidenav.on{opacity:1; pointer-events:auto}
+.sidenav a{font-size:13.5px; line-height:1.35; color:var(--ink-3); text-decoration:none;
+  padding:6px 10px; border-left:2px solid var(--rule); border-radius:0 6px 6px 0}
+.sidenav a:hover{color:var(--ink); background:var(--surface)}
+.sidenav a.active{color:var(--accent); border-left-color:var(--accent); font-weight:600}
+@media (min-width:1160px){ .sidenav{display:flex} }
 footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px solid var(--rule);
   display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; margin-top:26px}
 
@@ -152,7 +161,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   .mast h1{font-size:15px; line-height:1.05; max-width:none}
   .mast .lead{font-size:9.2px; margin-top:5px; max-width:none}
   .eyebrow{font-size:7.2px; margin-bottom:5px}
-  .navlink{display:none}
+  .navlink,.sidenav{display:none}
   section{padding:8px 0}
   .grid{display:block; column-count:2; column-gap:7mm; column-fill:auto}
   .doc{display:block; max-width:none; gap:0}
@@ -171,7 +180,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   .block p{margin-bottom:4px}
   .block ul{gap:2.5px}
   .mrow > div{padding:3px 6px}
-  .navlink{display:none}
+  .navlink,.sidenav{display:none}
   .mast .lead{font-size:9.2px}
   .callout p.claim{font-size:9.6px}
   .block h3{font-size:10px}
@@ -216,12 +225,20 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   </div>
 </header>
 
+<nav class="sidenav" id="sidenav" aria-label="Sections">
+  <a href="#s1">Method</a>
+  <a href="#s2">Limits</a>
+  <a href="#s3">Predictions</a>
+  <a href="#s4">Variants</a>
+  <a href="#s5">Instrument</a>
+</nav>
+
 <section>
   <div class="wrap">
     <div class="grid">
       <div class="doc">
 
-        <div class="block">
+        <div class="block" id="s1">
           <h3>Why write this first <em>Method</em></h3>
           <div class="callout">
             <p class="claim">A prediction made after seeing the data is not a prediction. Committing to the decision rule up front is the only thing that stops a survey from becoming decoration for choices already made.</p>
@@ -229,7 +246,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <p>It also protects against the more likely outcome here, which is that the numbers arrive late or thin. If the design decision is already tied to a threshold, late data still has a job to do &mdash; and if the data never comes, the reasoning stands on its own.</p>
         </div>
 
-        <div class="block">
+        <div class="block" id="s2">
           <h3>What this instrument can and cannot settle <em>Limits</em></h3>
           <ul>
             <li><b>Roughly 30&ndash;40 usable responses.</b> Fifty in the field, minus those screened out at Q1. Directional only, and nowhere near enough to cut by segment &mdash; six motivations across thirty-five people is five per cell, which is a story, not a finding.</li>
@@ -239,7 +256,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           </ul>
         </div>
 
-        <div class="block">
+        <div class="block" id="s3">
           <h3>Pre-registered predictions <em>And what each one changes</em></h3>
           <div class="map">
             <div class="mrow mhead"><div>Question</div><div>What I predict</div><div>What I do about it</div></div>
@@ -276,7 +293,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           </div>
         </div>
 
-        <div class="block">
+        <div class="block" id="s4">
           <h3>Variants drawn in advance <em>So the data has somewhere to land</em></h3>
           <p>Each of these is a screen I would rather have ready than start after the results arrive.</p>
           <ul>
@@ -286,7 +303,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           </ul>
         </div>
 
-        <div class="block">
+        <div class="block" id="s5">
           <h3>What I would fix in the instrument <em>If it is not too late</em></h3>
           <ul>
             <li><b>Randomise option order</b> in Q5, Q6 and Q7. Order effects in select-up-to-three lists are large enough to invent a winner.</li>
@@ -320,3 +337,20 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   <span>Independent design exercise. Predictions recorded before any responses were seen.</span>
   <span class="mono">SURVEY PRE-REGISTRATION</span>
 </footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('sidenav');
+  var links=[].slice.call(nav.querySelectorAll('a'));
+  var mast=document.querySelector('.mast');
+  function toggle(){ nav.classList.toggle('on', window.scrollY > mast.offsetHeight - 40); }
+  toggle(); window.addEventListener('scroll', toggle, {passive:true});
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id); });
+    });
+  }, {rootMargin:'-15% 0px -70% 0px'});
+  links.forEach(function(a){ var t=document.querySelector(a.getAttribute('href')); if(t) obs.observe(t); });
+})();
+</script>

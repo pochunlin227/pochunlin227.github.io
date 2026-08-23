@@ -25,7 +25,7 @@
 body{margin:0; background:var(--ground); color:var(--ink);
   font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
   font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
-.wrap{max-width:1240px; margin:0 auto; padding:0 28px}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px}
 .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
 h1,h2,h3{text-wrap:balance; margin:0}
 a{color:var(--accent); text-underline-offset:3px}
@@ -36,9 +36,9 @@ a{color:var(--accent); text-underline-offset:3px}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.07em;
   text-transform:uppercase; color:var(--ink-2); margin:0 0 18px}
 .mast h1{font-weight:700;
-  font-size:clamp(2.1rem,4.6vw,3.1rem); line-height:1.06; letter-spacing:-.02em; max-width:19ch}
+  font-size:clamp(2.1rem,5.4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; max-width:22ch}
 .mast h1 em{font-style:normal; color:var(--accent)}
-.mast .lead{margin:18px 0 0; max-width:62ch; color:var(--ink-2); font-size:1.15rem}
+.mast .lead{margin:18px 0 0; max-width:none; color:var(--ink-2); font-size:1.15rem}
 .navlink{margin:24px 0 0; font-size:15px; color:var(--ink-2)}
 
 /* the one idea */
@@ -65,7 +65,7 @@ section{padding:64px 0}
 
 /* ---------- brief layout ---------- */
 .grid{display:block}
-.doc{display:flex; flex-direction:column; gap:34px; max-width:74ch}
+.doc{display:flex; flex-direction:column; gap:34px; max-width:none}
 .block h3{font-weight:650; font-size:1.45rem;
   letter-spacing:-.01em; margin-bottom:13px; padding-bottom:9px; border-bottom:1px solid var(--rule);
   display:flex; align-items:baseline; justify-content:space-between; gap:14px}
@@ -91,13 +91,13 @@ section{padding:64px 0}
 
 /* funnel diagram */
 .funnel{border:1px solid var(--rule); border-radius:12px; background:var(--surface-2);
-  padding:16px 16px 14px; margin:4px 0 14px; overflow-x:auto}
-.fsteps{display:flex; align-items:center; gap:6px; min-width:520px}
+  padding:16px 16px 14px; margin:4px 0 14px}
+.fsteps{display:flex; align-items:center; gap:5px; min-width:0; flex-wrap:wrap}
 .fstep{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.02em; white-space:nowrap;
   color:var(--ink); border:1px solid var(--rule); border-radius:7px; padding:5px 8px; background:var(--surface)}
 .farrow{color:var(--ink-2); font-size:12px; flex:none}
-.fnotes{display:flex; gap:6px; margin-top:9px; min-width:520px}
-.fnote{flex:1; border-top:1px solid var(--rule-2); padding-top:7px; font-size:13px;
+.fnotes{display:flex; gap:10px; margin-top:11px; min-width:0; flex-wrap:wrap}
+.fnote{flex:1 1 140px; border-top:1px solid var(--rule-2); padding-top:7px; font-size:13px;
   line-height:1.35; color:var(--ink-2)}
 .fnote b{display:block; color:var(--accent); font-family:"IBM Plex Mono",monospace; font-size:12px;
   letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px}
@@ -147,6 +147,15 @@ section{padding:64px 0}
 .metric span{font-size:13.5px; color:var(--ink-2); line-height:1.5}
 .metric.guard b{color:var(--ochre)}
 
+.sidenav{position:fixed; top:140px; left:max(20px, calc(50% - 560px)); width:150px;
+  display:none; flex-direction:column; gap:2px; z-index:40; opacity:0; transition:opacity .25s ease;
+  pointer-events:none}
+.sidenav.on{opacity:1; pointer-events:auto}
+.sidenav a{font-size:13.5px; line-height:1.35; color:var(--ink-3); text-decoration:none;
+  padding:6px 10px; border-left:2px solid var(--rule); border-radius:0 6px 6px 0}
+.sidenav a:hover{color:var(--ink); background:var(--surface)}
+.sidenav a.active{color:var(--accent); border-left-color:var(--accent); font-weight:600}
+@media (min-width:1160px){ .sidenav{display:flex} }
 footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px solid var(--rule);
   display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; margin-top:26px}
 
@@ -176,7 +185,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   .mast h1{font-size:15px; line-height:1.05; max-width:none}
   .mast .lead{font-size:9.2px; margin-top:5px; max-width:none}
   .eyebrow{font-size:7.2px; margin-bottom:5px}
-  .navlink{display:none}
+  .navlink,.sidenav{display:none}
   section{padding:8px 0}
   .grid{display:block; column-count:2; column-gap:7mm; column-fill:auto}
   .doc{display:block; max-width:none; gap:0}
@@ -195,7 +204,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   .block p{margin-bottom:4px}
   .block ul{gap:2.5px}
   .mrow > div{padding:3px 6px}
-  .navlink{display:none}
+  .navlink,.sidenav{display:none}
   .mast .lead{font-size:9.2px}
   .callout p.claim{font-size:9.6px}
   .block h3{font-size:10px}
@@ -244,18 +253,29 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   </div>
 </header>
 
+<nav class="sidenav" id="sidenav" aria-label="Sections">
+  <a href="#s1">Thesis</a>
+  <a href="#s2">Process</a>
+  <a href="#s3">Decisions</a>
+  <a href="#s4">Research</a>
+  <a href="#s5">Survey limits</a>
+  <a href="#s6">Assumption</a>
+  <a href="#s7">AI</a>
+  <a href="#s8">Metrics</a>
+</nav>
+
 <section>
   <div class="wrap">
     <div class="grid">
       <div class="doc">
 
-        <div class="block">
+        <div class="block" id="s1">
           <h3>The product thesis <em>What the screen is for</em></h3>
           <div class="callout">
             <p class="claim">KYC is required. Surprise is not.</p>
           </div>
           <p>For a first-time buyer, identity verification can feel like the product changes halfway through: they choose an amount and payment method, then an unfamiliar provider asks for an ID.</p>
-          <p>This screen is designed to make that required step feel predictable rather than punitive. Before asking for anything sensitive, it clarifies who is handling verification, why it matters to the buyer, what they need to do, and what happens to the order while they do it.</p>
+          <p>This screen is designed to make that required step feel predictable rather than punitive. Before asking for anything sensitive, it says who is handling verification, why it matters to the buyer, what they need to do, and what happens to the order meanwhile.</p>
           <div class="inputs">
             <span>~50 survey responses</span>
             <span>10+ competitor flows reviewed</span>
@@ -263,27 +283,27 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           </div>
         </div>
 
-        <div class="block">
+        <div class="block" id="s2">
           <h3>Design process <em>Three inputs</em></h3>
           <ul>
-            <li><b>First-time buyer survey.</b> I ran an early survey with approximately 50 participants to understand how people react when KYC appears after they have selected an amount and payment method. It explored trust, privacy, payment safety, effort, and unfamiliar crypto terminology.</li>
-            <li><b>Competitor review.</b> I reviewed more than 10 crypto buying and payment apps to understand how identity verification is introduced in real purchase flows &mdash; when KYC appears, how providers explain the request, whether order and payment status remain visible, how verification methods are presented, and how users are supported when they meet unfamiliar terms.</li>
-            <li><b>OSL design language.</b> The interface uses OSL's design language as its base: colour, typography, hierarchy, and interaction patterns. This keeps the verification moment connected to the OSL ecosystem, rather than making it feel like a suspicious or disconnected third-party handoff.</li>
+            <li><b>First-time buyer survey.</b> An early survey with ~50 participants on how people react when KYC appears after they have chosen an amount and payment method &mdash; covering trust, privacy, payment safety, effort, and unfamiliar crypto terminology.</li>
+            <li><b>Competitor review.</b> More than 10 crypto buying and payment apps, compared on when KYC appears, how the request is explained, whether order and payment status stay visible, how methods are presented, and what happens when users meet unfamiliar terms.</li>
+            <li><b>OSL design language.</b> Colour, typography, hierarchy, and interaction patterns come from OSL. This keeps verification inside the OSL ecosystem rather than feeling like a handoff to a stranger.</li>
           </ul>
         </div>
 
-        <div class="block">
+        <div class="block" id="s3">
           <h3>Design decisions <em>Why this screen</em></h3>
           <ul>
-            <li><b>Keep the purchase in view.</b> The selected amount, payment method, and Buy action remain visible. Verification is positioned as the path to completing the purchase &mdash; not a separate compliance flow that interrupts it.</li>
-            <li><b>Lead with the user benefit.</b> The screen explains verification through buyer protection, privacy, and order safety before introducing regulatory detail. At this moment users need to know why an ID request protects them, not only why the business is required to make it.</li>
-            <li><b>Make the next step feel finite.</b> The flow shows what is required, expected time, available verification methods, and what happens after approval. This reduces the feeling of entering an open-ended process.</li>
-            <li><b>Prepare users before they meet unfamiliar terms.</b> A first-time buyer may be willing to verify their identity but still abandon later when they see a term such as &ldquo;wallet address&rdquo; without context. Important concepts should be explained at the point of need, not after the user is already blocked.</li>
-            <li><b>Use visual continuity to build trust.</b> OSL's visual language provides a familiar, calm foundation for a sensitive moment. The design avoids warning-heavy patterns and treats verification as a normal part of a financial journey.</li>
+            <li><b>Keep the purchase in view.</b> The amount, payment method, and Buy action stay visible. Verification becomes the path to completing the purchase, not a compliance flow that interrupts it.</li>
+            <li><b>Lead with the user benefit.</b> Buyer protection, privacy, and order safety come before regulatory detail. At this moment people need to know why an ID request protects them, not why the business has to make it.</li>
+            <li><b>Make the next step feel finite.</b> What is required, how long it takes, which methods are available, and what happens after approval &mdash; so it does not feel open-ended.</li>
+            <li><b>Prepare users before they meet unfamiliar terms.</b> Someone can be willing to verify and still abandon later at a term like &ldquo;wallet address.&rdquo; Concepts belong at the point of need, not after the user is already blocked.</li>
+            <li><b>Use visual continuity to build trust.</b> No warning-heavy patterns, no alarm colour. Verification is treated as a normal part of a financial journey.</li>
           </ul>
         </div>
 
-        <div class="block">
+        <div class="block" id="s4">
           <h3>How I would research abandonment <em>Where users actually leave</em></h3>
           <div class="funnel">
             <div class="fsteps">
@@ -306,13 +326,13 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <ul>
             <li><b>Instrument the entire journey.</b> Track progression, retries, back-outs, completion time, and failure states by partner, device, market, and document type.</li>
             <li><b>Separate the drop-off into three groups.</b> <em>Won't proceed</em> &mdash; users who do not trust or accept the request. <em>Can't proceed</em> &mdash; users with document, eligibility, or access issues. <em>Get stuck</em> &mdash; users who begin but fail during capture, review, or recovery.</li>
-            <li><b>Ask at the point of exit.</b> A lightweight back-out question &mdash; &ldquo;What stopped you today?&rdquo; &mdash; reaches users who may never return.</li>
-            <li><b>Pair data with real behaviour.</b> Review support tickets, chat themes, and app-store feedback. Then observe first-time buyers on their own devices and in their own environment, where contextual friction is more visible.</li>
-            <li><b>Test one lever at a time.</b> Test reassurance, information timing, and verification mechanics separately, so any improvement in completion can be attributed to a clear cause.</li>
+            <li><b>Ask at the point of exit.</b> One back-out question &mdash; &ldquo;What stopped you today?&rdquo; &mdash; reaches people who never return.</li>
+            <li><b>Pair data with real behaviour.</b> Support tickets, chat themes, and app-store feedback first. Then watch first-time buyers on their own phones, at home, where the real friction shows up.</li>
+            <li><b>Test one lever at a time.</b> Reassurance, information timing, and verification mechanics move separately, so any lift can be attributed to a cause.</li>
           </ul>
         </div>
 
-        <div class="block">
+        <div class="block" id="s5">
           <h3>What this instrument can and cannot settle <em>Limits</em></h3>
           <ul>
             <li><b>Roughly 30&ndash;40 usable responses.</b> Fifty in the field, minus those screened out at Q1. Directional only, and nowhere near enough to cut by segment &mdash; six motivations across thirty-five people is five per cell, which is a story, not a finding.</li>
@@ -323,21 +343,21 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <p style="margin-top:12px"><a href="research.html">Pre-registered predictions &mdash; what I expect each question to show, what changes on the screen if it does, and what would fire the kill criterion &rarr;</a></p>
         </div>
 
-        <div class="block">
+        <div class="block" id="s6">
           <h3>The assumption to validate <em>What this design bets</em></h3>
           <div class="callout">
             <p class="claim">First-time buyers are not one abandonment group. Some leave because an unfamiliar provider asking for ID creates a trust and privacy concern. Others are willing to complete KYC, but abandon when crypto-specific concepts &mdash; such as a wallet address &mdash; appear without enough explanation at the moment they need to act.</p>
             <p>This treats abandonment as both a trust gap and a comprehension gap.</p>
           </div>
-          <p>If trust-related concerns dominate, the product should improve provider transparency, privacy reassurance, and payment clarity. If comprehension-related concerns dominate, the product should introduce contextual explanations and improve handoffs throughout the purchase journey.</p>
-          <p>If document, capture, or review failures account for most drop-off, this screen is not the main problem. The work should move downstream into ID coverage, capture quality, review states, and recovery flows.</p>
+          <p>If trust dominates, the work is provider transparency, privacy reassurance, and payment clarity. If comprehension dominates, it is contextual explanation and better handoffs across the journey.</p>
+          <p>If document, capture, or review failures account for most drop-off, this screen is not the problem, and the work moves downstream into ID coverage, capture quality, review states, and recovery.</p>
         </div>
 
-        <div class="block">
+        <div class="block" id="s7">
           <h3>AI in my process <em>Where it helped</em></h3>
           <p>AI was used as an exploration and synthesis assistant &mdash; not as the source of product truth.</p>
           <p><b>What I used it for.</b> Building an early map of the crypto buying journey and common first-time buyer questions; summarising publicly available crypto, payment, and checkout research to identify themes worth investigating; drafting the initial survey plan and alternative question wording; creating a structured framework for reviewing 10+ competitor purchase flows; exploring different KYC messaging and information-hierarchy options; and building and iterating the HTML prototypes quickly.</p>
-          <p><b>How I evaluated it.</b> I compared an AI-first output, created with minimal direction, with a version shaped through my own research, competitor review, survey design, and product reasoning. The AI-first output usually produced more generic reassurance copy and too much information at once. I used it to explore the range, then reviewed and refined against the actual user task, partner context, and evidence collected.</p>
+          <p><b>How I evaluated it.</b> I compared an AI-first output, made with minimal direction, against a version shaped by my own research, competitor review, and survey design. The AI-first version ran to generic reassurance copy and too much at once. I used it to see the range, then refined against the real task, the partner context, and the evidence.</p>
           <p><b>What I would not trust it with.</b> Replacing user research or deciding which user concern matters most; explaining why a conversion metric changed without behavioural evidence; final compliance, privacy, or regulatory wording; and processing real user identities, documents, tickets, or other sensitive data in a general-purpose model.</p>
           <div class="ai">
             <div>
@@ -355,7 +375,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
         </div>
 
 
-        <div class="block">
+        <div class="block" id="s8">
           <h3>How I'd know it worked <em>Success and guardrails</em></h3>
           <div class="mx">
             <div><b>Verification completed &lt; 24h</b><span>Primary. Measured from first view of this screen, not from action tap.</span></div>
@@ -379,3 +399,24 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   <span>Independent design exercise. Not affiliated with or endorsed by OSL Group or Banxa; partner names are illustrative and all regulatory wording is placeholder, pending compliance review per market. Sources: first-time buyer survey (~50 respondents), comparative review of 10+ crypto buying and payment flows, published checkout research.</span>
   <span class="mono">THE BRIEF</span>
 </footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('sidenav');
+  var links=[].slice.call(nav.querySelectorAll('a'));
+  var mast=document.querySelector('.mast');
+  function toggle(){ nav.classList.toggle('on', window.scrollY > mast.offsetHeight - 40); }
+  toggle(); window.addEventListener('scroll', toggle, {passive:true});
+
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id); });
+    });
+  }, {rootMargin:'-15% 0px -70% 0px'});
+  links.forEach(function(a){
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t) obs.observe(t);
+  });
+})();
+</script>
