@@ -33,6 +33,8 @@ a{color:var(--accent); text-underline-offset:3px}
 
 /* masthead */
 .mast{border-bottom:1px solid var(--rule); padding:52px 0 38px}
+.byline{margin:0 0 20px; font-size:15px; color:var(--ink-2)}
+.byline b{color:var(--ink); font-weight:600}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.07em;
   text-transform:uppercase; color:var(--ink-2); margin:0 0 18px}
 .mast h1{font-weight:700;
@@ -201,7 +203,7 @@ section{padding:64px 0}
 .sidenav a.active{color:var(--accent); border-left-color:var(--accent); font-weight:600}
 @media (min-width:1160px){ .sidenav{display:flex} }
 footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px solid var(--rule);
-  display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; margin-top:26px}
+  margin-top:26px; max-width:74ch}
 
 @media (max-width:1000px){
   .grid{grid-template-columns:1fr; gap:34px}
@@ -303,6 +305,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 <header class="mast">
   <div class="wrap">
     <p class="eyebrow">Design exercise &middot; The brief</p>
+    <p class="byline"><b>Po Chun Lin</b> &middot; Product Design</p>
     <h1>Introducing identity verification <em>without losing the buyer</em></h1>
     <p class="lead">A single screen that asks a first-time crypto buyer for their ID at the moment they are ready to pay. This is the thinking behind it: the decisions on the screen, how I researched the drop-off, the assumption I put in front of users, and where AI belonged.</p>
     <p class="navlink"><a href="index.html">&larr; Overview</a></p>
@@ -383,7 +386,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <ul>
             <li><b>First-time buyer survey.</b> 100 responses across the USA, Australia and Singapore on how people react when KYC appears after they have chosen an amount and payment method. It tested trust, privacy, payment safety, effort, message framing, and the screen itself.</li>
             <li><b>Competitor review.</b> More than 10 crypto buying and payment apps, compared on when KYC appears, how the request is explained, whether order and payment status stay visible, how methods are presented, and what happens when users meet unfamiliar terms.</li>
-            <li><b>OSL design language.</b> Colour, typography, hierarchy, and interaction patterns come from OSL. This keeps verification inside the OSL ecosystem rather than feeling like a handoff to a stranger.</li>
+            <li><b>OSL design language.</b> Colour, typography and hierarchy come from OSL; the interaction patterns come from the flows above. This keeps verification inside the OSL ecosystem rather than feeling like a handoff to a stranger.</li>
           </ul>
         </div>
 
@@ -454,7 +457,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 
         <div class="block" id="s6">
           <h3>What the survey changed <em>Before and after</em></h3>
-          <p>Left is the screen 100 people were shown. Right is what the results asked for. Both are live &mdash; tap <em>Get started</em> on either to open the sheet.</p>
+          <p>Left is the version that went into the survey; right is what the results asked for. Both are live &mdash; tap <em>Get started</em> on either to open the sheet. The visual language has been refined since the static image respondents saw, but the structure and copy on the left are the ones they judged.</p>
           <div class="ba">
             <div>
               <span class="tag">Version 1 &middot; tested</span>
@@ -496,8 +499,8 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
               <div class="ev">rank 5.7</div>
             </div>
             <div class="crow">
-              <div>Six blocks in the sheet</div>
-              <div><b>Four, with larger type and higher contrast</b></div>
+              <div>116 words in the sheet, across five blocks</div>
+              <div><b>81 words across four, with larger type</b></div>
               <div class="ev">verbatims</div>
             </div>
           </div>
@@ -513,7 +516,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             <p>This treats abandonment as both a trust gap and a comprehension gap.</p>
           </div>
           <p><b>The survey answered this, and it was not close.</b> Trust dominates: worried data could be misused 48%, uneasy sharing an ID or selfie 44%, unsure the platform can be trusted 32%. Comprehension is real but smaller &mdash; 25% do not understand why verification is needed. Effort barely registers: how long 10%, what documents 5%, already charged 5%. So the work is provider transparency, privacy reassurance and visible legitimacy first; contextual explanation second.</p>
-          <p>The kill criterion did not fire. Capability and operational failure are almost absent from the recalled-abandonment verbatims &mdash; one respondent cited a crash; the rest describe a feeling of sketchiness. This screen is the right surface. I had predicted the opposite, which is recorded in full on the <a href="research.html">results page</a>.</p>
+          <p>It also told me this screen is the right surface to work on. Capability and operational failure are almost absent from the recalled-abandonment answers &mdash; one respondent cited a crash; the rest describe a feeling of sketchiness. I had expected the opposite, and would have moved the work downstream into document capture and error recovery had it gone the other way. <a href="research.html">The full results are here</a>.</p>
         </div>
 
         <div class="block" id="s8">
@@ -546,7 +549,6 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 
 <footer class="wrap">
   <span>Independent design exercise. Not affiliated with or endorsed by OSL Group or Banxa; partner names are illustrative and all regulatory wording is placeholder, pending compliance review per market. Sources: first-time buyer survey, 100 respondents across the USA, Australia and Singapore (Pollfish, August 2026); comparative review of 10+ crypto buying and payment flows; published checkout research.</span>
-  <span class="mono">THE BRIEF</span>
 </footer>
 
 <script>
