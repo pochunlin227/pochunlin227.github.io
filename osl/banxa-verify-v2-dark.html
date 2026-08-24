@@ -19,6 +19,8 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
 .backlink:hover{color:var(--ink); border-color:var(--accent)}
 .backlink svg{flex:none}
 @media (max-width:640px){ .backlink{top:14px; left:14px; padding:7px 13px 7px 10px; font-size:12.5px} }
+html.embed .backlink{display:none}
+html.embed body{padding:18px 12px; min-height:0}
 
 .ui-a{--bg:#F6F7F3; --card:#FFFFFF; --card2:#EFF1EA; --ink:#101208; --ink2:#5C6154; --ink3:#8B9083;
   --rule:#E4E6DE; --accent:#5C8A00; --soft:#EEF7DA; --cta:#A6F60A; --cta-ink:#0B1400; --promo-btn:rgba(92,138,0,.14);
@@ -157,12 +159,10 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
   font-size:10.5px; line-height:1.4; color:var(--ink3)}
 .sh-who b{color:var(--ink2); font-weight:600}
 
-.facts{display:flex; flex-direction:column; gap:0; margin:2px 0 12px}
-.f{display:flex; align-items:center; gap:11px; padding:9px 0; border-top:1px solid var(--rule)}
-.f:first-child{border-top:0}
-.f .fi{width:26px; height:26px; border-radius:8px; background:var(--soft); color:var(--accent);
-  display:grid; place-items:center; flex:none}
-.f b{font-size:13.5px; font-weight:500; letter-spacing:-.01em; color:var(--ink)}
+.facts{display:flex; flex-direction:column; gap:6px; margin:4px 0 10px}
+.f{display:flex; align-items:center; gap:8px}
+.f .fi{color:var(--accent); opacity:.85; flex:none; display:grid; place-items:center}
+.f b{font-size:12.5px; font-weight:400; letter-spacing:0; color:var(--ink2)}
 .fine{margin:0 0 14px; font-size:11.5px; line-height:1.5; color:var(--ink3)}
 .fine b{color:var(--ink2); font-weight:600}
 .rule{height:1px; background:var(--rule); margin:0 0 14px}
@@ -171,21 +171,21 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
 .after b{color:var(--ink2); font-weight:600}
 
 /* verification methods */
-.methods{margin-top:16px}
-.methods > p{margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:9px;
-  letter-spacing:.13em; text-transform:uppercase; color:var(--ink2)}
+.methods{margin-top:4px}
+.methods > p.mq{margin:0 0 10px; font-size:15px; font-weight:650; letter-spacing:-.015em;
+  color:var(--ink)}
 .m{display:flex; align-items:center; gap:11px; width:100%; text-align:left; font:inherit;
-  color:inherit; cursor:pointer; padding:11px 12px; margin-bottom:7px;
-  background:var(--sheet-2); border:1px solid var(--rule); border-radius:13px}
+  color:inherit; cursor:pointer; padding:13px 13px; margin-bottom:8px;
+  background:var(--sheet-2); border:1px solid var(--rule); border-radius:14px}
 .m:hover{border-color:var(--accent)}
 .m.pick{border-color:var(--accent); background:var(--soft)}
 .m .mi{width:30px; height:30px; border-radius:9px; background:var(--soft); color:var(--accent);
   display:grid; place-items:center; flex:none}
 .m .mt{flex:1}
-.m .mt b{display:block; font-size:13px; font-weight:600; letter-spacing:-.012em}
+.m .mt b{display:block; font-size:14.5px; font-weight:600; letter-spacing:-.015em}
 .m .mt span{display:block; font-size:10.5px; color:var(--ink2); margin-top:1px}
 .m .mm{font-family:"IBM Plex Mono",monospace; font-size:9.5px; color:var(--ink2); flex:none}
-.m .mc{color:var(--ink3); flex:none}
+.m .mc{color:var(--ink2); flex:none}
 
 .cta{width:100%; border:0; border-radius:99px; background:var(--cta); color:var(--cta-ink);
   font-family:inherit; font-size:15px; font-weight:700; letter-spacing:-.01em; padding:14px;
@@ -314,15 +314,15 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
 
           <div class="facts">
             <div class="f">
-              <span class="fi"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.2" y="7" width="9.6" height="6.4" rx="1.6"/><path d="M5.4 7V5.2a2.6 2.6 0 015.2 0V7"/></svg></span>
+              <span class="fi"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.2" y="7" width="9.6" height="6.4" rx="1.6"/><path d="M5.4 7V5.2a2.6 2.6 0 015.2 0V7"/></svg></span>
               <b>Encrypted, stored in the EU</b>
             </div>
             <div class="f">
-              <span class="fi"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 8s2.4-4.2 6.5-4.2S14.5 8 14.5 8s-2.4 4.2-6.5 4.2S1.5 8 1.5 8z"/><circle cx="8" cy="8" r="1.9"/></svg></span>
+              <span class="fi"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 8s2.4-4.2 6.5-4.2S14.5 8 14.5 8s-2.4 4.2-6.5 4.2S1.5 8 1.5 8z"/><circle cx="8" cy="8" r="1.9"/></svg></span>
               <b>Seen only by the reviewer</b>
             </div>
             <div class="f">
-              <span class="fi"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 4.4h10.4"/><path d="M6.2 4.4V3.1h3.6v1.3"/><path d="M4.2 4.4l.7 8.2h6.2l.7-8.2"/></svg></span>
+              <span class="fi"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 4.4h10.4"/><path d="M6.2 4.4V3.1h3.6v1.3"/><path d="M4.2 4.4l.7 8.2h6.2l.7-8.2"/></svg></span>
               <b>Deleted after the required period</b>
             </div>
           </div>
@@ -331,7 +331,7 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
           <div class="rule"></div>
 
           <div class="methods">
-            <p>Choose how</p>
+            <p class="mq">How do you want to verify?</p>
             <button class="m pick">
               <span class="mi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.6" y="4" width="12.8" height="9" rx="2"/><circle cx="8" cy="8.5" r="2.4"/><path d="M5.6 4l.9-1.4h3l.9 1.4"/></svg></span>
               <span class="mt"><b>Scan with your camera</b><span>ID and a selfie</span></span>
@@ -389,6 +389,7 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
 
 <script>
 (function(){
+  if (location.search.indexOf('embed') > -1) document.documentElement.classList.add('embed');
   var scrim = document.getElementById('scrim');
   function open(){ scrim.classList.add('open'); }
   function shut(){ scrim.classList.remove('open'); }

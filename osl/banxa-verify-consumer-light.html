@@ -19,6 +19,8 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
 .backlink:hover{color:var(--ink); border-color:var(--accent)}
 .backlink svg{flex:none}
 @media (max-width:640px){ .backlink{top:14px; left:14px; padding:7px 13px 7px 10px; font-size:12.5px} }
+html.embed .backlink{display:none}
+html.embed body{padding:18px 12px; min-height:0}
 
 .ui-a{--bg:#F6F7F3; --card:#FFFFFF; --card2:#EFF1EA; --ink:#101208; --ink2:#5C6154; --ink3:#8B9083;
   --rule:#E4E6DE; --accent:#5C8A00; --soft:#EEF7DA; --cta:#A6F60A; --cta-ink:#0B1400; --promo-btn:rgba(92,138,0,.14);
@@ -397,6 +399,7 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
 
 <script>
 (function(){
+  if (location.search.indexOf('embed') > -1) document.documentElement.classList.add('embed');
   var scrim = document.getElementById('scrim');
   function open(){ scrim.classList.add('open'); }
   function shut(){ scrim.classList.remove('open'); }

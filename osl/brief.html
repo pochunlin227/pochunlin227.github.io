@@ -99,14 +99,14 @@ section{padding:64px 0}
   letter-spacing:.1em}
 
 /* before / after */
-.ba{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:14px 0 6px}
+.ba{display:grid; grid-template-columns:1fr 1fr; gap:26px; margin:18px 0 6px;
+  width:min(1120px, calc(100vw - 48px)); margin-left:50%; transform:translateX(-50%)}
 .ba > div{display:flex; flex-direction:column}
 .ba .tag{font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-3); margin-bottom:9px}
 .ba .tag.now{color:var(--accent)}
-.ba .frame{border:1px solid var(--rule); border-radius:18px; overflow:hidden; background:#000;
-  aspect-ratio:390/700}
-.ba iframe{width:390px; height:700px; border:0; transform-origin:0 0; display:block}
+.ba .frame{border:1px solid var(--rule); border-radius:18px; overflow:hidden; background:#000}
+.ba iframe{width:480px; height:1010px; border:0; transform-origin:0 0; display:block}
 .ba .cap{margin:10px 2px 0; font-size:14.5px; line-height:1.5; color:var(--ink-2)}
 .ba .cap b{color:var(--ink)}
 @media (max-width:760px){ .ba{grid-template-columns:1fr} }
@@ -392,8 +392,8 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <h3>Design decisions <em>Why this screen</em></h3>
           <ul>
             <li><b>Keep the purchase in view.</b> The amount, payment method, and Buy action stay visible. Verification becomes the path to completing the purchase, not a compliance flow that interrupts it.</li>
-            <li><b>Lead with the user benefit</b> &mdash; and the survey says which one. Buyer protection, privacy and order safety come before regulatory detail, but data protection outranks theft protection: the encryption message won the forced choice (31% vs 27%), 59% call data handling the most important thing to know, and 60% of requested changes were about privacy. The screen currently leads with theft protection, which is the runner-up. Licensing also belongs back on the surface &mdash; it ties second among trust cues.</li>
-            <li><b>Make the next step feel finite &mdash; quietly.</b> What is required, which methods are available, and what happens after approval. The time estimate stays but loses its prominence: it was the least persuasive message tested (6%) and the least important information (19%), and only 7% would abandon under a minute. Predictability helps people finish; it does not make them trust you.</li>
+            <li><b>Lead with the user benefit</b> &mdash; and the survey says which one. Buyer protection, privacy and order safety come before regulatory detail, but data protection outranks theft protection: the encryption message won the forced choice (31% vs 27%), 59% call data handling the most important thing to know, and 60% of requested changes were about privacy. Version 1 led with theft protection, the runner-up framing; version 2 leads with data handling and puts licensing back on the surface, where it ties second among trust cues.</li>
+            <li><b>Make the next step feel finite &mdash; quietly.</b> What is required, which methods are available, and what happens after approval. The time estimate is gone from version 2: it was the least persuasive message tested (6%) and the least important information (19%), and only 7% would abandon under a minute. Only relative speed survives, on the fastest method. Predictability helps people finish; it does not make them trust you.</li>
             <li><b>Prepare users before they meet unfamiliar terms.</b> Someone can be willing to verify and still abandon later at a term like &ldquo;wallet address.&rdquo; Concepts belong at the point of need, not after the user is already blocked.</li>
             <li><b>Use visual continuity to build trust.</b> No warning-heavy patterns, no alarm colour. Verification is treated as a normal part of a financial journey.</li>
           </ul>
@@ -442,16 +442,16 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 
         <div class="block" id="s6">
           <h3>What the survey changed <em>Before and after</em></h3>
-          <p>The screen on the left is the one 100 people were shown. The one on the right is what the results asked for. Both are live &mdash; open the sheet on either.</p>
+          <p>Left is the screen 100 people were shown. Right is what the results asked for. Both are live &mdash; tap <em>Get started</em> on either to open the sheet.</p>
           <div class="ba">
             <div>
               <span class="tag">Version 1 &middot; tested</span>
-              <div class="frame"><iframe src="banxa-verify-dark.html" title="Version 1" loading="lazy" scrolling="no"></iframe></div>
+              <div class="frame"><iframe src="banxa-verify-dark.html?embed=1" title="Version 1" loading="lazy" scrolling="no"></iframe></div>
               <p class="cap">Led with theft protection. Time estimate in a pill. Path preview as a card. <b>51% likely to continue.</b></p>
             </div>
             <div>
               <span class="tag now">Version 2 &middot; revised</span>
-              <div class="frame"><iframe src="banxa-verify-v2-dark.html" title="Version 2" loading="lazy" scrolling="no"></iframe></div>
+              <div class="frame"><iframe src="banxa-verify-v2-dark.html?embed=1" title="Version 2" loading="lazy" scrolling="no"></iframe></div>
               <p class="cap">Leads with data handling. Credential marks. Time estimate removed, path compressed to a line. <b>Untested.</b></p>
             </div>
           </div>
@@ -460,7 +460,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             <div class="crow chead"><div>Was</div><div>Now</div><div>Evidence</div></div>
             <div class="crow">
               <div>Headline: <em>so nobody else can buy in your name</em></div>
-              <div><b>Your ID is encrypted and used only to verify you</b></div>
+              <div><b>Banner: your ID is encrypted and used only to verify you.</b> Sheet opens on the document itself.</div>
               <div class="ev">31% vs 27%</div>
             </div>
             <div class="crow">
@@ -547,19 +547,20 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 </section>
 
 <footer class="wrap">
-  <span>Independent design exercise. Not affiliated with or endorsed by OSL Group or Banxa; partner names are illustrative and all regulatory wording is placeholder, pending compliance review per market. Sources: first-time buyer survey (~50 respondents), comparative review of 10+ crypto buying and payment flows, published checkout research.</span>
+  <span>Independent design exercise. Not affiliated with or endorsed by OSL Group or Banxa; partner names are illustrative and all regulatory wording is placeholder, pending compliance review per market. Sources: first-time buyer survey, 100 respondents across the USA, Australia and Singapore (Pollfish, August 2026); comparative review of 10+ crypto buying and payment flows; published checkout research.</span>
   <span class="mono">THE BRIEF</span>
 </footer>
 
 <script>
 (function(){
+  var IW=480, IH=1010;
   function fit(){
     document.querySelectorAll('.ba .frame').forEach(function(f){
       var i=f.querySelector('iframe'); if(!i) return;
-      var k=Math.min(1, f.clientWidth/390);
+      var k=Math.min(1, f.clientWidth/IW);
       i.style.transform='scale('+k+')';
-      i.style.marginLeft=((f.clientWidth-390*k)/2)+'px';
-      i.style.width='390px'; i.style.height=(f.clientHeight/k)+'px';
+      i.style.marginLeft=((f.clientWidth-IW*k)/2)+'px';
+      f.style.height=Math.round(IH*k)+'px';
     });
   }
   fit(); window.addEventListener('resize', fit);
