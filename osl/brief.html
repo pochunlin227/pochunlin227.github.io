@@ -502,8 +502,9 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   function fit(){
     document.querySelectorAll('.ba .frame').forEach(function(f){
       var i=f.querySelector('iframe'); if(!i) return;
-      var k=f.clientWidth/390;
+      var k=Math.min(1, f.clientWidth/390);
       i.style.transform='scale('+k+')';
+      i.style.marginLeft=((f.clientWidth-390*k)/2)+'px';
       i.style.width='390px'; i.style.height=(f.clientHeight/k)+'px';
     });
   }
