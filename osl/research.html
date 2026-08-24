@@ -84,6 +84,29 @@ section{padding:64px 0}
 .callout p.claim{color:var(--ink); font-size:1.18rem; font-weight:600; letter-spacing:-.01em;
   line-height:1.45}
 
+/* report figures */
+.fig{margin:14px 0 6px; border:1px solid var(--rule); border-radius:12px; overflow:hidden;
+  background:#fff}
+.fig img{display:block; width:100%; height:auto}
+.fig figcaption{padding:11px 15px; font-size:13px; line-height:1.5; color:var(--ink-2);
+  background:var(--surface-2); border-top:1px solid var(--rule)}
+.fig figcaption b{color:var(--ink)}
+
+/* stat row */
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--rule);
+  border-radius:12px; overflow:hidden; margin:12px 0 4px; background:var(--surface-2)}
+.stats > div{padding:16px 18px}
+.stats > div + div{border-left:1px solid var(--rule-2)}
+.stats b{display:block; font-size:30px; font-weight:700; letter-spacing:-.03em; color:var(--accent);
+  line-height:1}
+.stats span{display:block; font-size:13px; line-height:1.45; color:var(--ink-2); margin-top:7px}
+@media (max-width:640px){ .stats{grid-template-columns:1fr} .stats > div + div{border-left:0; border-top:1px solid var(--rule-2)} }
+
+/* quotes */
+.quotes{display:flex; flex-direction:column; gap:9px; margin-top:10px}
+.quotes q{font-size:14.5px; line-height:1.5; color:var(--ink-2); border-left:2px solid var(--accent);
+  padding-left:12px; quotes:'\201C' '\201D'}
+
 /* result bars */
 .bars{display:flex; flex-direction:column; gap:9px; margin-top:10px}
 .bar{display:grid; grid-template-columns:1fr 46px; gap:12px; align-items:center}
@@ -237,19 +260,19 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 <header class="mast">
   <div class="wrap">
     <p class="eyebrow">Design exercise &middot; Survey results</p>
-    <h1>The survey, and <em>where I was wrong</em></h1>
-    <p class="lead">100 responses across three markets, scored against predictions written down before the data arrived. Three of six were wrong, and one of them changes what the screen should lead with.</p>
+    <h1>What 100 first-time buyers <em>said</em></h1>
+    <p class="lead">A survey on the moment identity verification appears mid-purchase. Trust and data exposure &mdash; not effort &mdash; are what stop people, and that finding rewrote the screen.</p>
     <p class="navlink"><a href="index.html">&larr; Overview</a> &middot; <a href="brief.html">the brief</a></p>
   </div>
 </header>
 
 <nav class="sidenav" id="sidenav" aria-label="Sections">
-  <a href="#s1">Headline</a>
-  <a href="#s2">Scorecard</a>
+  <a href="#s1">Who answered</a>
+  <a href="#s2">Hesitation</a>
   <a href="#s3">What stops them</a>
-  <a href="#s4">What helps</a>
-  <a href="#s5">Screen test</a>
-  <a href="#s6">What changes</a>
+  <a href="#s4">What earns trust</a>
+  <a href="#s5">The screen</a>
+  <a href="#s6">What it changed</a>
   <a href="#s7">Limits</a>
 </nav>
 
@@ -259,70 +282,48 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
       <div class="doc">
 
         <div class="block" id="s1">
-          <h3>The headline <em>n = 100, three markets</em></h3>
-          <div class="callout">
-            <p class="claim">Only 34% would continue straight away. 42% would go looking for a reason first. Hesitation, not refusal, is what this screen is up against.</p>
-          </div>
-          <p>Fielded via Pollfish, 100 completes across the USA, Australia and Singapore. Respondents were not screened out by crypto experience: 43% had bought crypto before, 19% had considered it, 38% never had &mdash; and half the sample was not at all or only slightly familiar with the category.</p>
-          <p><b>The single most useful number.</b> Two-thirds were not ready to move forward immediately: 42% would read more about why verification is required, 9% would leave, 7% would pause, 8% were unsure. Almost nobody rejects the ask outright. They stall in front of it.</p>
+          <h3>Who answered <em>Method</em></h3>
+          <p>Fielded through Pollfish in August 2026: <b>100 completes</b> across the USA, Australia and Singapore. Twenty questions covering the moment identity verification appears after a buyer has already chosen an amount and a payment method &mdash; trust, privacy, payment safety, effort, message framing, and a test of the screen itself.</p>
+          <p>Respondents were deliberately not screened by crypto experience, because the people this screen has to convert are not all category natives.</p>
+          <figure class="fig">
+            <img src="assets/chart-experience.png" alt="Pie chart: previous cryptocurrency purchase experience" loading="lazy">
+            <figcaption><b>43% had bought crypto before</b>; 19% had considered it and 38% never had. Half the sample was not at all or only slightly familiar with the category &mdash; newcomers slightly outnumber confident users.</figcaption>
+          </figure>
+          <p>Everyday financial tooling was near-universal &mdash; 92% use a credit or debit card, 84% a mobile banking app, 78% a digital wallet &mdash; but only 33% had used a crypto platform. People are comfortable with digital money and inexperienced with products that carry compliance checks, which is exactly why verification reads as a decision rather than a formality.</p>
         </div>
 
         <div class="block" id="s2">
-          <h3>The scorecard <em>Predictions vs. what happened</em></h3>
-          <p>These were written down before any data arrived. Three of six were wrong, and one was wrong in a way that changes the design.</p>
-          <div class="map">
-            <div class="mrow mhead"><div>Prediction</div><div>Result</div><div>Verdict</div></div>
-            <div class="mrow pri">
-              <div><b>Friction and failure dominate the abandonment verbatims</b><span class="pt">The one that mattered</span></div>
-              <div>The opposite. Coded reasons are dominated by a feeling of sketchiness (16.5%) and trust &mdash; &ldquo;I felt like I was being scammed,&rdquo; &ldquo;it seemed fishy,&rdquo; &ldquo;didn't trust the platform.&rdquo; Exactly one respondent cited an operational failure.</div>
-              <div><span class="vchip miss">Wrong</span> The kill criterion does not fire, but not for the reason I expected. This is a trust problem, not a capability problem.</div>
-            </div>
-            <div class="mrow">
-              <div><b>The predictability cluster lands within ~15 points of the privacy cluster</b></div>
-              <div>Privacy and trust: 48%, 44%, 32%. Predictability: how long 10%, what documents 5%, already charged 5%. A gap of nearly forty points.</div>
-              <div><span class="vchip miss">Wrong</span> Badly. Stated privacy concern was not inflated relative to effort &mdash; it simply dwarfs it.</div>
-            </div>
-            <div class="mrow">
-              <div><b>Benefit framing beats regulatory; regulatory takes under 15%</b></div>
-              <div>Regulatory took 16% and lost. But the winner was the <em>encryption</em> message at 31%, ahead of the benefit message at 27%.</div>
-              <div><span class="vchip part">Half right</span> Demoting regulation was defensible. Leading with benefit instead of data protection was not.</div>
-            </div>
-            <div class="mrow">
-              <div><b>Data protection ranks first or second among concerns</b></div>
-              <div>Tied first with platform trust, both at a mean rank of 2.5. 59% called it extremely important &mdash; the highest score on any measure in the study.</div>
-              <div><span class="vchip hit">Right</span></div>
-            </div>
-            <div class="mrow">
-              <div><b>&ldquo;Has my payment already been charged&rdquo; lands in the top three</b></div>
-              <div>Third of six by mean rank (3.6), and 43% are extremely concerned about being charged before verification completes &mdash; even though only 5% name it as a reason they would stop.</div>
-              <div><span class="vchip hit">Right</span> Note the split: low as a stated stop-reason, high as a prompted concern.</div>
-            </div>
-            <div class="mrow">
-              <div><b>&ldquo;What to do if verification fails&rdquo; scores higher than its usual place in a FAQ</b></div>
-              <div>34% extremely important &mdash; sixth of seven. Though 33% are extremely concerned about failing and not knowing how to fix it.</div>
-              <div><span class="vchip miss">Wrong</span> Rejection recovery stays out of scope on this evidence.</div>
-            </div>
+          <h3>The problem is hesitation, not refusal <em>Q6</em></h3>
+          <div class="stats">
+            <div><b>34%</b><span>would continue with verification immediately</span></div>
+            <div><b>42%</b><span>would go looking for a reason before continuing</span></div>
+            <div><b>9%</b><span>would leave and find another platform</span></div>
           </div>
+          <p style="margin-top:14px">Two-thirds were not ready to move straight away, but almost nobody rejects the ask outright. The commercial risk sits in the stall, not the exit &mdash; which means reassurance is worth as much as the mechanics of the flow.</p>
+          <p>The split widens by market and by age. Singapore was the most explanation-led at 70% wanting to read more first; Australia carried the highest rejection risk with 30% leaving; the USA split evenly. 65% of 25&ndash;34s would proceed after seeing the screen, against 28.6% of 55&ndash;64s.</p>
         </div>
 
         <div class="block" id="s3">
           <h3>What would stop them <em>Q7 &middot; up to three, % of respondents</em></h3>
-          <div class="bars">
-            <div class="bar"><span class="lab"><b>Worried my personal data could be misused or leaked</b></span><span class="val">48%</span><span class="track"><i class="fill" style="width:48%"></i></span></div>
-            <div class="bar"><span class="lab"><b>Concerned about sharing my ID or selfie</b></span><span class="val">44%</span><span class="track"><i class="fill" style="width:44%"></i></span></div>
-            <div class="bar"><span class="lab"><b>Not sure whether I can trust the platform</b></span><span class="val">32%</span><span class="track"><i class="fill" style="width:32%"></i></span></div>
-            <div class="bar"><span class="lab"><b>Don't understand why my identity needs verifying</b></span><span class="val">25%</span><span class="track"><i class="fill" style="width:25%"></i></span></div>
-            <div class="bar dim"><span class="lab">Would rather compare other platforms first</span><span class="val">12%</span><span class="track"><i class="fill" style="width:12%"></i></span></div>
-            <div class="bar dim"><span class="lab">Don't know how long verification will take</span><span class="val">10%</span><span class="track"><i class="fill" style="width:10%"></i></span></div>
-            <div class="bar dim"><span class="lab">Worried my payment may already have been charged</span><span class="val">5%</span><span class="track"><i class="fill" style="width:5%"></i></span></div>
-            <div class="bar dim"><span class="lab">Don't know what documents I need</span><span class="val">5%</span><span class="track"><i class="fill" style="width:5%"></i></span></div>
+          <figure class="fig">
+            <img src="assets/chart-stop-reasons.png" alt="Bar chart: top reasons users might stop or delay at identity verification" loading="lazy">
+            <figcaption>Data misuse <b>48%</b> &middot; sharing an ID or selfie <b>44%</b> &middot; not trusting the platform <b>32%</b> &middot; not understanding why <b>25%</b>. Effort barely registers: how long <b>10%</b>, payment already charged <b>5%</b>, which documents <b>5%</b>.</figcaption>
+          </figure>
+          <p>The top four are all about exposure and legitimacy. Every operational worry &mdash; duration, documents, payment state &mdash; sits at the bottom.</p>
+          <p><b>Intensity confirms it.</b> Asked how concerned they would be, 50% were extremely concerned about not knowing how their data would be stored, 43% about being charged before verification completes, and 39% about sharing a photo of a government ID. The process taking longer than expected was the least acute at 23%.</p>
+          <p>The one behavioural question in the study says the same thing. <b>37% have abandoned an application because it asked them to verify their identity</b> &mdash; 8% on a crypto platform, 12% on a banking or investment app, 17% who no longer recall the service. Asked why, they did not describe broken flows:</p>
+          <div class="quotes">
+            <q>I felt like I was being scammed.</q>
+            <q>It started to seem too personal and dicey.</q>
+            <q>It began to feel sketchy.</q>
+            <q>I didn't fully trust the platform.</q>
           </div>
-          <p style="margin-top:14px">The top four are all about exposure and legitimacy. Everything I had treated as the load-bearing problem &mdash; not knowing the effort, the documents, or the payment state &mdash; sits at the bottom of the list.</p>
+          <p style="margin-top:12px">Coded, a feeling of sketchiness accounts for 16.5% of those comments, alongside trust, security and privacy. Exactly one respondent cited a technical failure.</p>
         </div>
 
         <div class="block" id="s4">
-          <h3>What would help <em>Q9 message test &amp; Q13 trust cues</em></h3>
-          <p><b>Forced choice of a single message.</b> Security-led beat everything, and the speed claim came last by a distance.</p>
+          <h3>What earns trust <em>Q9 &amp; Q13</em></h3>
+          <p>Forced to pick one message, respondents chose security over everything &mdash; and the speed claim finished last by a distance.</p>
           <div class="bars">
             <div class="bar"><span class="lab"><b>&ldquo;Your ID is encrypted and used only to help keep your account secure.&rdquo;</b></span><span class="val">31%</span><span class="track"><i class="fill" style="width:62%"></i></span></div>
             <div class="bar"><span class="lab">&ldquo;Verify your identity to help protect your payment and crypto purchase.&rdquo;</span><span class="val">27%</span><span class="track"><i class="fill" style="width:54%"></i></span></div>
@@ -330,47 +331,56 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             <div class="bar dim"><span class="lab">&ldquo;We need to verify your identity to meet regulatory requirements.&rdquo;</span><span class="val">16%</span><span class="track"><i class="fill" style="width:32%"></i></span></div>
             <div class="bar dim"><span class="lab">&ldquo;This verification usually takes around three minutes.&rdquo;</span><span class="val">6%</span><span class="track"><i class="fill" style="width:12%"></i></span></div>
           </div>
-          <p style="margin-top:16px"><b>Ranked trust cues</b> tell the same story, and deliver the finding that hurts most. Lower mean rank is stronger.</p>
-          <div class="map">
-            <div class="mrow mhead"><div>Trust cue</div><div>Mean rank</div><div>Read</div></div>
-            <div class="mrow pri"><div><b>Security and encryption information</b></div><div>3.1</div><div>The strongest lever in the study.</div></div>
-            <div class="mrow"><div><b>Clear explanation of why verification is required</b></div><div>3.8</div><div>Joint second.</div></div>
-            <div class="mrow"><div><b>Regulatory or licensing information</b></div><div>3.8</div><div>Joint second &mdash; and I had cut this from the screen.</div></div>
-            <div class="mrow"><div><b>Transparent payment status</b></div><div>4.6</div><div>Mid.</div></div>
-            <div class="mrow"><div><b>A simple explanation of what will happen next</b></div><div>5.7</div><div>Last of eight. This is the path preview &mdash; the signature idea of the concept.</div></div>
-          </div>
-          <p style="margin-top:14px"><b>How I read that fairly.</b> Q13 asked which cue would increase <em>trust</em>, and predictability was never a trust device &mdash; it is a completion device. So the path preview is not disproven as an aid to finishing; it is disproven as a reason to believe. The honest conclusion is that the screen was weighted toward the wrong job.</p>
+          <figure class="fig">
+            <img src="assets/chart-trust-cues.png" alt="Box plot: trust cues most likely to increase confidence in the platform" loading="lazy">
+            <figcaption>Ranked trust cues, lower is stronger. <b>Security and encryption information leads at 3.1</b>; why verification is required and regulatory or licensing information tie at 3.8. <b>&ldquo;A simple explanation of what will happen next&rdquo; ranks last of eight at 5.7.</b></figcaption>
+          </figure>
+          <p>That last line is the uncomfortable one: it describes the path preview, which was the concept's signature idea. Read fairly, Q13 asked which cue increases <em>trust</em>, and predictability was never a trust device &mdash; it helps people finish, not believe. But the screen was weighted toward the wrong job.</p>
+          <p><b>Information priority points the same way.</b> Rated extremely important: how personal information is protected 59%, why verification is required 46%, confirmation that payment is not processed yet 45%, documents needed 40%, what to do if verification fails 34%, and estimated time last at 19%.</p>
         </div>
 
         <div class="block" id="s5">
-          <h3>The screen itself <em>Q18&ndash;Q20 concept test</em></h3>
-          <p>Shown the design, <b>51%</b> said they would be likely or very likely to continue, <b>28%</b> were neutral and <b>21%</b> unlikely. I had predicted a flattering number; 21% negative is not flattering, and the neutral fifth is the real prize.</p>
-          <p><b>Asked what one thing they would change, 60% of coded suggestions were about data protection and privacy</b> (51 of 85 substantive answers); 31.8% said nothing needed changing. Recurring verbatims asked for the same few things: where the ID is stored, how long it is kept, who sees it, and proof the platform is legitimate &mdash; &ldquo;More credentials visible,&rdquo; &ldquo;I don't really see any logos,&rdquo; &ldquo;which governmental agency it uses to verify,&rdquo; &ldquo;The ID information will be deleted once it's been verified.&rdquo;</p>
-          <p>Two criticisms landed on the craft rather than the content, and both were repeated: <b>the screen carries too much at once</b> &mdash; &ldquo;Too much information,&rdquo; &ldquo;a lot of information to process,&rdquo; &ldquo;the whole lot looks confusing&rdquo; &mdash; and <b>it is hard to read</b> &mdash; &ldquo;Bigger font,&rdquo; &ldquo;some of the text colour makes it difficult to read,&rdquo; &ldquo;use more professional colours and make it seem more secure.&rdquo;</p>
+          <h3>The screen, tested <em>Q18&ndash;Q20</em></h3>
+          <figure class="fig">
+            <img src="assets/chart-likelihood.png" alt="Pie chart: likelihood to continue after seeing the verification screen" loading="lazy">
+            <figcaption><b>51% likely or very likely to continue</b>, 28% neutral, 21% unlikely. Credible, not yet persuasive &mdash; and the neutral fifth is where the gain is.</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="assets/chart-suggested-changes.png" alt="Table: top suggested changes to make the verification screen easier and more trustworthy" loading="lazy">
+            <figcaption>Asked for one change, <b>60% of coded suggestions were about data protection and privacy</b> (51 of 85). 31.8% said nothing needed changing.</figcaption>
+          </figure>
+          <p>The requests were specific and repeated: where the ID is stored, how long it is kept, who sees it, and proof the platform is real.</p>
+          <div class="quotes">
+            <q>The ID information will be deleted once it's been verified.</q>
+            <q>More credentials visible.</q>
+            <q>I would need to see which governmental agency it uses to verify.</q>
+            <q>For them to explain how my data will be protected and how long it will be stored.</q>
+          </div>
+          <p style="margin-top:12px">Two criticisms landed on the craft rather than the content, and both recurred: the screen carries too much at once &mdash; <em>&ldquo;Too much information,&rdquo; &ldquo;a lot of information to process,&rdquo; &ldquo;the whole lot looks confusing&rdquo;</em> &mdash; and it is hard to read &mdash; <em>&ldquo;Bigger font,&rdquo; &ldquo;some of the text colour makes it difficult to read,&rdquo; &ldquo;use more professional colours and make it seem more secure.&rdquo;</em></p>
         </div>
 
         <div class="block" id="s6">
-          <h3>What this changes <em>Decisions, now grounded</em></h3>
+          <h3>What it changed <em>Version 2</em></h3>
+          <p>Six changes, each traceable to a number above. The before and after are set side by side in the <a href="brief.html">brief</a>.</p>
           <ul>
-            <li><b>Lead with data protection, not with theft protection.</b> The encryption message won the forced choice (31%), data protection is the most important information on the screen (59% extremely important), and 60% of requested changes are about privacy. The current headline &mdash; <em>so nobody else can buy in your name</em> &mdash; is the runner-up framing.</li>
-            <li><b>Say what happens to the document, not just that it is encrypted.</b> Where it is stored, how long it is kept, who can see it, when it is deleted. Respondents asked for this unprompted and repeatedly.</li>
-            <li><b>Put licensing back on the screen.</b> Regulatory information ties for second among trust cues (3.8). Cutting it was the call I flagged as worth checking, and the check says I was wrong.</li>
-            <li><b>Demote the time estimate.</b> Least persuasive message (6%) and least important information (19%). It should not occupy a prominent pill. Tolerance is not the issue &mdash; only 7% would bail under a minute.</li>
-            <li><b>Keep &ldquo;nothing charged yet.&rdquo;</b> Only 5% name it as a stop reason, but 43% are extremely concerned about it when asked and 45% call the confirmation extremely important. Cheap to keep, expensive to remove.</li>
-            <li><b>Shrink the path preview; do not delete it.</b> Last among trust cues, but it answers a real question for the 15% segment that wants rationale before acting. It earns a line, not a card.</li>
-            <li><b>Make it visibly institutional.</b> Bigger type, higher contrast, credential marks. &ldquo;More professional colours and make it seem more secure&rdquo; is a direct vote for the light, bank-like register over the neon one.</li>
+            <li><b>Lead with data protection, not theft protection.</b> The encryption message won the forced choice; data handling is the most important information on the screen; 60% of requested changes were about privacy.</li>
+            <li><b>Say what happens to the document.</b> Where it is stored, who sees it, when it is deleted &mdash; asked for unprompted, repeatedly.</li>
+            <li><b>Put licensing back.</b> Regulatory information ties second among trust cues. Cutting it was wrong.</li>
+            <li><b>Demote the time estimate.</b> Least persuasive message at 6%, least important information at 19%. The pill is gone.</li>
+            <li><b>Shrink the path preview to one line.</b> Last of eight trust cues, but still the answer for the segment that wants rationale before acting. It earns a sentence, not a card.</li>
+            <li><b>Reduce density and raise legibility.</b> Fewer blocks, larger type, visible credential marks.</li>
           </ul>
         </div>
 
         <div class="block" id="s7">
-          <h3>What this still cannot settle <em>Limits</em></h3>
+          <h3>What this cannot settle <em>Limits</em></h3>
           <ul>
-            <li><b>No screener.</b> 38% had never considered buying crypto, and they answered a first-time-buyer scenario anyway. Their hesitation is about crypto, not about this screen. The real target &mdash; someone mid-purchase &mdash; is a subset I cannot isolate here.</li>
-            <li><b>Stated, not observed.</b> Everything except Q16 is a hypothetical. 51% saying they would continue is not 51% continuing.</li>
-            <li><b>Markets differ more than the average suggests.</b> Singapore: 70% would read more first. Australia: 30% would leave. USA: an even split. The sample is too small to treat these as findings, but too divergent to assume one screen converts everywhere.</li>
-            <li><b>The screen was judged as an image.</b> Nobody tapped anything. Every claim about the sheet, the method chooser and the flow is untested.</li>
+            <li><b>No screener.</b> 38% had never considered buying crypto and answered a first-time-buyer scenario anyway. Their hesitation is about the category, not this screen, and I cannot isolate the real target from this data.</li>
+            <li><b>Stated, not observed.</b> Everything but the recalled-abandonment question is hypothetical. 51% saying they would continue is not 51% continuing.</li>
+            <li><b>The screen was judged as an image.</b> Nobody tapped anything, so the sheet, the method chooser and the flow are all untested.</li>
+            <li><b>Markets diverge more than the average admits.</b> Singapore 70% read-more-first, Australia 30% leave, USA even. Too small to be a finding, too wide to design past.</li>
           </ul>
-          <p><b>What I would run next.</b> Instrument the live funnel and compare a data-protection-led variant against the current benefit-led one, with completion within 24 hours as the primary measure. That is the one question this survey raised and cannot answer.</p>
+          <p><b>What I would run next.</b> Instrument the live funnel and put version 2 against version 1, with verification completed within 24 hours as the primary measure and fraud rate as the guardrail. That is the question this survey raised and cannot answer.</p>
         </div>
 
       </div>
@@ -379,7 +389,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 </section>
 
 <footer class="wrap">
-  <span>Pollfish, 100 completes, USA / Australia / Singapore, August 2026. Predictions recorded before any responses were seen.</span>
+  <span>Source: Pollfish, Crypto Survey, 100 completes, USA / Australia / Singapore, 23 August 2026. Charts reproduced from the Pollfish report.</span>
   <span class="mono">SURVEY RESULTS</span>
 </footer>
 
