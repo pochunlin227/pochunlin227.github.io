@@ -33,8 +33,13 @@ a{color:var(--accent); text-underline-offset:3px}
 
 /* masthead */
 .mast{border-bottom:1px solid var(--rule); padding:52px 0 38px}
-.byline{margin:0 0 20px; font-size:15px; color:var(--ink-2)}
-.byline b{color:var(--ink); font-weight:600}
+.byline{margin:0 0 22px; font-size:15.5px; line-height:1.5; color:var(--ink-3);
+  text-wrap:balance; max-width:60ch}
+.byline .who{color:var(--ink); font-weight:600}
+.byline b{color:var(--ink-2); font-weight:600}
+.byline .dash{color:var(--rule); margin:0 2px}
+.byline .dot{color:var(--rule)}
+.byline .nb{white-space:nowrap}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.07em;
   text-transform:uppercase; color:var(--ink-2); margin:0 0 18px}
 .mast h1{font-weight:700;
@@ -256,8 +261,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 
 <header class="mast">
   <div class="wrap">
-    <p class="eyebrow">Design exercise &middot; Survey results</p>
-    <p class="byline"><b>Po Chun Lin</b> &middot; Product Design</p>
+    <p class="byline"><b class="who">Po Chun Lin</b> <span class="dash">&mdash;</span> Design exercise <span class="dot">&middot;</span> <span class="nb">Survey results</span></p>
     <h1>What 100 first-time buyers <em>said</em></h1>
     <p class="lead">A survey on the moment identity verification appears mid-purchase. Trust and data exposure &mdash; not effort &mdash; are what stop people, and that finding rewrote the screen.</p>
     <p class="navlink"><a href="index.html">&larr; Overview</a> &middot; <a href="brief.html">the brief</a></p>
