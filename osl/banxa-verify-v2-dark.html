@@ -157,12 +157,18 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
   font-size:10.5px; line-height:1.4; color:var(--ink3)}
 .sh-who b{color:var(--ink2); font-weight:600}
 
-.assure{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px}
-.assure span{display:inline-flex; align-items:center; gap:5px; font-size:10.5px; line-height:1;
-  color:var(--accent); background:var(--soft); border-radius:99px; padding:6px 9px}
-.pathline{margin:0 0 4px; font-size:11.5px; line-height:1.5; color:var(--ink2)}
-.pathline b{color:var(--ink); font-weight:600}
-.pathline span{display:block; color:var(--ink3); margin-top:1px}
+.facts{display:flex; flex-direction:column; gap:0; margin:2px 0 12px}
+.f{display:flex; align-items:center; gap:11px; padding:9px 0; border-top:1px solid var(--rule)}
+.f:first-child{border-top:0}
+.f .fi{width:26px; height:26px; border-radius:8px; background:var(--soft); color:var(--accent);
+  display:grid; place-items:center; flex:none}
+.f b{font-size:13.5px; font-weight:500; letter-spacing:-.01em; color:var(--ink)}
+.fine{margin:0 0 14px; font-size:11.5px; line-height:1.5; color:var(--ink3)}
+.fine b{color:var(--ink2); font-weight:600}
+.rule{height:1px; background:var(--rule); margin:0 0 14px}
+.methods > p.after{margin:11px 0 0; font-family:inherit; font-size:11.5px; line-height:1.5;
+  letter-spacing:0; text-transform:none; color:var(--ink3)}
+.after b{color:var(--ink2); font-weight:600}
 
 /* verification methods */
 .methods{margin-top:16px}
@@ -302,40 +308,47 @@ body{margin:0; min-height:100vh; display:grid; place-items:center; padding:40px 
           <div class="grab"></div>
 
           <div class="sh-head">
-            <h4>Your ID is encrypted and used only to verify you</h4>
+            <h4>Your ID, and what happens to it</h4>
             <button class="x" id="close" aria-label="Close"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
           </div>
-          <p class="sh-sub">Stored encrypted in the EU, visible only to the reviewer who checks it, <b>deleted after the retention period we're required to keep it</b>. Never sold, never used for marketing.</p>
-          <div class="assure">
-            <span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.2" y="7" width="9.6" height="6.4" rx="1.5"/><path d="M5.4 7V5.2a2.6 2.6 0 015.2 0V7"/></svg> Encrypted end to end</span>
-            <span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5L8 3l6 3.5"/><path d="M3.5 6.8v5.4M7 6.8v5.4M11.5 6.8v5.4"/><path d="M2 13h12"/></svg> Licensed &amp; regulated</span>
-            <span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M5.4 8.3l1.8 1.8L10.8 6"/></svg> Nothing charged yet</span>
-          </div>
-          <p class="sh-who">Buying in <b>MetaMask</b> &middot; paid through <b>Banxa</b>, a licensed payment provider</p>
 
-          <p class="pathline">
-            <b>3 steps left</b> &middot; verify, confirm where your Bitcoin goes, pay.
-            <span>Your wallet address comes from MetaMask &mdash; you'll just check it.</span>
-          </p>
+          <div class="facts">
+            <div class="f">
+              <span class="fi"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.2" y="7" width="9.6" height="6.4" rx="1.6"/><path d="M5.4 7V5.2a2.6 2.6 0 015.2 0V7"/></svg></span>
+              <b>Encrypted, stored in the EU</b>
+            </div>
+            <div class="f">
+              <span class="fi"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 8s2.4-4.2 6.5-4.2S14.5 8 14.5 8s-2.4 4.2-6.5 4.2S1.5 8 1.5 8z"/><circle cx="8" cy="8" r="1.9"/></svg></span>
+              <b>Seen only by the reviewer</b>
+            </div>
+            <div class="f">
+              <span class="fi"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 4.4h10.4"/><path d="M6.2 4.4V3.1h3.6v1.3"/><path d="M4.2 4.4l.7 8.2h6.2l.7-8.2"/></svg></span>
+              <b>Deleted after the required period</b>
+            </div>
+          </div>
+
+          <p class="fine"><b>Banxa</b> is licensed and regulated. Never sold, never used for marketing.</p>
+          <div class="rule"></div>
 
           <div class="methods">
             <p>Choose how</p>
             <button class="m pick">
               <span class="mi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.6" y="4" width="12.8" height="9" rx="2"/><circle cx="8" cy="8.5" r="2.4"/><path d="M5.6 4l.9-1.4h3l.9 1.4"/></svg></span>
-              <span class="mt"><b>Scan with your camera</b><span>Photo ID and a selfie</span></span>
+              <span class="mt"><b>Scan with your camera</b><span>ID and a selfie</span></span>
               <span class="mc"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
             </button>
             <button class="m">
               <span class="mi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 1.8H4.4A1.6 1.6 0 002.8 3.4v9.2a1.6 1.6 0 001.6 1.6h7.2a1.6 1.6 0 001.6-1.6V5.8z"/><path d="M9 1.8v4h4.2"/></svg></span>
-              <span class="mt"><b>Upload a document</b><span>If you already have a photo or PDF</span></span>
+              <span class="mt"><b>Upload a document</b><span>Photo or PDF</span></span>
               <span class="mc"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
             </button>
             <button class="m">
               <span class="mi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="1.8" width="10.8" height="12.4" rx="2"/><path d="M5.6 6.4a3.4 3.4 0 014.8 0M7.1 8.6a1.4 1.4 0 011.8 0"/></svg></span>
-              <span class="mt"><b>Tap your passport</b><span>Hold it to your phone &mdash; reads the chip</span></span>
+              <span class="mt"><b>Tap your passport</b><span>Reads the chip</span></span>
               <span class="mm">fastest</span>
               <span class="mc"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
             </button>
+            <p class="after"><b>After this:</b> where your Bitcoin goes. MetaMask supplies the address.</p>
           </div>
 
           <button class="cta">Continue

@@ -93,8 +93,8 @@ section{padding:64px 0}
 .spine .ttl{fill:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:13.5px;
   font-weight:600; letter-spacing:.1em}
 .spine .dsc{fill:var(--ink-2); font-size:15px}
-.spine .wire{stroke:var(--rule); stroke-width:2; fill:none}
-.spine .wire.lit{stroke:var(--accent); opacity:.55}
+.spine .wire{stroke:var(--accent); stroke-width:2; fill:none; opacity:.5;
+  stroke-linejoin:round; stroke-linecap:round}
 .spine .par{fill:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:12.5px;
   letter-spacing:.1em}
 
@@ -305,7 +305,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
     <p class="eyebrow">Design exercise &middot; The brief</p>
     <h1>Introducing identity verification <em>without losing the buyer</em></h1>
     <p class="lead">A single screen that asks a first-time crypto buyer for their ID at the moment they are ready to pay. This is the thinking behind it: the decisions on the screen, how I researched the drop-off, the assumption I put in front of users, and where AI belonged.</p>
-    <p class="navlink"><a href="index.html">&larr; Overview</a> &middot; prototype: <a href="banxa-verify-light.html">wallet</a> &middot; <a href="banxa-verify-consumer-light.html">consumer app</a></p>
+    <p class="navlink"><a href="index.html">&larr; Overview</a></p>
   </div>
 </header>
 
@@ -344,34 +344,34 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
         <div class="block" id="s2">
           <h3>How I ran it <em>Frame, build, test, revise</em></h3>
           <div class="spine">
-            <svg viewBox="0 0 760 366" role="img" aria-label="Process: frame the problem; design and research run in parallel; both converge on a concept test; the screen is then revised.">
-              <path class="wire" d="M88 155 H166"/>
-              <path class="wire" d="M166 155 C214 155 218 64 244 64"/>
-              <path class="wire" d="M166 155 C214 155 218 246 244 246"/>
-              <path class="wire lit" d="M292 64 C382 64 396 155 458 155"/>
-              <path class="wire lit" d="M292 246 C382 246 396 155 458 155"/>
-              <path class="wire lit" d="M506 155 H652"/>
+            <svg viewBox="0 0 760 372" role="img" aria-label="Process: frame the problem; design and research run in parallel; both converge on a concept test; the screen is then revised.">
+              <path class="wire" d="M88 155 H142"/>
+              <path class="wire" d="M142 155 V62 a10 10 0 0 1 10 -10 H244"/>
+              <path class="wire" d="M142 155 V252 a10 10 0 0 0 10 10 H244"/>
+              <path class="wire" d="M292 52 H382 a10 10 0 0 1 10 10 V145 a10 10 0 0 0 10 10 H458"/>
+              <path class="wire" d="M292 262 H382 a10 10 0 0 0 10 -10 V165 a10 10 0 0 1 10 -10 H458"/>
+              <path class="wire" d="M506 155 H652"/>
 
               <circle class="node" cx="64" cy="155" r="24"/>
               <text class="num" x="64" y="161" text-anchor="middle">01</text>
               <text class="ttl" x="64" y="203" text-anchor="middle">FRAME</text>
               <text class="dsc" x="64" y="226" text-anchor="middle"><tspan x="64" dy="0">KYC appears after</tspan><tspan x="64" dy="20">the amount is set.</tspan></text>
 
-              <text class="par" x="268" y="22" text-anchor="middle">IN PARALLEL</text>
-              <circle class="node" cx="268" cy="64" r="24"/>
-              <text class="num" x="268" y="70" text-anchor="middle">02</text>
-              <text class="ttl" x="268" y="112" text-anchor="middle">DESIGN</text>
-              <text class="dsc" x="268" y="135" text-anchor="middle"><tspan x="268" dy="0">10+ flows reviewed,</tspan><tspan x="268" dy="20">version 1 built.</tspan></text>
+              <text class="par" x="268" y="20" text-anchor="middle">IN PARALLEL</text>
+              <circle class="node" cx="268" cy="52" r="24"/>
+              <text class="num" x="268" y="58" text-anchor="middle">02</text>
+              <text class="ttl" x="268" y="100" text-anchor="middle">DESIGN</text>
+              <text class="dsc" x="268" y="123" text-anchor="middle"><tspan x="268" dy="0">10+ flows reviewed,</tspan><tspan x="268" dy="20">version 1 built.</tspan></text>
 
-              <circle class="node" cx="268" cy="246" r="24"/>
-              <text class="num" x="268" y="252" text-anchor="middle">02</text>
-              <text class="ttl" x="268" y="294" text-anchor="middle">RESEARCH</text>
-              <text class="dsc" x="268" y="317" text-anchor="middle"><tspan x="268" dy="0">20 questions,</tspan><tspan x="268" dy="20">100 people.</tspan></text>
+              <circle class="node" cx="268" cy="262" r="24"/>
+              <text class="num" x="268" y="268" text-anchor="middle">02</text>
+              <text class="ttl" x="268" y="310" text-anchor="middle">RESEARCH</text>
+              <text class="dsc" x="268" y="333" text-anchor="middle"><tspan x="268" dy="0">20 questions,</tspan><tspan x="268" dy="20">100 people.</tspan></text>
 
               <circle class="node" cx="482" cy="155" r="24"/>
               <text class="num" x="482" y="161" text-anchor="middle">03</text>
               <text class="ttl" x="482" y="203" text-anchor="middle">TEST</text>
-              <text class="dsc" x="482" y="226" text-anchor="middle"><tspan x="482" dy="0">V1 tested in the survey.</tspan><tspan x="482" dy="20">51% would continue.</tspan></text>
+              <text class="dsc" x="482" y="226" text-anchor="middle"><tspan x="482" dy="0">Tested in the survey.</tspan><tspan x="482" dy="20">51% would continue.</tspan></text>
 
               <circle class="node" cx="676" cy="155" r="24"/>
               <text class="num" x="676" y="161" text-anchor="middle">04</text>
