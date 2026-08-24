@@ -136,10 +136,10 @@ section{padding:64px 0}
 /* funnel diagram */
 .funnel{border:1px solid var(--rule); border-radius:12px; background:var(--surface-2);
   padding:16px 16px 14px; margin:4px 0 14px}
-.fsteps{display:flex; align-items:center; gap:5px; min-width:0; flex-wrap:wrap}
-.fstep{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.02em; white-space:nowrap;
-  color:var(--ink); border:1px solid var(--rule); border-radius:7px; padding:5px 8px; background:var(--surface)}
-.farrow{color:var(--ink-2); font-size:12px; flex:none}
+.fsteps{display:flex; align-items:center; gap:7px; min-width:0; flex-wrap:wrap}
+.fstep{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.01em; white-space:nowrap;
+  color:var(--ink); border:1px solid var(--rule); border-radius:8px; padding:7px 11px; background:var(--surface)}
+.farrow{color:var(--accent); font-size:13px; flex:none; opacity:.7}
 .fnotes{display:flex; gap:10px; margin-top:11px; min-width:0; flex-wrap:wrap}
 .fnote{flex:1 1 140px; border-top:1px solid var(--rule-2); padding-top:7px; font-size:13px;
   line-height:1.35; color:var(--ink-2)}
@@ -318,7 +318,6 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
   <a href="#s6">Before / after</a>
   <a href="#s7">Assumption</a>
   <a href="#s8">AI</a>
-  <a href="#s9">Metrics</a>
 </nav>
 
 <section>
@@ -400,44 +399,57 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
         </div>
 
         <div class="block" id="s4">
-          <h3>How I would research abandonment <em>Where users actually leave</em></h3>
+          <h3>How I would research abandonment <em>What people do, not what they say</em></h3>
+          <p>The survey helps me understand what first-time buyers say they worry about. But to understand abandonment properly, I would next look at what people actually do in the real verification journey.</p>
+
+          <p><b>First, I would map where users drop off.</b></p>
           <div class="funnel">
             <div class="fsteps">
-              <span class="fstep">View KYC prompt</span><span class="farrow">&rarr;</span>
+              <span class="fstep">KYC prompt</span><span class="farrow">&rarr;</span>
               <span class="fstep">Start verification</span><span class="farrow">&rarr;</span>
-              <span class="fstep">Select method</span><span class="farrow">&rarr;</span>
-              <span class="fstep">Capture / upload</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Choose a method</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Take or upload documents</span><span class="farrow">&rarr;</span>
               <span class="fstep">Submit</span><span class="farrow">&rarr;</span>
-              <span class="fstep">Approved</span><span class="farrow">&rarr;</span>
-              <span class="fstep">Buy</span>
-            </div>
-            <div class="fnotes">
-              <span class="fnote"><b>Trust</b>trust / surprise</span>
-              <span class="fnote"><b>Intent</b>willingness to start</span>
-              <span class="fnote"><b>Capability</b>documents, eligibility, access</span>
-              <span class="fnote"><b>Operational</b>capture, review, recovery failure</span>
+              <span class="fstep">Get approved</span><span class="farrow">&rarr;</span>
+              <span class="fstep">Complete purchase</span>
             </div>
           </div>
-          <p>The first survey helps identify perceived concerns. The next phase would measure where users actually leave.</p>
+          <p>I would track how many users move from one step to the next, where they leave, retry, go back, or encounter an error. I would also compare this across device type, market, partner, and document type.</p>
+
+          <p><b>Then, I would group the reasons behind drop-off into three simple categories:</b></p>
           <ul>
-            <li><b>Instrument the entire journey.</b> Track progression, retries, back-outs, completion time, and failure states by partner, device, market, and document type.</li>
-            <li><b>Separate the drop-off into three groups.</b> <em>Won't proceed</em> &mdash; users who do not trust or accept the request. <em>Can't proceed</em> &mdash; users with document, eligibility, or access issues. <em>Get stuck</em> &mdash; users who begin but fail during capture, review, or recovery.</li>
-            <li><b>Ask at the point of exit.</b> One back-out question &mdash; &ldquo;What stopped you today?&rdquo; &mdash; reaches people who never return.</li>
-            <li><b>Pair data with real behaviour.</b> Support tickets, chat themes, and app-store feedback first. Then watch first-time buyers on their own phones, at home, where the real friction shows up.</li>
-            <li><b>Test one lever at a time.</b> Reassurance, information timing, and verification mechanics move separately, so any lift can be attributed to a cause.</li>
+            <li><b>&ldquo;I don't want to do this.&rdquo;</b> The user does not understand why verification is needed, does not trust the company, or feels surprised by the request.</li>
+            <li><b>&ldquo;I can't do this right now.&rdquo;</b> The user does not have the right document, is not eligible, or cannot access what they need.</li>
+            <li><b>&ldquo;I tried, but got stuck.&rdquo;</b> The user starts verification but struggles with taking a photo, uploading a document, waiting for review, or recovering from an error.</li>
           </ul>
+          <p style="margin-top:12px">This distinction is important because each problem needs a different design solution. More reassurance may help someone who does not trust us, but it will not help someone whose document upload keeps failing.</p>
+
+          <p><b>I would also ask users when they leave.</b> For users who exit the flow, I would show one short optional question, such as: &ldquo;What stopped you from verifying today?&rdquo; This helps us learn from people who may never come back or contact support.</p>
+
+          <p><b>I would combine the data with real user behaviour.</b> I would review support tickets, live-chat themes, and app-store feedback to identify repeated issues. Then I would run usability sessions with first-time crypto buyers on their own phones, in their own environment. This is especially useful for KYC because camera access, document handling, lighting, and unfamiliar financial terms can all create friction that is hard to see in a prototype.</p>
+
+          <p><b>Finally, I would test improvements one at a time.</b> For example, I would separately test:</p>
+          <ul>
+            <li>clearer privacy and data-handling reassurance</li>
+            <li>explaining why KYC is needed earlier or later</li>
+            <li>different verification methods</li>
+            <li>better document-capture guidance and error recovery</li>
+          </ul>
+          <p style="margin-top:12px">This lets me understand why conversion improves, rather than changing everything at once and guessing.</p>
+          <p>I would judge each test on verification completed within 24 hours of first seeing the screen &mdash; and hold it against fraud and chargeback rate, because a friction win that lets bad actors through is not a win.</p>
         </div>
 
         <div class="block" id="s5">
-          <h3>What the survey settled, and what it didn't <em>Limits</em></h3>
+          <h3>What the survey answered <em>And what it still cannot</em></h3>
+          <p>The survey gave me useful direction, but I would not treat it as the final answer.</p>
           <ul>
-            <li><b>Hesitation is the commercial risk, not rejection.</b> 34% would continue immediately, 42% want a reason first, 9% would leave. The middle group is the one worth designing for.</li>
-            <li><b>Shown the screen, 51% would likely continue, 28% were neutral, 21% unlikely.</b> Credible, not yet persuasive &mdash; and the neutral fifth is where the gain is.</li>
-            <li><b>No screener.</b> 38% had never considered buying crypto and answered a first-time-buyer scenario anyway. Their hesitation is about the category, not this screen.</li>
-            <li><b>Stated, not observed.</b> Everything but the recalled-abandonment question is hypothetical, and the screen was judged as a static image &mdash; nobody tapped anything, so the sheet and the method chooser are untested.</li>
-            <li><b>Markets diverge more than the average admits.</b> Singapore 70% would read more first; Australia 30% would leave; the USA splits evenly. Too small to be a finding, too wide to ignore.</li>
+            <li>The biggest opportunity is not convincing people who strongly reject KYC. It is helping the large middle group: <b>42% said they would want an explanation before continuing.</b></li>
+            <li>When users saw the screen, <b>51% said they would likely continue, while 28% were neutral.</b> That tells me the concept is credible, but there is still room to make it feel more reassuring and clear.</li>
+            <li>However, some survey participants had never considered buying crypto before. Their hesitation may be about crypto in general, not specifically about this KYC screen.</li>
+            <li>Most answers were based on a static design image and hypothetical questions. We still need to test the actual interaction: opening the information, choosing a verification method, uploading a document, and recovering from errors.</li>
+            <li>The country-level responses also varied quite a lot. The sample is too small to make strong market decisions yet, but it is a signal that I would validate this in key markets rather than assuming one message works everywhere.</li>
           </ul>
-          <p style="margin-top:12px"><a href="research.html">Full results, the prediction scorecard, and what each number changes &rarr;</a></p>
+          <p style="margin-top:12px"><a href="research.html">Full results, and the six changes traced to their numbers &rarr;</a></p>
         </div>
 
         <div class="block" id="s6">
@@ -447,20 +459,20 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             <div>
               <span class="tag">Version 1 &middot; tested</span>
               <div class="frame"><iframe src="banxa-verify-dark.html?embed=1" title="Version 1" loading="lazy" scrolling="no"></iframe></div>
-              <p class="cap">Led with theft protection. Time estimate in a pill. Path preview as a card. <b>51% likely to continue.</b></p>
+              <p class="cap">Led with theft protection. Time estimate in a pill, and a four-step path preview in its own card. <b>51% likely to continue.</b></p>
             </div>
             <div>
               <span class="tag now">Version 2 &middot; revised</span>
               <div class="frame"><iframe src="banxa-verify-v2-dark.html?embed=1" title="Version 2" loading="lazy" scrolling="no"></iframe></div>
-              <p class="cap">Leads with data handling. Credential marks. Time estimate removed, path compressed to a line. <b>Untested.</b></p>
+              <p class="cap">Opens on the document: encrypted, who sees it, when it is deleted. Time estimate gone, path compressed to one line. <b>Untested.</b></p>
             </div>
           </div>
 
           <div class="changes">
             <div class="crow chead"><div>Was</div><div>Now</div><div>Evidence</div></div>
             <div class="crow">
-              <div>Headline: <em>so nobody else can buy in your name</em></div>
-              <div><b>Banner: your ID is encrypted and used only to verify you.</b> Sheet opens on the document itself.</div>
+              <div>Sheet opened on <em>so nobody else can buy in your name</em></div>
+              <div><b>Opens on <em>your ID, and what happens to it</em></b>, with the banner leading on encryption.</div>
               <div class="ev">31% vs 27%</div>
             </div>
             <div class="crow">
@@ -470,17 +482,17 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             </div>
             <div class="crow">
               <div>Licensing cut from the surface</div>
-              <div><b>Licensed &amp; regulated shown as a credential mark</b></div>
+              <div><b>&ldquo;Banxa is licensed and regulated&rdquo; stated on the sheet</b></div>
               <div class="ev">rank 3.8</div>
             </div>
             <div class="crow">
-              <div>&ldquo;&asymp; 3 min&rdquo; pill beside the progress card</div>
+              <div>&ldquo;&asymp; 3 min&rdquo; pill, plus minutes on every method</div>
               <div><b>Removed; relative speed kept on the fastest method</b></div>
               <div class="ev">6% &middot; 19%</div>
             </div>
             <div class="crow">
               <div>Four-step path preview in its own card</div>
-              <div><b>One line: three steps left, and where the address comes from</b></div>
+              <div><b>One line: what comes next, and where the address comes from</b></div>
               <div class="ev">rank 5.7</div>
             </div>
             <div class="crow">
@@ -525,20 +537,6 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <p class="verdict"><b>Verdict: modified.</b> The original does not answer the first-time buyer's real question &mdash; <em>do I already have one, and could I lose my money if I get this wrong?</em></p>
         </div>
 
-
-        <div class="block" id="s9">
-          <h3>How I'd know it worked <em>Success and guardrails</em></h3>
-          <div class="mx">
-            <div><b>Verification completed &lt; 24h</b><span>Primary. Measured from first view of this screen, not from action tap.</span></div>
-            <div><b>Prompt &rarr; start rate</b><span>Whether the banner is doing its job or being scrolled past.</span></div>
-            <div><b>Destination step completion</b><span>The downstream proof that explaining a wallet address early actually worked.</span></div>
-            <div><b>Resume rate from saved orders</b><span>Whether the deferral exit recovers people or just hides the loss.</span></div>
-            <div class="guard"><b>Fraud &amp; chargeback rate</b><span>Guardrail. A friction win that lets bad actors through is not a win.</span></div>
-            <div class="guard"><b>Support contacts / 100 checks</b><span>Guardrail. Confusion moved off-screen is still confusion.</span></div>
-            <div class="guard"><b>Manual review queue</b><span>Guardrail. Faster starts can flood the humans downstream.</span></div>
-            <div><b>Scope held deliberately</b><span>Capture, pending and rejection states are out of scope here &mdash; that is where &ldquo;stuck&rdquo; users are actually lost, and it is different research.</span></div>
-          </div>
-        </div>
 
       </div>
 
