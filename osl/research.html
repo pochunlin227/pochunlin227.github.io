@@ -1,4 +1,4 @@
-<title>Survey Pre-registration</title>
+<title>Survey Results</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,6 +83,24 @@ section{padding:64px 0}
 .callout p{margin:0}
 .callout p.claim{color:var(--ink); font-size:1.18rem; font-weight:600; letter-spacing:-.01em;
   line-height:1.45}
+
+/* result bars */
+.bars{display:flex; flex-direction:column; gap:9px; margin-top:10px}
+.bar{display:grid; grid-template-columns:1fr 46px; gap:12px; align-items:center}
+.bar .lab{font-size:14px; color:var(--ink-2); line-height:1.35}
+.bar .lab b{color:var(--ink); font-weight:600}
+.bar .val{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink); text-align:right}
+.bar .track{grid-column:1 / -1; height:7px; border-radius:4px; background:var(--rule-2); overflow:hidden}
+.bar .fill{display:block; height:100%; border-radius:4px; background:var(--accent)}
+.bar.dim .fill{background:var(--rule); opacity:.9}
+.bar.dim .lab b{color:var(--ink-2)}
+
+/* verdict chips */
+.vchip{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.06em;
+  text-transform:uppercase; border-radius:99px; padding:3px 9px; white-space:nowrap; display:inline-block}
+.vchip.hit{background:var(--accent-soft); color:var(--accent)}
+.vchip.miss{background:rgba(220,90,60,.16); color:#E8794F}
+.vchip.part{background:rgba(200,170,60,.16); color:#D6B54A}
 
 /* persona map */
 .map{border:1px solid var(--rule); border-radius:11px; overflow:hidden; margin-top:10px;
@@ -218,19 +236,21 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
 
 <header class="mast">
   <div class="wrap">
-    <p class="eyebrow">Design exercise &middot; Survey pre-registration</p>
-    <h1>What I will do with the data <em>before I have it</em></h1>
-    <p class="lead">Fifty responses are in the field. They may not land before this is due &mdash; so the predictions and the decisions they trigger are written down first, while they can still be wrong.</p>
+    <p class="eyebrow">Design exercise &middot; Survey results</p>
+    <h1>The survey, and <em>where I was wrong</em></h1>
+    <p class="lead">100 responses across three markets, scored against predictions written down before the data arrived. Three of six were wrong, and one of them changes what the screen should lead with.</p>
     <p class="navlink"><a href="index.html">&larr; Overview</a> &middot; <a href="brief.html">the brief</a></p>
   </div>
 </header>
 
 <nav class="sidenav" id="sidenav" aria-label="Sections">
-  <a href="#s1">Method</a>
-  <a href="#s2">Limits</a>
-  <a href="#s3">Predictions</a>
-  <a href="#s4">Variants</a>
-  <a href="#s5">Instrument</a>
+  <a href="#s1">Headline</a>
+  <a href="#s2">Scorecard</a>
+  <a href="#s3">What stops them</a>
+  <a href="#s4">What helps</a>
+  <a href="#s5">Screen test</a>
+  <a href="#s6">What changes</a>
+  <a href="#s7">Limits</a>
 </nav>
 
 <section>
@@ -239,103 +259,128 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
       <div class="doc">
 
         <div class="block" id="s1">
-          <h3>Why write this first <em>Method</em></h3>
+          <h3>The headline <em>n = 100, three markets</em></h3>
           <div class="callout">
-            <p class="claim">A prediction made after seeing the data is not a prediction. Committing to the decision rule up front is the only thing that stops a survey from becoming decoration for choices already made.</p>
+            <p class="claim">Only 34% would continue straight away. 42% would go looking for a reason first. Hesitation, not refusal, is what this screen is up against.</p>
           </div>
-          <p>It also protects against the more likely outcome here, which is that the numbers arrive late or thin. If the design decision is already tied to a threshold, late data still has a job to do &mdash; and if the data never comes, the reasoning stands on its own.</p>
+          <p>Fielded via Pollfish, 100 completes across the USA, Australia and Singapore. Respondents were not screened out by crypto experience: 43% had bought crypto before, 19% had considered it, 38% never had &mdash; and half the sample was not at all or only slightly familiar with the category.</p>
+          <p><b>The single most useful number.</b> Two-thirds were not ready to move forward immediately: 42% would read more about why verification is required, 9% would leave, 7% would pause, 8% were unsure. Almost nobody rejects the ask outright. They stall in front of it.</p>
         </div>
 
         <div class="block" id="s2">
-          <h3>What this instrument can and cannot settle <em>Limits</em></h3>
-          <ul>
-            <li><b>Roughly 30&ndash;40 usable responses.</b> Fifty in the field, minus those screened out at Q1. Directional only, and nowhere near enough to cut by segment &mdash; six motivations across thirty-five people is five per cell, which is a story, not a finding.</li>
-            <li><b>Stated privacy concern will be inflated.</b> Q5 and Q15 ask how worried people are, and privacy is the textbook case where stated and revealed preference diverge. My own drop-off is the counter-example: I did not leave over privacy, I left because I did not understand a word.</li>
-            <li><b>Q4 and Q11 are stated intention.</b> Weak predictors of behaviour at the best of times, and Q11 asks people to rate my screen inside my own survey &mdash; expect a flattering number. The open text at Q12 and Q13 is where the signal actually is.</li>
-            <li><b>Q9 and Q10 are the only behavioural anchor.</b> Recalled action, not imagined action. They get weighted above everything else.</li>
-          </ul>
-        </div>
-
-        <div class="block" id="s3">
-          <h3>Pre-registered predictions <em>And what each one changes</em></h3>
+          <h3>The scorecard <em>Predictions vs. what happened</em></h3>
+          <p>These were written down before any data arrived. Three of six were wrong, and one was wrong in a way that changes the design.</p>
           <div class="map">
-            <div class="mrow mhead"><div>Question</div><div>What I predict</div><div>What I do about it</div></div>
+            <div class="mrow mhead"><div>Prediction</div><div>Result</div><div>Verdict</div></div>
             <div class="mrow pri">
-              <div><b>Q10 verbatims</b><span class="pt">The one that matters</span></div>
-              <div>Reasons skew to friction and failure &mdash; could not find the document, capture kept failing, gave up waiting &mdash; not to refusal on privacy grounds.</div>
-              <div>Code into <b>won't / can't / stuck</b>. If can't + stuck reach half, this screen is not the highest-leverage surface and the work moves to capture and recovery. That is the kill criterion in the brief, and this is the question that fires it.</div>
+              <div><b>Friction and failure dominate the abandonment verbatims</b><span class="pt">The one that mattered</span></div>
+              <div>The opposite. Coded reasons are dominated by a feeling of sketchiness (16.5%) and trust &mdash; &ldquo;I felt like I was being scammed,&rdquo; &ldquo;it seemed fishy,&rdquo; &ldquo;didn't trust the platform.&rdquo; Exactly one respondent cited an operational failure.</div>
+              <div><span class="vchip miss">Wrong</span> The kill criterion does not fire, but not for the reason I expected. This is a trust problem, not a capability problem.</div>
             </div>
             <div class="mrow">
-              <div><b>Q5</b> what stops you</div>
-              <div>Privacy options lead on raw counts. But the predictability cluster &mdash; how long, what documents, has my card been charged &mdash; lands within about fifteen points of them.</div>
-              <div>If the two clusters are that close, predictability wins the design, because stated privacy concern is inflated and stated effort concern is not.</div>
+              <div><b>The predictability cluster lands within ~15 points of the privacy cluster</b></div>
+              <div>Privacy and trust: 48%, 44%, 32%. Predictability: how long 10%, what documents 5%, already charged 5%. A gap of nearly forty points.</div>
+              <div><span class="vchip miss">Wrong</span> Badly. Stated privacy concern was not inflated relative to effort &mdash; it simply dwarfs it.</div>
             </div>
             <div class="mrow">
-              <div><b>Q7</b> message test</div>
-              <div>The benefit framing beats the regulatory one heavily; &ldquo;to meet regulatory requirements&rdquo; takes under fifteen percent.</div>
-              <div>Confirms demoting regulation off the surface. If it wins or comes close, that call was wrong and the licensing line goes back on the screen.</div>
+              <div><b>Benefit framing beats regulatory; regulatory takes under 15%</b></div>
+              <div>Regulatory took 16% and lost. But the winner was the <em>encryption</em> message at 31%, ahead of the benefit message at 27%.</div>
+              <div><span class="vchip part">Half right</span> Demoting regulation was defensible. Leading with benefit instead of data protection was not.</div>
             </div>
             <div class="mrow">
-              <div><b>Q17</b> time tolerance</div>
-              <div>Median at 1&ndash;3 minutes, with a meaningful share choosing &ldquo;it depends on the amount.&rdquo;</div>
-              <div>If under-a-minute plus depends-on-amount exceed forty percent, a flat &ldquo;&asymp; 3 min&rdquo; is a liability. The screen switches to per-step progress and time remaining, and the total comes off.</div>
+              <div><b>Data protection ranks first or second among concerns</b></div>
+              <div>Tied first with platform trust, both at a mean rank of 2.5. 59% called it extremely important &mdash; the highest score on any measure in the study.</div>
+              <div><span class="vchip hit">Right</span></div>
             </div>
             <div class="mrow">
-              <div><b>Q14 / Q15</b> ranking</div>
-              <div>Data protection ranks first or second. Less obviously, &ldquo;has my payment already been charged&rdquo; lands in the top three.</div>
-              <div>If the payment worry ranks high it justifies &ldquo;nothing charged yet&rdquo; keeping prime position. If it ranks last, that line shrinks and the space goes to the failure path.</div>
+              <div><b>&ldquo;Has my payment already been charged&rdquo; lands in the top three</b></div>
+              <div>Third of six by mean rank (3.6), and 43% are extremely concerned about being charged before verification completes &mdash; even though only 5% name it as a reason they would stop.</div>
+              <div><span class="vchip hit">Right</span> Note the split: low as a stated stop-reason, high as a prompted concern.</div>
             </div>
             <div class="mrow">
-              <div><b>Q16</b> information priority</div>
-              <div>&ldquo;What to do if verification fails&rdquo; scores higher than its usual place in the flow &mdash; near the bottom of a FAQ.</div>
-              <div>If it lands top three, the rejection-recovery screen stops being out of scope and becomes the next thing designed.</div>
+              <div><b>&ldquo;What to do if verification fails&rdquo; scores higher than its usual place in a FAQ</b></div>
+              <div>34% extremely important &mdash; sixth of seven. Though 33% are extremely concerned about failing and not knowing how to fix it.</div>
+              <div><span class="vchip miss">Wrong</span> Rejection recovery stays out of scope on this evidence.</div>
             </div>
           </div>
         </div>
 
+        <div class="block" id="s3">
+          <h3>What would stop them <em>Q7 &middot; up to three, % of respondents</em></h3>
+          <div class="bars">
+            <div class="bar"><span class="lab"><b>Worried my personal data could be misused or leaked</b></span><span class="val">48%</span><span class="track"><i class="fill" style="width:48%"></i></span></div>
+            <div class="bar"><span class="lab"><b>Concerned about sharing my ID or selfie</b></span><span class="val">44%</span><span class="track"><i class="fill" style="width:44%"></i></span></div>
+            <div class="bar"><span class="lab"><b>Not sure whether I can trust the platform</b></span><span class="val">32%</span><span class="track"><i class="fill" style="width:32%"></i></span></div>
+            <div class="bar"><span class="lab"><b>Don't understand why my identity needs verifying</b></span><span class="val">25%</span><span class="track"><i class="fill" style="width:25%"></i></span></div>
+            <div class="bar dim"><span class="lab">Would rather compare other platforms first</span><span class="val">12%</span><span class="track"><i class="fill" style="width:12%"></i></span></div>
+            <div class="bar dim"><span class="lab">Don't know how long verification will take</span><span class="val">10%</span><span class="track"><i class="fill" style="width:10%"></i></span></div>
+            <div class="bar dim"><span class="lab">Worried my payment may already have been charged</span><span class="val">5%</span><span class="track"><i class="fill" style="width:5%"></i></span></div>
+            <div class="bar dim"><span class="lab">Don't know what documents I need</span><span class="val">5%</span><span class="track"><i class="fill" style="width:5%"></i></span></div>
+          </div>
+          <p style="margin-top:14px">The top four are all about exposure and legitimacy. Everything I had treated as the load-bearing problem &mdash; not knowing the effort, the documents, or the payment state &mdash; sits at the bottom of the list.</p>
+        </div>
+
         <div class="block" id="s4">
-          <h3>Variants drawn in advance <em>So the data has somewhere to land</em></h3>
-          <p>Each of these is a screen I would rather have ready than start after the results arrive.</p>
-          <ul>
-            <li><b>Time-framing pair.</b> One version states a total up front, as the current screen does. The other shows no total, only the step you are on and what is left, plus &ldquo;you can stop and resume.&rdquo; Q17 picks the winner.</li>
-            <li><b>Regulation-forward header.</b> The sheet led by licensing rather than by benefit. Held in reserve against Q7 surprising me.</li>
-            <li><b>The failure path.</b> What a person sees when the check does not pass. The screen currently promises a survivable failure; if Q16 ranks it highly, that promise needs designing rather than asserting.</li>
-          </ul>
+          <h3>What would help <em>Q9 message test &amp; Q13 trust cues</em></h3>
+          <p><b>Forced choice of a single message.</b> Security-led beat everything, and the speed claim came last by a distance.</p>
+          <div class="bars">
+            <div class="bar"><span class="lab"><b>&ldquo;Your ID is encrypted and used only to help keep your account secure.&rdquo;</b></span><span class="val">31%</span><span class="track"><i class="fill" style="width:62%"></i></span></div>
+            <div class="bar"><span class="lab">&ldquo;Verify your identity to help protect your payment and crypto purchase.&rdquo;</span><span class="val">27%</span><span class="track"><i class="fill" style="width:54%"></i></span></div>
+            <div class="bar"><span class="lab">&ldquo;Your payment will not be processed until your identity has been verified.&rdquo;</span><span class="val">20%</span><span class="track"><i class="fill" style="width:40%"></i></span></div>
+            <div class="bar dim"><span class="lab">&ldquo;We need to verify your identity to meet regulatory requirements.&rdquo;</span><span class="val">16%</span><span class="track"><i class="fill" style="width:32%"></i></span></div>
+            <div class="bar dim"><span class="lab">&ldquo;This verification usually takes around three minutes.&rdquo;</span><span class="val">6%</span><span class="track"><i class="fill" style="width:12%"></i></span></div>
+          </div>
+          <p style="margin-top:16px"><b>Ranked trust cues</b> tell the same story, and deliver the finding that hurts most. Lower mean rank is stronger.</p>
+          <div class="map">
+            <div class="mrow mhead"><div>Trust cue</div><div>Mean rank</div><div>Read</div></div>
+            <div class="mrow pri"><div><b>Security and encryption information</b></div><div>3.1</div><div>The strongest lever in the study.</div></div>
+            <div class="mrow"><div><b>Clear explanation of why verification is required</b></div><div>3.8</div><div>Joint second.</div></div>
+            <div class="mrow"><div><b>Regulatory or licensing information</b></div><div>3.8</div><div>Joint second &mdash; and I had cut this from the screen.</div></div>
+            <div class="mrow"><div><b>Transparent payment status</b></div><div>4.6</div><div>Mid.</div></div>
+            <div class="mrow"><div><b>A simple explanation of what will happen next</b></div><div>5.7</div><div>Last of eight. This is the path preview &mdash; the signature idea of the concept.</div></div>
+          </div>
+          <p style="margin-top:14px"><b>How I read that fairly.</b> Q13 asked which cue would increase <em>trust</em>, and predictability was never a trust device &mdash; it is a completion device. So the path preview is not disproven as an aid to finishing; it is disproven as a reason to believe. The honest conclusion is that the screen was weighted toward the wrong job.</p>
         </div>
 
         <div class="block" id="s5">
-          <h3>What I would fix in the instrument <em>If it is not too late</em></h3>
+          <h3>The screen itself <em>Q18&ndash;Q20 concept test</em></h3>
+          <p>Shown the design, <b>51%</b> said they would be likely or very likely to continue, <b>28%</b> were neutral and <b>21%</b> unlikely. I had predicted a flattering number; 21% negative is not flattering, and the neutral fifth is the real prize.</p>
+          <p><b>Asked what one thing they would change, 60% of coded suggestions were about data protection and privacy</b> (51 of 85 substantive answers); 31.8% said nothing needed changing. Recurring verbatims asked for the same few things: where the ID is stored, how long it is kept, who sees it, and proof the platform is legitimate &mdash; &ldquo;More credentials visible,&rdquo; &ldquo;I don't really see any logos,&rdquo; &ldquo;which governmental agency it uses to verify,&rdquo; &ldquo;The ID information will be deleted once it's been verified.&rdquo;</p>
+          <p>Two criticisms landed on the craft rather than the content, and both were repeated: <b>the screen carries too much at once</b> &mdash; &ldquo;Too much information,&rdquo; &ldquo;a lot of information to process,&rdquo; &ldquo;the whole lot looks confusing&rdquo; &mdash; and <b>it is hard to read</b> &mdash; &ldquo;Bigger font,&rdquo; &ldquo;some of the text colour makes it difficult to read,&rdquo; &ldquo;use more professional colours and make it seem more secure.&rdquo;</p>
+        </div>
+
+        <div class="block" id="s6">
+          <h3>What this changes <em>Decisions, now grounded</em></h3>
           <ul>
-            <li><b>Randomise option order</b> in Q5, Q6 and Q7. Order effects in select-up-to-three lists are large enough to invent a winner.</li>
-            <li><b>Put Q12 and Q13 before Q11.</b> Rating the screen first anchors the open text that follows, and the open text is the part worth having.</li>
-            <li><b>Add an escape option to Q7</b> &mdash; &ldquo;none of these would change how I feel.&rdquo; Without it, a forced choice manufactures a preference.</li>
-            <li><b>Add one question after Q10:</b> did you ever come back and finish? That single answer decides whether the save-and-resume exit is worth building, and nothing else in the survey asks it.</li>
+            <li><b>Lead with data protection, not with theft protection.</b> The encryption message won the forced choice (31%), data protection is the most important information on the screen (59% extremely important), and 60% of requested changes are about privacy. The current headline &mdash; <em>so nobody else can buy in your name</em> &mdash; is the runner-up framing.</li>
+            <li><b>Say what happens to the document, not just that it is encrypted.</b> Where it is stored, how long it is kept, who can see it, when it is deleted. Respondents asked for this unprompted and repeatedly.</li>
+            <li><b>Put licensing back on the screen.</b> Regulatory information ties for second among trust cues (3.8). Cutting it was the call I flagged as worth checking, and the check says I was wrong.</li>
+            <li><b>Demote the time estimate.</b> Least persuasive message (6%) and least important information (19%). It should not occupy a prominent pill. Tolerance is not the issue &mdash; only 7% would bail under a minute.</li>
+            <li><b>Keep &ldquo;nothing charged yet.&rdquo;</b> Only 5% name it as a stop reason, but 43% are extremely concerned about it when asked and 45% call the confirmation extremely important. Cheap to keep, expensive to remove.</li>
+            <li><b>Shrink the path preview; do not delete it.</b> Last among trust cues, but it answers a real question for the 15% segment that wants rationale before acting. It earns a line, not a card.</li>
+            <li><b>Make it visibly institutional.</b> Bigger type, higher contrast, credential marks. &ldquo;More professional colours and make it seem more secure&rdquo; is a direct vote for the light, bank-like register over the neon one.</li>
           </ul>
         </div>
 
-      </div>
+        <div class="block" id="s7">
+          <h3>What this still cannot settle <em>Limits</em></h3>
+          <ul>
+            <li><b>No screener.</b> 38% had never considered buying crypto, and they answered a first-time-buyer scenario anyway. Their hesitation is about crypto, not about this screen. The real target &mdash; someone mid-purchase &mdash; is a subset I cannot isolate here.</li>
+            <li><b>Stated, not observed.</b> Everything except Q16 is a hypothetical. 51% saying they would continue is not 51% continuing.</li>
+            <li><b>Markets differ more than the average suggests.</b> Singapore: 70% would read more first. Australia: 30% would leave. USA: an even split. The sample is too small to treat these as findings, but too divergent to assume one screen converts everywhere.</li>
+            <li><b>The screen was judged as an image.</b> Nobody tapped anything. Every claim about the sheet, the method chooser and the flow is untested.</li>
+          </ul>
+          <p><b>What I would run next.</b> Instrument the live funnel and compare a data-protection-led variant against the current benefit-led one, with completion within 24 hours as the primary measure. That is the one question this survey raised and cannot answer.</p>
+        </div>
 
-      <aside class="rail">
-        <div class="rail-card">
-          <p class="label">Weighting</p>
-          <div class="metric"><b>Q9 &amp; Q10</b><span>Recalled behaviour. Highest weight.</span></div>
-          <div class="metric"><b>Q17</b><span>Concrete trade-off, low social desirability.</span></div>
-          <div class="metric"><b>Q5, Q14&ndash;Q16</b><span>Stated concern. Read as relative, never absolute.</span></div>
-          <div class="metric guard"><b>Q4, Q11</b><span>Stated intention on my own design. Lowest weight.</span></div>
-        </div>
-        <div class="rail-card">
-          <p class="label">If the data never arrives</p>
-          <div class="metric"><b>The page still stands</b><span>Every decision above is tied to a stated threshold, so the reasoning is auditable with or without the numbers.</span></div>
-          <div class="metric"><b>What I would not do</b><span>Run it anyway on twelve responses and present percentages. Thin data dressed as findings is worse than none.</span></div>
-        </div>
-      </aside>
+      </div>
     </div>
   </div>
 </section>
 
 <footer class="wrap">
-  <span>Independent design exercise. Predictions recorded before any responses were seen.</span>
-  <span class="mono">SURVEY PRE-REGISTRATION</span>
+  <span>Pollfish, 100 completes, USA / Australia / Singapore, August 2026. Predictions recorded before any responses were seen.</span>
+  <span class="mono">SURVEY RESULTS</span>
 </footer>
 
 <script>

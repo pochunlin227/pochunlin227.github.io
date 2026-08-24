@@ -275,9 +275,9 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             <p class="claim">KYC is required. Surprise is not.</p>
           </div>
           <p>For a first-time buyer, identity verification can feel like the product changes halfway through: they choose an amount and payment method, then an unfamiliar provider asks for an ID.</p>
-          <p>This screen is designed to make that required step feel predictable rather than punitive. Before asking for anything sensitive, it says who is handling verification, why it matters to the buyer, what they need to do, and what happens to the order meanwhile.</p>
+          <p>The survey says the barrier is hesitation rather than refusal: only 34% would continue straight away, 42% would go looking for a reason first, and just 9% would leave. So the screen's job is to answer the question people stall on &mdash; who is handling this, why it matters to me, and what happens to my data and my order &mdash; before it asks for anything sensitive.</p>
           <div class="inputs">
-            <span>~50 survey responses</span>
+            <span>100 survey responses</span>
             <span>10+ competitor flows reviewed</span>
             <span>OSL design language</span>
           </div>
@@ -286,7 +286,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
         <div class="block" id="s2">
           <h3>Design process <em>Three inputs</em></h3>
           <ul>
-            <li><b>First-time buyer survey.</b> An early survey with ~50 participants on how people react when KYC appears after they have chosen an amount and payment method &mdash; covering trust, privacy, payment safety, effort, and unfamiliar crypto terminology.</li>
+            <li><b>First-time buyer survey.</b> 100 responses across the USA, Australia and Singapore on how people react when KYC appears after they have chosen an amount and payment method. It tested trust, privacy, payment safety, effort, message framing, and the screen itself.</li>
             <li><b>Competitor review.</b> More than 10 crypto buying and payment apps, compared on when KYC appears, how the request is explained, whether order and payment status stay visible, how methods are presented, and what happens when users meet unfamiliar terms.</li>
             <li><b>OSL design language.</b> Colour, typography, hierarchy, and interaction patterns come from OSL. This keeps verification inside the OSL ecosystem rather than feeling like a handoff to a stranger.</li>
           </ul>
@@ -296,8 +296,8 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
           <h3>Design decisions <em>Why this screen</em></h3>
           <ul>
             <li><b>Keep the purchase in view.</b> The amount, payment method, and Buy action stay visible. Verification becomes the path to completing the purchase, not a compliance flow that interrupts it.</li>
-            <li><b>Lead with the user benefit.</b> Buyer protection, privacy, and order safety come before regulatory detail. At this moment people need to know why an ID request protects them, not why the business has to make it.</li>
-            <li><b>Make the next step feel finite.</b> What is required, how long it takes, which methods are available, and what happens after approval &mdash; so it does not feel open-ended.</li>
+            <li><b>Lead with the user benefit</b> &mdash; and the survey says which one. Buyer protection, privacy and order safety come before regulatory detail, but data protection outranks theft protection: the encryption message won the forced choice (31% vs 27%), 59% call data handling the most important thing to know, and 60% of requested changes were about privacy. The screen currently leads with theft protection, which is the runner-up. Licensing also belongs back on the surface &mdash; it ties second among trust cues.</li>
+            <li><b>Make the next step feel finite &mdash; quietly.</b> What is required, which methods are available, and what happens after approval. The time estimate stays but loses its prominence: it was the least persuasive message tested (6%) and the least important information (19%), and only 7% would abandon under a minute. Predictability helps people finish; it does not make them trust you.</li>
             <li><b>Prepare users before they meet unfamiliar terms.</b> Someone can be willing to verify and still abandon later at a term like &ldquo;wallet address.&rdquo; Concepts belong at the point of need, not after the user is already blocked.</li>
             <li><b>Use visual continuity to build trust.</b> No warning-heavy patterns, no alarm colour. Verification is treated as a normal part of a financial journey.</li>
           </ul>
@@ -333,14 +333,15 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
         </div>
 
         <div class="block" id="s5">
-          <h3>What this instrument can and cannot settle <em>Limits</em></h3>
+          <h3>What the survey settled, and what it didn't <em>Limits</em></h3>
           <ul>
-            <li><b>Roughly 30&ndash;40 usable responses.</b> Fifty in the field, minus those screened out at Q1. Directional only, and nowhere near enough to cut by segment &mdash; six motivations across thirty-five people is five per cell, which is a story, not a finding.</li>
-            <li><b>Stated privacy concern will be inflated.</b> Q5 and Q15 ask how worried people are, and privacy is the textbook case where stated and revealed preference diverge. My own drop-off is the counter-example: I did not leave over privacy, I left because I did not understand a word.</li>
-            <li><b>Q4 and Q11 are stated intention.</b> Weak predictors of behaviour at the best of times, and Q11 asks people to rate my screen inside my own survey &mdash; expect a flattering number. The open text at Q12 and Q13 is where the signal actually is.</li>
-            <li><b>Q9 and Q10 are the only behavioural anchor.</b> Recalled action, not imagined action. They get weighted above everything else.</li>
+            <li><b>Hesitation is the commercial risk, not rejection.</b> 34% would continue immediately, 42% want a reason first, 9% would leave. The middle group is the one worth designing for.</li>
+            <li><b>Shown the screen, 51% would likely continue, 28% were neutral, 21% unlikely.</b> Credible, not yet persuasive &mdash; and the neutral fifth is where the gain is.</li>
+            <li><b>No screener.</b> 38% had never considered buying crypto and answered a first-time-buyer scenario anyway. Their hesitation is about the category, not this screen.</li>
+            <li><b>Stated, not observed.</b> Everything but the recalled-abandonment question is hypothetical, and the screen was judged as a static image &mdash; nobody tapped anything, so the sheet and the method chooser are untested.</li>
+            <li><b>Markets diverge more than the average admits.</b> Singapore 70% would read more first; Australia 30% would leave; the USA splits evenly. Too small to be a finding, too wide to ignore.</li>
           </ul>
-          <p style="margin-top:12px"><a href="research.html">Pre-registered predictions &mdash; what I expect each question to show, what changes on the screen if it does, and what would fire the kill criterion &rarr;</a></p>
+          <p style="margin-top:12px"><a href="research.html">Full results, the prediction scorecard, and what each number changes &rarr;</a></p>
         </div>
 
         <div class="block" id="s6">
@@ -349,8 +350,8 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
             <p class="claim">First-time buyers are not one abandonment group. Some leave because an unfamiliar provider asking for ID creates a trust and privacy concern. Others are willing to complete KYC, but abandon when crypto-specific concepts &mdash; such as a wallet address &mdash; appear without enough explanation at the moment they need to act.</p>
             <p>This treats abandonment as both a trust gap and a comprehension gap.</p>
           </div>
-          <p>If trust dominates, the work is provider transparency, privacy reassurance, and payment clarity. If comprehension dominates, it is contextual explanation and better handoffs across the journey.</p>
-          <p>If document, capture, or review failures account for most drop-off, this screen is not the problem, and the work moves downstream into ID coverage, capture quality, review states, and recovery.</p>
+          <p><b>The survey answered this, and it was not close.</b> Trust dominates: worried data could be misused 48%, uneasy sharing an ID or selfie 44%, unsure the platform can be trusted 32%. Comprehension is real but smaller &mdash; 25% do not understand why verification is needed. Effort barely registers: how long 10%, what documents 5%, already charged 5%. So the work is provider transparency, privacy reassurance and visible legitimacy first; contextual explanation second.</p>
+          <p>The kill criterion did not fire. Capability and operational failure are almost absent from the recalled-abandonment verbatims &mdash; one respondent cited a crash; the rest describe a feeling of sketchiness. This screen is the right surface. I had predicted the opposite, which is recorded in full on the <a href="research.html">results page</a>.</p>
         </div>
 
         <div class="block" id="s7">
