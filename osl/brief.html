@@ -84,16 +84,30 @@ section{padding:64px 0}
 .callout p.claim{color:var(--ink); font-size:1.18rem; font-weight:600; letter-spacing:-.01em;
   line-height:1.45}
 
+/* process spine */
+.spine{margin:18px 0 8px; overflow-x:auto; -webkit-overflow-scrolling:touch}
+.spine svg{display:block; width:100%; min-width:700px; height:auto}
+.spine .node{fill:var(--surface-2); stroke:var(--accent); stroke-width:1.6}
+.spine .num{fill:var(--accent); font-family:"IBM Plex Mono",monospace; font-size:14px;
+  font-weight:500; letter-spacing:.04em}
+.spine .ttl{fill:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:13.5px;
+  font-weight:600; letter-spacing:.1em}
+.spine .dsc{fill:var(--ink-2); font-size:15px}
+.spine .wire{stroke:var(--rule); stroke-width:2; fill:none}
+.spine .wire.lit{stroke:var(--accent); opacity:.55}
+.spine .par{fill:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:12.5px;
+  letter-spacing:.1em}
+
 /* before / after */
 .ba{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:14px 0 6px}
 .ba > div{display:flex; flex-direction:column}
-.ba .tag{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.06em;
+.ba .tag{font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-3); margin-bottom:9px}
 .ba .tag.now{color:var(--accent)}
 .ba .frame{border:1px solid var(--rule); border-radius:18px; overflow:hidden; background:#000;
   aspect-ratio:390/700}
 .ba iframe{width:390px; height:700px; border:0; transform-origin:0 0; display:block}
-.ba .cap{margin:10px 2px 0; font-size:13.5px; line-height:1.5; color:var(--ink-2)}
+.ba .cap{margin:10px 2px 0; font-size:14.5px; line-height:1.5; color:var(--ink-2)}
 .ba .cap b{color:var(--ink)}
 @media (max-width:760px){ .ba{grid-template-columns:1fr} }
 
@@ -101,12 +115,12 @@ section{padding:64px 0}
   margin-top:16px}
 .crow{display:grid; grid-template-columns:1fr 1fr 88px; border-top:1px solid var(--rule-2)}
 .crow:first-child{border-top:0}
-.crow > div{padding:11px 14px; font-size:13.5px; line-height:1.5; color:var(--ink-2)}
+.crow > div{padding:12px 15px; font-size:14.5px; line-height:1.5; color:var(--ink-2)}
 .crow > div + div{border-left:1px solid var(--rule-2)}
-.crow.chead > div{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em;
+.crow.chead > div{font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-3); background:var(--surface); padding-block:9px}
 .crow b{color:var(--ink); font-weight:600}
-.crow .ev{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--accent); text-align:right}
+.crow .ev{font-family:"IBM Plex Mono",monospace; font-size:13.5px; color:var(--accent); text-align:right}
 @media (max-width:760px){
   .crow{grid-template-columns:1fr}
   .crow > div + div{border-left:0; border-top:1px solid var(--rule-2)}
@@ -327,7 +341,44 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
         </div>
 
         <div class="block" id="s2">
-          <h3>Design process <em>Three inputs</em></h3>
+          <h3>Design process <em>How it ran</em></h3>
+          <div class="spine">
+            <svg viewBox="0 0 760 366" role="img" aria-label="Process: frame the problem; design and research run in parallel; both converge on a concept test; the screen is then revised.">
+              <path class="wire" d="M88 155 H166"/>
+              <path class="wire" d="M166 155 C214 155 218 64 244 64"/>
+              <path class="wire" d="M166 155 C214 155 218 246 244 246"/>
+              <path class="wire lit" d="M292 64 C382 64 396 155 458 155"/>
+              <path class="wire lit" d="M292 246 C382 246 396 155 458 155"/>
+              <path class="wire lit" d="M506 155 H652"/>
+
+              <circle class="node" cx="64" cy="155" r="24"/>
+              <text class="num" x="64" y="161" text-anchor="middle">01</text>
+              <text class="ttl" x="64" y="203" text-anchor="middle">FRAME</text>
+              <text class="dsc" x="64" y="226" text-anchor="middle"><tspan x="64" dy="0">KYC appears after</tspan><tspan x="64" dy="20">the amount is set.</tspan></text>
+
+              <text class="par" x="268" y="22" text-anchor="middle">IN PARALLEL</text>
+              <circle class="node" cx="268" cy="64" r="24"/>
+              <text class="num" x="268" y="70" text-anchor="middle">02</text>
+              <text class="ttl" x="268" y="112" text-anchor="middle">DESIGN</text>
+              <text class="dsc" x="268" y="135" text-anchor="middle"><tspan x="268" dy="0">10+ flows reviewed,</tspan><tspan x="268" dy="20">version 1 built.</tspan></text>
+
+              <circle class="node" cx="268" cy="246" r="24"/>
+              <text class="num" x="268" y="252" text-anchor="middle">02</text>
+              <text class="ttl" x="268" y="294" text-anchor="middle">RESEARCH</text>
+              <text class="dsc" x="268" y="317" text-anchor="middle"><tspan x="268" dy="0">20 questions,</tspan><tspan x="268" dy="20">100 people.</tspan></text>
+
+              <circle class="node" cx="482" cy="155" r="24"/>
+              <text class="num" x="482" y="161" text-anchor="middle">03</text>
+              <text class="ttl" x="482" y="203" text-anchor="middle">TEST</text>
+              <text class="dsc" x="482" y="226" text-anchor="middle"><tspan x="482" dy="0">V1 tested in the survey.</tspan><tspan x="482" dy="20">51% would continue.</tspan></text>
+
+              <circle class="node" cx="676" cy="155" r="24"/>
+              <text class="num" x="676" y="161" text-anchor="middle">04</text>
+              <text class="ttl" x="676" y="203" text-anchor="middle">REVISE</text>
+              <text class="dsc" x="676" y="226" text-anchor="middle"><tspan x="676" dy="0">Six changes, each</tspan><tspan x="676" dy="20">traced to a number.</tspan></text>
+            </svg>
+          </div>
+          <p style="margin-top:18px">Design and research ran together rather than in sequence, which is why the survey could test a real screen instead of a description &mdash; and why the revision had something specific to revise.</p>
           <ul>
             <li><b>First-time buyer survey.</b> 100 responses across the USA, Australia and Singapore on how people react when KYC appears after they have chosen an amount and payment method. It tested trust, privacy, payment safety, effort, message framing, and the screen itself.</li>
             <li><b>Competitor review.</b> More than 10 crypto buying and payment apps, compared on when KYC appears, how the request is explained, whether order and payment status stay visible, how methods are presented, and what happens when users meet unfamiliar terms.</li>
@@ -436,11 +487,7 @@ footer{padding:38px 0 54px; color:var(--ink-2); font-size:13.5px; border-top:1px
               <div class="ev">verbatims</div>
             </div>
           </div>
-          <p style="margin-top:18px"><b>Also explored, and kept as working prototypes.</b> The same structure was built in a second visual language, and for a second entry context, before the survey narrowed the brief to one screen.</p>
-          <ul style="margin-top:10px">
-            <li><b>The institutional register</b> &mdash; <a href="banxa-verify-v2-light.html">version 2, light</a> and <a href="banxa-verify-light.html">version 1, light</a>. Paper-white and tight rather than near-black. Two respondents asked for &ldquo;more professional colours,&rdquo; which is a live argument for this one; OSL's own product is dark, which is the argument against.</li>
-            <li><b>A consumer-app entry</b> &mdash; <a href="banxa-verify-consumer-dark.html">dark</a> and <a href="banxa-verify-consumer-light.html">light</a>. The buyer arrives from a mainstream money app rather than a self-custody wallet, which is closer to the primary persona than MetaMask is.</li>
-          </ul>
+          <p style="margin-top:18px"><b>Also explored.</b> The same structure in a <a href="banxa-verify-v2-light.html">light, institutional register</a> and for a <a href="banxa-verify-consumer-dark.html">consumer-app entry</a>, before the brief narrowed to one screen.</p>
           <p style="margin-top:16px"><b>What I did not change.</b> &ldquo;Nothing charged yet&rdquo; stays prominent even though only 5% name it as a reason to stop &mdash; 43% are extremely concerned about it when asked, and 45% call the confirmation extremely important. And the path preview shrank rather than disappearing: it ranks last as a <em>trust</em> cue, but it is still the answer for the 15% who want rationale before they act.</p>
           <p><a href="research.html">The full results, and the six changes traced to their numbers &rarr;</a></p>
         </div>
