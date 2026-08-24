@@ -39,8 +39,8 @@ h1 em{font-style:normal; color:var(--accent)}
 .card h2 .num{font-family:"IBM Plex Mono",monospace; font-size:1.05rem; font-weight:500;
   color:var(--accent); margin-right:10px}
 .card h2 .thm{color:var(--ink-2); font-weight:500}
-.card h2{margin:0; font-size:1.4rem; font-weight:650; letter-spacing:-.02em; line-height:1.25}
-.card p{margin:10px 0 0; color:var(--ink-2); font-size:15.5px; line-height:1.6; max-width:52ch}
+.card h2{display:block; margin:0; font-size:1.4rem; font-weight:650; letter-spacing:-.02em; line-height:1.25}
+.card p{display:block; margin:10px 0 0; color:var(--ink-2); font-size:15.5px; line-height:1.6; max-width:52ch}
 .go{display:inline-flex; align-items:center; gap:8px; margin-top:22px;
   font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.11em;
   text-transform:uppercase; color:var(--accent)}
@@ -48,14 +48,15 @@ h1 em{font-style:normal; color:var(--accent)}
 .go span{transition:transform .18s ease}
 
 .duo{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:52px; align-items:stretch}
-.duo .card{display:flex; flex-direction:column}
-.duo .card .go{margin-top:auto; padding-top:22px}
-.duo .thumb{margin-top:18px}
+.duo .card{display:grid; grid-template-columns:58px 1fr; gap:20px; align-items:start}
+.duo .ct{display:flex; flex-direction:column; height:100%}
+.duo .ct .go{margin-top:auto; padding-top:20px}
+.duo .ic{width:58px}
+.duo .ic svg{display:block; width:100%; height:auto}
+@media (max-width:640px){ .duo .card{grid-template-columns:46px 1fr; gap:15px} .duo .ic{width:46px} }
 
-.thumb{margin-top:20px}
-.thumb svg{display:block; height:74px; width:auto}
-.thumb.light{--pf:#DDDFD6; --ps:#F6F7F3; --pl:#C6C9BE; --pst:#C6C9BE}
-.thumb.dark{--pf:#1A1C1E; --ps:#0B0D10; --pl:#2E3134; --pst:#33363A}
+.ic.light{--pf:#DDDFD6; --ps:#F6F7F3; --pl:#C6C9BE; --pst:#C6C9BE}
+.ic.dark{--pf:#1A1C1E; --ps:#0B0D10; --pl:#2E3134; --pst:#33363A}
 
 footer{margin-top:58px; padding-top:22px; border-top:1px solid var(--rule);
   color:var(--ink-3); font-size:13.5px; line-height:1.6}
@@ -77,15 +78,20 @@ footer{margin-top:58px; padding-top:22px; border-top:1px solid var(--rule);
 
   <div class="duo">
     <a class="card" href="brief.html">
-      <h2><span class="num">01</span>The brief</h2>
-      <p>Decisions, research approach, the assumption, and AI in the process.</p>
-      <span class="go">Read <span>&rarr;</span></span>
+      <span class="ic dark"><svg viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a5 5 0 015-5h18l13 13v48a5 5 0 01-5 5H9a5 5 0 01-5-5V6z" fill="var(--pf)" stroke="var(--pst)"/><path d="M27 1v8a5 5 0 005 5h8" stroke="var(--pst)"/><rect x="10" y="22" width="16" height="3.4" rx="1.7" fill="var(--accent)"/><rect x="10" y="30" width="24" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="10" y="36" width="24" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="10" y="42" width="18" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="10" y="50" width="24" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="10" y="56" width="14" height="2.4" rx="1.2" fill="var(--pl)"/></svg></span>
+      <span class="ct">
+        <h2><span class="num">01</span>The brief</h2>
+        <p>Decisions, research approach, the assumption, and AI in the process.</p>
+        <span class="go">Read <span>&rarr;</span></span>
+      </span>
     </a>
     <a class="card" href="banxa-verify-v2-dark.html">
-      <h2><span class="num">02</span>The screen</h2>
-      <p>Interactive prototype &mdash; prompt, verify, verified.</p>
-      <div class="thumb dark"><svg viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="42" height="66" rx="10" fill="var(--pf)" stroke="var(--pst)"/><rect x="5" y="7" width="34" height="54" rx="6" fill="var(--ps)"/><rect x="17" y="4.5" width="10" height="2" rx="1" fill="var(--pst)"/><rect x="9" y="13" width="17" height="3.4" rx="1.7" fill="var(--accent)"/><rect x="9" y="20" width="26" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="25.5" width="21" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="33" width="26" height="9" rx="3" fill="var(--pl)" opacity=".55"/><rect x="9" y="49" width="26" height="7" rx="3.5" fill="var(--accent)"/></svg></div>
-      <span class="go">Open <span>&rarr;</span></span>
+      <span class="ic dark"><svg viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="42" height="66" rx="10" fill="var(--pf)" stroke="var(--pst)"/><rect x="5" y="7" width="34" height="54" rx="6" fill="var(--ps)"/><rect x="17" y="4.5" width="10" height="2" rx="1" fill="var(--pst)"/><rect x="9" y="13" width="17" height="3.4" rx="1.7" fill="var(--accent)"/><rect x="9" y="20" width="26" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="25.5" width="21" height="2.4" rx="1.2" fill="var(--pl)"/><rect x="9" y="33" width="26" height="9" rx="3" fill="var(--pl)" opacity=".55"/><rect x="9" y="49" width="26" height="7" rx="3.5" fill="var(--accent)"/></svg></span>
+      <span class="ct">
+        <h2><span class="num">02</span>The screen</h2>
+        <p>Interactive prototype &mdash; prompt, verify, verified.</p>
+        <span class="go">Open <span>&rarr;</span></span>
+      </span>
     </a>
   </div>
 
