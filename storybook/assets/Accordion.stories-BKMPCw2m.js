@@ -1,0 +1,18 @@
+import{j as e}from"./jsx-runtime-ClBOXb86.js";import{c as w}from"./cn-CnaM3o_f.js";import{C as R}from"./Icons-BhXLSfjM.js";import"./iframe-DZt_JkcD.js";import"./preload-helper-Dp1pzeXC.js";function t({items:r,className:y}){return e.jsx("div",{className:w("flex w-full flex-col gap-16",y),children:r.map((n,h)=>e.jsxs("details",{className:"group w-full border-b border-teal-100 pb-16",children:[e.jsxs("summary",{className:"typography-headline3 flex cursor-pointer list-none items-center justify-between gap-16 px-12 py-8 text-teal-PRIMARY focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-PRIMARY [&::-webkit-details-marker]:hidden",children:[n.question,e.jsx(R,{className:"w-[2.2rem] shrink-0 text-teal-300 transition-transform duration-200 group-open:rotate-180"})]}),e.jsx("div",{className:"px-12 py-16 text-[1.6rem] font-medium leading-[1.5] text-teal-PRIMARY desktop:text-[2rem]",children:n.answer})]},h))})}t.__docgenInfo={description:"",methods:[],displayName:"Accordion",props:{items:{required:!0,tsType:{name:"Array",elements:[{name:"signature",type:"object",raw:`{
+  question: React.ReactNode
+  answer: React.ReactNode
+}`,signature:{properties:[{key:"question",value:{name:"ReactReactNode",raw:"React.ReactNode",required:!0}},{key:"answer",value:{name:"ReactReactNode",raw:"React.ReactNode",required:!0}}]}}],raw:"AccordionEntry[]"},description:""},className:{required:!1,tsType:{name:"string"},description:""}}};const A={title:"Components/Accordion",component:t,parameters:{layout:"padded",docs:{description:{component:"Accordion — from Figma「Coseeing」→ 捐款相關 UI 常見問題. Native\n`<details>/<summary>` (keyboard + screen-reader friendly, no JS); the chevron\nrotates when an item opens. Click the questions to expand."}}},args:{items:[{question:"捐款給 Coseeing 可以抵稅嗎？該怎麼做？",answer:"Coseeing 為政府立案之社團法人,捐款可依法申報列舉扣除。完成捐款後,請來信提供收據抬頭與統一編號(或身分證字號),我們將開立正式捐款收據供您報稅使用。"},{question:"Coseeing 是否有勸募字號？",answer:"相關勸募字號資訊將於主管機關核准後公告於官方網站。"},{question:"Coseeing 如何追蹤後續資金使用情形呢？",answer:"我們每年公開年度工作報告與經費使用情形,您也可以透過電子報與社群追蹤各專案的最新進度。"}]}},a={render:r=>e.jsx("div",{className:"mx-auto max-w-[78.8rem]",children:e.jsx(t,{...r})})},s={parameters:{layout:"fullscreen"},render:r=>e.jsxs("div",{className:"bg-bg-warm-gray px-20 py-48 desktop:px-80",children:[e.jsx("h2",{className:"typography-headline2 mb-48 text-center text-teal-PRIMARY",children:"常見問題"}),e.jsx("div",{className:"mx-auto max-w-[78.8rem]",children:e.jsx(t,{...r})})]})};var o,i,c,d,m;a.parameters={...a.parameters,docs:{...(o=a.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  render: args => <div className="mx-auto max-w-[78.8rem]">
+      <Accordion {...args} />
+    </div>
+}`,...(c=(i=a.parameters)==null?void 0:i.docs)==null?void 0:c.source},description:{story:"Click a question to expand it.",...(m=(d=a.parameters)==null?void 0:d.docs)==null?void 0:m.description}}};var p,l,u,x,g;s.parameters={...s.parameters,docs:{...(p=s.parameters)==null?void 0:p.docs,source:{originalSource:`{
+  parameters: {
+    layout: "fullscreen"
+  },
+  render: args => <div className="bg-bg-warm-gray px-20 py-48 desktop:px-80">
+      <h2 className="typography-headline2 mb-48 text-center text-teal-PRIMARY">常見問題</h2>
+      <div className="mx-auto max-w-[78.8rem]">
+        <Accordion {...args} />
+      </div>
+    </div>
+}`,...(u=(l=s.parameters)==null?void 0:l.docs)==null?void 0:u.source},description:{story:"On the beige section background, as in the donation page.",...(g=(x=s.parameters)==null?void 0:x.docs)==null?void 0:g.description}}};const k=["Playground","OnBeige"];export{s as OnBeige,a as Playground,k as __namedExportsOrder,A as default};
