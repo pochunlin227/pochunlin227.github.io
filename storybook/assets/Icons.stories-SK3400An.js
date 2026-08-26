@@ -1,0 +1,17 @@
+import{j as e}from"./jsx-runtime-CYhtMYph.js";import{A as a,P as s,S as t,a as c,M as f,C as j,b as u,c as y,d as w,L as R,F as b,D as A}from"./Icons-BfEnGmVF.js";import"./iframe-ae-nZm9f.js";import"./preload-helper-Dp1pzeXC.js";const D={title:"Components/Icons",parameters:{layout:"padded",docs:{description:{component:'Icons — glyphs inlined verbatim from the Figma "Coseeing" → Elements exports,\nwith fills converted to `currentColor` so one component serves every theme\n(set the color via a `text-*` class on the icon or its parent).'}}}},N=[{name:"ArrowLeftIcon",el:e.jsx(a,{})},{name:"ArrowRightIcon",el:e.jsx(c,{})},{name:"PlayIcon",el:e.jsx(s,{})},{name:"StopIcon",el:e.jsx(t,{})},{name:"MenuIcon",el:e.jsx(f,{})},{name:"ChevronDownIcon",el:e.jsx(j,{})},{name:"SearchIcon",el:e.jsx(u,{})},{name:"PlusIcon",el:e.jsx(y,{})},{name:"CurveDoodleIcon",el:e.jsx(w,{className:"text-orange-PRIMARY"})},{name:"LinkedinIcon",el:e.jsx(R,{})},{name:"FacebookIcon",el:e.jsx(b,{})},{name:"DotDividerIcon",el:e.jsx(A,{})}],r={render:()=>e.jsx("div",{className:"flex flex-wrap gap-16",children:N.map(n=>e.jsxs("div",{className:"flex min-w-[12rem] flex-col items-center justify-center gap-12 rounded-16 border border-bg-warm-gray bg-neutral-white p-20 text-teal-PRIMARY",children:[e.jsx("div",{className:"flex h-40 items-center",children:n.el}),e.jsx("code",{className:"typography-body3 text-neutral-dark-gray",children:n.name})]},n.name))})},o={render:()=>e.jsxs("div",{className:"flex flex-col gap-16",children:[e.jsxs("div",{className:"flex items-center gap-24 rounded-16 bg-bg-light-off-white p-20 text-teal-PRIMARY",children:[e.jsx(a,{})," ",e.jsx(s,{})," ",e.jsx(t,{})," ",e.jsx(c,{})]}),e.jsxs("div",{className:"flex items-center gap-24 rounded-16 bg-teal-PRIMARY p-20 text-orange-100",children:[e.jsx(a,{})," ",e.jsx(s,{})," ",e.jsx(t,{})," ",e.jsx(c,{})]})]})};var l,i,d,m,x;r.parameters={...r.parameters,docs:{...(l=r.parameters)==null?void 0:l.docs,source:{originalSource:`{
+  render: () => <div className="flex flex-wrap gap-16">
+      {ICONS.map(i => <div key={i.name} className="flex min-w-[12rem] flex-col items-center justify-center gap-12 rounded-16 border border-bg-warm-gray bg-neutral-white p-20 text-teal-PRIMARY">
+          <div className="flex h-40 items-center">{i.el}</div>
+          <code className="typography-body3 text-neutral-dark-gray">{i.name}</code>
+        </div>)}
+    </div>
+}`,...(d=(i=r.parameters)==null?void 0:i.docs)==null?void 0:d.source},description:{story:"Every icon at natural size, in teal-PRIMARY.",...(x=(m=r.parameters)==null?void 0:m.docs)==null?void 0:x.description}}};var p,I,g,h,v;o.parameters={...o.parameters,docs:{...(p=o.parameters)==null?void 0:p.docs,source:{originalSource:`{
+  render: () => <div className="flex flex-col gap-16">
+      <div className="flex items-center gap-24 rounded-16 bg-bg-light-off-white p-20 text-teal-PRIMARY">
+        <ArrowLeftIcon /> <PlayIcon /> <StopIcon /> <ArrowRightIcon />
+      </div>
+      <div className="flex items-center gap-24 rounded-16 bg-teal-PRIMARY p-20 text-orange-100">
+        <ArrowLeftIcon /> <PlayIcon /> <StopIcon /> <ArrowRightIcon />
+      </div>
+    </div>
+}`,...(g=(I=o.parameters)==null?void 0:I.docs)==null?void 0:g.source},description:{story:"The same glyphs recolored purely via text color (currentColor).",...(v=(h=o.parameters)==null?void 0:h.docs)==null?void 0:v.description}}};const Y=["Overview","Themed"];export{r as Overview,o as Themed,Y as __namedExportsOrder,D as default};
