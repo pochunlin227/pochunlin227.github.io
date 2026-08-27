@@ -139,6 +139,65 @@ html.embed body{padding:18px 12px; min-height:0}
 .bar{width:118px; height:4px; border-radius:99px; background:var(--ink); opacity:.28;
   margin:0 auto 8px}
 
+
+/* ---------- simulated verification steps ---------- */
+.vstep[hidden]{display:none}
+.sh-head .back{width:26px; height:26px; border-radius:50%; border:0; background:var(--sheet-2);
+  color:var(--ink2); display:grid; place-items:center; cursor:pointer; padding:0; flex:none}
+.m .radio{width:18px; height:18px; border-radius:50%; border:1.5px solid var(--rule); flex:none;
+  display:grid; place-items:center}
+.m.pick .radio{border-color:var(--accent); border-width:5px}
+
+.frame-wrap{margin:14px 0 4px; display:grid; place-items:center}
+.vf{position:relative; width:100%; aspect-ratio:1.58; border-radius:14px;
+  background:var(--sheet-2); overflow:hidden}
+.vf.selfie{aspect-ratio:1; width:62%; border-radius:50%}
+.vf .corner{position:absolute; width:26px; height:26px; border:2.5px solid var(--accent); border-radius:5px}
+.vf .c1{top:10px; left:10px; border-right:0; border-bottom:0}
+.vf .c2{top:10px; right:10px; border-left:0; border-bottom:0}
+.vf .c3{bottom:10px; left:10px; border-right:0; border-top:0}
+.vf .c4{bottom:10px; right:10px; border-left:0; border-top:0}
+.vf.selfie .corner{display:none}
+.vf.selfie{border:2.5px dashed var(--accent)}
+.vf .ghost{position:absolute; inset:22px; border-radius:8px; border:1px dashed var(--rule);
+  display:grid; place-items:center; color:var(--ink3); font-size:11.5px; text-align:center; padding:8px}
+.vf.selfie .ghost{inset:18%; border-radius:50%}
+.vf .flash{position:absolute; inset:0; background:#fff; opacity:0; pointer-events:none}
+.vf.snap .flash{animation:snap .42s ease-out}
+@keyframes snap{0%{opacity:.85}100%{opacity:0}}
+
+.nfc{margin:18px 0 8px; display:grid; place-items:center; height:132px; position:relative}
+.nfc .ring{position:absolute; width:52px; height:52px; border-radius:50%; border:2px solid var(--accent);
+  opacity:0; animation:ping 2s ease-out infinite}
+.nfc .ring:nth-child(2){animation-delay:.66s}
+.nfc .ring:nth-child(3){animation-delay:1.32s}
+@keyframes ping{0%{transform:scale(1); opacity:.7}100%{transform:scale(2.6); opacity:0}}
+.nfc .card{width:74px; height:50px; border-radius:8px; background:var(--sheet-2);
+  border:1px solid var(--accent); display:grid; place-items:center; color:var(--accent); z-index:2}
+
+.filerow{display:flex; align-items:center; gap:11px; margin:14px 0 6px; padding:14px 13px;
+  border:1px dashed var(--rule); border-radius:14px; background:var(--sheet-2)}
+.filerow.done{border-style:solid; border-color:var(--accent)}
+.filerow .fic{width:30px; height:30px; border-radius:9px; background:var(--soft); color:var(--accent);
+  display:grid; place-items:center; flex:none}
+.filerow b{display:block; font-size:13.5px; font-weight:600}
+.filerow span{display:block; font-size:11.5px; color:var(--ink2); margin-top:1px}
+
+.checking{padding:22px 0 6px; text-align:center}
+.checking h4{margin:14px 0 0; font-size:19px; font-weight:700; letter-spacing:-.025em}
+.checking p{margin:6px 0 0; font-size:12.5px; color:var(--ink2)}
+.prog{margin:18px auto 4px; width:100%; height:5px; border-radius:99px; background:var(--sheet-2);
+  overflow:hidden}
+.prog i{display:block; height:100%; width:0; border-radius:99px; background:var(--accent);
+  transition:width .25s linear}
+.spin{width:44px; height:44px; margin:0 auto; border-radius:50%; border:3px solid var(--sheet-2);
+  border-top-color:var(--accent); animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){
+  .spin,.nfc .ring{animation:none}
+  .vf.snap .flash{animation:none}
+}
+
 /* ---------- sheet ---------- */
 .scrim{position:absolute; inset:0; background:var(--scrim); border-radius:36px; z-index:20;
   display:flex; align-items:flex-end; opacity:0; pointer-events:none; transition:opacity .22s ease}
@@ -307,6 +366,8 @@ html.embed body{padding:18px 12px; min-height:0}
         <div class="sheet">
           <div class="grab"></div>
 
+          <div class="vstep" data-step="choose">
+
           <div class="sh-head">
             <h4>Your ID, and what happens to it</h4>
             <button class="x" id="close" aria-label="Close"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
@@ -332,17 +393,20 @@ html.embed body{padding:18px 12px; min-height:0}
 
           <div class="methods">
             <p class="mq">How do you want to verify?</p>
-            <button class="m pick">
+            <button class="m pick" data-method="camera">
+              <span class="radio"></span>
               <span class="mi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.6" y="4" width="12.8" height="9" rx="2"/><circle cx="8" cy="8.5" r="2.4"/><path d="M5.6 4l.9-1.4h3l.9 1.4"/></svg></span>
               <span class="mt"><b>Scan with your camera</b><span>ID and a selfie</span></span>
               <span class="mc"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
             </button>
-            <button class="m">
+            <button class="m" data-method="upload">
+              <span class="radio"></span>
               <span class="mi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 1.8H4.4A1.6 1.6 0 002.8 3.4v9.2a1.6 1.6 0 001.6 1.6h7.2a1.6 1.6 0 001.6-1.6V5.8z"/><path d="M9 1.8v4h4.2"/></svg></span>
               <span class="mt"><b>Upload a document</b><span>Photo or PDF</span></span>
               <span class="mc"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
             </button>
-            <button class="m">
+            <button class="m" data-method="nfc">
+              <span class="radio"></span>
               <span class="mi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="1.8" width="10.8" height="12.4" rx="2"/><path d="M5.6 6.4a3.4 3.4 0 014.8 0M7.1 8.6a1.4 1.4 0 011.8 0"/></svg></span>
               <span class="mt"><b>Tap your passport</b><span>Reads the chip</span></span>
               <span class="mm">fastest</span>
@@ -351,10 +415,32 @@ html.embed body{padding:18px 12px; min-height:0}
             <p class="after"><b>After this:</b> where your Bitcoin goes &mdash; like an account number, for crypto. MetaMask supplies yours.</p>
           </div>
 
-          <button class="cta">Continue
+          <button class="cta" id="go">Continue
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9"/><path d="M8.5 4.5L12 8l-3.5 3.5"/></svg>
           </button>
           <button class="later">My ID isn't to hand</button>
+          </div>
+
+          <div class="vstep" data-step="capture" hidden>
+            <div class="sh-head">
+              <button class="back" id="capBack" aria-label="Back"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg></button>
+              <h4 id="capTitle">Scan the front of your ID</h4>
+              <button class="x" id="capClose" aria-label="Close"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+            </div>
+            <p class="sh-sub" id="capSub">Fit the whole document inside the frame.</p>
+            <div id="capStage"></div>
+            <button class="cta" id="capAction">Capture</button>
+            <button class="later" id="capAlt">Use a different method</button>
+          </div>
+
+          <div class="vstep" data-step="checking" hidden>
+            <div class="checking">
+              <div class="spin"></div>
+              <h4>Checking your document</h4>
+              <p>This usually takes a few seconds.</p>
+              <div class="prog"><i id="progBar"></i></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -403,10 +489,112 @@ html.embed body{padding:18px 12px; min-height:0}
     document.getElementById('vok').classList.add('on');
     document.getElementById('buy').disabled = false;
   }
-  document.querySelector('.methods').parentNode.querySelector('.cta').addEventListener('click', function(){
+  // ---------- simulated verification ----------
+  var steps = {};
+  document.querySelectorAll('.vstep').forEach(function(v){ steps[v.dataset.step] = v; });
+  function show(name){
+    Object.keys(steps).forEach(function(k){ steps[k].hidden = (k !== name); });
+    document.querySelector('.sheet').scrollTop = 0;
+  }
+
+  var method = 'camera';
+  document.querySelectorAll('.m').forEach(function(row){
+    row.addEventListener('click', function(){
+      document.querySelectorAll('.m').forEach(function(r){ r.classList.remove('pick'); });
+      row.classList.add('pick');
+      method = row.dataset.method;
+    });
+  });
+
+  var VF = '<div class="frame-wrap"><div class="vf" id="vf">'
+    + '<span class="corner c1"></span><span class="corner c2"></span>'
+    + '<span class="corner c3"></span><span class="corner c4"></span>'
+    + '<span class="ghost">Photo page, all four corners visible</span>'
+    + '<span class="flash"></span></div></div>';
+  var SELFIE = '<div class="frame-wrap"><div class="vf selfie" id="vf">'
+    + '<span class="ghost">Look straight at the camera</span><span class="flash"></span></div></div>';
+  var NFC = '<div class="nfc"><span class="ring"></span><span class="ring"></span><span class="ring"></span>'
+    + '<span class="card"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.6 6a4.8 4.8 0 016.8 0M6.6 8.4a2 2 0 012.8 0"/><circle cx="8" cy="11.4" r=".9" fill="currentColor" stroke="none"/></svg></span></div>';
+  var FILE = '<div class="filerow" id="filerow"><span class="fic"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 1.8H4.4A1.6 1.6 0 002.8 3.4v9.2a1.6 1.6 0 001.6 1.6h7.2a1.6 1.6 0 001.6-1.6V5.8z"/><path d="M9 1.8v4h4.2"/></svg></span>'
+    + '<span><b id="fileName">No file chosen</b><span id="fileMeta">JPG, PNG or PDF, up to 10 MB</span></span></div>';
+
+  var stage = document.getElementById('capStage');
+  var capTitle = document.getElementById('capTitle');
+  var capSub = document.getElementById('capSub');
+  var capAction = document.getElementById('capAction');
+  var phase = 0;
+
+  function renderCapture(){
+    if (method === 'nfc'){
+      capTitle.textContent = 'Hold your passport to your phone';
+      capSub.textContent = 'Keep it against the top of the handset until it reads.';
+      stage.innerHTML = NFC;
+      capAction.textContent = 'Done';
+    } else if (method === 'upload'){
+      capTitle.textContent = 'Upload your document';
+      capSub.textContent = 'A photo or a PDF of the photo page.';
+      stage.innerHTML = FILE;
+      capAction.textContent = 'Choose a file';
+    } else if (phase === 0){
+      capTitle.textContent = 'Scan the front of your ID';
+      capSub.textContent = 'Fit the whole document inside the frame.';
+      stage.innerHTML = VF;
+      capAction.textContent = 'Capture';
+    } else {
+      capTitle.textContent = 'Now a quick selfie';
+      capSub.textContent = 'So we can match your face to the document.';
+      stage.innerHTML = SELFIE;
+      capAction.textContent = 'Capture';
+    }
+  }
+
+  function runCheck(){
+    show('checking');
+    var bar = document.getElementById('progBar'), pct = 0;
+    var t = setInterval(function(){
+      pct += 14 + Math.round(pct / 8);
+      if (pct >= 100){ pct = 100; clearInterval(t); setTimeout(finish, 420); }
+      bar.style.width = pct + '%';
+    }, 240);
+  }
+
+  function finish(){
     shut(); verified();
     setTimeout(function(){ scrim2.classList.add('open'); }, 240);
+    setTimeout(function(){ phase = 0; show('choose'); }, 700);
+  }
+
+  document.getElementById('go').addEventListener('click', function(){
+    phase = 0; renderCapture(); show('capture');
   });
+  document.getElementById('capBack').addEventListener('click', function(){
+    if (method === 'camera' && phase === 1){ phase = 0; renderCapture(); return; }
+    show('choose');
+  });
+  document.getElementById('capAlt').addEventListener('click', function(){ phase = 0; show('choose'); });
+  document.getElementById('capClose').addEventListener('click', function(){ phase = 0; show('choose'); shut(); });
+
+  capAction.addEventListener('click', function(){
+    if (method === 'upload'){
+      var row = document.getElementById('filerow');
+      if (!row.classList.contains('done')){
+        row.classList.add('done');
+        document.getElementById('fileName').textContent = 'passport-photo-page.jpg';
+        document.getElementById('fileMeta').textContent = '2.4 MB &middot; ready to submit';
+        document.getElementById('fileMeta').innerHTML = '2.4 MB &middot; ready to submit';
+        capAction.textContent = 'Submit';
+        return;
+      }
+      runCheck(); return;
+    }
+    if (method === 'nfc'){ runCheck(); return; }
+    var vf = document.getElementById('vf');
+    if (vf){ vf.classList.add('snap'); }
+    setTimeout(function(){
+      if (phase === 0){ phase = 1; renderCapture(); } else { runCheck(); }
+    }, 420);
+  });
+
   function shut2(){ scrim2.classList.remove('open'); }
   document.getElementById('okclose').addEventListener('click', shut2);
   document.getElementById('okbuy').addEventListener('click', shut2);
